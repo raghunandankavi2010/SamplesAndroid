@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PepperSqaure</string>
+    <string name="account_type">assignment.test.raghu.peppersqaure.accountabc</string>
+    <string name="content_authority">assignment.test.raghu.peppersqaure.provider</string>
+    <string name="tag">101</string>
+
+</resources>
