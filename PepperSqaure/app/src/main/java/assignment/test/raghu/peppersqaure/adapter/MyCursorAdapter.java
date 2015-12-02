@@ -27,13 +27,15 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import assignment.test.raghu.peppersqaure.CustomViewGroup;
 import assignment.test.raghu.peppersqaure.R;
 import assignment.test.raghu.peppersqaure.models.Actors;
 import assignment.test.raghu.peppersqaure.provider.ActorContract;
 
-/**
- * Created by Raghunandan on 22-11-2015.
- */
+/*
+ * Created by Raghunandan on 22-11-2015.*/
+
+
 
 public class MyCursorAdapter extends CursorRecyclerViewAdapter<MyCursorAdapter.ViewHolder_item> {
 
@@ -66,7 +68,7 @@ public class MyCursorAdapter extends CursorRecyclerViewAdapter<MyCursorAdapter.V
                                               int viewType) {
 
         ViewHolder_item viewHolder;
-        View v = LayoutInflater.from(parent.getContext())
+        View v =  LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.test, parent, false);
 
         viewHolder = new ViewHolder_item(v);
@@ -87,15 +89,15 @@ public class MyCursorAdapter extends CursorRecyclerViewAdapter<MyCursorAdapter.V
                 load(
                         cursor.getString(cursor.getColumnIndex(ActorContract.Actors.ACTOR_IMAGE)))
                 .into(viewHolder.m_Image);
-        int fav = cursor.getInt(cursor.getColumnIndex(ActorContract.Actors.ACTOR_FAV));
+        //int fav = cursor.getInt(cursor.getColumnIndex(ActorContract.Actors.ACTOR_FAV));
 
-        if (fav == 1) {
+     /*   if (fav == 1) {
             viewHolder.mFav.setImageDrawable(viewHolder.mFav.getResources().getDrawable(R.drawable.ic_favorite_full));
 
         } else {
             viewHolder.mFav.setImageDrawable(viewHolder.mFav.getResources().getDrawable(R.drawable.ic_favorite_border));
 
-        }
+        }*/
 
     }
 
@@ -103,24 +105,24 @@ public class MyCursorAdapter extends CursorRecyclerViewAdapter<MyCursorAdapter.V
     public class ViewHolder_item extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView m_Image;
-        private ImageButton mShare, mFav;
+        //private ImageButton mShare, mFav;
         public TextView tv, tv1, tv2;
 
         public ViewHolder_item(View itemLayoutView) {
             super(itemLayoutView);
-            tv = (TextView) itemLayoutView.findViewById(R.id.tv1);
-            tv1 = (TextView) itemLayoutView.findViewById(R.id.tv2);
-            tv2 = (TextView) itemLayoutView.findViewById(R.id.tv3);
-            mShare = (ImageButton) itemLayoutView.findViewById(R.id.imageButton1);
-            mFav = (ImageButton) itemLayoutView.findViewById(R.id.imageButton);
-            m_Image = (ImageView) itemLayoutView.findViewById(R.id.iv);
-            mFav.setOnClickListener(this);
-            mShare.setOnClickListener(this);
+            tv = (TextView) itemLayoutView.findViewById(R.id.name);
+            tv1 = (TextView) itemLayoutView.findViewById(R.id.country);
+            tv2 = (TextView) itemLayoutView.findViewById(R.id.description);
+            //mShare = (ImageButton) itemLayoutView.findViewById(R.id.imageButton1);
+            //mFav = (ImageButton) itemLayoutView.findViewById(R.id.imageButton);
+            m_Image = (ImageView) itemLayoutView.findViewById(R.id.profilepic);
+            //mFav.setOnClickListener(this);
+            //mShare.setOnClickListener(this);
 
         }
             @Override
             public void onClick(View view) {
-                int pos = getLayoutPosition();
+               /* int pos = getLayoutPosition();
                 Cursor cursor = getItem(pos);
                 if(view.getId()==R.id.imageButton) {
                     onFavClickListener.onFavClick(cursor);
@@ -134,8 +136,10 @@ public class MyCursorAdapter extends CursorRecyclerViewAdapter<MyCursorAdapter.V
                     if (sendIntent.resolveActivity(mContext.getPackageManager()) != null) {
                         mContext.startActivity(sendIntent);
                     }
-                }
+                }*/
             }
 
     }
+
+
 }

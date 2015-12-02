@@ -7,87 +7,13 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="8dp"
     android:background="?android:selectableItemBackground"
+    android:descendantFocusability="blocksDescendants"
     card_view:cardBackgroundColor="@color/white"
     card_view:cardCornerRadius="5dp"
-    android:descendantFocusability="blocksDescendants"
     card_view:cardPreventCornerOverlap="false"
     card_view:cardUseCompatPadding="true">
 
-    <RelativeLayout
+    <assignment.test.raghu.peppersqaure.CustomViewGroup
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <ImageView
-            android:id="@+id/iv"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/ic_launcher"/>
-
-        <TextView
-            android:id="@+id/tv1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="15dp"
-            android:layout_toLeftOf="@+id/iv"
-            android:text="Title"/>
-
-        <TextView
-            android:id="@+id/tv2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/tv1"
-            android:layout_alignLeft="@+id/tv1"
-            android:layout_alignRight="@+id/tv1"
-            android:layout_alignStart="@+id/tv1"
-            android:layout_below="@+id/tv1"
-            android:layout_marginTop="10dp"
-            android:text="Name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
-
-        <TextView
-            android:id="@+id/tv3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/iv"
-            android:layout_alignLeft="@+id/tv2"
-            android:layout_alignRight="@+id/iv"
-            android:layout_alignStart="@+id/tv2"
-            android:layout_below="@+id/iv"
-            android:layout_marginTop="20dp"
-            android:text="Description"/>
-
-        <ImageButton
-            android:background="@android:color/white"
-            android:id="@+id/imageButton1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignEnd="@+id/iv"
-            android:layout_alignRight="@+id/iv"
-            android:layout_below="@+id/tv3"
-            android:layout_marginBottom="30dp"
-            android:layout_marginTop="30dp"
-            android:src="@android:drawable/ic_menu_share"
-            android:tint="@color/colorPrimary"/>
-
-        <ImageButton
-            android:clickable="true"
-            android:id="@+id/imageButton"
-            style="@style/FavoriteButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignTop="@+id/imageButton1"
-            android:layout_marginBottom="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_toLeftOf="@+id/imageButton1"
-            android:tint="@color/colorPrimary"/>
-
-    </RelativeLayout>
+        android:layout_height="match_parent"></assignment.test.raghu.peppersqaure.CustomViewGroup>
 </android.support.v7.widget.CardView>

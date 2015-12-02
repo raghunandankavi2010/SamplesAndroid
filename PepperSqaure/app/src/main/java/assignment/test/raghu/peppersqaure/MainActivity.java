@@ -20,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import assignment.test.raghu.peppersqaure.Utilities.SyncUtils;
+//import assignment.test.raghu.peppersqaure.adapter.MyCursorAdapter;
 import assignment.test.raghu.peppersqaure.adapter.MyCursorAdapter;
 import assignment.test.raghu.peppersqaure.provider.ActorContract;
 
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //CustomViewGroup customViewGroup = new CustomViewGroup(this);
+        //setContentView(customViewGroup);
         setContentView(R.layout.activity_main);
         contentResolver = getContentResolver();
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
@@ -86,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private SyncStatusObserver mSyncStatusObserver = new SyncStatusObserver() {
         /** Callback invoked with the sync adapter status changes. */
+
         @Override
         public void onStatusChanged(int which) {
             runOnUiThread(new Runnable() {
@@ -163,7 +167,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             values.put(ActorContract.Actors.ACTOR_FAV, 0);
         } else if (fav == 0) {
             values.put(ActorContract.Actors.ACTOR_FAV, 1);
-
 
 
         }
