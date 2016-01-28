@@ -64,6 +64,11 @@ public class CollpasingViewPager extends AppCompatActivity {
         //((MyRecyclerViewAdapter) mAdapter).deleteItem(index);
     }
 
+    private void loadBackdrop() {
+        final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
+        Glide.with(this).load(Cheeses.getRandomCheeseDrawable()).centerCrop().into(imageView);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();

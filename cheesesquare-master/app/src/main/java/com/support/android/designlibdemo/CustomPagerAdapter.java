@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
+
 /**
  * Created by Raghunandan on 28-01-2016.
  */
@@ -45,7 +47,9 @@ class CustomPagerAdapter extends PagerAdapter {
         View itemView = mLayoutInflater.inflate(R.layout.pager_item, container, false);
 
         ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
-        imageView.setImageResource(mResources[position]);
+
+        Glide.with(imageView.getContext()).load(mResources[position]).centerCrop().into(imageView);
+        //imageView.setImageResource(mResources[position]);
 
         container.addView(itemView);
 
