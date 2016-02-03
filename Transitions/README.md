@@ -14,5 +14,3 @@ There are few methods deprecated and i copied the files and made sure we are not
 
 5. PepperSqUARE - a demo for a test given by peper sqaure.com
 
-6. Transition animation sample of shared elements.
-
