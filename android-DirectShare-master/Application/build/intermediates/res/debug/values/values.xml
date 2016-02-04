@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/E:/Android%20Experiments/android-DirectShare-master/Application/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="accent">#00BCD4</color>
+    <!-- From: file:/E:/Android%20Experiments/android-DirectShare-master/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.0/res/values/values.xml -->
+    <eat-comment/>
+    <color name="cardview_dark_background">#FF202020</color>
+    <color name="cardview_light_background">#FFFAFAFA</color>
+    <color name="cardview_shadow_end_color">#03000000</color>
+    <color name="cardview_shadow_start_color">#37000000</color>
+    <!-- From: file:/E:/Android%20Experiments/android-DirectShare-master/Application/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="divider">#B6B6B6</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="primary">#3F51B5</color>
+    <color name="primary_dark">#303F9F</color>
+    <color name="primary_light">#C5CAE9</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <declare-styleable name="CardView"><attr format="color" name="cardBackgroundColor"/><attr format="dimension" name="cardCornerRadius"/><attr format="dimension" name="cardElevation"/><attr format="dimension" name="cardMaxElevation"/><attr format="boolean" name="cardUseCompatPadding"/><attr format="boolean" name="cardPreventCornerOverlap"/><attr format="dimension" name="contentPadding"/><attr format="dimension" name="contentPaddingLeft"/><attr format="dimension" name="contentPaddingRight"/><attr format="dimension" name="contentPaddingTop"/><attr format="dimension" name="contentPaddingBottom"/></declare-styleable>
+    <!-- From: file:/E:/Android%20Experiments/android-DirectShare-master/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.0/res/values/values.xml -->
+    <eat-comment/>
+    <dimen name="cardview_compat_inset_shadow">1dp</dimen>
+    <dimen name="cardview_default_elevation">2dp</dimen>
+    <dimen name="cardview_default_radius">2dp</dimen>
+    <!-- From: file:/E:/Android%20Experiments/android-DirectShare-master/Application/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="dialog_button_padding">8dp</dimen>
+    <dimen name="dialog_padding">24dp</dimen>
+    <!-- From: file:/E:/Android%20Experiments/android-DirectShare-master/Application/src/main/res/values/template-dimens.xml -->
+    <eat-comment/>
+    <dimen name="horizontal_page_margin">@dimen/margin_medium</dimen>
+    <dimen name="margin_huge">64dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="vertical_page_margin">@dimen/margin_medium</dimen>
+    <!-- From: file:/E:/Android%20Experiments/android-DirectShare-master/Application/src/main/res/values/base-strings.xml -->
+    <eat-comment/>
+    <string name="app_name">DirectShare</string>
+    <!-- From: file:/E:/Android%20Experiments/android-DirectShare-master/Application/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="body">Body:</string>
+    <string name="explanation">
+        This app demonstrates how to implement Direct Share. Use some other app and share a text.
+        For your convenience, you can also use the input below to share the text.
+    </string>
+    <string name="hello">Hello!</string>
+    <string name="hint_body">Edit your message.</string>
+    <!-- From: file:/E:/Android%20Experiments/android-DirectShare-master/Application/src/main/res/values/base-strings.xml -->
+    <eat-comment/>
+    <string name="intro_message">
+        <![CDATA[
+        
+            
+This sample demonstrates how to provide the Direct Share feature. The app shows some options
+directly in the list of share intent candidates.
+            
+        
+        ]]>
+    </string>
+    <!-- From: file:/E:/Android%20Experiments/android-DirectShare-master/Application/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="message_sent">Sent a message \"%1$s\" to %2$s.</string>
+    <string name="send">Send</string>
+    <string name="send_intent_title">Send a message via:</string>
+    <string name="sending_message">Sending a message</string>
+    <string name="share">Share</string>
+    <string name="text_to_share">Text to share</string>
+    <string name="to">To:</string>
+    <!-- From: file:/E:/Android%20Experiments/android-DirectShare-master/Application/src/main/res/values/template-styles.xml -->
+    <eat-comment/>
+    <style name="AppTheme" parent="Theme.Sample"/>
+    <!-- From: file:/E:/Android%20Experiments/android-DirectShare-master/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.0/res/values/values.xml -->
+    <eat-comment/>
+    <style name="CardView">
+        <item name="cardBackgroundColor">@color/cardview_light_background</item>
+        <item name="cardCornerRadius">@dimen/cardview_default_radius</item>
+        <item name="cardElevation">@dimen/cardview_default_elevation</item>
+        <item name="cardMaxElevation">@dimen/cardview_default_elevation</item>
+        <item name="cardUseCompatPadding">false</item>
+        <item name="cardPreventCornerOverlap">true</item>
+    </style>
+    <style name="CardView.Dark">
+        <item name="cardBackgroundColor">@color/cardview_dark_background</item>
+    </style>
+    <style name="CardView.Light">
+        <item name="cardBackgroundColor">@color/cardview_light_background</item>
+    </style>
+    <!-- From: file:/E:/Android%20Experiments/android-DirectShare-master/Application/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="DirectShareDialogTheme" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:colorAccent">@color/accent</item>
+    </style>
+    <style name="DirectShareTheme" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:colorAccent">@color/accent</item>
+    </style>
+    <!-- From: file:/E:/Android%20Experiments/android-DirectShare-master/Application/src/main/res/values/template-styles.xml -->
+    <eat-comment/>
+    <style name="Theme.Base" parent="android:Theme.Light"/>
+    <style name="Theme.Sample" parent="Theme.Base"/>
+    <style name="Widget"/>
+    <style name="Widget.SampleMessage">
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        <item name="android:lineSpacingMultiplier">1.1</item>
+    </style>
+    <style name="Widget.SampleMessageTile">
+        <item name="android:background">@drawable/tile</item>
+        <item name="android:shadowColor">#7F000000</item>
+        <item name="android:shadowDy">-3.5</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
+</resources>
