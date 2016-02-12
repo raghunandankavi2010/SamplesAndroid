@@ -24,12 +24,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.TextViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -45,6 +47,15 @@ public class CheeseListFragment extends Fragment {
         RecyclerView rv = (RecyclerView) inflater.inflate(
                 R.layout.fragment_cheese_list, container, false);
         setupRecyclerView(rv);
+        if(savedInstanceState!=null)
+        {
+            Log.i("Not null Fragment","Great");
+            Toast.makeText(getActivity(),"Great",Toast.LENGTH_SHORT).show();
+        }else
+        {
+            Log.i(" null Fragment","Great");
+            Toast.makeText(getActivity()," Wrong",Toast.LENGTH_SHORT).show();
+        }
         return rv;
     }
 
@@ -117,9 +128,9 @@ public class CheeseListFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
-                    Intent intent = new Intent(context,CollpasingViewPager.class);
+                    //Intent intent = new Intent(context,CollpasingViewPager.class);
                     //Intent intent = new Intent(context,RecyclerViewActivity.class);
-                    //Intent intent = new Intent(context,CheeseDetailActivity.class);
+                    Intent intent = new Intent(context,CheeseDetailActivity.class);
                     intent.putExtra(CheeseDetailActivity.EXTRA_NAME, holder.mBoundString);
 
                     context.startActivity(intent);
