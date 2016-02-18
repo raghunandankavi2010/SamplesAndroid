@@ -16,3 +16,5 @@ There are few methods deprecated and i copied the files and made sure we are not
 
 6. Transition animation sample of shared elements.
 
+7. BaseLineGridText - Test sample for textview aligning the baseline with the 4dp typographic grid.
+
