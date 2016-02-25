@@ -14,14 +14,12 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-  >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
         <item
-
             android:id="@+id/nav_home"
-            android:icon="@drawable/icon_test"
+            android:icon="@drawable/ic_dashboard"
             android:title="Home" />
         <item
             android:id="@+id/nav_messages"
@@ -33,18 +31,6 @@
             android:title="Friends" />
         <item
             android:id="@+id/nav_discussion"
-            android:icon="@drawable/ic_forum"
-            android:title="Discussion" />
-        <item
-            android:id="@+id/nav_discussion1"
-            android:icon="@drawable/ic_forum"
-            android:title="Discussion" />
-        <item
-            android:id="@+id/nav_discussion2"
-            android:icon="@drawable/ic_forum"
-            android:title="Discussion" />
-        <item
-            android:id="@+id/nav_discussio3"
             android:icon="@drawable/ic_forum"
             android:title="Discussion" />
     </group>

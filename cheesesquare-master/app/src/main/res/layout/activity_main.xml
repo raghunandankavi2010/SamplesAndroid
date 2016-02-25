@@ -26,16 +26,11 @@
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
-
-        android:overScrollMode="always"
         android:layout_height="match_parent"
-        android:layout_width="304dp"
+        android:layout_width="wrap_content"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_view">
-
-    </android.support.design.widget.NavigationView>
-
+        app:menu="@menu/drawer_view"/>
 
 </android.support.v4.widget.DrawerLayout>
