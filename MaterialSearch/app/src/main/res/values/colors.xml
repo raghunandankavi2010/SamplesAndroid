@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- search -->
+    <color name="dialog_background">#7f000000</color>
+    <color name="app_body_text_2">#8a000000</color>
+    <color name="app_body_text_1_inverse">#deffffff</color>
+    <color name="theme_accent_1">#00b0ff</color>
+    <color name="card">#fff</color>
+    <color name="divider">#1f000000</color>
+    <color name="app_body_text_1">#de000000</color>
+</resources>
