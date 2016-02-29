@@ -40,11 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void search(View view) {
 
-            startActivity( new Intent(this,SearchActivity.class));
-        }
-
-
-
-
-
+        startActivity(new Intent(this, SearchActivity.class));
+    }
+    
 }

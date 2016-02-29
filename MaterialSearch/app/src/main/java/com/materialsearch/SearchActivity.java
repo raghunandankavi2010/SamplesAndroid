@@ -4,13 +4,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.LoaderManager;
 import android.app.SearchManager;
-import android.content.CursorLoader;
 import android.content.Intent;
-import android.content.Loader;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,18 +15,15 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 
@@ -44,7 +37,6 @@ public class SearchActivity extends AppCompatActivity {
     private SearchView mSearchView;
     private String mQuery = "";
     private ListView mSearchResults;
-    private SimpleCursorAdapter mResultsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

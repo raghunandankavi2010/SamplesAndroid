@@ -34,4 +34,19 @@
         <item name="colorControlActivated">@color/theme_accent_1</item>
     </style>
 
+    <style name="Theme.IOSched.Search" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!--<item name="autoCompleteTextViewStyle">@style/Widget.IOSched.Search.AutoCompleteTextView</item>-->
+        <item name="searchViewStyle">@style/Widget.IOSched.SearchView</item>
+        <item name="colorControlNormal">@color/app_body_text_2</item>
+        <item name="colorControlActivated">@color/theme_accent_1</item>
+    </style>
+
+    <style name="Widget.IOSched.SearchView" parent="Widget.AppCompat.SearchView">
+        <item name="searchHintIcon">@null</item>
+        <item name="queryBackground">@null</item>
+        <item name="submitBackground">@null</item>
+    </style>
+
 </resources>

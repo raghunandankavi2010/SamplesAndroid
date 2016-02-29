@@ -20,6 +20,7 @@
         </activity>
 
         <activity
+            android:theme="@style/Theme.IOSched.Search"
             android:name=".SearchActivity"
             android:launchMode="singleTop"
             android:exported="false">
