@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.idss.sketchpad.view"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="4" />
+
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" >
+        <activity
+            android:label="@string/app_name"
+            android:name=".SplashScreen" 
+            android:screenOrientation="landscape"
+            android:configChanges="orientation">
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name=".MenuScreen"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation">
+        </activity>
+            
+        <activity 
+            android:name=".ShareScreen"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation">
+        </activity>
+            
+        <activity 
+            android:name=".DrawingRoomScreen"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboardHidden|orientation">
+        </activity>
+        
+            
+           
+    </application>
+
+</manifest>

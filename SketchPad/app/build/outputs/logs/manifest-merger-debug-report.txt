@@ -1,0 +1,76 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:2:1-46:12
+	xmlns:android
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:2:11-69
+	package
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:3:5-38
+		INJECTED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:5:5-30
+		INJECTED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml
+	android:versionCode
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:4:5-28
+		INJECTED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml
+uses-sdk
+ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:7:5-43
+	android:targetSdkVersion
+		INJECTED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:7:15-40
+		INJECTED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml
+application
+ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:9:5-44:19
+	android:label
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:11:9-41
+	android:icon
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:10:9-38
+activity#com.idss.sketchpad.view.SplashScreen
+ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:12:9-22:20
+	android:screenOrientation
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:15:13-50
+	android:label
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:13:13-45
+	android:configChanges
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:16:13-48
+	android:name
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:14:13-41
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:17:13-21:29
+action#android.intent.action.MAIN
+ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:18:17-69
+	android:name
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:18:25-66
+category#android.intent.category.LAUNCHER
+ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:20:17-77
+	android:name
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:20:27-74
+activity#com.idss.sketchpad.view.MenuScreen
+ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:24:9-28:20
+	android:screenOrientation
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:26:13-50
+	android:configChanges
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:27:13-48
+	android:name
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:25:13-39
+activity#com.idss.sketchpad.view.ShareScreen
+ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:30:9-34:20
+	android:screenOrientation
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:32:13-50
+	android:configChanges
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:33:13-48
+	android:name
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:31:13-40
+activity#com.idss.sketchpad.view.DrawingRoomScreen
+ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:36:9-40:20
+	android:screenOrientation
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:38:13-50
+	android:configChanges
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:39:13-63
+	android:name
+		ADDED from E:\Android Experiments\SketchPad\app\src\main\AndroidManifest.xml:37:13-46

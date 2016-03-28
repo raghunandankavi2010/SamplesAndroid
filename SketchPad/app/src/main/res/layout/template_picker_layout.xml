@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+   			xmlns:android="http://schemas.android.com/apk/res/android"
+       	    android:id="@+id/teplate_row_layout"
+           	android:layout_width="fill_parent"
+       		android:layout_height="fill_parent"
+       		android:orientation="horizontal"
+       		android:paddingTop="10dip">
+       		<ImageView 
+       		    android:id="@+id/imageview_first_column"
+       		    android:layout_width="45dip"
+     		    android:layout_height="45dip">
+          	</ImageView>
+          	<ImageView 
+          	    android:id="@+id/imageview_second_column"
+          	    android:layout_width="45dip"
+          	    android:layout_height="45dip"
+          	    android:layout_marginLeft="40dip">
+          	</ImageView>
+            
+</LinearLayout>   

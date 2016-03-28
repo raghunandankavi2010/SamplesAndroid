@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlid"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+	 <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:weightSum="1.0" >
+
+        <LinearLayout
+            android:id="@+id/view_drawing_pad"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+        </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="top" >
+
+        <LinearLayout
+            android:id="@+id/view_advertise"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip" >
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
+   <!-- 
+        <LinearLayout
+           android:id="@+id/layout_functionality"
+           android:layout_height="50dip"
+           android:layout_marginTop="10dip"
+           android:layout_width="fill_parent"
+           android:weightSum="1.0">
+        </LinearLayout>
+         -->

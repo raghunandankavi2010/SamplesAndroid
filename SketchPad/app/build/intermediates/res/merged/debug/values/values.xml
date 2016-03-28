@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="drawing_menu_options">
+        <!-- Mapped with an enum DrawingMenuOptions.java in Model -->
+        <item>Change pen thickness</item>
+        <item>Change pen color</item>
+        <item>Change drawing theme</item>
+        <item>Change Color of Drawing theme</item>
+        <item>Save to sdcard</item>
+        <item>Erase</item>
+        <item>Pick background image from Gallery</item>
+       	<item>Blur</item>
+       	<item>Emboss</item>
+       	<item>SrcAtop</item>
+		<item>Clear</item>
+		<!-- <item>Zoom In</item>
+		<item>Zoom Out</item> -->
+		<item>Darken</item>
+		<item>Lighten</item>
+		<item>Fill a Closed area</item>
+		<item>FreeHand</item>
+    </string-array>
+    <string-array name="pen_thickness_options">
+        <!-- Mapped with array PEN_COLOR in Constants.java -->
+        <item>2</item>
+        <item>4</item>
+        <item>6</item>
+        <item>8</item>
+        <item>12</item>  
+        <item>16</item>        
+    </string-array>
+    <color name="drawing_picker_background">#8E768D</color>
+    <color name="textview_about_us_text_color">#0c0</color>
+    <color name="textview_text_color">#fff</color>
+    <color name="white">#fff</color>
+    <string name="app_name">SketchPad</string>
+    <string name="button_text_about_us">ABOUT US</string>
+    <string name="button_text_more_apps">MORE APPS</string>
+    <string name="button_text_new_drawing">NEW DRAWING</string>
+    <string name="button_text_resume_drawing">RESUME DRAWING</string>
+    <string name="button_text_share">SHARE</string>
+    <string name="button_text_share_via_email">SHARE VIA EMAIL</string>
+    <string name="button_text_share_via_facebook">SHARE VIA FACEBOOK</string>
+    <string name="button_text_share_via_twitter">SHARE VIA TWITTER</string>
+    <string name="dialog_button_no_text">NO</string>
+    <string name="dialog_button_yes_text">YES</string>
+    <string name="dialog_choose_pen_thickness_text">Select thickness..</string>
+    <string name="dialog_choose_theme_text">Select a theme..</string>
+    <string name="dialog_drawing_menu_option_title">I would like to,</string>
+    <string name="dialog_quit_message_text">Would you like to continue with this drawing when you resume ?</string>
+    <string name="dialog_quit_title_text">Alert !</string>
+    <string name="textview_text_about_us">We,Indian Dreamers Software Solutions LLP, experts in cutting edge mobile technologies like Android and iOS. 
+	    For more information visit </string>
+</resources>

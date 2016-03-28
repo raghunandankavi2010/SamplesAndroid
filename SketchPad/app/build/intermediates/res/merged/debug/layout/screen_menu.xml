@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:background="@drawable/bg_screen_splash"
+    android:gravity="center">
+
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+        
+        <Button
+            android:id="@+id/buttonNewDrawing"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_text_new_drawing"
+            android:textColor="@color/white" >
+           
+        </Button>
+        
+        <Button
+            android:id="@+id/buttonResumeDrawing"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:text="@string/button_text_resume_drawing"
+            android:textColor="@color/white" >
+           
+        </Button>
+       <!--  
+         <Button 
+            android:id="@+id/buttonShare"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            
+            android:text="@string/button_text_share"> 
+           
+        </Button>-->
+            
+        <Button
+            android:id="@+id/buttonMoreApps"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:text="@string/button_text_more_apps"
+            android:textColor="@color/white" >
+           
+        </Button>
+        
+        <Button
+            android:id="@+id/buttonAboutUs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:text="@string/button_text_about_us"
+            android:textColor="@color/white" >
+           
+        </Button>
+               
+    </LinearLayout>
+    
+
+</RelativeLayout>

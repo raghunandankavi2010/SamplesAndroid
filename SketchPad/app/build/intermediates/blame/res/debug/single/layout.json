@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "E:\\Android Experiments\\SketchPad\\app\\build\\intermediates\\res\\merged\\debug\\layout\\screen_drawing_room.xml",
+        "source": "E:\\Android Experiments\\SketchPad\\app\\src\\main\\res\\layout\\screen_drawing_room.xml"
+    },
+    {
+        "merged": "E:\\Android Experiments\\SketchPad\\app\\build\\intermediates\\res\\merged\\debug\\layout\\screen_share.xml",
+        "source": "E:\\Android Experiments\\SketchPad\\app\\src\\main\\res\\layout\\screen_share.xml"
+    },
+    {
+        "merged": "E:\\Android Experiments\\SketchPad\\app\\build\\intermediates\\res\\merged\\debug\\layout\\dialog_picker.xml",
+        "source": "E:\\Android Experiments\\SketchPad\\app\\src\\main\\res\\layout\\dialog_picker.xml"
+    },
+    {
+        "merged": "E:\\Android Experiments\\SketchPad\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_color_picker.xml",
+        "source": "E:\\Android Experiments\\SketchPad\\app\\src\\main\\res\\layout\\activity_color_picker.xml"
+    },
+    {
+        "merged": "E:\\Android Experiments\\SketchPad\\app\\build\\intermediates\\res\\merged\\debug\\layout\\screen_menu.xml",
+        "source": "E:\\Android Experiments\\SketchPad\\app\\src\\main\\res\\layout\\screen_menu.xml"
+    },
+    {
+        "merged": "E:\\Android Experiments\\SketchPad\\app\\build\\intermediates\\res\\merged\\debug\\layout\\dialog_color_picker.xml",
+        "source": "E:\\Android Experiments\\SketchPad\\app\\src\\main\\res\\layout\\dialog_color_picker.xml"
+    },
+    {
+        "merged": "E:\\Android Experiments\\SketchPad\\app\\build\\intermediates\\res\\merged\\debug\\layout\\template_picker_layout.xml",
+        "source": "E:\\Android Experiments\\SketchPad\\app\\src\\main\\res\\layout\\template_picker_layout.xml"
+    },
+    {
+        "merged": "E:\\Android Experiments\\SketchPad\\app\\build\\intermediates\\res\\merged\\debug\\layout\\screen_splash.xml",
+        "source": "E:\\Android Experiments\\SketchPad\\app\\src\\main\\res\\layout\\screen_splash.xml"
+    }
+]

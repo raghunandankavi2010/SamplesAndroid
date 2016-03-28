@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SketchPad</string>
+    
+    <!-- BUTTON TEXT goes here...  -->
+	<string name="button_text_new_drawing">NEW DRAWING</string>
+    <string name="button_text_resume_drawing">RESUME DRAWING</string>
+	<string name="button_text_about_us">ABOUT US</string>
+	<string name="button_text_more_apps">MORE APPS</string>
+	<string name="button_text_share">SHARE</string>
+	<string name="button_text_share_via_email">SHARE VIA EMAIL</string>
+	<string name="button_text_share_via_twitter">SHARE VIA TWITTER</string>
+	<string name="button_text_share_via_facebook">SHARE VIA FACEBOOK</string>
+        
+    <!-- TEXTVIEW TEXT goes here... -->
+	<string name="textview_text_about_us">We,Indian Dreamers Software Solutions LLP, experts in cutting edge mobile technologies like Android and iOS. 
+	    For more information visit </string> 
+	<!-- DIALOG TEXT goes here... -->
+	<string name="dialog_drawing_menu_option_title">I would like to,</string>
+	<string name="dialog_choose_theme_text">Select a theme..</string>
+	<string name="dialog_choose_pen_thickness_text">Select thickness..</string>
+	<string name="dialog_quit_title_text">Alert !</string>
+	<string name="dialog_quit_message_text">Would you like to continue with this drawing when you resume ?</string>
+	<string name="dialog_button_yes_text">YES</string>
+	<string name="dialog_button_no_text">NO</string>
+	    
+	
+	
+</resources>

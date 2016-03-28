@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:background="@drawable/bg_screen_splash"
+    android:gravity="center">
+
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+        
+        <Button 
+            android:id="@+id/buttonShareViaEmail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            
+            android:text="@string/button_text_share_via_email">
+           
+        </Button>
+        
+        <Button 
+            android:id="@+id/buttonShareViaTwitter"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            
+            android:text="@string/button_text_share_via_twitter">
+           
+        </Button>
+        
+        <Button 
+            android:id="@+id/buttonShareViaFacebook"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            
+            android:text="@string/button_text_share_via_facebook">
+           
+        </Button>
+       
+    </LinearLayout>
+    
+
+</RelativeLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="textview_text_color">#fff</color>
+    <color name="textview_about_us_text_color">#0c0</color>
+    <color name="white">#fff</color>
+   
+ 	<color name="drawing_picker_background">#8E768D</color>
+ 	<!-- 
+ 	<color name="button_background_color">#21E32F</color>
+ 	<color name="button_background_onclick_color">#128E1B</color>
+     -->
+     
+</resources>
