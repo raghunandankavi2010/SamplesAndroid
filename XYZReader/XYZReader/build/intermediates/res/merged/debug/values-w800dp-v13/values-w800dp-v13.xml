@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="detail_card_max_width">704dp</dimen>
+    <dimen name="list_side_margin">64dp</dimen>
+    <dimen name="list_toolbar_side_margin">52dp</dimen>
+    <integer name="list_column_count">3</integer>
+</resources>
