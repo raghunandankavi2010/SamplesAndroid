@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="raghu.example.bottomnavigation.MainActivity">
+
+    <TextView
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"/>
+
+    <ca.gcastle.bottomnavigation.view.BottomNavigationView
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        app:layout_behavior="ca.gcastle.bottomnavigation.behaviour.BottomNavigationBehavior"
+        app:navGrowTabs="false"
+        app:navGrowthModifier="32dp"
+        app:navShowCircleReveal="false">
+
+        <ca.gcastle.bottomnavigation.view.BottomNavigationTabView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/tab1"
+            app:tabImage="@mipmap/ic_launcher"
+            app:tabText="tab1"
+            app:tabColor="#FF0000"
+            app:alwaysShowText="true"
+            app:unselectedAlpha="0.2"/>
+
+        <ca.gcastle.bottomnavigation.view.BottomNavigationTabView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/tab2"
+            app:tabImage="@mipmap/ic_launcher"
+            app:tabText="tab2"
+            app:tabColor="#00FF00"
+            app:unselectedAlpha="0.2"/>
+
+        <ca.gcastle.bottomnavigation.view.BottomNavigationTabView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/tab3"
+            app:tabImage="@mipmap/ic_launcher"
+            app:tabText="tab3"
+            app:tabColor="#0000FF"
+            app:unselectedAlpha="0.2"/>
+    </ca.gcastle.bottomnavigation.view.BottomNavigationView>
+</RelativeLayout>
