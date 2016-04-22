@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.indiainnovates.pucho.widgets.ForegroundRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:minHeight="?android:listPreferredItemHeight"
+    android:paddingTop="16dp"
+    android:paddingEnd="16dp"
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp"
+    android:paddingBottom="8dp"
+    android:stateListAnimator="@animator/raise"
+    android:background="@android:color/white"
+    android:elevation="2dp">
+
+
+
+            <com.indiainnovates.pucho.widgets.BaselineGridTextView
+                android:id="@+id/date"
+                style="@style/Widget.Pucho.Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text="1 Jan 2015"/>
+
+            <com.indiainnovates.pucho.widgets.BezelImageView
+                android:padding="4dp"
+                android:id="@+id/profile_image"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/name"
+                android:layout_marginTop="4dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/person_image_empty"
+
+                />
+
+
+            <com.indiainnovates.pucho.widgets.BaselineGridTextView
+                android:id="@+id/name"
+                style="@style/Widget.Pucho.Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/date"
+                android:layout_toLeftOf="@+id/date"
+                android:visibility="visible"/>
+
+            <com.indiainnovates.pucho.widgets.BaselineGridTextView
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:textColorLink="@color/hyperlink"
+                android:id="@+id/question"
+                style="@style/Widget.Pucho.Content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_image"
+                android:layout_marginTop="4dp"
+                android:minLines="1"
+                android:ellipsize="end"
+                android:text="What are the adavantages of using Dagger which is a dependency injection Libray for android?"
+                />
+
+</com.indiainnovates.pucho.widgets.ForegroundRelativeLayout>
+
+

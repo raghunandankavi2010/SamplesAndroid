@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <color name="primaryColor">#1e88e5</color>
+    <color name="primaryColorDark">#1976d2</color>
+    <color name="accent">#03f4c4</color>
+
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
+    <color name= "grey">#d0d0d0</color>
+
+    <color name= "ripple">#1e88e5</color>
+    <color name="colorPrimaryDark">#151516</color>
+
+    <color name="red">#FF0000</color>
+
+</resources>

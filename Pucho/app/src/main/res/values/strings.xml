@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Pucho</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <string name="signing_in">Signing in…</string>
+    <string name="signed_in_as">Signed in as %s</string>
+    <string name="play_services_error_fmt">Google Play Services Error: %i</string>
+    <string name ="cliendid">695733846435-pms1667u87rb4cev7rg15920dp58bu3m.apps.googleusercontent.com</string>
+
+     <string name="gcm_send_message">Token retrieved and sent to server! You can now use gcmsender to
+        send downstream messages to this app.</string>
+    <string name="registering_message">Generating InstanceID token...</string>
+    <string name="token_error_message">An error occurred while either fetching the InstanceID token,
+        sending the fetched token to the server or subscribing to the PubSub topic. Please try
+        running the sample again.</string>
+    <!--<string name="gcm_defaultSenderId">695733846435</string>-->
+
+    <string name="share">Share</string>
+    <string name="send_intent_title">Send a message via:</string>
+
+    <!-- Settings -->
+
+    <string name="language_list_preference">listkey</string>
+    <string name="title_language_preference">Settings</string>
+    <string name="summery_language_preference">Language Preference</string>
+    <string name="dialog_language_list_preference">Language Preference</string>
+    <string name="default_english_language">English</string>
+
+    <!-- View pager tabs -->
+    <string name = "feed">Feed</string>
+    <string name = "trending">Trending</string>
+    <string name = "favorites">Favorites</string>
+    <string name = "notifications">Notifications</string>
+
+    <!-- Nav Drawer menu items -->
+    <string name = "questions">My Questions</string>
+    <string name = "answers">My Answers</string>
+    <string name = "settiing">Settings</string>
+
+    <!-- Screen titles -->
+    <string name="compose_question">Ask a Question</string>
+    <string name="myquestions">My Questions</string>
+    <string name="search">Search</string>
+    <string name="compose_answer">Compose Answer</string>
+    <string name="answer_text">answertext</string>
+
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <style name="MyTheme" parent="AppTheme">
+                <item name="windowActionBar">false</item>
+                <item name="windowNoTitle">true</item>
+                <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+                <item name="android:statusBarColor">@android:color/transparent</item>
+
+        </style>
+
+        <style name="MyTheme2" parent="AppTheme">
+                <item name="windowActionBar">false</item>
+                <item name="windowNoTitle">true</item>
+                <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
+        </style>
+
+
+        <style name="DirectShareTheme" parent="android:Theme.Material.Light.NoActionBar">
+                <item name="android:colorPrimary">@color/primaryColor</item>
+                <item name="android:colorPrimaryDark">@color/primaryColorDark</item>
+                <item name="android:colorAccent">@color/accent</item>
+        </style>
+
+        <style name="DirectShareDialogTheme" parent="android:Theme.Material.Light.Dialog">
+                <item name="android:colorPrimary">@color/primaryColor</item>
+                <item name="android:colorPrimaryDark">@color/primaryColorDark</item>
+                <item name="android:colorAccent">@color/accent</item>
+        </style>
+</resources>

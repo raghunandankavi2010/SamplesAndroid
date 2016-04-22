@@ -1,0 +1,26 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="navdrawer_profile_image_size">64dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="navdrawer_width">260dp</dimen>
+
+    <dimen name="dialog_padding">24dp</dimen>
+    <dimen name="dialog_button_padding">8dp</dimen>
+    <dimen name="headerbar_elevation">4dp</dimen>
+    <dimen name="grid_spacing">8dp</dimen>
+    <dimen name="touch_raise">6dp</dimen>
+    <!-- avatar should be a 40dp asset in a 48dp touch target & optically aligned with standard padding -->
+    <dimen name="avatar_size">40dp</dimen>
+
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_corner_radius">2dp</dimen>
+
+    <dimen name="spacing_normal">8dp</dimen>
+    <dimen name="spacing_micro">4dp</dimen>
+    <dimen name="padding_normal">16dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+
+</resources>
