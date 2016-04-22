@@ -32,6 +32,16 @@ ADDED from E:\Android Experiments\XYZReader\XYZReader\src\main\AndroidManifest.x
 application
 ADDED from E:\Android Experiments\XYZReader\XYZReader\src\main\AndroidManifest.xml:11:5-46:19
 MERGED from [com.android.support:support-v4:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\design\23.3.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-vector-drawable:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-v4:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:animated-vector-drawable:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-vector-drawable:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-v4:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v13:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-v13\23.3.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\AndroidManifest.xml:25:5-20
@@ -114,6 +124,17 @@ ADDED from E:\Android Experiments\XYZReader\XYZReader\src\main\AndroidManifest.x
 		ADDED from E:\Android Experiments\XYZReader\XYZReader\src\main\AndroidManifest.xml:42:19-53
 uses-sdk
 INJECTED from E:\Android Experiments\XYZReader\XYZReader\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:support-v4:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\design\23.3.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:support-vector-drawable:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-v4:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:animated-vector-drawable:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:support-vector-drawable:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-v4:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.3.0\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v13:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-v13\23.3.0\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-v4:23.3.0] E:\Android Experiments\XYZReader\XYZReader\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:20:5-43

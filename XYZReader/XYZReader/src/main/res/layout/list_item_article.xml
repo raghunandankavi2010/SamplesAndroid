@@ -10,8 +10,7 @@
                                     android:focusable="true"
                                     android:foreground="?selectableItemBackground"
                                     android:stateListAnimator="@animator/raise">
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -20,12 +19,14 @@
         <com.example.xyzreader.ui.DynamicHeightNetworkImageView
             android:id="@+id/thumbnail"
             android:layout_marginTop="10dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
             android:layout_width="100dp"
             android:layout_height="260dp"
             android:background="@color/photo_placeholder"/>
 
         <TextView
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/thumbnail"
             android:id="@+id/article_title"
             style="@style/TextAppearance.AppCompat.Subhead"
             android:layout_width="match_parent"
@@ -40,6 +41,8 @@
             android:textColor="@color/ltgray"/>
 
         <TextView
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/article_title"
             android:text="Raghu"
             android:id="@+id/article_subtitle"
             style="@style/TextAppearance.AppCompat.Body1"
@@ -52,6 +55,6 @@
             android:paddingRight="16dp"
             android:singleLine="true"
             android:textColor="#6000"/>
-    </LinearLayout>
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>

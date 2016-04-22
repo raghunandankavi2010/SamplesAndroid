@@ -8,5 +8,6 @@
     <dimen name="fab_press_translation_z">6dp</dimen>
     <dimen name="fab_margin">24dp</dimen>
     <dimen name="touch_raise">6dp</dimen>
+    <dimen name="detail_backdrop_height">256dp</dimen>
 
 </resources>

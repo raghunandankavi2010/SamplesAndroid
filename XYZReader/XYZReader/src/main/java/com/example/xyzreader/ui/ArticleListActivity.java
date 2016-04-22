@@ -157,13 +157,13 @@ public class ArticleListActivity extends AppCompatActivity implements
                             + " by "
                             + mCursor.getString(ArticleLoader.Query.AUTHOR));
 
-            holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
-            String imageUrl = mCursor.getString(ArticleLoader.Query.THUMB_URL);
-            Glide.with(holder.thumbnailView.getContext())
+            //holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
+            //String imageUrl = mCursor.getString(ArticleLoader.Query.THUMB_URL);
+            /*Glide.with(holder.thumbnailView.getContext())
                     .load(imageUrl)
                     .crossFade()
                     .placeholder(R.color.photo_placeholder)
-                    /*.listener(GlidePalette.with(imageUrl).intoCallBack(new BitmapPalette.CallBack() {
+                    .listener(GlidePalette.with(imageUrl).intoCallBack(new BitmapPalette.CallBack() {
                         @Override public void onPaletteLoaded(Palette palette) {
                             if (palette.getVibrantSwatch()!= null) {
                                 holder.subtitleView.setBackgroundColor(palette.getVibrantSwatch().getRgb());
@@ -171,12 +171,12 @@ public class ArticleListActivity extends AppCompatActivity implements
 
                             }
                         }
-                    }))*/
-                    .into(holder.thumbnailView);
-   /*         holder.thumbnailView.setImageUrl(
+                    }))
+                    .into(holder.thumbnailView);*/
+           holder.thumbnailView.setImageUrl(
                     mCursor.getString(ArticleLoader.Query.THUMB_URL),
                     ImageLoaderHelper.getInstance(ArticleListActivity.this).getImageLoader());
-            holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));*/
+            holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
         }
 
 
