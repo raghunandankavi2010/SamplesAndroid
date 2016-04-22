@@ -26,9 +26,15 @@ import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
 import com.example.xyzreader.data.ItemsContract;
 import com.example.xyzreader.data.UpdaterService;
+import com.example.xyzreader.events.NotRefreshingEvent;
+import com.example.xyzreader.events.RefreshingEvent;
 import com.example.xyzreader.widget.EmptyRecyclerView;
 import com.github.florent37.glidepalette.BitmapPalette;
 import com.github.florent37.glidepalette.GlidePalette;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * An activity representing a list of Articles. This activity has different presentations for
@@ -71,19 +77,35 @@ public class ArticleListActivity extends AppCompatActivity implements
     @Override
     protected void onStart() {
         super.onStart();
-        registerReceiver(mRefreshingReceiver,
-                new IntentFilter(UpdaterService.BROADCAST_ACTION_STATE_CHANGE));
+        EventBus.getDefault().register(this);
+
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        unregisterReceiver(mRefreshingReceiver);
+        EventBus.getDefault().unregister(this);
+
     }
 
     private boolean mIsRefreshing = false;
 
-    private BroadcastReceiver mRefreshingReceiver = new BroadcastReceiver() {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(RefreshingEvent event) {
+
+        mIsRefreshing = event.isBool();
+        updateRefreshingUI();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(NotRefreshingEvent event) {
+
+        mIsRefreshing = event.isBool();
+        updateRefreshingUI();
+    }
+
+
+   /* private BroadcastReceiver mRefreshingReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (UpdaterService.BROADCAST_ACTION_STATE_CHANGE.equals(intent.getAction())) {
@@ -91,7 +113,7 @@ public class ArticleListActivity extends AppCompatActivity implements
                 updateRefreshingUI();
             }
         }
-    };
+    };*/
 
     private void updateRefreshingUI() {
         mSwipeRefreshLayout.setRefreshing(mIsRefreshing);
