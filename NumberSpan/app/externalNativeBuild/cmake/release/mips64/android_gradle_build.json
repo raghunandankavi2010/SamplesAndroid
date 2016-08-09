@@ -1,0 +1,38 @@
+
+{
+	"buildFiles" : [ "E:/Android Experiments/TestAppliction/app/CMakeLists.txt" ],
+	"cleanCommands" : 
+	[
+		"E:\\Android\\sdk\\cmake\\bin\\cmake.exe --build \"E:\\Android Experiments\\TestAppliction\\app\\externalNativeBuild\\cmake\\release\\mips64\" --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"native-lib-Release-mips64" : 
+		{
+			"abi" : "mips64",
+			"artifactName" : "native-lib",
+			"buildCommand" : "E:\\Android\\sdk\\cmake\\bin\\cmake.exe --build \"E:\\Android Experiments\\TestAppliction\\app\\externalNativeBuild\\cmake\\release\\mips64\" --target native-lib",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  -DANDROID -Dnative_lib_EXPORTS -isystem E:\\Android\\sdk\\ndk-bundle\\platforms\\android-23\\arch-mips64\\usr\\include -isystem E:\\Android\\sdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\sdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\mips64\\include -isystem E:\\Android\\sdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -fexceptions -frtti -Wno-psabi --sysroot=E:/Android/sdk/ndk-bundle/platforms/android-23/arch-mips64 -fno-strict-aliasing -finline-functions -funwind-tables -fmessage-length=0 -fno-inline-functions-called-once -fgcse-after-reload -frerun-cse-after-loop -frename-registers -fsigned-char -no-canonical-prefixes -fdata-sections -ffunction-sections -Wa,--noexecstack  -fomit-frame-pointer -funswitch-loops -finline-limit=300 -O3 -DNDEBUG -fPIC      ",
+					"src" : "E:/Android Experiments/TestAppliction/app/src/main/cpp/native-lib.cpp",
+					"workingDirectory" : "E:/Android Experiments/TestAppliction/app/externalNativeBuild/cmake/release/mips64"
+				}
+			],
+			"output" : "E:/Android Experiments/TestAppliction/app/build/intermediates/cmake/release/obj/mips64/libnative-lib.so",
+			"toolchain" : "2083684779"
+		}
+	},
+	"toolchains" : 
+	{
+		"2083684779" : 
+		{
+			"cCompilerExecutable" : "E:/Android/sdk/ndk-bundle/toolchains/mips64el-linux-android-4.9/prebuilt/windows-x86_64/bin/mips64el-linux-android-gcc.exe",
+			"cppCompilerExecutable" : "E:/Android/sdk/ndk-bundle/toolchains/mips64el-linux-android-4.9/prebuilt/windows-x86_64/bin/mips64el-linux-android-g++.exe"
+		}
+	}
+}

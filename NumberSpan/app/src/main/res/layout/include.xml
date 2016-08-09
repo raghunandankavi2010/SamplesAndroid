@@ -1,0 +1,38 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+
+    >
+
+
+    <TextView
+        android:textSize="14sp"
+        android:minHeight="20dp"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|left"
+        android:paddingLeft="20dp"
+        android:text="1."/>
+
+    <androidsamples.testappliction.ZanyEditText
+        android:imeActionId="@+id/action_add"
+        android:imeActionLabel="Enter"
+        android:textSize="14sp"
+        android:layout_gravity="top|left"
+        android:gravity="top"
+        android:maxLines="30"
+        android:isScrollContainer="true"
+        android:minHeight="40dp"
+        android:inputType="textMultiLine"
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:paddingLeft="40dp">
+
+    </androidsamples.testappliction.ZanyEditText>
+
+
+</FrameLayout>

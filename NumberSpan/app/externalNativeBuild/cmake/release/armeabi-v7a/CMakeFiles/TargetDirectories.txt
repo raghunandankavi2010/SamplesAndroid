@@ -1,0 +1,1 @@
+E:/Android Experiments/TestAppliction/app/externalNativeBuild/cmake/release/armeabi-v7a/CMakeFiles/native-lib.dir

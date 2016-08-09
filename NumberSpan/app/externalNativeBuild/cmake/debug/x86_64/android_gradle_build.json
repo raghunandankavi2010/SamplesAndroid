@@ -1,0 +1,38 @@
+
+{
+	"buildFiles" : [ "E:/Android Experiments/TestAppliction/app/CMakeLists.txt" ],
+	"cleanCommands" : 
+	[
+		"E:\\Android\\sdk\\cmake\\bin\\cmake.exe --build \"E:\\Android Experiments\\TestAppliction\\app\\externalNativeBuild\\cmake\\debug\\x86_64\" --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"native-lib-Debug-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "native-lib",
+			"buildCommand" : "E:\\Android\\sdk\\cmake\\bin\\cmake.exe --build \"E:\\Android Experiments\\TestAppliction\\app\\externalNativeBuild\\cmake\\debug\\x86_64\" --target native-lib",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  -DANDROID -Dnative_lib_EXPORTS -isystem E:\\Android\\sdk\\ndk-bundle\\platforms\\android-23\\arch-x86_64\\usr\\include -isystem E:\\Android\\sdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\sdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86_64\\include -isystem E:\\Android\\sdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -fexceptions -frtti --sysroot=E:/Android/sdk/ndk-bundle/platforms/android-23/arch-x86_64 -funwind-tables -funswitch-loops -finline-limit=300 -fsigned-char -no-canonical-prefixes -fdata-sections -ffunction-sections -Wa,--noexecstack  -fno-omit-frame-pointer -fno-strict-aliasing -O0 -g -DDEBUG -D_DEBUG -fPIC      ",
+					"src" : "E:/Android Experiments/TestAppliction/app/src/main/cpp/native-lib.cpp",
+					"workingDirectory" : "E:/Android Experiments/TestAppliction/app/externalNativeBuild/cmake/debug/x86_64"
+				}
+			],
+			"output" : "E:/Android Experiments/TestAppliction/app/build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so",
+			"toolchain" : "39279401"
+		}
+	},
+	"toolchains" : 
+	{
+		"39279401" : 
+		{
+			"cCompilerExecutable" : "E:/Android/sdk/ndk-bundle/toolchains/x86_64-4.9/prebuilt/windows-x86_64/bin/x86_64-linux-android-gcc.exe",
+			"cppCompilerExecutable" : "E:/Android/sdk/ndk-bundle/toolchains/x86_64-4.9/prebuilt/windows-x86_64/bin/x86_64-linux-android-g++.exe"
+		}
+	}
+}
