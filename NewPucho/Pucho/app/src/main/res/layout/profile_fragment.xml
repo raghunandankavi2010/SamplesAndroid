@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:grid="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+    <RelativeLayout
+        android:id="@+id/RelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/img_profile_bg"
+            android:src="@drawable/profile_top_bg"
+            android:scaleType="center"/>
+
+        <com.india.innovates.pucho.widgets.BezelImageView
+            android:layout_width="105dp"
+            android:layout_height="105dp"
+            android:id="@+id/profile_user_img"
+            android:src="@drawable/person_image_empty"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="User Name"
+            android:textColor="@color/white"
+            android:id="@+id/tv_username"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/profile_user_img"
+            android:layout_centerHorizontal="true" />
+
+        <android.support.v7.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/img_profile_bg"
+            grid:alignmentMode="alignBounds"
+            grid:rowCount="3"
+            grid:columnCount="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:gravity="center"
+                android:background="@drawable/ll_border"
+                grid:layout_columnWeight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:textSize="24sp"
+                    android:textColor="@color/primaryColor"
+                    android:text="20"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="Followers" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:gravity="center"
+                grid:layout_columnWeight="1"
+                android:background="@drawable/ll_border">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="22sp"
+                    android:text="30"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="Following" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:gravity="center"
+                grid:layout_columnWeight="1"
+                android:background="@drawable/ll_border">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="22sp"
+                    android:text="50"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="Points" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:gravity="center"
+                grid:layout_columnWeight="1"
+                android:background="@drawable/ll_border">
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:textSize="22sp"
+                    android:textColor="@color/primaryColor"
+                    android:text="6"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="Question\nAnswered" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:gravity="center"
+                grid:layout_columnWeight="1"
+                android:background="@drawable/ll_border">
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:text="18"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="22sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="Question\nFollowed" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:gravity="center"
+                grid:layout_columnWeight="1"
+                android:background="@drawable/ll_border">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:src="@drawable/ic_public_black_24dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="Interested in" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:gravity="center"
+                grid:layout_columnWeight="1"
+                android:background="@drawable/ll_border">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:src="@drawable/ic_settings_black_24dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="Settings" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:gravity="center"
+                grid:layout_columnWeight="1"
+                android:background="@drawable/ll_border">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:src="@drawable/ic_https_black_24dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="Privacy" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:gravity="center"
+                grid:layout_columnWeight="1"
+                android:background="@drawable/ll_border">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:src="@drawable/ic_power_settings_new_black_24px"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="Logout" />
+            </LinearLayout>
+
+        </android.support.v7.widget.GridLayout>
+
+    </RelativeLayout>
+</ScrollView>

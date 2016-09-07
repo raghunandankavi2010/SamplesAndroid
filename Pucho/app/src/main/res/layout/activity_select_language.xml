@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_awesome_toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/primaryColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="Select Language">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="Done"
+            android:drawableLeft="@drawable/ic_check_white_24dp"
+            android:id="@+id/btn_done_sel_lang"
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@color/white"
+            android:onClick="goToLogIn"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pucho"
+        android:id="@+id/tv_lang_app_title"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:layout_marginTop="39dp"
+        android:textColor="@color/primaryColor"
+        android:layout_below="@+id/my_awesome_toolbar"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Language"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:id="@+id/tv_choose_language"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/tv_lang_app_title"
+        android:layout_centerHorizontal="true" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lang_sel_spinner"
+        android:spinnerMode="dialog"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:entries="@array/entries_language_preference"
+        android:entryValues="@array/entryvalues_language_preference"
+        android:layout_below="@+id/tv_small_text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Now Ask anything in your language"
+        android:id="@+id/tv_small_text"
+        android:layout_below="@+id/tv_choose_language"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
