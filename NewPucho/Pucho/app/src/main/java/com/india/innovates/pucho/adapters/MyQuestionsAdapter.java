@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -236,7 +237,7 @@ public class MyQuestionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public class ViewHoldera extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public ImageButton share, like;
-        public RelativeLayout cv;
+        public CardView cv;
         public ImageView user_image;
         public TextView name, date, likes, question, answerCount;
 
@@ -245,7 +246,7 @@ public class MyQuestionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             super(itemLayoutView);
            /* share = (ImageButton) itemLayoutView.findViewById(R.id.share_btn);
             like = (ImageButton) itemLayoutView.findViewById(R.id.like_btn);*/
-            cv = (RelativeLayout) itemLayoutView.findViewById(R.id.card_view);
+            cv = (CardView) itemLayoutView.findViewById(R.id.card_view);
             name = (TextView) itemLayoutView.findViewById(R.id.name);
             date = (TextView) itemLayoutView.findViewById(R.id.date);
             question = (TextView) itemLayoutView.findViewById(R.id.question);

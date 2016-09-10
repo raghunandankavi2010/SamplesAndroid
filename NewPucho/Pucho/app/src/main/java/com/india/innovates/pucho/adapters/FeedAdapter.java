@@ -221,7 +221,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public class ViewHoldera extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageButton share, like;
-        public RelativeLayout cv;
+        public CardView cv;
         public ImageView user_image;
         public TextView name, date, likes, question, answerCount;
 
@@ -230,7 +230,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             super(itemLayoutView);
            /* share = (ImageButton) itemLayoutView.findViewById(R.id.share_btn);
             like = (ImageButton) itemLayoutView.findViewById(R.id.like_btn);*/
-            cv = (RelativeLayout) itemLayoutView.findViewById(R.id.card_view);
+            cv = (CardView) itemLayoutView.findViewById(R.id.card_view);
             name = (TextView) itemLayoutView.findViewById(R.id.name);
             date = (TextView) itemLayoutView.findViewById(R.id.date);
             question = (TextView) itemLayoutView.findViewById(R.id.question);

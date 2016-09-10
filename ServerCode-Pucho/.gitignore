@@ -1,0 +1,7 @@
+.idea/*
+pucho.iml
+target/
+comm-service/comm-service.iml
+main-service/main-service.iml
+*.DS_Store
+*.idea
