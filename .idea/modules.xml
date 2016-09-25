@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CalendarSample.iml" filepath="$PROJECT_DIR$/CalendarSample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DataBinding.iml" filepath="$PROJECT_DIR$/DataBinding.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
