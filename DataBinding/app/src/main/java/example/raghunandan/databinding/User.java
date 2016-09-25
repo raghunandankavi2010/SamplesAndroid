@@ -1,20 +1,36 @@
 package example.raghunandan.databinding;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+
+import java.util.Observable;
+
+
 /**
  * Created by Raghunandan on 24-09-2016.
  */
 
-public class User {
-    private final String firstName;
-    private final String lastName;
-    public User(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+public class User extends BaseObservable {
+    private  String firstName;
+    private  String lastName;
+    public User() {
+
     }
+    @Bindable
     public String getFirstName() {
         return this.firstName;
     }
     public String getLastName() {
         return this.lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+        notifyPropertyChanged(BR.firstName);
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+
     }
 }

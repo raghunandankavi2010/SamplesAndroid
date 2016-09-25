@@ -21,6 +21,8 @@ public class OSAdapter extends RecyclerView.Adapter<OSAdapter.OSItemViewHolder> 
         this.mList = mList;
     }
 
+
+
     @Override
     public OSItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
@@ -10,6 +11,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        /*jackOptions {
+            enabled true
+        }*/
     }
     buildTypes {
         release {
@@ -21,6 +26,21 @@ android {
     dataBinding {
         enabled = true
     }
+
+    /*compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }*/
+
+    packagingOptions {
+
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/LICENSE.txt'
+
+        exclude 'META-INF/NOTICE.txt'
+    }
 }
 
 dependencies {
@@ -31,4 +51,12 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:design:24.2.1'
+    // Okhttp
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+
+    compile 'io.reactivex:rxjava:1.2.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
 }
