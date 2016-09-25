@@ -1,7 +1,7 @@
 package example.raghunandan.databinding;
 
 import example.raghunandan.databinding.models.FeedResponse;
-import rx.Observable;
+import io.reactivex.Observable;
 
 
 /**

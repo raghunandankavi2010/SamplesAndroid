@@ -3,10 +3,11 @@ package example.raghunandan.databinding;
 
 import example.raghunandan.databinding.models.FeedResponse;
 
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Query;
-import rx.Observable;
+
 
 /**
  * Created by Raghunandan on 03-01-2016.

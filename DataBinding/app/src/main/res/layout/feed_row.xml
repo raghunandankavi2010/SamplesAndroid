@@ -4,8 +4,12 @@
     <data>
 
         <variable
-            name="rowvalues"
-            type="example.raghunandan.databinding.models.FeedModel" />
+        name="rowvalues"
+        type="example.raghunandan.databinding.models.FeedModel" />
+
+        <variable
+            name="itemdata"
+            type="example.raghunandan.databinding.models.QuestionLanguageContents" />
     </data>
 
 
@@ -20,7 +24,7 @@
                 android:id="@+id/content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text='@{rowvalues.askedOn}'
+                android:text='@{itemdata.content}'
                 android:textSize="12sp" />
 
 

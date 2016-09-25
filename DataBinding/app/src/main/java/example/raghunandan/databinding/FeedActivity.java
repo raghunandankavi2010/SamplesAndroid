@@ -9,11 +9,13 @@ import android.view.View;
 import example.raghunandan.databinding.adapter.FeedAdapter;
 import example.raghunandan.databinding.databinding.FeedActivityBinding;
 import example.raghunandan.databinding.models.FeedResponse;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by Raghunandan on 25-09-2016.
@@ -21,7 +23,7 @@ import rx.subscriptions.CompositeSubscription;
 
 public class FeedActivity extends AppCompatActivity {
 
-    private CompositeSubscription compositeDisposable = new CompositeSubscription();
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
 
 
@@ -53,7 +55,7 @@ public class FeedActivity extends AppCompatActivity {
     {
           compositeDisposable.add(dataManager.fetchFeed().subscribeOn(Schedulers.io())
                   .observeOn(AndroidSchedulers.mainThread())
-                  .subscribe(new Observer<FeedResponse>() {
+                  .subscribeWith(new DisposableObserver<FeedResponse>() {
 
                       @Override
                       public void onError(Throwable e) {
@@ -65,11 +67,9 @@ public class FeedActivity extends AppCompatActivity {
                       }
 
                       @Override
-                      public void onCompleted() {
+                      public void onComplete() {
 
                       }
-
-
 
                       @Override
                       public void onNext(FeedResponse feedResponse) {
@@ -78,5 +78,11 @@ public class FeedActivity extends AppCompatActivity {
                           feedAdapter.addList(feedResponse.getData());
                       }
                   }));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        compositeDisposable.clear();
     }
 }

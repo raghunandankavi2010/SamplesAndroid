@@ -3,6 +3,8 @@ package example.raghunandan.databinding;
 
 import android.util.Log;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
 import java.io.IOException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -17,6 +19,7 @@ import javax.net.ssl.X509TrustManager;
 
 import example.raghunandan.databinding.models.FeedResponse;
 
+import io.reactivex.Observable;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -24,9 +27,9 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import okio.Buffer;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
+
 
 /**
  * Created by Raghunandan on 25-09-2016.
@@ -70,7 +73,7 @@ public class FeedApi {
                 .client(client)
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         Observable<FeedResponse> response = retrofit.create(Api.class).fetch_Feed(pageCount, 10, true);
         response.cache();

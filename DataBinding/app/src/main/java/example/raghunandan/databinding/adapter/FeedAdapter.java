@@ -39,6 +39,7 @@ public class FeedAdapter extends  RecyclerView.Adapter<FeedAdapter.FeedHolder>{
     public void onBindViewHolder(FeedHolder holder, int position) {
 
         holder.binding.setRowvalues(mList.get(position));
+        holder.binding.setItemdata(mList.get(position).getLanguageContents().get(0));
     }
 
     public void addList(List<FeedModel> list)
