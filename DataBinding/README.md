@@ -21,4 +21,10 @@ http://fragmentedpodcast.com/
 
 https://developer.android.com/topic/libraries/data-binding/index.html
 
+Sample Contain a Simple Activity that shows databinding that updates ui when data changes.
+
+A RecyclerView demo with DataBinding.
+
+A Sample demonstrating MVVM architecture with databinding.
+
 
