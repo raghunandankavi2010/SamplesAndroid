@@ -9,13 +9,10 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import example.raghunandan.databinding.FeedActivity;
-
-
+import example.raghunandan.databinding.R;
 import example.raghunandan.databinding.databinding.FeedRowBinding;
-import example.raghunandan.databinding.databinding.OsItemsBinding;
 import example.raghunandan.databinding.models.FeedModel;
-import example.raghunandan.databinding.models.FeedResponse;
+import example.raghunandan.databinding.viewmodel.FeedItemViewModel;
 
 /**
  * Created by Raghunandan on 25-09-2016.
@@ -30,16 +27,21 @@ public class FeedAdapter extends  RecyclerView.Adapter<FeedAdapter.FeedHolder>{
     }
     @Override
     public FeedHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        FeedRowBinding binding = FeedRowBinding.inflate(inflater, parent, false);
-        return new FeedHolder(binding.getRoot());
+
+        FeedRowBinding binding = DataBindingUtil.inflate(
+                LayoutInflater.from(parent.getContext()),
+                R.layout.feed_row,
+                parent,
+                false);
+        return new FeedHolder(binding);
+
     }
 
     @Override
     public void onBindViewHolder(FeedHolder holder, int position) {
 
-        holder.binding.setRowvalues(mList.get(position));
-        holder.binding.setItemdata(mList.get(position).getLanguageContents().get(0));
+        holder.binding.setRowvalues(new FeedItemViewModel(mList.get(position)));
+
     }
 
     public void addList(List<FeedModel> list)
@@ -53,13 +55,12 @@ public class FeedAdapter extends  RecyclerView.Adapter<FeedAdapter.FeedHolder>{
         return mList.size();
     }
 
-    static class FeedHolder extends RecyclerView.ViewHolder {
+    public static class FeedHolder extends RecyclerView.ViewHolder {
+        private FeedRowBinding binding;
 
-        FeedRowBinding binding;
-
-        public FeedHolder(View itemView) {
-            super(itemView);
-            binding = DataBindingUtil.bind(itemView);
+        public FeedHolder(FeedRowBinding binding) {
+            super(binding.cardView);
+            this.binding = binding;
         }
     }
 }

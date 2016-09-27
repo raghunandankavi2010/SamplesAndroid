@@ -1,33 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
-        name="rowvalues"
-        type="example.raghunandan.databinding.models.FeedModel" />
+            name="rowvalues"
+            type="example.raghunandan.databinding.viewmodel.FeedItemViewModel" />
 
-        <variable
-            name="itemdata"
-            type="example.raghunandan.databinding.models.QuestionLanguageContents" />
     </data>
 
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        card_view:cardCornerRadius="2dp"
+        card_view:cardUseCompatPadding="true">
 
+        <LinearLayout
+            android:id="@+id/container_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
-                android:layout_centerHorizontal="true"
-                android:id="@+id/content"
-                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/text_post_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text='@{itemdata.content}'
-                android:textSize="12sp" />
+                android:text="@{rowvalues.feedModel.user.fullName}"
+                android:textColor="@color/colorPrimary" />
 
 
-        </RelativeLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
 
 </layout>

@@ -7,11 +7,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import example.raghunandan.databinding.databinding.ActivityMainBinding;
+import example.raghunandan.databinding.models.User;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,12 +23,14 @@ public class MainActivity extends AppCompatActivity {
         user.setFirstName("Raghu");
         user.setLastName("Kavi");
         binding.setUser(user);
-        binding.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                user.setFirstName("Raghunandan");
-            }
-        });
+        binding.setHandlers(this);
+
+    }
+
+    public void onButtonClick(View view) {
+
+        Toast.makeText(view.getContext(), "Button Clicked", Toast.LENGTH_SHORT).show();
+        user.setFirstName("Raghunandan");
     }
 
 

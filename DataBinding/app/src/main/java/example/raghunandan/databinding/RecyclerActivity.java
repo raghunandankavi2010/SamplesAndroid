@@ -10,7 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import example.raghunandan.databinding.adapter.OSAdapter;
 import example.raghunandan.databinding.databinding.ListScreenBinding;
+import example.raghunandan.databinding.models.OperatingSystems;
 
 /**
  * Created by Raghunandan on 24-09-2016.

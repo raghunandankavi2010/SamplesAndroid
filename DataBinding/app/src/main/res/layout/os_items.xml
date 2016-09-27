@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="item" type="example.raghunandan.databinding.OperatingSystems" />
+        <variable name="item" type="example.raghunandan.databinding.models.OperatingSystems" />
     </data>
 
 

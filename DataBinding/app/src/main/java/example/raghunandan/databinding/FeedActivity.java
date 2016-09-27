@@ -4,30 +4,22 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.View;
+import android.util.Log;
+
+import java.util.List;
 
 import example.raghunandan.databinding.adapter.FeedAdapter;
 import example.raghunandan.databinding.databinding.FeedActivityBinding;
-import example.raghunandan.databinding.models.FeedResponse;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
+import example.raghunandan.databinding.models.FeedModel;
+import example.raghunandan.databinding.viewmodel.FeedViewModel;
 
 
 /**
  * Created by Raghunandan on 25-09-2016.
  */
 
-public class FeedActivity extends AppCompatActivity {
+public class FeedActivity extends AppCompatActivity implements FeedViewModel.DataListener {
 
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
-
-
-
-    DataManager dataManager;
 
     private FeedAdapter feedAdapter;
 
@@ -35,12 +27,12 @@ public class FeedActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dataManager = new DataManager();
+
         binding = DataBindingUtil.setContentView(this, R.layout.feed_activity);
 
-        binding.progressBar.setVisibility(View.VISIBLE);
-        binding.errorTextView.setVisibility(View.GONE);
+        setSupportActionBar(binding.toolbar);
 
+        FeedViewModel feedViewModel = new FeedViewModel(this,this);
 
         binding.recyclerview.setLayoutManager( new LinearLayoutManager(this));
         binding.recyclerview.setHasFixedSize(true);
@@ -48,10 +40,38 @@ public class FeedActivity extends AppCompatActivity {
         feedAdapter = new FeedAdapter();
         binding.recyclerview.setAdapter(feedAdapter);
 
-        fetchFeed();
+        feedViewModel.fetchFeed();
     }
 
-    public void fetchFeed()
+    @Override
+    public void onDataChanged(List<FeedModel> model) {
+
+
+        Log.d("Data"," "+model);
+        feedAdapter.addList(model);
+    }
+
+    @Override
+    public void onProgessBarVisibility(int value) {
+
+        binding.progressBar.setVisibility(value);
+    }
+
+    @Override
+    public void onRecyclerViewVisibility(int value) {
+
+
+        Log.d("Visible value "," "+value);
+        binding.recyclerview.setVisibility(value);
+    }
+
+    @Override
+    public void onErrorTextVisibility(int value) {
+
+        binding.errorTextView.setVisibility(value);
+    }
+
+    /*public void fetchFeed()
     {
           compositeDisposable.add(dataManager.fetchFeed().subscribeOn(Schedulers.io())
                   .observeOn(AndroidSchedulers.mainThread())
@@ -84,5 +104,5 @@ public class FeedActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         compositeDisposable.clear();
-    }
+    }*/
 }
