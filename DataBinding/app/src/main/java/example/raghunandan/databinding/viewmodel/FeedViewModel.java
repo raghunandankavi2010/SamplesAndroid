@@ -9,6 +9,7 @@ import java.util.List;
 import example.raghunandan.databinding.apis.DataManager;
 import example.raghunandan.databinding.models.FeedModel;
 import example.raghunandan.databinding.models.FeedResponse;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
@@ -80,6 +81,7 @@ public class FeedViewModel {
                     }
                 }));
     }
+
 
     public interface DataListener
     {

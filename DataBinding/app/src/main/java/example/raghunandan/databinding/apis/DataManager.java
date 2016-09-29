@@ -13,6 +13,10 @@ public class DataManager {
     private Observable<FeedResponse> feedResponseObservable;
 
 
+    public FeedApi getFeedApi() {
+        return feedApi;
+    }
+
     public DataManager()
     {
 

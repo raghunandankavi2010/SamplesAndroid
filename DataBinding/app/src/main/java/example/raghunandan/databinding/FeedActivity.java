@@ -12,6 +12,7 @@ import example.raghunandan.databinding.adapter.FeedAdapter;
 import example.raghunandan.databinding.databinding.FeedActivityBinding;
 import example.raghunandan.databinding.models.FeedModel;
 import example.raghunandan.databinding.viewmodel.FeedViewModel;
+import io.reactivex.schedulers.Schedulers;
 
 
 /**
