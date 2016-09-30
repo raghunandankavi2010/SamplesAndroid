@@ -38,6 +38,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FeedApi {
 
+
     private final static HostnameVerifier DO_NOT_VERIFY = new HostnameVerifier() {
         public boolean verify(String hostname, SSLSession session) {
             return true;

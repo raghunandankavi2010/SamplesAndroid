@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+import android.view.View;
 
 import java.util.List;
 
@@ -41,69 +42,34 @@ public class FeedActivity extends AppCompatActivity implements FeedViewModel.Dat
         feedAdapter = new FeedAdapter();
         binding.recyclerview.setAdapter(feedAdapter);
 
+        binding.recyclerview.setVisibility(View.GONE);
+        binding.progressBar.setVisibility(View.GONE);
+        binding.errorTextView.setVisibility(View.GONE);
+
         feedViewModel.fetchFeed();
+        binding.progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onDataChanged(List<FeedModel> model) {
 
 
+        binding.recyclerview.setVisibility(View.VISIBLE);
+        binding.progressBar.setVisibility(View.GONE);
+        binding.errorTextView.setVisibility(View.GONE);
         Log.d("Data"," "+model);
         feedAdapter.addList(model);
     }
 
     @Override
-    public void onProgessBarVisibility(int value) {
+    public void onError() {
 
-        binding.progressBar.setVisibility(value);
+        binding.recyclerview.setVisibility(View.GONE);
+        binding.progressBar.setVisibility(View.GONE);
+        binding.errorTextView.setVisibility(View.VISIBLE);
+
     }
 
-    @Override
-    public void onRecyclerViewVisibility(int value) {
 
 
-        Log.d("Visible value "," "+value);
-        binding.recyclerview.setVisibility(value);
-    }
-
-    @Override
-    public void onErrorTextVisibility(int value) {
-
-        binding.errorTextView.setVisibility(value);
-    }
-
-    /*public void fetchFeed()
-    {
-          compositeDisposable.add(dataManager.fetchFeed().subscribeOn(Schedulers.io())
-                  .observeOn(AndroidSchedulers.mainThread())
-                  .subscribeWith(new DisposableObserver<FeedResponse>() {
-
-                      @Override
-                      public void onError(Throwable e) {
-                          e.printStackTrace();
-                          binding.progressBar.setVisibility(View.GONE);
-                          binding.recyclerview.setVisibility(View.GONE);
-                          binding.errorTextView.setVisibility(View.VISIBLE);
-                          //EventBus.getDefault().post(new FeedErrorEvent(e));
-                      }
-
-                      @Override
-                      public void onComplete() {
-
-                      }
-
-                      @Override
-                      public void onNext(FeedResponse feedResponse) {
-                          binding.progressBar.setVisibility(View.GONE);
-                          binding.recyclerview.setVisibility(View.VISIBLE);
-                          feedAdapter.addList(feedResponse.getData());
-                      }
-                  }));
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        compositeDisposable.clear();
-    }*/
 }

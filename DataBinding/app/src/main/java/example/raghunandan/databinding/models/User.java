@@ -3,7 +3,6 @@ package example.raghunandan.databinding.models;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
-
 import example.raghunandan.databinding.BR;
 
 
@@ -14,6 +13,8 @@ import example.raghunandan.databinding.BR;
 public class User extends BaseObservable {
     private  String firstName;
     private  String lastName;
+
+
     public User() {
 
     }
