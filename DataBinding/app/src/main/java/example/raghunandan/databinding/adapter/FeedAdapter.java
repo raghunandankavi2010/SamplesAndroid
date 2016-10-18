@@ -38,6 +38,15 @@ public class FeedAdapter extends  RecyclerView.Adapter<FeedAdapter.FeedHolder>{
     }
 
     @Override
+    public void onViewRecycled(FeedHolder holder) {
+        if(holder!=null)
+        {
+            holder.binding.setRowvalues(null);
+        }
+        super.onViewRecycled(holder);
+    }
+
+    @Override
     public void onBindViewHolder(FeedHolder holder, int position) {
 
         holder.binding.setRowvalues(new FeedItemViewModel(mList.get(position)));

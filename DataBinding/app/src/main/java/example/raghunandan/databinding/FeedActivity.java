@@ -10,6 +10,7 @@ import android.view.View;
 import java.util.List;
 
 import example.raghunandan.databinding.adapter.FeedAdapter;
+import example.raghunandan.databinding.apis.DataManager;
 import example.raghunandan.databinding.databinding.FeedActivityBinding;
 import example.raghunandan.databinding.models.FeedModel;
 import example.raghunandan.databinding.viewmodel.FeedViewModel;
@@ -34,10 +35,13 @@ public class FeedActivity extends AppCompatActivity implements FeedViewModel.Dat
 
         setSupportActionBar(binding.toolbar);
 
-        FeedViewModel feedViewModel = new FeedViewModel(this,this);
+        FeedViewModel feedViewModel = new FeedViewModel(this,this,new DataManager());
 
         binding.recyclerview.setLayoutManager( new LinearLayoutManager(this));
         binding.recyclerview.setHasFixedSize(true);
+        binding.recyclerview.setItemViewCacheSize(30);
+        binding.recyclerview.setDrawingCacheEnabled(true);
+        binding.recyclerview.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
         feedAdapter = new FeedAdapter();
         binding.recyclerview.setAdapter(feedAdapter);

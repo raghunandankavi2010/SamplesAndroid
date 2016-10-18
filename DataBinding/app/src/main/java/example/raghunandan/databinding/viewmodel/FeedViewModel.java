@@ -23,34 +23,26 @@ import io.reactivex.schedulers.Schedulers;
 
 public class FeedViewModel {
 
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
-
     public DataManager dataManager;
 
     private DataListener datalistener;
     private Context mContext;
-    public static final String TAG = "FeedViewModel" ;
 
-
-
-    public FeedViewModel(Context context, DataListener datalistener) {
+    public FeedViewModel(Context context, DataListener datalistener,DataManager dataManager) {
 
         this.datalistener = datalistener;
         mContext =  context;
-        dataManager = new DataManager();
+        this.dataManager = dataManager;
     }
 
 
 
     public void fetchFeed() {
 
-        /*compositeDisposable.add(*/dataManager.fetchFeed()
-                .subscribeOn(Schedulers.io())
+          io.reactivex.Observable<FeedResponse> m = dataManager.fetchFeed();
+               m.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<FeedResponse>() {
-
-
-
                     @Override
                     public void onError(Throwable e) {
                         e.printStackTrace();
@@ -60,9 +52,7 @@ public class FeedViewModel {
                     @Override
                     public void onComplete() {
 
-
                     }
-
                     @Override
                     public void onNext(FeedResponse feedResponse) {
                         if(datalistener!=null) {
