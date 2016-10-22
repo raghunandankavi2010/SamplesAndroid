@@ -7,4 +7,4 @@ Sample
 
 Below is a Gif that demonstrates the same.
 
-<img src='http://i.imgur.com/RIV2Ksu.gifv' width='400' height='640' />
+![alt tag](https://github.com/raghunandankavi2010/SamplesAndroid/blob/master/FadeinButtonText/RIV2Ksu.gif)
