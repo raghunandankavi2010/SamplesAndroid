@@ -1,11 +1,25 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+/*ext {
+    //Version
+    supportLibrary = '24.2.1'
+
+    //Support Libraries dependencies
+    supportDependencies = [
+            appCompat     : "com.android.support:appcompat-v7:${supportLibrary}",
+            design        : "com.android.support:design:${supportLibrary}",
+            cardView      : "com.android.support:cardview-v7:${supportLibrary}",
+            recyclerView  : "com.android.support:recyclerview-v7:${supportLibrary}"
+    ]
+}*/
+
+
 
 buildscript {
     repositories {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.2.3'
+        classpath 'com.android.tools.build:gradle:2.2.1'
     }
 }
 
@@ -13,4 +27,9 @@ allprojects {
     repositories {
         jcenter()
     }
+}
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
