@@ -29,6 +29,8 @@ import com.bumptech.glide.Glide;
 
 import java.util.Random;
 
+import static android.support.v7.appcompat.R.styleable.Toolbar;
+
 public class CheeseDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_NAME = "cheese_name";

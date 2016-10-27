@@ -19,7 +19,17 @@
 
     <style name="Theme.DesignDemo" parent="Base.Theme.DesignDemo">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+
+
+    <!--
+    Refer the below answer
+
+    http://stackoverflow.com/questions/30882429/using-windowtranslucentstatus-with-collapsingtoolbarlayout-->
 
 </resources>
