@@ -57,6 +57,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
             ActorContract.Actors.ACTOR_SPOUSE,
             ActorContract.Actors.ACTOR_CHILDREN,
             ActorContract.Actors.ACTOR_IMAGE,
+            ActorContract.Actors.ACTOR_FAV,
     };
 
 
@@ -228,7 +229,6 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
         Uri uri = ActorContract.Actors.CONTENT_URI; // Get all entries
         Cursor c = contentResolver.query(uri, PROJECTION, null, null, null);
         assert c != null;
-        if (c != null) {
             Log.i(TAG, "Found " + c.getCount() + " local entries. Computing merge solution...");
 
             // Find stale data
@@ -251,17 +251,28 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
                 favoured = c.getInt(COLUMN_FAV);
 
                 Actors match = moviesMap.get(actorid);
+
                 if (match != null) {
-                    // Entry exists. Remove from entry map to prevent insert later.
-                    moviesMap.remove(name);
+                    // Entry exists. Remove from entry map to prevent insert later
+                    moviesMap.remove(actorid);
+
                 /* Check to see if the entry needs to be updated */
                     Uri existingUri = ActorContract.Actors.CONTENT_URI.buildUpon()
                             .appendPath(Integer.toString(id)).build();
-
+                    Log.i("name","from network"+match.getName()+"from db"+name);
+                    if (/*(match.getDescription()!=null && !match.getDescription().equals(description)) ||*/
+                    ((match.getName()!=null) && (!match.getName().equals(name))) /*||
+                            (match.getDob()!=null && !match.getDob().equals(dob)) ||
+                            (match.getCountry()!=null && !match.getCountry().equals(country)) ||
+                            (match.getSpouse()!=null && !match.getSpouse().equals(spouse)) ||
+                            (match.getChildren()!=null && !match.getChildren().equals(children)) ||
+                            (match.getImage()!=null && !match.getImage().equals(image)) ||
+                            (match.getFav()!=-1) ||
+                    (match.getHeight()!=null && !match.getHeight().equals(height))*/
+                            ) {
                         // Update existing record
                         Log.i(TAG, "Scheduling update: " + existingUri);
                         batch.add(ContentProviderOperation.newUpdate(existingUri)
-                                .withValue(ActorContract.Actors.ACTOR_ID, match.getId())
                                 .withValue(ActorContract.Actors.ACTOR_NAME, match.getName())
                                 .withValue(ActorContract.Actors.ACTOR_DESCRIPTION, match.getDescription())
                                 .withValue(ActorContract.Actors.ACTOR_DOB, match.getDob())
@@ -273,6 +284,10 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
                                 .withValue(ActorContract.Actors.ACTOR_FAV, match.getFav())
                                 .build());
                         syncResult.stats.numUpdates++;
+                    }
+                    else {
+                        Log.i(TAG, "No action: " + existingUri);
+                    }
 
                 } else {
                     // Entry doesn't exist. Remove it from the database.
@@ -284,8 +299,6 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
                 }
             }
             c.close();
-        }
-
 
         // Add new items
         for (Actors e : moviesMap.values()) {

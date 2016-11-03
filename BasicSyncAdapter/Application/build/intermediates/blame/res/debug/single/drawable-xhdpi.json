@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "F:\\SamplesAndroid\\BasicSyncAdapter\\Application\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_action_refresh.png",
+        "source": "F:\\SamplesAndroid\\BasicSyncAdapter\\Application\\src\\main\\res\\drawable-xhdpi\\ic_action_refresh.png"
+    },
+    {
+        "merged": "F:\\SamplesAndroid\\BasicSyncAdapter\\Application\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_launcher.png",
+        "source": "F:\\SamplesAndroid\\BasicSyncAdapter\\Application\\src\\main\\res\\drawable-xhdpi\\ic_launcher.png"
+    }
+]

@@ -21,7 +21,7 @@ import assignment.test.raghu.peppersqaure.provider.ActorContract;
  * Static helper methods for working with the sync framework.
  */
 public class SyncUtils {
-    private static final long SYNC_FREQUENCY = 60 * 60;  // 1 hour (in seconds)
+    private static final long SYNC_FREQUENCY = 2* 60;  // 1 hour (in seconds)
     private static final String CONTENT_AUTHORITY = ActorContract.CONTENT_AUTHORITY;
     private static final String PREF_SETUP_COMPLETE = "setup_complete";
     // Value below must match the account type specified in res/xml/syncadapter.xml
@@ -46,23 +46,23 @@ public class SyncUtils {
             // Inform the system that this account supports sync
             ContentResolver.setIsSyncable(account, CONTENT_AUTHORITY, 1);
             // Inform the system that this account is eligible for auto sync when the network is up
-            ContentResolver.setSyncAutomatically(account, CONTENT_AUTHORITY, true);
-            // Recommend a schedule for automatic synchronization. The system may modify this based
-            // on other scheduled syncs and network utilization.
-            ContentResolver.addPeriodicSync(
-                    account, CONTENT_AUTHORITY, new Bundle(),SYNC_FREQUENCY);
-            newAccount = true;
-            Log.i("Test", "test");
-        }
+                ContentResolver.setSyncAutomatically(account, CONTENT_AUTHORITY, true);
+                // Recommend a schedule for automatic synchronization. The system may modify this based
+                // on other scheduled syncs and network utilization.
+                ContentResolver.addPeriodicSync(
+                        account, CONTENT_AUTHORITY, new Bundle(),SYNC_FREQUENCY);
+                newAccount = true;
+                Log.i("Test", "test");
+            }
 
-        // Schedule an initial sync if we detect problems with either our account or our local
-        // data has been deleted. (Note that it's possible to clear app data WITHOUT affecting
-        // the account list, so wee need to check both.)
-        if (newAccount || !setupComplete) {
-            TriggerRefresh();
-            PreferenceManager.getDefaultSharedPreferences(context).edit()
-                    .putBoolean(PREF_SETUP_COMPLETE, true).commit();
-        }
+            // Schedule an initial sync if we detect problems with either our account or our local
+            // data has been deleted. (Note that it's possible to clear app data WITHOUT affecting
+            // the account list, so wee need to check both.)
+            if (newAccount || !setupComplete) {
+                TriggerRefresh();
+                PreferenceManager.getDefaultSharedPreferences(context).edit()
+                        .putBoolean(PREF_SETUP_COMPLETE, true).commit();
+            }
     }
 
     /**

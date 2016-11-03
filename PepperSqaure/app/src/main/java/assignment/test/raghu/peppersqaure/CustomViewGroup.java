@@ -156,7 +156,7 @@ public class CustomViewGroup extends ViewGroup {
 
         int contentWidth = r - l - getPaddingRight();
 
-        Log.i(TAG,""+contentWidth);
+        //Log.i(TAG,""+contentWidth);
         layoutView(mProfileImage, r-(mProfileImage.getMeasuredWidth())-getPaddingRight(mProfileImage),t+getPaddingTop(mProfileImage),
                 mProfileImage.getMeasuredWidth(), mProfileImage.getMeasuredHeight());
         currentTop += getHeightWithMargins(mProfileImage);
