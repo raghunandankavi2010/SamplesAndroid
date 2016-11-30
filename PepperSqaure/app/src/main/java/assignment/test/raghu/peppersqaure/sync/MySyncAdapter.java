@@ -239,6 +239,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
             while (c.moveToNext()) {
                 syncResult.stats.numEntries++;
                 id = c.getInt(COLUMN_ID);
+                Log.i("Unique Id",""+id);
                 actorid = c.getInt(COLUMN_ACTOR_ID);
                 name = c.getString(COLUMN_NAME);
                 description = c.getString(COLUMN_DESCRIPTION);
@@ -261,14 +262,14 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
                             .appendPath(Integer.toString(id)).build();
                     Log.i("name","from network"+match.getName()+"from db"+name);
                     if (/*(match.getDescription()!=null && !match.getDescription().equals(description)) ||*/
-                    ((match.getName()!=null) && (!match.getName().equals(name))) /*||
-                            (match.getDob()!=null && !match.getDob().equals(dob)) ||
-                            (match.getCountry()!=null && !match.getCountry().equals(country)) ||
-                            (match.getSpouse()!=null && !match.getSpouse().equals(spouse)) ||
-                            (match.getChildren()!=null && !match.getChildren().equals(children)) ||
-                            (match.getImage()!=null && !match.getImage().equals(image)) ||
-                            (match.getFav()!=-1) ||
-                    (match.getHeight()!=null && !match.getHeight().equals(height))*/
+                    ((match.getName()!=null) && (!match.getName().equals(name))) ||
+                            ((match.getDob()!=null) && (!match.getDob().equals(dob))) ||
+                            ((match.getCountry()!=null) && (!match.getCountry().equals(country))) ||
+                            (((match.getSpouse()!=null)) && (!match.getSpouse().equals(spouse))) ||
+                            ((match.getChildren()!=null) && (!match.getChildren().equals(children))) ||
+                            ((match.getImage()!=null) && (!match.getImage().equals(image))) ||
+                            (!(match.getFav()== favoured)) ||
+                                    ((match.getHeight()!=null) && (!match.getHeight().equals(height)))
                             ) {
                         // Update existing record
                         Log.i(TAG, "Scheduling update: " + existingUri);
