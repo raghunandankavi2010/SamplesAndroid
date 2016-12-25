@@ -11,18 +11,10 @@
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
         app:layout_constraintBottom_toBottomOf="@+id/activity_main"
         app:layout_constraintLeft_toLeftOf="@+id/activity_main"
         app:layout_constraintRight_toRightOf="@+id/activity_main"
         app:layout_constraintTop_toTopOf="@+id/activity_main" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="420dp" />
 
 </android.support.constraint.ConstraintLayout>

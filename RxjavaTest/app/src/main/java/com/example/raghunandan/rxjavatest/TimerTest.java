@@ -12,15 +12,15 @@ import io.reactivex.Observable;
 
 public class TimerTest {
 
-    @Inject
+
     public TimerTest()
     {
 
     }
 
 
-    public Observable<? extends Long> getObservable() {
-        Observable timer= Observable.interval(0, 2, TimeUnit.SECONDS);
+    public Observable<? extends Long> getObservable(int initialvalue) {
+        Observable timer = Observable.interval(initialvalue,2,TimeUnit.SECONDS);
         timer.cache();
         return timer;
     }

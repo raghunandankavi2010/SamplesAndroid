@@ -1,7 +1,9 @@
 package com.example.raghunandan.rxjavatest;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,10 +16,12 @@ import javax.inject.Inject;
 public class MainActivity extends AppCompatActivity implements Callback {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    Button btn;
-    TextView textView;
+
+    private TextView textView;
     @Inject
     MainPresenter mainPresenter;
+
+    private int initialvalue;
 
 
     @Override
@@ -26,16 +30,24 @@ public class MainActivity extends AppCompatActivity implements Callback {
         setContentView(R.layout.activity_main);
         DaggerInjector.get().inject(this);
         mainPresenter.setCallBack(this);
-        btn = (Button) findViewById(R.id.button);
+
         textView = (TextView) findViewById(R.id.text);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        if(savedInstanceState!=null)
+        {
+            initialvalue = savedInstanceState.getInt("value");
+            mainPresenter.doSomeWork(initialvalue);
+            Log.i("InitialValue", ""+initialvalue);
+        }else {
+            mainPresenter.doSomeWork(initialvalue);
+        }
 
-                mainPresenter.doSomeWork();
-            }
-        });
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("value",initialvalue);
     }
 
     @Override
@@ -47,7 +59,9 @@ public class MainActivity extends AppCompatActivity implements Callback {
 
     @Override
     public void callBack(Long timer) {
-
         textView.setText(String.valueOf(timer));
+        initialvalue = timer.intValue();
     }
+
+
 }

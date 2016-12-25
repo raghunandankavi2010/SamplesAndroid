@@ -28,9 +28,9 @@ public class MainPresenter {
         this.timerTest = timerTest;
     }
 
-    public void doSomeWork() {
+    public void doSomeWork(int initialvalue) {
 
-        disposables.add(timerTest.getObservable()
+        disposables.add(timerTest.getObservable(initialvalue)
                 // Run on a background thread
                 .subscribeOn(Schedulers.io())
                 // Be notified on the main thread
