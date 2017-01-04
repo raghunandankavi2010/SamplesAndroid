@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">पूछो</string>
+
+    <string name="action_settings"> सेटिंग्स</string>
+
+    <string name="signing_in">Signing in…</string>
+    <string name="signed_in_as">Signed in as %s</string>
+    <string name="play_services_error_fmt">Google Play Services Error: %i</string>
+    <string name ="cliendid">695733846435-pms1667u87rb4cev7rg15920dp58bu3m.apps.googleusercontent.com</string>
+
+     <string name="gcm_send_message">Token retrieved and sent to server! You can now use gcmsender to
+        send downstream messages to this app.</string>
+    <string name="registering_message">Generating InstanceID token...</string>
+    <string name="token_error_message">An error occurred while either fetching the InstanceID token,
+        sending the fetched token to the server or subscribing to the PubSub topic. Please try
+        running the sample again.</string>
+    <!--<string name="gcm_defaultSenderId">695733846435</string>-->
+
+    <string name="share">Share</string>
+    <string name="send_intent_title">Send a message via:</string>
+
+    <!-- Settings -->
+
+    <string name="language_list_preference">listkey</string>
+    <string name="title_language_preference">सेटिंग्स</string>
+    <string name="summery_language_preference">पसंद का भाषा</string>
+    <string name="dialog_language_list_preference">पसंद का भाषा</string>
+    <string name="default_english_language">अंग्रेज़ी</string>
+
+    <!-- View pager tabs -->
+    <string name = "feed">फ़ीड</string>
+    <string name = "trending">ट्रेंडिंग</string>
+    <string name = "favorites">पसंदीदा</string>
+    <string name = "notifications">अधिसूचना</string>
+
+    <!-- Nav Drawer items -->
+
+    <string name = "questions">मेरे सवाल</string>
+    <string name = "answers"> मेरे जवाब</string>
+    <string name = "settiing">सेटिंग्स</string>
+
+
+    <!-- Screen Titles -->
+    <string name="compose_question">प्रश्न पूछें</string>
+    <string name="myquestions">मेरे सवाल</string>
+    <string name="search">तलाश</string>
+    <string name="compose_answer">जवाब लिखें</string>
+
+</resources>

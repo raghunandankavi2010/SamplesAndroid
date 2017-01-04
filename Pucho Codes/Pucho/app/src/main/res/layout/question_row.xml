@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="NewApi">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:descendantFocusability="blocksDescendants"
+        android:focusable="true"
+        android:foreground="@drawable/ripple"
+        android:stateListAnimator="@animator/raise"
+        app:cardBackgroundColor="@color/white"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">-->
+
+<com.indiainnovates.pucho.widgets.ForegroundRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:minHeight="?android:listPreferredItemHeight"
+    android:paddingTop="16dp"
+    android:paddingEnd="16dp"
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp"
+    android:paddingBottom="8dp"
+    android:stateListAnimator="@animator/raise"
+    android:background="@android:color/white"
+    android:elevation="2dp">
+
+       <!-- <RelativeLayout
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">-->
+
+            <com.indiainnovates.pucho.widgets.BaselineGridTextView
+                android:id="@+id/date"
+                style="@style/Widget.Pucho.Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text="1 Jan 2015"/>
+
+            <com.indiainnovates.pucho.widgets.BezelImageView
+                android:padding="4dp"
+                android:id="@+id/profile_image"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/name"
+                android:layout_marginTop="4dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/person_image_empty"
+
+                />
+
+
+            <com.indiainnovates.pucho.widgets.BaselineGridTextView
+                android:id="@+id/name"
+                style="@style/Widget.Pucho.Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/date"
+                android:layout_toLeftOf="@+id/date"
+                android:visibility="visible"/>
+
+           <!-- <View
+                android:id="@+id/separator1"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@+id/profile_image"
+                android:layout_marginTop="8dp"
+                android:background="#000"/>-->
+
+            <com.indiainnovates.pucho.widgets.BaselineGridTextView
+                android:id="@+id/question"
+                style="@style/Widget.Pucho.Content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_image"
+                android:layout_marginTop="4dp"
+                android:minLines="1"
+                android:ellipsize="end"
+                android:text="What are the adavantages of using Dagger which is a dependency injection Libray for android?"
+                />
+
+            <!--<com.indiainnovates.pucho.widgets.BaselineGridTextView
+                android:id="@+id/question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/separator1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:minLines="1"
+                app:topPaddingHint="4dp"
+                android:text="What are the adavantages of using Dagger which is a dependency injection Libray for android?"
+                style="@style/Widget.Pucho.Content"/>
+-->
+            <!--<TextView
+
+                 android:id="@+id/like"
+                 android:layout_width="100dp"
+                 android:layout_height="wrap_content"
+                 android:layout_alignLeft="@+id/question"
+                 android:layout_alignStart="@+id/question"
+                 android:layout_below="@+id/question"
+                 android:layout_marginTop="20dp"
+                 android:text="25 People have this Question"/>
+
+            <View
+                 android:id="@+id/separator2"
+                 android:layout_width="match_parent"
+                 android:layout_height="1px"
+                 android:layout_below="@+id/like"
+                 android:layout_marginTop="10dp"
+                 android:background="#000"/>
+
+             <TextView
+                 android:id="@+id/answer_count"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignEnd="@+id/question"
+                 android:layout_alignRight="@+id/question"
+                 android:layout_alignTop="@+id/like"
+                 android:layout_marginRight="16dp"
+                 android:text="103 Answers"
+                 android:textSize="14sp"/>
+
+             <ImageButton
+                 android:id="@+id/share_btn"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignEnd="@+id/question"
+                 android:layout_alignRight="@+id/question"
+                 android:layout_below="@+id/separator2"
+                 android:layout_marginBottom="10dp"
+                 android:layout_marginTop="5dp"
+                 android:backgroundTint="@android:color/transparent"
+                 android:src="@android:drawable/ic_menu_share"
+                 android:tint="@color/accent"/>
+
+             <ImageButton
+                 android:id="@+id/like_btn"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignTop="@+id/share_btn"
+                 android:layout_marginRight="20dp"
+                 android:layout_toLeftOf="@+id/share_btn"
+                 android:layout_toStartOf="@+id/share_btn"
+                 android:backgroundTint="@android:color/transparent"
+                 android:src="@android:drawable/btn_star_big_on"
+                 android:tint="@color/accent"/>-->
+</com.indiainnovates.pucho.widgets.ForegroundRelativeLayout>
+
+    <!--    </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</FrameLayout>-->
+

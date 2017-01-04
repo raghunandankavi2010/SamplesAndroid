@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <group android:checkableBehavior="single"
+           android:id="@+id/grp1">
+        <!--<item
+
+            android:id="@+id/nav_profile"
+            android:icon="@mipmap/ic_launcher"
+            android:title="View Profile"/>-->
+        <item
+
+            android:id="@+id/nav_questions"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/questions"/>
+        <item
+            android:id="@+id/nav_answers"
+            android:icon="@drawable/ic_question_answer_black_24dp"
+            android:title="@string/answers"/>
+        <!--<item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_question_answer_black_24dp"
+            android:title="History"/>
+        <item
+            android:id="@+id/nav_area_interest"
+            android:icon="@drawable/ic_question_answer_black_24dp"
+            android:title="Area of Interest"/>
+        <item
+            android:id="@+id/nav_stats"
+            android:icon="@drawable/ic_question_answer_black_24dp"
+            android:title="Stats"/>
+
+        <item
+            android:id="@+id/nav_drafts"
+            android:icon="@drawable/ic_question_answer_black_24dp"
+            android:title="Drafts"/>
+-->
+    </group>
+
+
+    <group android:checkableBehavior="single"
+           android:id="@+id/grp2">
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings_black"
+            android:title="@string/settiing"/>
+
+
+        <!--<item
+            android:id="@+id/nav_help"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Help"/>-->
+    </group>
+
+
+</menu>
