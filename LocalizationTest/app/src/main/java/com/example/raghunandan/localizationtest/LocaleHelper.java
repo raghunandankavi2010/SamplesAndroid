@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
+import android.os.LocaleList;
 import android.preference.PreferenceManager;
 
 import java.util.Locale;
@@ -34,10 +35,10 @@ public class LocaleHelper {
 
     public static void setLocale(Context context, String language) {
         persist(context, language);
-        updateResources(context, language);
+        //updateResources(context, language);
     }
 
-    private static String getPersistedData(Context context, String defaultLanguage) {
+    public static String getPersistedData(Context context, String defaultLanguage) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString(SELECTED_LANGUAGE, defaultLanguage);
     }
@@ -50,20 +51,30 @@ public class LocaleHelper {
         editor.apply();
     }
 
+    /* On Nougat this does not work. You need a workaround
+       as mentioned in this http://stackoverflow.com/questions/39705739/android-n-change-language-programatically/40849142#40849142
+       post
+     */
     private static void updateResources(Context context, String language) {
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
 
+
         Resources resources = context.getResources();
 
-        Configuration configuration = resources.getConfiguration();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            configuration.setLocale(new Locale("hi"));
-        } else {
-            configuration.locale = new Locale("hi");
+        if (Build.VERSION.SDK_INT >= 25) {
+            resources.getConfiguration().setLocales(new LocaleList(locale));
         }
 
+        Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            configuration.setLocale(locale);
+        } else {
+            configuration.locale = locale;
+        }
 
-        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+        context.createConfigurationContext(configuration);
+
     }
 }
