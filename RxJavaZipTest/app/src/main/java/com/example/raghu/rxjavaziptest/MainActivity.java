@@ -85,6 +85,32 @@ public class MainActivity extends AppCompatActivity {
                      {
                          Log.i(TAG,"Name "+combinedAndroid.getFinalList().get(i).getName());
                      }
+
+			// 01-31 22:47:11.189 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Cupcake
+			// 01-31 22:47:11.190 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Donut
+			// 01-31 22:47:11.190 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Eclair
+			// 01-31 22:47:11.190 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Froyo
+			// 01-31 22:47:11.190 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Gingerbread
+			// 01-31 22:47:11.190 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Honeycomb
+			// 01-31 22:47:11.190 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Ice Cream Sandwich
+			// 01-31 22:47:11.190 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name JellyBean
+			// 01-31 22:47:11.190 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name KitKat
+			// 01-31 22:47:11.190 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Lollipop
+			// 01-31 22:47:11.190 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Marshmallow
+			// 01-31 22:47:11.190 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Nougat
+			// 01-31 22:47:11.190 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Cupcake
+			// 01-31 22:47:11.190 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Donut
+			// 01-31 22:47:11.190 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Eclair
+			// 01-31 22:47:11.190 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Froyo
+			// 01-31 22:47:11.190 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Gingerbread
+			// 01-31 22:47:11.191 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Honeycomb
+			// 01-31 22:47:11.191 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Ice Cream Sandwich
+			// 01-31 22:47:11.191 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name JellyBean
+			// 01-31 22:47:11.191 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name KitKat
+			// 01-31 22:47:11.191 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Lollipop
+			// 01-31 22:47:11.191 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Marshmallow
+			// 01-31 22:47:11.191 8713-8713/com.example.raghu.rxjavaziptest D/MainActivity: Name Nougat
+
                     }
 
                     @Override
