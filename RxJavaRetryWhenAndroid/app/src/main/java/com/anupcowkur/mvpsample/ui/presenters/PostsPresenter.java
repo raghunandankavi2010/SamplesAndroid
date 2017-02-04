@@ -3,6 +3,7 @@ package com.anupcowkur.mvpsample.ui.presenters;
 
 
 import android.util.Log;
+import android.util.Pair;
 
 import com.anupcowkur.mvpsample.events.ErrorEvent;
 import com.anupcowkur.mvpsample.events.NewPostsEvent;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableObserver;
@@ -26,7 +28,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 
 
 public class PostsPresenter {
+
     PostsAPI postsAPI;
+
+    private static final int UNCHECKED_ERROR_TYPE_CODE = -100;
 
     @Inject
     public PostsPresenter(PostsAPI postsAPI) {
@@ -35,7 +40,9 @@ public class PostsPresenter {
 
     public void loadPostsFromAPI() {
 
-        postsAPI.getPostsObservable().retryWhen(new Function<Observable<? extends Throwable>, Observable<?>>() {
+
+
+ /*       postsAPI.getPostsObservable().retryWhen(new Function<Observable<? extends Throwable>, Observable<?>>() {
             @Override
             public Observable<?> apply(Observable<? extends Throwable> errorNotification) {
                 return errorNotification
@@ -86,6 +93,93 @@ public class PostsPresenter {
                     }
 
                 });
+*/
+
+        // Another way with Pair
+        postsAPI.getPostsObservable().retryWhen(exponentialBackoffForExceptions(1,4,TimeUnit.SECONDS,IOException.class))
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DisposableObserver<List<Post>>() {
+                    @Override
+                    public void onNext(List<Post> newPosts) {
+                        EventBus.getDefault().post(new NewPostsEvent(newPosts));
+                    }
+
+
+
+                    @Override
+                    public void onError(Throwable e) {
+                        EventBus.getDefault().post(new ErrorEvent());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                        Log.d("PostsPresenter","Completed");
+                    }
+
+                });
+
+    }
+
+
+
+    @SafeVarargs
+    public static Function<Observable<? extends Throwable>, Observable<?>>
+    exponentialBackoffForExceptions(final long initialDelay, final int numRetries,
+                                    final TimeUnit unit, final Class<? extends Throwable>... errorTypes) {
+
+      if (initialDelay <= 0) {
+            throw new IllegalArgumentException("initialDelay must be greater than 0");
+        }
+
+        if (numRetries <= 0) {
+            throw new IllegalArgumentException("numRetries must be greater than 0");
+        }
+
+        return new Function<Observable<? extends Throwable>, Observable<?>>() {
+            @Override
+            public Observable<?> apply(Observable<? extends Throwable> errors) {
+                return errors
+                        .zipWith(Observable.range(1, numRetries + 1), new BiFunction<Throwable, Integer, Pair<Throwable, Integer>>() {
+                            @Override
+                            public Pair<Throwable, Integer> apply(Throwable error, Integer integer) throws Exception {
+
+                                error.printStackTrace();
+                                if (integer == numRetries + 1) {
+                                    return new Pair<>(error, UNCHECKED_ERROR_TYPE_CODE);
+                                }
+
+                                if (errorTypes != null) {
+                                    for (Class<? extends Throwable> clazz : errorTypes) {
+                                        if (clazz.isInstance(error)) {
+                                            // Mark as error type found
+                                            return new Pair<>(error, integer);
+                                        }
+                                    }
+                                }
+
+                                return new Pair<>(error, UNCHECKED_ERROR_TYPE_CODE);
+                            }
+                        })
+                        .flatMap(new io.reactivex.functions.Function<Pair<Throwable, Integer>, ObservableSource<? extends Long>>() {
+                            @Override
+                            public ObservableSource<? extends Long> apply(Pair<Throwable, Integer> errorRetryCountTuple) throws Exception {
+                                int retryAttempt = errorRetryCountTuple.second;
+
+                                Log.d("Retry Attempts"," "+retryAttempt);
+                                // If not a known error type, pass the error through.
+                                if (retryAttempt == UNCHECKED_ERROR_TYPE_CODE) {
+                                    return Observable.error(errorRetryCountTuple.first);
+                                }
+
+                                //long delay = (long) Math.pow(initialDelay, retryAttempt);
+
+                                // Else, exponential backoff for the passed in error types.
+                                return Observable.timer(retryAttempt, unit);
+                            }
+                        });
+            }
+        };
     }
 
 }
