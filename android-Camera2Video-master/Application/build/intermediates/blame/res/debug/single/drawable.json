@@ -16,12 +16,12 @@
         "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\drawable\\notification_tile_bg.xml"
     },
     {
-        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\drawable\\evp_action_pause.xml",
-        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.afollestad\\easyvideoplayer\\0.3.0\\res\\drawable\\evp_action_pause.xml"
-    },
-    {
         "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_menu_overflow_material.xml",
         "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\drawable\\abc_ic_menu_overflow_material.xml"
+    },
+    {
+        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\drawable\\evp_action_pause.xml",
+        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.afollestad\\easyvideoplayer\\0.3.0\\res\\drawable\\evp_action_pause.xml"
     },
     {
         "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_spinner_textfield_background_material.xml",
@@ -92,12 +92,12 @@
         "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\drawable\\abc_textfield_search_material.xml"
     },
     {
-        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
-        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
-    },
-    {
         "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\drawable\\evp_action_play.xml",
         "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.afollestad\\easyvideoplayer\\0.3.0\\res\\drawable\\evp_action_play.xml"
+    },
+    {
+        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
+        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
     },
     {
         "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_material.xml",
@@ -144,15 +144,15 @@
         "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\drawable\\notification_bg.xml"
     },
     {
+        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\drawable\\evp_action_restart.xml",
+        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.afollestad\\easyvideoplayer\\0.3.0\\res\\drawable\\evp_action_restart.xml"
+    },
+    {
         "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml",
         "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
     },
     {
         "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_borderless_material.xml",
         "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\drawable\\abc_btn_borderless_material.xml"
-    },
-    {
-        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\drawable\\evp_action_restart.xml",
-        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.afollestad\\easyvideoplayer\\0.3.0\\res\\drawable\\evp_action_restart.xml"
     }
 ]

@@ -12,24 +12,24 @@
         "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout\\notification_template_media.xml"
     },
     {
-        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
-        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout\\abc_list_menu_item_icon.xml"
-    },
-    {
-        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_content_include.xml",
-        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout\\abc_screen_content_include.xml"
+        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\horizontal_list.xml",
+        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\src\\main\\res\\layout\\horizontal_list.xml"
     },
     {
         "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
         "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout\\abc_action_mode_bar.xml"
     },
     {
-        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
-        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout\\abc_list_menu_item_checkbox.xml"
+        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_content_include.xml",
+        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout\\abc_screen_content_include.xml"
     },
     {
-        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\fen__view_media_controller.xml",
-        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\android-Camera2Video-master\\library\\unspecified\\res\\layout\\fen__view_media_controller.xml"
+        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
+        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout\\abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
+        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout\\abc_list_menu_item_checkbox.xml"
     },
     {
         "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_toolbar.xml",
@@ -72,14 +72,6 @@
         "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout\\abc_alert_dialog_title_material.xml"
     },
     {
-        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\fen__view_loading.xml",
-        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\android-Camera2Video-master\\library\\unspecified\\res\\layout\\fen__view_loading.xml"
-    },
-    {
-        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\fen__view_simple_media_controller.xml",
-        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\android-Camera2Video-master\\library\\unspecified\\res\\layout\\fen__view_simple_media_controller.xml"
-    },
-    {
         "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_layout.xml",
         "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout\\abc_list_menu_item_layout.xml"
     },
@@ -90,10 +82,6 @@
     {
         "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
         "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout\\notification_template_part_time.xml"
-    },
-    {
-        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\fen__fragment_fenster_video.xml",
-        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\android-Camera2Video-master\\library\\unspecified\\res\\layout\\fen__fragment_fenster_video.xml"
     },
     {
         "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
@@ -140,12 +128,12 @@
         "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout\\select_dialog_multichoice_material.xml"
     },
     {
-        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_camera2_video.xml",
-        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\src\\main\\res\\layout\\fragment_camera2_video.xml"
-    },
-    {
         "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
         "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout\\abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_camera2_video.xml",
+        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\src\\main\\res\\layout\\fragment_camera2_video.xml"
     },
     {
         "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
@@ -178,9 +166,5 @@
     {
         "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
         "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
-    },
-    {
-        "merged": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\res\\merged\\debug\\layout\\fen__fragment_fenster_gesture.xml",
-        "source": "F:\\AndroidProjects\\android-Camera2Video-master\\Application\\build\\intermediates\\exploded-aar\\android-Camera2Video-master\\library\\unspecified\\res\\layout\\fen__fragment_fenster_gesture.xml"
     }
 ]

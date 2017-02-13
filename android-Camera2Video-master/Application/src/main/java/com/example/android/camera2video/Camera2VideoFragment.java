@@ -696,7 +696,7 @@ public class Camera2VideoFragment extends Fragment
 
     private void startCountDownTimer() {
 
-       mCountDownTimer = new CountDownTimer(5000, 1000) {
+       mCountDownTimer = new CountDownTimer(10000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
@@ -723,6 +723,7 @@ public class Camera2VideoFragment extends Fragment
         mIsRecordingVideo = false;
         mButtonVideo.setText(R.string.record);
         // Stop recording
+        if(mMediaRecorder!=null)
         mMediaRecorder.stop();
         mMediaRecorder.reset();
         path_video = mNextVideoAbsolutePath;

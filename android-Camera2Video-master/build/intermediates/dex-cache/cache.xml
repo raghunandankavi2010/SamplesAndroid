@@ -3,6 +3,15 @@
 
     <item
         is-multidex="false"
+        jar="F:\AndroidProjects\android-Camera2Video-master\Application\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
+        <dex dex="F:\AndroidProjects\android-Camera2Video-master\Application\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-25.1.1_09f3767f9eab654e8852281093721915e528129b.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="F:\AndroidProjects\android-Camera2Video-master\Application\build\intermediates\exploded-aar\com.android.support\support-v13\25.1.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"

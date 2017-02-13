@@ -1,12 +1,20 @@
 package com.example.android.camera2video;
 
+import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.ImageView;
 
 import com.afollestad.easyvideoplayer.EasyVideoCallback;
 import com.afollestad.easyvideoplayer.EasyVideoPlayer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -18,7 +26,11 @@ public class PlayVideoActivity extends AppCompatActivity implements EasyVideoCal
 
 
     private EasyVideoPlayer player;
-    //private static final String TEST_URL = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
+
+    private List<Bitmap> mList = new ArrayList<>();
+
+    private RecyclerView horizontal_recycler_view;
+
 
     private String path;
     @Override
@@ -26,6 +38,8 @@ public class PlayVideoActivity extends AppCompatActivity implements EasyVideoCal
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_video_play);
+
+        horizontal_recycler_view= (RecyclerView) findViewById(R.id.recyclerView);
 
         path = getIntent().getStringExtra("videoPath");
 
@@ -38,6 +52,11 @@ public class PlayVideoActivity extends AppCompatActivity implements EasyVideoCal
         // Sets the source to the HTTP URL held in the TEST_URL variable.
         // To play files, you can use Uri.fromFile(new File("..."))
         player.setSource(Uri.parse(path));
+
+
+
+
+
 
 
     }
@@ -59,6 +78,24 @@ public class PlayVideoActivity extends AppCompatActivity implements EasyVideoCal
     @Override
     public void onPrepared(EasyVideoPlayer player) {
         // TODO handle
+        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+
+        mediaMetadataRetriever.setDataSource(this,Uri.parse(path));
+
+        for(int i=0;i< player.getDuration()*1000;i+=1000000){
+            Bitmap bitmap=mediaMetadataRetriever.getFrameAtTime(i);
+            mList.add(bitmap);
+        }
+      /*  Bitmap bmFrame = mediaMetadataRetriever.getFrameAtTime(5000000); //unit in microsecond
+        ImageView capturedImageView = (ImageView) this.findViewById(R.id.imageView);
+        capturedImageView.setImageBitmap(bmFrame);*/
+
+        LinearLayoutManager horizontalLayoutManagaer
+                = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+
+        HorizontalAdapter horizontalAdapter = new HorizontalAdapter(mList);
+        horizontal_recycler_view.setAdapter(horizontalAdapter);
     }
 
     @Override
