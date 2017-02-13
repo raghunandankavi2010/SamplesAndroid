@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr format="enum" name="scaleType">
+    <enum name="scaleToFit" value="0"/>
+    <enum name="crop" value="1"/>
+  </attr>
+    <color name="fen__default_bg">#aa000000</color>
+    <declare-styleable name="FensterVideoView"><attr name="scaleType"/></declare-styleable>
+    <dimen name="fen__media_controller_bottom_margin">12dip</dimen>
+    <dimen name="fen__media_controller_button_height">52dip</dimen>
+    <dimen name="fen__media_controller_button_width">71dip</dimen>
+    <dimen name="fen__media_controller_seekbar_height">32dip</dimen>
+    <dimen name="fen__media_controller_seekbar_width">32dip</dimen>
+    <dimen name="fen__media_controller_text_size">14sp</dimen>
+    <dimen name="fen__media_controller_top_margin">80dip</dimen>
+    <dimen name="fen__padding_extra_large">48dp</dimen>
+    <dimen name="fen__padding_medium">4dp</dimen>
+    <dimen name="fen__padding_none">0dp</dimen>
+    <dimen name="fen__padding_small">2dp</dimen>
+    <string name="fen__app_name">Fenster</string>
+    <string name="fen__play_error_message">Impossible to play the video.</string>
+    <string name="fen__play_progressive_error_message">Impossible to play the progressive video.</string>
+    <style name="MediaButton">
+    <item name="android:background">@null</item>
+    <item name="android:layout_width">@dimen/fen__media_controller_button_width</item>
+    <item name="android:layout_height">@dimen/fen__media_controller_button_height</item>
+  </style>
+    <style name="MediaButton.Next">
+    <item name="android:src">@android:drawable/ic_media_ff</item>
+  </style>
+    <style name="MediaButton.Play">
+    <item name="android:src">@android:drawable/ic_media_play</item>
+  </style>
+    <style name="MediaButton.Previous">
+    <item name="android:src">@android:drawable/ic_media_rew</item>
+  </style>
+    <style name="MediaText">
+    <item name="android:textSize">@dimen/fen__media_controller_text_size</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:paddingTop">@dimen/fen__padding_medium</item>
+    <item name="android:textColor">@android:color/white</item>
+    <item name="android:gravity">center_horizontal</item>
+  </style>
+</resources>

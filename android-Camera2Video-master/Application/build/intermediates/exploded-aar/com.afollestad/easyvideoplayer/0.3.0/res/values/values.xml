@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EasyVideoPlayer"><attr format="string" name="evp_source"/><attr format="enum" name="evp_leftAction">
+            <enum name="none" value="0"/>
+            <enum name="restart" value="1"/>
+            <enum name="retry" value="2"/>
+        </attr><attr format="enum" name="evp_rightAction">
+            <enum name="none" value="3"/>
+            <enum name="submit" value="4"/>
+            <enum name="customLabel" value="5"/>
+        </attr><attr format="string" name="evp_customLabelText"/><attr format="string" name="evp_retryText"/><attr format="string" name="evp_submitText"/><attr format="string" name="evp_bottomText"/><attr format="reference" name="evp_restartDrawable"/><attr format="reference" name="evp_playDrawable"/><attr format="reference" name="evp_pauseDrawable"/><attr format="boolean" name="evp_hideControlsOnPlay"/><attr format="boolean" name="evp_autoPlay"/><attr format="boolean" name="evp_disableControls"/><attr format="color" name="evp_themeColor"/><attr format="boolean" name="evp_autoFullscreen"/><attr format="boolean" name="evp_loop"/></declare-styleable>
+    <dimen name="evp_button_size">48dp</dimen>
+    <dimen name="evp_content_inset">16dp</dimen>
+    <dimen name="evp_content_inset_half">8dp</dimen>
+    <dimen name="evp_content_inset_iconbuttons">2dp</dimen>
+    <dimen name="evp_content_inset_less">1dp</dimen>
+    <dimen name="evp_negative_inset_large">-8dp</dimen>
+    <dimen name="evp_negative_inset_small">-2dp</dimen>
+    <dimen name="evp_text_size_medium">14sp</dimen>
+    <dimen name="evp_text_size_small">10sp</dimen>
+    <string name="evp_retry">RETRY</string>
+    <string name="evp_submit">SUBMIT</string>
+</resources>
