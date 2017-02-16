@@ -673,7 +673,7 @@ public class CrystalSeekbar extends View {
         text_slider.getTextBounds(String.valueOf(getSelectedMinValue()), 0, String.valueOf(getSelectedMinValue()).length(), textBounds);
         int mTextWidth = Math.round(text_slider.measureText(String.valueOf(getSelectedMinValue()))); // Use measureText to calculate width
         int mTextHeight = textBounds.height();
-        canvas.drawText(String.valueOf(getSelectedMinValue()),(normalizedToScreen(normalizedMinValue))+(getThumbWidth()/2)-(mTextWidth/2),(getHeight() / 2-80)+text_slider.descent(),text_slider);
+        canvas.drawText(String.valueOf(getSelectedMinValue()),(normalizedToScreen(normalizedMinValue))+(getThumbWidth()/2)-(mTextWidth/2),(getHeight() / 2-80)-((text_slider.descent() + text_slider.ascent()) / 2),text_slider);
     }
 
     protected void drawLeftThumbWithColor(final Canvas canvas, final Paint paint, final RectF rect) {
