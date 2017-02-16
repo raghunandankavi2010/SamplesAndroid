@@ -147,6 +147,8 @@ public class CrystalSeekbar extends View {
 
     private Paint text_slider;
 
+    private Rect textBounds ;
+
 
 
 
@@ -209,11 +211,13 @@ public class CrystalSeekbar extends View {
         text_paint.setColor(Color.BLACK);
         text_paint.setTextSize(40);
         text_paint.setStrokeWidth(40);
+        text_paint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
         text_slider = new Paint();
         text_slider.setColor(Color.GREEN);
         text_slider.setTextSize(40);
-        text_slider.setStrokeWidth(40);
+        text_slider.setFlags(Paint.ANTI_ALIAS_FLAG);
+
 
         absoluteMinValue = minValue;
         absoluteMaxValue = maxValue;
@@ -595,7 +599,7 @@ public class CrystalSeekbar extends View {
         int partsStart = (int) rect.left + (int) (barHeight / 2);
         int spacing = (int) (rect.right - rect.left) / (numberOfCircle-1);
 
-        Rect textBounds = new Rect();
+
 
         for (int i = 0; i < numberOfCircle; i++) {
 
@@ -646,28 +650,26 @@ public class CrystalSeekbar extends View {
         paint.setColor(leftThumbColor);
 
 
-        rectLeftThumb.left = normalizedToScreen(normalizedMinValue);
+        rectLeftThumb.left = normalizedToScreen(normalizedMinValue)+getLeft();
         rectLeftThumb.right = Math.min(rectLeftThumb.left + (getThumbWidth() / 2) + barPadding, getWidth());
 
         rectLeftThumb.top = 100; // 100 is neccessary to make it a circle
         rectLeftThumb.bottom = getHeight() / 2 - 40; // bottom y
 
 
+        canvas.drawCircle( (normalizedToScreen(normalizedMinValue))+(getThumbWidth()/2), getHeight() / 2-80, 50, paint);
+        //drawLeftThumbWithColor(canvas, paint, rectLeftThumb);
 
-        Log.i("getSelected",""+getSelectedMinValue());
-
-        drawLeftThumbWithColor(canvas, paint, rectLeftThumb);
-
-
+        textBounds = new Rect();
+        text_slider.getTextBounds(String.valueOf(getSelectedMinValue()), 0, String.valueOf(getSelectedMinValue()).length(), textBounds);
+        int mTextWidth = Math.round(text_slider.measureText(String.valueOf(getSelectedMinValue()))); // Use measureText to calculate width
+        int mTextHeight = textBounds.height();
+        canvas.drawText(String.valueOf(getSelectedMinValue()),(normalizedToScreen(normalizedMinValue))+(getThumbWidth()/2)-(mTextWidth/2),(getHeight() / 2-80)+text_slider.descent(),text_slider);
     }
 
     protected void drawLeftThumbWithColor(final Canvas canvas, final Paint paint, final RectF rect) {
         canvas.drawOval(rect, paint);
-        Rect textBounds = new Rect();
-        text_paint.getTextBounds(String.valueOf(getSelectedMinValue()), 0, String.valueOf(getSelectedMinValue()).length(), textBounds);
-        int mTextWidth = Math.round(text_paint.measureText(String.valueOf(getSelectedMinValue()))); // Use measureText to calculate width
-        int mTextHeight = textBounds.height();
-        canvas.drawText(String.valueOf(getSelectedMinValue()),rect.centerX()-(mTextWidth/2),rect.centerY(),text_slider);
+
     }
 
     protected void drawLeftThumbWithImage(final Canvas canvas, final Paint paint, final RectF rect, final Bitmap image) {

@@ -8,7 +8,6 @@
     tools:context="com.example.raghu.freelanceproject.MainActivity">
 
     <com.example.raghu.freelanceproject.CrystalSeekbar
-        android:padding="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_centerInParent="true"
