@@ -23,6 +23,8 @@ import android.widget.Toast;
 import com.example.raghu.freelanceproject.OnSeekbarChangeListener;
 import com.example.raghu.freelanceproject.OnSeekbarFinalValueListener;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by owais.ali on 6/20/2016.
@@ -149,7 +151,9 @@ public class CrystalSeekbar extends View {
 
     private Rect textBounds ;
 
+    private ArrayList<Integer> mCircle_Points_x = new ArrayList<>();
 
+    private float currentSlidingX;
 
 
     //////////////////////////////////////////
@@ -594,7 +598,6 @@ public class CrystalSeekbar extends View {
     }
 
     protected void drawBar(final Canvas canvas, final Paint paint, final RectF rect) {
-        canvas.drawRoundRect(rect, cornerRadius, cornerRadius, paint);
 
         int partsStart = (int) rect.left + (int) (barHeight / 2);
         int spacing = (int) (rect.right - rect.left) / (numberOfCircle-1);
@@ -613,17 +616,15 @@ public class CrystalSeekbar extends View {
                 padding = 10;
             }
             canvas.drawText(text_draw[i], partsStart - ((mTextWidth / 2f))-padding , rect.bottom + 100, text_paint);
-            canvas.drawCircle(partsStart, getHeight() / 2, 20, _paint);
+            canvas.drawCircle(partsStart, getHeight() / 2, 20, paint);
+            mCircle_Points_x.add(partsStart);
             partsStart = partsStart + spacing;
         }
 
+        canvas.drawRoundRect(rect, cornerRadius, cornerRadius, paint);
 
-    }
 
-    public static float convertDpToPixel(Resources r, float dp) {
-        DisplayMetrics metrics = r.getDisplayMetrics();
-        float px = dp * (metrics.densityDpi / 160f);
-        return px;
+
     }
 
 
@@ -642,6 +643,14 @@ public class CrystalSeekbar extends View {
 
     protected void drawHighlightBar(final Canvas canvas, final Paint paint, final RectF rect) {
         canvas.drawRoundRect(rect, cornerRadius, cornerRadius, paint);
+        paint.setColor(barHighlightColor);
+        paint.setStyle(Paint.Style.FILL);
+        for (int i = 0; i < numberOfCircle; i++) {
+
+            if (mCircle_Points_x.get(i) <= currentSlidingX) {
+                canvas.drawCircle(mCircle_Points_x.get(i), getHeight() / 2, 20, paint);
+            }
+        }
     }
 
     protected void setupLeftThumb(final Canvas canvas, final Paint paint, final RectF rect) {
@@ -680,11 +689,12 @@ public class CrystalSeekbar extends View {
         final int pointerIndex = event.findPointerIndex(mActivePointerId);
         try {
             final float x = event.getX(pointerIndex);
-
+            currentSlidingX = x;
             if (Thumb.MIN.equals(pressedThumb)) {
 
 
                     setNormalizedMinValue(screenToNormalized(x));
+
 
             }
         } catch (Exception ignored) {
@@ -786,6 +796,7 @@ public class CrystalSeekbar extends View {
 
         }
     }
+
 
     private void setNormalizedMinValue(double value) {
         normalizedMinValue = Math.max(0d, Math.min(100d, Math.min(value, normalizedMaxValue)));
