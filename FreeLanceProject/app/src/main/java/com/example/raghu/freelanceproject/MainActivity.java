@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements OnSeekbarChangeLi
         rangeSeekbar.setTextColor(Color.BLACK);
         rangeSeekbar.setLeftThumbColor(Color.GRAY); // cricle indicator color
 
+        rangeSeekbar.setDataType(CrystalSeekbar.DataType.FLOAT);
         // listeners
         rangeSeekbar.setOnSeekbarChangeListener(this);
         rangeSeekbar.setOnSeekbarFinalValueListener(this);

@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:corner_radius="10"
+        app:steps="1"
         app:thumb_diameter="30dp"
         app:bar_color="#F7BB88"
         app:bar_highlight_color="#E07416"

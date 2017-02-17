@@ -820,6 +820,7 @@ public class CrystalSeekbar extends View {
         }
     }
 
+
     private <T extends Number> Number formatValue(T value) throws IllegalArgumentException {
         final Double v = (Double) value;
         if (dataType == DataType.LONG) {
@@ -832,7 +833,13 @@ public class CrystalSeekbar extends View {
             return Math.round(v);
         }
         if (dataType == DataType.FLOAT) {
-            return v.floatValue();
+
+            int hours = (int) v.floatValue();
+            int minutes = (int) (v.floatValue() * 60) % 60;
+            int seconds = (int) (v.floatValue() * (60*60)) % 60;
+
+            return Math.round(v.floatValue()*100.0)/100.0;
+            //return v.floatValue();
         }
         if (dataType == DataType.SHORT) {
             return v.shortValue();
