@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.raghu.flowlayoutdemo.FlowLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:f="http://schemas.android.com/apk/res-auto"
+	f:horizontalSpacing="16dp"
+	f:verticalSpacing="16dp"
+	android:layout_margin="16dp"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:paddingLeft="6dip"
+	android:paddingTop="6dip"
+	android:paddingRight="12dip">
+
+	<com.example.raghu.flowlayoutdemo.UnderLineTextView
+		android:text="#hikeForLife"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	<com.example.raghu.flowlayoutdemo.UnderLineTextView
+		android:text="#TrekkerForLife"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	<com.example.raghu.flowlayoutdemo.UnderLineTextView
+		android:text="#GammerForLife"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	<com.example.raghu.flowlayoutdemo.UnderLineTextView
+		android:text="#Tech_Artist_Swimmer_footballerForLife"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	<com.example.raghu.flowlayoutdemo.UnderLineTextView
+		android:text="#PianoPlayer_Modernmusician"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	<com.example.raghu.flowlayoutdemo.UnderLineTextView
+		android:text="#PhotographerForLife"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	<com.example.raghu.flowlayoutdemo.UnderLineTextView
+		android:text="#AndroidDEveloperForLife"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	<com.example.raghu.flowlayoutdemo.UnderLineTextView
+		android:text="#NeverSayNeverDieeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+</com.example.raghu.flowlayoutdemo.FlowLayout>
