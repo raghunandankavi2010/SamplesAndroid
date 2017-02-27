@@ -26,8 +26,9 @@ import com.example.raghu.freelanceproject.OnSeekbarFinalValueListener;
 import java.util.ArrayList;
 
 
+
 /**
- * Created by owais.ali on 6/20/2016.
+ * Created by Raghu on 6/20/2016.
  */
 public class CrystalSeekbar extends View {
 
@@ -154,6 +155,10 @@ public class CrystalSeekbar extends View {
     private ArrayList<Integer> mCircle_Points_x = new ArrayList<>();
 
     private float currentSlidingX;
+
+    private float radius_circle = 50;
+    private float circle_center_x;
+    private float circle_center_y;
 
 
     //////////////////////////////////////////
@@ -655,7 +660,7 @@ public class CrystalSeekbar extends View {
 
     protected void setupLeftThumb(final Canvas canvas, final Paint paint, final RectF rect) {
 
-        leftThumbColor = (Thumb.MIN.equals(pressedThumb)) ? leftThumbColorPressed : leftThumbColorNormal;
+     /*   leftThumbColor = (Thumb.MIN.equals(pressedThumb)) ? leftThumbColorPressed : leftThumbColorNormal;
         paint.setColor(leftThumbColor);
 
 
@@ -664,9 +669,11 @@ public class CrystalSeekbar extends View {
 
         rectLeftThumb.top = 100; // 100 is neccessary to make it a circle
         rectLeftThumb.bottom = getHeight() / 2 - 40; // bottom y
+*/
 
-
-        canvas.drawCircle( (normalizedToScreen(normalizedMinValue))+(getThumbWidth()/2), getHeight() / 2-80, 50, paint);
+        circle_center_x = (normalizedToScreen(normalizedMinValue))+(getThumbWidth()/2);
+        circle_center_y = getHeight() / 2-80;
+        canvas.drawCircle( (normalizedToScreen(normalizedMinValue))+(getThumbWidth()/2), getHeight() / 2-80, radius_circle, paint);
         //drawLeftThumbWithColor(canvas, paint, rectLeftThumb);
 
         textBounds = new Rect();
@@ -893,6 +900,8 @@ public class CrystalSeekbar extends View {
         switch (action & MotionEvent.ACTION_MASK) {
 
             case MotionEvent.ACTION_DOWN:
+
+
                 mActivePointerId = event.getPointerId(event.getPointerCount() - 1);
                 pointerIndex = event.findPointerIndex(mActivePointerId);
                 float mDownMotionX = event.getX(pointerIndex);
@@ -901,7 +910,7 @@ public class CrystalSeekbar extends View {
 
                 if (pressedThumb == null) return super.onTouchEvent(event);
 
-                touchDown(event.getX(pointerIndex), event.getY(pointerIndex));
+                //touchDown(event.getX(pointerIndex), event.getY(pointerIndex));
                 setPressed(true);
                 invalidate();
                 onStartTrackingTouch();
@@ -914,7 +923,8 @@ public class CrystalSeekbar extends View {
                 if (pressedThumb != null) {
 
                     if (mIsDragging) {
-                        touchMove(event.getX(pointerIndex), event.getY(pointerIndex));
+
+                        //touchMove(event.getX(pointerIndex), event.getY(pointerIndex));
                         trackTouchEvent(event);
                     }
 
@@ -928,7 +938,7 @@ public class CrystalSeekbar extends View {
                     trackTouchEvent(event);
                     onStopTrackingTouch();
                     setPressed(false);
-                    touchUp(event.getX(pointerIndex), event.getY(pointerIndex));
+                    //touchUp(event.getX(pointerIndex), event.getY(pointerIndex));
                     if (onSeekbarFinalValueListener != null) {
                         onSeekbarFinalValueListener.finalValue(getSelectedMinValue());
                     }
@@ -936,6 +946,7 @@ public class CrystalSeekbar extends View {
                     // Touch up when we never crossed the touch slop threshold
                     // should be interpreted as a tap-seek to that location.
                     onStartTrackingTouch();
+
                     trackTouchEvent(event);
                     onStopTrackingTouch();
                 }
@@ -962,7 +973,7 @@ public class CrystalSeekbar extends View {
                 if (mIsDragging) {
                     onStopTrackingTouch();
                     setPressed(false);
-                    touchUp(event.getX(pointerIndex), event.getY(pointerIndex));
+                    //touchUp(event.getX(pointerIndex), event.getY(pointerIndex));
                 }
                 invalidate(); // see above explanation
                 break;
@@ -971,4 +982,19 @@ public class CrystalSeekbar extends View {
         return true;
 
     }
+
+
+/*    private boolean touchinCircle(float x, float y, float circleCenterX, float circleCenterY, float circleRadius) {
+        double dx = Math.pow(x - circleCenterX, 2);
+        double dy = Math.pow(y - circleCenterY, 2);
+
+        if ((dx + dy) < Math.pow(circleRadius, 2)) {
+            setNormalizedMinValue(screenToNormalized(x));
+            //invalidate();
+            return true;
+        } else {
+            return false;
+        }
+    }*/
+
 }

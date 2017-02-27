@@ -8,7 +8,7 @@ import static com.example.raghu.freelanceproject.R.styleable.CrystalRangeSeekbar
 
 public class MainActivity extends AppCompatActivity implements OnSeekbarChangeListener,OnSeekbarFinalValueListener{
 
-    private String[] text_draw = {"4hrs", "8hrs", "12hrs", "16hrs", "20hrs", "24hrs"};
+    private String[] text_draw = {"4", "8", "12", "16", "20", "24"};
     private int numberOfCircles =6;
     private int minValue = 4;
     private int maxValue = 24;
