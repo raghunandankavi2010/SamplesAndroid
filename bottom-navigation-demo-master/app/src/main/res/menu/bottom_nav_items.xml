@@ -16,4 +16,15 @@
         android:id="@+id/menu_notifications"
         android:title="@string/menu_notifications"
         android:icon="@drawable/ic_notifications_black" />
+
+    <item
+        android:id="@+id/menu_search1"
+        android:title="@string/menu_search"
+        android:icon="@drawable/ic_search_black"
+        />
+
+    <item
+        android:id="@+id/menu_notifications2"
+        android:title="@string/menu_notifications"
+        android:icon="@drawable/ic_notifications_black" />
 </menu>

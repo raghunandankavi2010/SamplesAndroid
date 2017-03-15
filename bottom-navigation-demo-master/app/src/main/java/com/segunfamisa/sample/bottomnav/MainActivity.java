@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mBottomNav = (BottomNavigationView) findViewById(R.id.navigation);
-        BottomNavigationHelper.disableShiftMode(mBottomNav);
+       // BottomNavigationHelper.disableShiftMode(mBottomNav);
         mBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -80,6 +80,19 @@ public class MainActivity extends AppCompatActivity {
                         getColorFromRes(R.color.color_search));
                 mBottomNav.setBackgroundColor(Color.MAGENTA);
                 break;
+
+            case R.id.menu_notifications2:
+                frag = MenuFragment.newInstance(getString(R.string.text_notifications),
+                        getColorFromRes(R.color.color_notifications));
+                mBottomNav.setBackgroundColor(Color.GREEN);
+                break;
+            case R.id.menu_search1:
+                frag = MenuFragment.newInstance(getString(R.string.text_search),
+                        getColorFromRes(R.color.color_search));
+                mBottomNav.setBackgroundColor(Color.MAGENTA);
+                break;
+
+
         }
 
         // update selected item
