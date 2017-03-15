@@ -1,5 +1,6 @@
 package com.segunfamisa.sample.bottomnav;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mBottomNav = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationHelper.disableShiftMode(mBottomNav);
         mBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -66,19 +68,23 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_home:
                 frag = MenuFragment.newInstance(getString(R.string.text_home),
                         getColorFromRes(R.color.color_home));
+                mBottomNav.setBackgroundColor(Color.RED);
                 break;
             case R.id.menu_notifications:
                 frag = MenuFragment.newInstance(getString(R.string.text_notifications),
                         getColorFromRes(R.color.color_notifications));
+                mBottomNav.setBackgroundColor(Color.GREEN);
                 break;
             case R.id.menu_search:
                 frag = MenuFragment.newInstance(getString(R.string.text_search),
                         getColorFromRes(R.color.color_search));
+                mBottomNav.setBackgroundColor(Color.MAGENTA);
                 break;
         }
 
         // update selected item
         mSelectedItem = item.getItemId();
+
 
         // uncheck the other items.
     /*   for (int i = 0; i< mBottomNav.getMenu().size(); i++) {
