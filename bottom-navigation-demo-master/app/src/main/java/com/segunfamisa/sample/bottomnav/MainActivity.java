@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         MenuItem homeItem = mBottomNav.getMenu().getItem(0);
         if (mSelectedItem != homeItem.getItemId()) {
             // select home item
+            mBottomNav.getMenu().getItem(0).setChecked(true);
             selectFragment(homeItem);
         } else {
             super.onBackPressed();
@@ -80,10 +81,10 @@ public class MainActivity extends AppCompatActivity {
         mSelectedItem = item.getItemId();
 
         // uncheck the other items.
-        for (int i = 0; i< mBottomNav.getMenu().size(); i++) {
+    /*   for (int i = 0; i< mBottomNav.getMenu().size(); i++) {
             MenuItem menuItem = mBottomNav.getMenu().getItem(i);
             menuItem.setChecked(menuItem.getItemId() == item.getItemId());
-        }
+        }*/
 
         updateToolbarText(item.getTitle());
 
