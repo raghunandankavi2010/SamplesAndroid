@@ -27,7 +27,7 @@ public class UriUtil {
 
     public static File createTmpFileForPic() throws IOException {
         String fileName = "JPEG_" + new SimpleDateFormat("yyyyMMdd_HHmmssSSS", Locale.getDefault()).format(new Date());
-        File storageDic = MyClass.getInstance().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File storageDic = MyClass.getInstance().getExternalFilesDir("");
         return File.createTempFile(fileName, ".jpg", storageDic);
     }
 
@@ -41,4 +41,6 @@ public class UriUtil {
             return Uri.fromFile(file);
         }
     }
+
+    //content://com.example.raghu.stackoverflowtest.fileProvider/external_files/Android/data/com.example.raghu.stackoverflowtest/files/Pictures/JPEG_20170424_1557166091150846937.jpg
 }
