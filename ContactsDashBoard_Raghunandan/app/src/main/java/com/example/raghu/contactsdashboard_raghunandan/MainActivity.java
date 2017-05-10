@@ -64,24 +64,18 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
-
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         MainActivityPermissionsDispatcher.getAllContactsWithCheck(this);
+
     }
+
 
     @NeedsPermission(value = {Manifest.permission.READ_CONTACTS, Manifest.permission.READ_CALL_LOG})
     public void getAllContacts() {
 
 
         pb.setVisibility(View.VISIBLE);
-        final Observable<List<Contacts>> mList = getObservable().cache();
 
-        DisposableSingleObserver<List<Contacts>> disposableSingleObserver = mList.flatMapIterable(new Function<List<Contacts>, Iterable<Contacts>>() {
+        DisposableSingleObserver<List<Contacts>> disposableSingleObserver = getObservable().flatMapIterable(new Function<List<Contacts>, Iterable<Contacts>>() {
             @Override
             public Iterable<Contacts> apply(@NonNull List<Contacts> integers) throws Exception {
                 return integers;
@@ -110,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .subscribeOn(Schedulers.io())
+                .cache()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver<List<Contacts>>() {
                     @Override
