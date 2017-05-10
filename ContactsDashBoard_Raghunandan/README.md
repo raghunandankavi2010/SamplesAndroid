@@ -8,7 +8,7 @@ This smaples uses
 
 
 
-![ScreenShot](https://github.com/raghunandankavi2010/SamplesAndroid/blob/master/ContactsDashBoard_Raghunandan/device-2017-05-11-001533.png")
+![ScreenShot](https://github.com/raghunandankavi2010/SamplesAndroid/blob/master/ContactsDashBoard_Raghunandan/device-2017-05-11-001533.png)
 
 Problem
 
