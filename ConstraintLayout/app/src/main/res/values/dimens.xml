@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="divider_height">1dp</dimen>
+
+    <!-- Elevations -->
+    <dimen name="elevation_toolbar">4dp</dimen>
+
+
+
+
+</resources>

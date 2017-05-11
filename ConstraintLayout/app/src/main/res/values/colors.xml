@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <!-- Black/whites -->
+    <color name="black_12p">#1E000000</color>
+    <color name="black_54p">#8A000000</color>
+
+    <!-- Other colors -->
+    <color name="android_green">#A4C639</color>
+
+    <color name="cyan_a100">#84FFFF</color>
+    <color name="deep_orange_a400">#FF3D00</color>
+    <color name="pink_200">#F48FB1</color>
+
+    <!-- Component colors -->
+    <color name="icon_active_color">@color/black_54p</color>
+    <color name="divider_light">@color/black_12p</color>
+</resources>
