@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">ContactsDashBoard_Raghunandan</string>
+
+    <string name="circle">Circle</string>
+    <string name="rectangle">Rectangle</string>
 </resources>

@@ -10,10 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +27,7 @@ public class ContactsCallLogAdapter extends RecyclerView.Adapter<ContactsCallLog
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name, number, email,total_duration,date;
-        public ImageView photo;
+        public AvatarImageView photo;
 
         public MyViewHolder(View view) {
             super(view);
@@ -39,7 +36,7 @@ public class ContactsCallLogAdapter extends RecyclerView.Adapter<ContactsCallLog
             email = (TextView) view.findViewById(R.id.user_email);
             total_duration = (TextView) view.findViewById(R.id.total_duration);
             date = (TextView) view.findViewById(R.id.date);
-            photo = (ImageView) view.findViewById(R.id.user_photo);
+            photo = (AvatarImageView) view.findViewById(R.id.user_photo);
         }
     }
 
@@ -69,7 +66,12 @@ public class ContactsCallLogAdapter extends RecyclerView.Adapter<ContactsCallLog
             holder.email.setVisibility(View.GONE);
         holder.total_duration.setText(Utils.timeConversion(contacts.getDuration()));
         holder.date.setText(contacts.getCallDate());
-        if(Utils.checkNotEmpty(contacts.getPhoto()))
+
+        ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
+      // generate random color
+        int color = generator.getColor(contacts.getName());
+        holder.photo.setUser(contacts,color);
+    /*    if(Utils.checkNotEmpty(contacts.getPhoto()))
         {
             Glide.with(mContext)
                     .load(contacts.getPhoto())
@@ -81,9 +83,13 @@ public class ContactsCallLogAdapter extends RecyclerView.Adapter<ContactsCallLog
         {
             // make sure Glide doesn't load anything into this view until told otherwise
             Glide.clear(holder.photo);
-            // remove the placeholder (optional); read comments below
-            //viewHolder.profilePic.setImageDrawable(null);
-        }
+            *//*TextDrawable drawable = TextDrawable.builder()
+                    .buildRoundRect(Character.toString(contacts.getName().charAt(0)), Color.RED,10);
+
+            holder.photo.setImageDrawable(drawable);*//*
+
+
+        }*/
 
 
     }
