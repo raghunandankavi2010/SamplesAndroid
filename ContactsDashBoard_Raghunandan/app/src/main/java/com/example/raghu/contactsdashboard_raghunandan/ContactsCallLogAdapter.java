@@ -60,8 +60,10 @@ public class ContactsCallLogAdapter extends RecyclerView.Adapter<ContactsCallLog
         Contacts contacts = contactsList.get(position);
         holder.name.setText(contacts.getName());
         holder.number.setText("Mobile - "+contacts.getNumber());
-        if(Utils.checkNotEmpty(contacts.getEmail()))
-         holder.email.setText("Email - "+contacts.getEmail());
+        if(Utils.checkNotEmpty(contacts.getEmail())) {
+            holder.email.setVisibility(View.VISIBLE);
+            holder.email.setText("Email - " + contacts.getEmail());
+        }
         else
             holder.email.setVisibility(View.GONE);
         holder.total_duration.setText(Utils.timeConversion(contacts.getDuration()));
