@@ -1,6 +1,6 @@
 # Contacts with Call Log details
 
-## Problem - Code Excersise for Elementora ##	
+## Problem - Code Exercise for Elementora ##	
 
 1. Read the Android Phone Contact Book
 2. Find All Contacts which have Total Talk Time > 0 (From Call Log) 
