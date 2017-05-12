@@ -1,8 +1,8 @@
 # Contacts with Call Log details
 
-Problem
+#Problem
 
-Contact Book DashBoard	
+## Contact Book DashBoard 2 ##	
 
 1. Read the Android Phone Contact Book
 2. Find All Contacts which have Total Talk Time > 0 (From Call Log) 
@@ -23,7 +23,7 @@ This sample uses
 
 ![ScreenShot](https://github.com/raghunandankavi2010/SamplesAndroid/blob/master/ContactsDashBoard_Raghunandan/device-2017-05-11-001533.png)
 
-#Todo
+## ToDo ##
 
 1. Write units test along with espresso tests
 
