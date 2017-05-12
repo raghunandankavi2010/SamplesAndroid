@@ -2,8 +2,8 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <com.example.raghu.contactsdashboard_raghunandan.AvatarImageView
         android:id="@+id/user_photo"
@@ -46,6 +46,9 @@
         android:layout_marginTop="16dp" />
 
     <TextView
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="20dp"
+        app:layout_goneMarginBottom="0dp"
         android:visibility="visible"
         android:id="@+id/user_email"
         android:layout_width="wrap_content"

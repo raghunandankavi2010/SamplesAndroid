@@ -140,9 +140,9 @@ public class AvatarImageView extends AppCompatImageView {
     * Get User object and set values based on the user
     * This is the only exposed method to the developer
     * */
-    public void setUser(Contacts user,int color) {
+    public void setUser(Contacts user, int color) {
         this.user = user;
-       ;
+        ;
         setValues(color);
     }
 
@@ -185,28 +185,18 @@ public class AvatarImageView extends AppCompatImageView {
             @Override
             public void draw(@NonNull Canvas canvas) {
 
-                int centerX = Math.round(canvas.getWidth() * 0.5f);
-                int centerY = Math.round(canvas.getHeight() * 0.5f);
+             int centerX = Math.round(canvas.getWidth() * 0.5f);
+             int centerY = Math.round(canvas.getHeight() * 0.5f);
 
-        /*
-        * To draw text
-        * */
                 if (text != null) {
                     float textWidth = textPaint.measureText(text) * 0.5f;
                     float textBaseLineHeight = textPaint.getFontMetrics().ascent * -0.4f;
 
-            /*
-            * Draw the background color before drawing initials text
-            * */
-                        canvas.drawCircle(centerX,
-                                centerY,
-                                Math.max(canvas.getHeight() / 2, textWidth / 2),
-                                paint);
+                    canvas.drawCircle(centerX,
+                            centerY,
+                            Math.max(canvas.getHeight() / 2, textWidth / 2),
+                            paint);
 
-
-            /*
-            * Draw the text above the background color
-            * */
                     canvas.drawText(text, centerX - textWidth, centerY + textBaseLineHeight, textPaint);
                 }
             }
@@ -241,7 +231,6 @@ public class AvatarImageView extends AppCompatImageView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-
 
         canvas.drawCircle(rectF.centerX(), rectF.centerY(), (rectF.height() / 2), paint);
 
