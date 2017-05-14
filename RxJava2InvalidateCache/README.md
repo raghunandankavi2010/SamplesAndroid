@@ -11,3 +11,5 @@ The solution was posted by Dave Moten. More info at http://stackoverflow.com/que
 
 This is just a implementation in RxJava2 using the same solution from the stackoverflow link.
 
+![ScreenShot](https://github.com/raghunandankavi2010/SamplesAndroid/blob/master/RxJava2InvalidateCache/device-2017-05-14-230724.png)
+
