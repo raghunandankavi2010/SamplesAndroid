@@ -24,3 +24,5 @@ DataBinding/\.idea/
 Pucho/\.idea/
 
 Dagger2Android/\.idea/
+
+RxJava2InvalidateCache/\.idea/
