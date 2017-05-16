@@ -1,11 +1,15 @@
 package com.example.raghu.contactsdashboard_raghunandan;
 
+import android.util.Log;
+
 import java.util.List;
 
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -15,48 +19,61 @@ import io.reactivex.schedulers.Schedulers;
 public class MainActivityPresenter implements MainActivityContract.UserActionsListener {
 
 
-    private  Model model = Model.getInstance();;
+    //public Model model = Model.getInstance();
+    public CallLogModel model = CallLogModel.getInstance();
+
     private CompositeDisposable composite = new CompositeDisposable();
 
     private MainActivityContract.View view;
 
+    private Single<List<Contacts>> cacher;
+
     private static final String TAG = "Model";
-    public MainActivityPresenter(@NonNull MainActivityContract.View view)
-    {
+
+
+
+    public MainActivityPresenter(@NonNull MainActivityContract.View view) {
         this.view = view;
     }
 
     @Override
-    public void getDetails()
-    {
+    public void getDetails(boolean resetCache) {
 
-        view.showProgressBar(true);
-        DisposableSingleObserver<List<Contacts>> disposableSingleObserver = model.getDetails()
-                .subscribeOn(Schedulers.io())
+
+       view.showProgressBar(true);
+        cacher = model.getDetails(resetCache);
+
+
+        cacher.doOnSuccess(new Consumer<List<Contacts>>() {
+            @Override
+            public void accept(@NonNull List<Contacts> contactses) throws Exception {
+                Log.i(TAG,"completed");
+            }
+        });
+        Disposable disposable = cacher.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<List<Contacts>>() {
+                .subscribe(new Consumer<List<Contacts>>() {
                     @Override
-                    public void onSuccess(@NonNull List<Contacts> contacts) {
-
-                      view.showProgressBar(false);
-                      view.addItemAdapter(contacts);
-
+                    public void accept(@NonNull List<Contacts> contactses) throws Exception {
+                        view.showProgressBar(false);
+                        view.addItemAdapter(contactses);
                     }
-
+                }, new Consumer<Throwable>() {
                     @Override
-                    public void onError(@NonNull Throwable e) {
-
-                        e.printStackTrace();
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
                     }
                 });
 
-        composite.add(disposableSingleObserver);
+        composite.add(disposable);
     }
 
     @Override
     public void onDestroy() {
         composite.dispose();
+
     }
+
 
 
 }

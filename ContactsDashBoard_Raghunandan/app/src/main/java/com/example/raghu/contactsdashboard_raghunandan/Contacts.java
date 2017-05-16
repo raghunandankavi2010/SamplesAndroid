@@ -9,7 +9,7 @@ import android.os.Parcelable;
 
 public class Contacts implements Parcelable {
 
-    private  String id,name,number,email,photo,callDate,dateString;
+    private  String id,name,number,email,photo,callDate,dateString,dob;
 
     private int callType,duration;
 
@@ -24,6 +24,7 @@ public class Contacts implements Parcelable {
         callDate = in.readString();
         dateString = in.readString();
         callType = in.readInt();
+        dob = in.readString();
     }
 
     public Contacts() {
@@ -41,6 +42,7 @@ public class Contacts implements Parcelable {
         dest.writeString(callDate);
         dest.writeString(dateString);
         dest.writeInt(callType);
+        dest.writeString(dob);
     }
 
     @Override
@@ -118,5 +120,13 @@ public class Contacts implements Parcelable {
 
     public String getCallDate() {
         return callDate;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getDob() {
+        return dob;
     }
 }

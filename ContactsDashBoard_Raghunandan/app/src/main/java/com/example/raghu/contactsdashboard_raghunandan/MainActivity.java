@@ -1,12 +1,19 @@
 package com.example.raghu.contactsdashboard_raghunandan;
 
 import android.Manifest;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.CallLog;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -21,7 +28,7 @@ import permissions.dispatcher.RuntimePermissions;
 
 
 @RuntimePermissions
-public class MainActivity extends AppCompatActivity implements MainActivityContract.View {
+public class MainActivity extends AppCompatActivity implements MainActivityContract.View,CallLogsObserver.CallLogChangeCallback {
 
     public static final String TAG = "MainActivity";
 
@@ -30,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private ContactsCallLogAdapter mAdapter;
     private ProgressBar pb;
 
+    private CallLogsObserver callLogsObserver;
     private MainActivityContract.UserActionsListener mActionsListener;
 
     @Override
@@ -44,15 +52,26 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
         mActionsListener = new MainActivityPresenter(this);
+        callLogsObserver = new CallLogsObserver(new Handler(),this);
         MainActivityPermissionsDispatcher.getAllContactsWithCheck(this);
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getContentResolver().
+                registerContentObserver(
+                        CallLog.Calls.CONTENT_URI,
+                        true,
+                        callLogsObserver);
+    }
 
     @NeedsPermission(value = {Manifest.permission.READ_CONTACTS, Manifest.permission.READ_CALL_LOG})
     public void getAllContacts() {
 
-        mActionsListener.getDetails();
+        //test();
+        mActionsListener.getDetails(false);
 
     }
 
@@ -89,6 +108,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        getContentResolver().
+                unregisterContentObserver(callLogsObserver);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         mActionsListener.onDestroy();
@@ -107,8 +133,43 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     public void addItemAdapter(List<Contacts> contacts) {
 
         mAdapter.setContactsList(contacts);
-        mAdapter.notifyDataSetChanged();
 
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // action with ID action_refresh was selected
+            case R.id.action_refresh:
+                mAdapter.clear();
+                mAdapter.notifyDataSetChanged();
+                mActionsListener.getDetails(true);
+                break;
+
+            default:
+                break;
+        }
+
+        return true;
+    }
+
+    @Override
+    public void calllogContentChanged(boolean selfChange, Uri uri) {
+
+
+        Log.d(TAG,""+selfChange);
+        if(selfChange)
+        {
+            mActionsListener.getDetails(true);
+        }
     }
 
 

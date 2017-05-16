@@ -19,7 +19,7 @@ public interface MainActivityContract {
 
     interface UserActionsListener {
 
-        void getDetails();
+        void getDetails(boolean resetCache);
 
         void onDestroy();
     }

@@ -17,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -26,7 +30,7 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
+
     compile 'io.reactivex.rxjava2:rxjava:2.1.0'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile('com.github.hotchemi:permissionsdispatcher:2.4.0') {
@@ -38,5 +42,16 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
+
+
+    def mockito_version = 'latest.release'
+
+    // For local unit tests on your development machine
+    testCompile "org.mockito:mockito-core:$mockito_version"
+    // For instrumentation tests on Android devices and emulators
+    androidTestCompile "org.mockito:mockito-android:$mockito_version"
+    testCompile 'junit:junit:4.12'
+    //compile group: 'org.powermock', name: 'powermock-api-mockito', version: '1.7.0RC4'
+
 
 }

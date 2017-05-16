@@ -33,7 +33,7 @@ public class Model {
 
 
     private static Model ourInstance = new Model();
-    
+
 
     public static Model getInstance() {
         return ourInstance;
@@ -42,10 +42,11 @@ public class Model {
     private Model() {
     }
     private static final String TAG = "Model";
-    private List<Contacts> contactsList = new ArrayList<>();
+    private List<Contacts> contactsList  = new ArrayList<>();;
 
     private List<Contacts> readAllContacts() {
 
+        contactsList.clear();
         String contactNAME = null, contactID, contactphotoURI, contactNumber = null, contactEmail;
         ContentResolver cr = MyApplication.getInstance().getContentResolver();
         Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
@@ -225,9 +226,16 @@ public class Model {
         });
     }
 
-    public Single<List<Contacts>> getDetails()
+    public Single<List<Contacts>> getDetails(boolean resetCache)
     {
-        return cachedObservable;
+        Single<List<Contacts>> listSingle;
+        if(resetCache) {
+            cacher.reset();
+            listSingle = Single.unsafeCreate(cacher);
+        }else {
+            listSingle = Single.unsafeCreate(cacher);
+        }
+        return listSingle;
 
     }
 
@@ -259,6 +267,9 @@ public class Model {
                 public List<Contacts> apply(@io.reactivex.annotations.NonNull List<Contacts> contacts) throws Exception {
                     return Utils.sort(contacts);
                 }
-            }).cache();
+            });
+
+    private OnSubScribeRefreshingCache<List<Contacts>> cacher = new OnSubScribeRefreshingCache<>(cachedObservable);
+
 
 }

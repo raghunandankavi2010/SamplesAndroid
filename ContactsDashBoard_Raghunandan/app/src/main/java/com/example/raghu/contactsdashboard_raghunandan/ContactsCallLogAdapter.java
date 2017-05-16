@@ -21,12 +21,18 @@ public class ContactsCallLogAdapter extends RecyclerView.Adapter<ContactsCallLog
     private Context mContext;
 
     public void setContactsList(List<Contacts> list) {
+         clear();
         this.contactsList.addAll(list);
         notifyDataSetChanged();
     }
 
+    public void clear()
+    {
+        contactsList.clear();
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView name, number, email,total_duration,date;
+        public TextView name, number, email,total_duration,date,dob;
         public AvatarImageView photo;
 
         public MyViewHolder(View view) {
@@ -37,6 +43,7 @@ public class ContactsCallLogAdapter extends RecyclerView.Adapter<ContactsCallLog
             total_duration = (TextView) view.findViewById(R.id.total_duration);
             date = (TextView) view.findViewById(R.id.date);
             photo = (AvatarImageView) view.findViewById(R.id.user_photo);
+            dob = (TextView) view.findViewById(R.id.dob);
         }
     }
 
@@ -60,9 +67,17 @@ public class ContactsCallLogAdapter extends RecyclerView.Adapter<ContactsCallLog
         Contacts contacts = contactsList.get(position);
         holder.name.setText(contacts.getName());
         holder.number.setText("Mobile - "+contacts.getNumber());
+
+       if(Utils.checkNotEmpty(contacts.getDob())) {
+            holder.dob.setVisibility(View.VISIBLE);
+            holder.dob.setText("DOB - " + contacts.getDob());
+        }else
+            holder.dob.setVisibility(View.GONE);
+
+
         if(Utils.checkNotEmpty(contacts.getEmail())) {
             holder.email.setVisibility(View.VISIBLE);
-            holder.email.setText("Email - " + contacts.getEmail());
+            holder.email.setText("DOB - " + contacts.getEmail());
         }
         else
             holder.email.setVisibility(View.GONE);
