@@ -43,4 +43,8 @@ public class Utils {
 
         return hours + " hrs " + minutes + " min " + seconds + " sec";
     }
+
+    public static boolean isValidPhoneNumber(String phoneNumber) {
+        return !TextUtils.isEmpty(phoneNumber) && android.util.Patterns.PHONE.matcher(phoneNumber).matches();
+    }
 }

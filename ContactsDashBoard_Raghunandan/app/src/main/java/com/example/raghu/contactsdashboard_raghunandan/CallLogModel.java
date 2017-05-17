@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.provider.CallLog;
 import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
-import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
@@ -18,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -50,9 +50,9 @@ public class CallLogModel {
     private Observable<Contacts> readContact(Contacts contact) {
 
         contactsList.clear();
-        String contactNAME = null, contactID, contactphotoURI, contactNumber = null, contactEmail,dob=null;
-        String[] PROJECTION = {ContactsContract.Contacts._ID, ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.Contacts.PHOTO_THUMBNAIL_URI,ContactsContract.Contacts.HAS_PHONE_NUMBER};
-        String SELECTION = ContactsContract.Contacts.DISPLAY_NAME+ " LIKE ?" ;
+        String contactNAME = null, contactID, contactphotoURI, contactNumber = null, contactEmail, dob = null;
+        String[] PROJECTION = {ContactsContract.Contacts._ID, ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.Contacts.PHOTO_THUMBNAIL_URI, ContactsContract.Contacts.HAS_PHONE_NUMBER};
+        String SELECTION = ContactsContract.Contacts.DISPLAY_NAME + " LIKE ?";
         String[] mSelectionArgs = {contact.getName()};
         ContentResolver cr = MyApplication.getInstance().getContentResolver();
         Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
@@ -82,26 +82,28 @@ public class CallLogModel {
                     if (Utils.checkNotEmpty(contactNumber)) {
 
 
-                        if (PhoneNumberUtils.compare(contact.getNumber(), contactNumber)) {
-                            dob = getDOB(cr, contactID);
+                        dob = getDOB(cr, contactID);
 
-                            Log.d(TAG, "Number :" + contact.getNumber()+" "+contactNumber);
-                            //contact.setNumber(contactNumber);
-                            contact.setName(contactNAME);
-                            contact.setId(contactID);
-                            if (Utils.checkNotEmpty(contactphotoURI)) {
+                        //Log.d(TAG, "Number :" + contact.getNumber() + " " + contactNumber);
+                        //contact.setNumber(contactNumber);
+                        contact.setName(contactNAME);
+                        contact.setId(contactID);
+                        if (Utils.checkNotEmpty(contactphotoURI)) {
 
-                                contact.setPhoto(contactphotoURI);
-                            }
-                            if (Utils.checkNotEmpty(contactEmail)) {
-                                contact.setEmail(contactEmail);
-                            }
-                            if (Utils.checkNotEmpty(dob)) {
-                                contact.setDob(dob);
-                                contact.setDuration(2 * contact.getDuration());
-                            }
+                            contact.setPhoto(contactphotoURI);
+                        }
+                        if (Utils.checkNotEmpty(contactEmail)) {
+                            contact.setEmail(contactEmail);
+                        }
+                        if (Utils.checkNotEmpty(dob)) {
+                            contact.setDob(dob);
+                            contact.setDuration(2 * contact.getDuration());
+                        }else
+                        {
+                            contact.setDuration(contact.getDuration());
                         }
                     }
+
 
                 }
             }
@@ -159,17 +161,16 @@ public class CallLogModel {
         return email;
     }
 
-    private String getDOB(ContentResolver cr,String contactId)
-    {
+    private String getDOB(ContentResolver cr, String contactId) {
         String birthday = null;
 
-        String[] projection = new String[] {
+        String[] projection = new String[]{
                 ContactsContract.Contacts.DISPLAY_NAME,
                 ContactsContract.CommonDataKinds.Event.CONTACT_ID,
                 ContactsContract.CommonDataKinds.Event.START_DATE
         };
 
-        String where = ContactsContract.CommonDataKinds.Event.TYPE + " = "  + ContactsContract.CommonDataKinds.Event.TYPE_BIRTHDAY + " AND " +
+        String where = ContactsContract.CommonDataKinds.Event.TYPE + " = " + ContactsContract.CommonDataKinds.Event.TYPE_BIRTHDAY + " AND " +
                 ContactsContract.CommonDataKinds.Event.MIMETYPE + " = '" +
                 ContactsContract.CommonDataKinds.Event.CONTENT_ITEM_TYPE + "' AND " +
                 ContactsContract.Data.CONTACT_ID + " = " + contactId;
@@ -184,11 +185,11 @@ public class CallLogModel {
         birthdayCur.close();
 
 
-    return birthday;
+        return birthday;
     }
 
 
-    public Observable<HashMap<String,Contacts>> getCallLog() {
+    public Observable<HashMap<String, Contacts>> getCallLog() {
 
 
         HashMap<String, Contacts> map = new HashMap<>();
@@ -197,10 +198,11 @@ public class CallLogModel {
 
             String[] PROJECTION = {CallLog.Calls.CACHED_NAME, CallLog.Calls.NUMBER, CallLog.Calls.DURATION, CallLog.Calls.DATE};
             String SELECTION = CallLog.Calls.DURATION + " > " + String.valueOf(0);
+
             //String[] mSelectionArgs = {String.valueOf(0)};
 
             Cursor cursor = MyApplication.getInstance().getContentResolver().query(CallLog.Calls.CONTENT_URI, PROJECTION, SELECTION, null, null);
-            Contacts contacts ;
+            Contacts contacts;
             if (cursor != null && cursor.getCount() > 0) {
 
                 String duration, callDate, dateString = null;
@@ -215,77 +217,94 @@ public class CallLogModel {
 
                     String name = cursor.getString(cursor.getColumnIndex(CallLog.Calls.CACHED_NAME));
                     String phNum = cursor.getString(numb);
-                    phNum = PhoneNumberUtils.formatNumber(phNum);
+
+
+                    String contactid = getContactIDFromNumber(phNum, MyApplication.getInstance().getApplicationContext().getContentResolver());
                     int totalduration = 0;
-                    if (Utils.checkNotEmpty(name)) {
-                        if (!map.containsKey(phNum)) {
 
-                            contacts = new Contacts();
-                            contacts.setName(name);
-                            contacts.setNumber(phNum);
+                    int n = phNum.length();
+                    String lastDigits;
+                    String number = phNum.replaceAll(Pattern.quote("+"), ""); //replacing the plus
+                    //am just checking last 5 digitis and saving to map so that we can get same //number duration
+                    if (n >= 5) {
 
-                            map.put(phNum, contacts);
-                            String contactid = getContactIDFromNumber(phNum, MyApplication.getInstance().getApplicationContext().getContentResolver());
-                            contacts.setId(contactid);
+                        try {
 
-
-                            // int callType = Integer.parseInt(cursor.getString(type));
-                            duration = cursor.getString(cursor
-                                    .getColumnIndex(android.provider.CallLog.Calls.DURATION));
-                            callDate = cursor.getString(cursor
-                                    .getColumnIndex(android.provider.CallLog.Calls.DATE));
-                            SimpleDateFormat formatter = new SimpleDateFormat(
-                                    "dd-MMM-yyyy HH:mm", Locale.getDefault());
-
-                            dateString = formatter.format(new Date(Long
-                                    .parseLong(callDate)));
-
-                            //Log.d(TAG, contact.getName() +" "  + duration);
-                            int dur = Integer.parseInt(duration);
-
-                            totalduration = totalduration + dur;
-                            contacts.setDuration(totalduration);
-                            contacts.setCallDate(dateString);
-
-                        } else {
-                            contacts = map.get(phNum);
-                            duration = cursor.getString(cursor
-                                    .getColumnIndex(android.provider.CallLog.Calls.DURATION));
-                            callDate = cursor.getString(cursor
-                                    .getColumnIndex(android.provider.CallLog.Calls.DATE));
-                            SimpleDateFormat formatter = new SimpleDateFormat(
-                                    "dd-MMM-yyyy HH:mm", Locale.getDefault());
-
-                            dateString = formatter.format(new Date(Long
-                                    .parseLong(callDate)));
-
-                            //Log.d(TAG, contacts.getName() +" "  + duration);
-                            int dur = Integer.parseInt(duration);
-
-                            totalduration = totalduration + dur;
-                            if (contacts != null) {
-                                contacts.setCallDate(dateString);
-                                contacts.setDuration(totalduration);
-
-                            }
-
-
+                            lastDigits = String.valueOf(Long.parseLong(number) % 100000);
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                            lastDigits = phNum;
                         }
+                    } else {
+                        lastDigits = phNum;
                     }
 
 
+                    if (!map.containsKey(lastDigits)) {
+
+                        contacts = new Contacts();
+                        contacts.setName(name);
+                        contacts.setNumber(phNum);
+                        contacts.setId(contactid);
+
+
+                        map.put(lastDigits, contacts);
+
+
+                        // int callType = Integer.parseInt(cursor.getString(type));
+                        duration = cursor.getString(cursor
+                                .getColumnIndex(android.provider.CallLog.Calls.DURATION));
+                        callDate = cursor.getString(cursor
+                                .getColumnIndex(android.provider.CallLog.Calls.DATE));
+                        SimpleDateFormat formatter = new SimpleDateFormat(
+                                "dd-MMM-yyyy HH:mm", Locale.getDefault());
+
+                        dateString = formatter.format(new Date(Long
+                                .parseLong(callDate)));
+
+
+                        int dur = Integer.parseInt(duration);
+
+                        //Log.d(TAG, lastDigits +" "  + duration);
+                        //totalduration = totalduration + dur;
+                        contacts.setDuration(dur);
+                        contacts.setCallDate(dateString);
+
+                    } else {
+                        contacts = map.get(lastDigits);
+                        duration = cursor.getString(cursor
+                                .getColumnIndex(android.provider.CallLog.Calls.DURATION));
+                        callDate = cursor.getString(cursor
+                                .getColumnIndex(android.provider.CallLog.Calls.DATE));
+                        SimpleDateFormat formatter = new SimpleDateFormat(
+                                "dd-MMM-yyyy HH:mm", Locale.getDefault());
+
+                        dateString = formatter.format(new Date(Long
+                                .parseLong(callDate)));
+
+                        //Log.d(TAG,"Duplciate + " +lastDigits +" "  + duration);
+                        int dur = Integer.parseInt(duration);
+
+                        //totalduration = totalduration + dur;
+                        if (contacts != null) {
+                            contacts.setCallDate(dateString);
+                            contacts.setDuration(contacts.getDuration()+dur);
+
+                        }
+                    }
                 }
             }
             if (cursor != null)
                 cursor.close();
 
-           /*for (Contacts contact : map.values()) {
+           for (Contacts contact : map.values()) {
 
-                Log.d(TAG, "" + contact.getName());
-                Log.d(TAG, "" + contact.getNumber());
-                Log.d(TAG, "" + contact.getDuration());
-                Log.d(TAG, "" + contact.getCallDate());
-            }*/
+                Log.d(TAG, "Id: " + contact.getId());
+                Log.d(TAG, "Name: " + contact.getName());
+                Log.d(TAG, "Number: " + contact.getNumber());
+                Log.d(TAG, "Duration : " + contact.getDuration());
+                Log.d(TAG, "Date: " + contact.getCallDate());
+            }
 
         }
         return Observable.just(map);
@@ -305,10 +324,6 @@ public class CallLogModel {
     }
 
 
-
-
-
-
     public Single<List<Contacts>> getDetails(boolean resetCache) {
         Single<List<Contacts>> listSingle;
         if (resetCache) {
@@ -323,43 +338,41 @@ public class CallLogModel {
 
     private Single<List<Contacts>> cachedObservable =
             getCallLog()
-            .map(new Function<HashMap<String,Contacts>, List<Contacts>>() {
-                @Override
-                public List<Contacts> apply(@NonNull HashMap<String, Contacts> stringContactsHashMap) throws Exception {
-                    return new ArrayList<>(stringContactsHashMap.values());
-                }
-            })
-            .flatMapIterable(new Function<List<Contacts>, Iterable<Contacts>>() {
-                @Override
-                public Iterable<Contacts> apply(@NonNull List<Contacts> integers) throws Exception {
-                    return integers;
-                }
-            })
-            .flatMap(new Function<Contacts, ObservableSource<Contacts>>() {
-                @Override
-                public ObservableSource<Contacts> apply(Contacts contacts) throws Exception {
-                    return readContact(contacts);
-                }
-            })
-            .filter(new Predicate<Contacts>() {
-                @Override
-                public boolean test(Contacts contact) {
-                    if (contact == null)
-                        return false;
-                    else {
-                        return contact.getDuration() > 0;
-                    }
-                }
-            }).toList()
-            .map(new Function<List<Contacts>, List<Contacts>>() {
-                @Override
-                public List<Contacts> apply(@io.reactivex.annotations.NonNull List<Contacts> contacts) throws Exception {
-                    return Utils.sort(contacts);
-                }
-            });
+                    .map(new Function<HashMap<String, Contacts>, List<Contacts>>() {
+                        @Override
+                        public List<Contacts> apply(@NonNull HashMap<String, Contacts> stringContactsHashMap) throws Exception {
+                            return new ArrayList<>(stringContactsHashMap.values());
+                        }
+                    })
+                    .flatMapIterable(new Function<List<Contacts>, Iterable<Contacts>>() {
+                        @Override
+                        public Iterable<Contacts> apply(@NonNull List<Contacts> integers) throws Exception {
+                            return integers;
+                        }
+                    })
+                    .flatMap(new Function<Contacts, ObservableSource<Contacts>>() {
+                        @Override
+                        public ObservableSource<Contacts> apply(Contacts contacts) throws Exception {
+                            return readContact(contacts);
+                        }
+                    })
+                    .filter(new Predicate<Contacts>() {
+                        @Override
+                        public boolean test(Contacts contact) {
+                            if (contact == null)
+                                return false;
+                            else {
+                                return contact.getDuration() > 0;
+                            }
+                        }
+                    }).toList()
+                    .map(new Function<List<Contacts>, List<Contacts>>() {
+                        @Override
+                        public List<Contacts> apply(@io.reactivex.annotations.NonNull List<Contacts> contacts) throws Exception {
+                            return Utils.sort(contacts);
+                        }
+                    });
 
     private OnSubScribeRefreshingCache<List<Contacts>> cacher = new OnSubScribeRefreshingCache<>(cachedObservable);
-
-
 
 }
