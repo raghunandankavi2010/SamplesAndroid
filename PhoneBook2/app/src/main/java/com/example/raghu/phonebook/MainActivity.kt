@@ -44,6 +44,7 @@ class MainActivity : LifecycleActivity() {
         recyclerView?.layoutManager = LinearLayoutManager(this)
         recyclerView?.setHasFixedSize(true)
         mAdapter = PhoneBookAdapter(this)
+        recyclerView?.adapter = mAdapter
         val viewModel = ViewModelProviders.of(this).get(PhoneBookViewModel::class.java)
 
         subscribeUi(viewModel)
@@ -55,7 +56,7 @@ class MainActivity : LifecycleActivity() {
         viewModel.getContacts().observe(this,Observer<List<ContactEntity>>{
             contactEntities ->
                 if(contactEntities!=null) {
-                  mAdapter.setList(contactEntities)
+                  mAdapter?.setList(contactEntities)
                     Log.i(MainActivity.TAG, "Size : " + contactEntities.size)
                 }
         })

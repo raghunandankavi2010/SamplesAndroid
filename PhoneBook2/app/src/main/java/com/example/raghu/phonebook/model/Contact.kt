@@ -9,6 +9,6 @@ interface Contact  {
     val id: Int
     val firstName: String
     val lastName: String
-    val number: Int
+    val number: String
     val nickName: String
 }

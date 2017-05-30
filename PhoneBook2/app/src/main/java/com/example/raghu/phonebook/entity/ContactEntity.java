@@ -33,7 +33,7 @@ public class ContactEntity implements Contact, Parcelable {
     private int id;
     private String firstName;
     private String lastName;
-    private int number;
+    private String number;
     private String nickName;
 
     public ContactEntity() {
@@ -43,7 +43,7 @@ public class ContactEntity implements Contact, Parcelable {
         id = in.readInt();
         firstName = in.readString();
         lastName = in.readString();
-        number = in.readInt();
+        number = in.readString();
         nickName = in.readString();
     }
 
@@ -52,7 +52,7 @@ public class ContactEntity implements Contact, Parcelable {
         dest.writeInt(id);
         dest.writeString(firstName);
         dest.writeString(lastName);
-        dest.writeInt(number);
+        dest.writeString(number);
         dest.writeString(nickName);
     }
 
@@ -104,7 +104,7 @@ public class ContactEntity implements Contact, Parcelable {
     }
 
     @Override
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
@@ -122,7 +122,7 @@ public class ContactEntity implements Contact, Parcelable {
         this.lastName = lastName;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 

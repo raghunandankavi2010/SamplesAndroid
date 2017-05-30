@@ -38,9 +38,9 @@ class DatabaseInitUtil {
 
             for (i in 0..9) {
                 val contact = ContactEntity()
-                contact.setFirstName("name")
-                contact.setLastName("lastname")
-                contact.setNumber(9)
+                contact.setFirstName("name"+i)
+                contact.setLastName("lastname"+i)
+                contact.setNumber("9986929644")
                 contact.setNickName("nickname")
                 contacts.add(contact)
             }
