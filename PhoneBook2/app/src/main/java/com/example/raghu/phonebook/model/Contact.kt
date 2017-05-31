@@ -6,9 +6,9 @@ package com.example.raghu.phonebook.model
  */
 interface Contact  {
 
-    val id: Int
-    val firstName: String
-    val lastName: String
-    val number: String
-    val nickName: String
+    var id: Int
+    var firstName: String
+    var lastName: String
+    var number: String
+    var nickName: String
 }

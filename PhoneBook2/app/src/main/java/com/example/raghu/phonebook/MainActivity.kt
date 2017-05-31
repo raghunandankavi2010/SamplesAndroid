@@ -13,6 +13,8 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
+import android.widget.ProgressBar
 
 import com.example.raghu.phonebook.entity.ContactEntity
 
@@ -24,9 +26,11 @@ import java.util.ArrayList
 
 class MainActivity : LifecycleActivity() {
 
-    private var recyclerView: RecyclerView? = null
-    private var mAdapter: PhoneBookAdapter? = null
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var mAdapter: PhoneBookAdapter
     private val listcontacts = ArrayList<ContactEntity>()
+    private lateinit var progressBar: ProgressBar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,6 +43,8 @@ class MainActivity : LifecycleActivity() {
         val toolbar = findViewById(R.id.toolbar) as Toolbar
        /* setSupportActionBar(toolbar)
         supportActionBar?.title = "Hellow"*/
+
+        progressBar = findViewById(R.id.progressBar) as ProgressBar
 
         recyclerView = findViewById(R.id.recyclerView) as RecyclerView
         recyclerView?.layoutManager = LinearLayoutManager(this)
@@ -56,9 +62,13 @@ class MainActivity : LifecycleActivity() {
         viewModel.getContacts().observe(this,Observer<List<ContactEntity>>{
             contactEntities ->
                 if(contactEntities!=null) {
+                    progressBar.visibility = View.GONE
                   mAdapter?.setList(contactEntities)
                     Log.i(MainActivity.TAG, "Size : " + contactEntities.size)
+                }else {
+                    progressBar.visibility = View.VISIBLE
                 }
+
         })
 
     }
