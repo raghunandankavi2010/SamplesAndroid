@@ -122,6 +122,7 @@ public class CalendarFragment extends Fragment implements OnMonthChangedListener
         cal = Calendar.getInstance();
         int month = cal.get(Calendar.MONTH);
         List<Event> event =  map.get(month);
+        if(event!=null && event.size()>0)
         adapter.addItems(event);
         EventDecorator eventDecorator = new EventDecorator(Color.RED, calevents);
         calendarView.addDecorator(eventDecorator);
