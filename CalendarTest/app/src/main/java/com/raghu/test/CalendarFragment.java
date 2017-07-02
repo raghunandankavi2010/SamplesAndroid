@@ -151,6 +151,7 @@ public class CalendarFragment extends Fragment implements OnMonthChangedListener
         cal.setTime(date.getDate());
         int month = cal.get(Calendar.MONTH);
         List<Event> event =  map.get(month);
+        if(event!=null && event.size()>0)
         adapter.addItems(event);
 
     }
