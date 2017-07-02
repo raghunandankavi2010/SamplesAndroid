@@ -1,0 +1,38 @@
+[
+  {
+    "EventID": 1011,
+    "Title": "May Day",
+    "Description": "Holiday for the International Labour Day",
+    "StartDate": "2017-07-15T15:40:51",
+    "StartTime": "00:00:00",
+    "EndDate": "2017-05-02T00:00:00",
+    "EndTime": "00:00:00",
+    "IsFullDay": true,
+    "IsHoliday": false,
+    "DateTime": null
+  },
+  {
+    "EventID": 1020,
+    "Title": "Good Friday",
+    "Description": "",
+    "StartDate": "2017-07-1T00:00:00",
+    "StartTime": "05:45:00",
+    "EndDate": "2017-04-27T00:00:00",
+    "EndTime": "05:45:00",
+    "IsFullDay": false,
+    "IsHoliday": false,
+    "DateTime": null
+  },
+  {
+    "EventID": 1019,
+    "Title": "Mother's Day",
+    "Description": "Mother's day",
+    "StartDate": "2017-08-10T00:00:00",
+    "StartTime": "10:00:00",
+    "EndDate": "2017-04-26T00:00:00",
+    "EndTime": "18:00:00",
+    "IsFullDay": false,
+    "IsHoliday": false,
+    "DateTime": null
+  }
+]
