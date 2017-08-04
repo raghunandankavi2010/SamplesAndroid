@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.example.raghu.dagger2testandroid.ui.main.MainActivityComponent;
 
 import java.io.IOException;
 import java.security.cert.CertificateException;
@@ -38,8 +37,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-@Module(subcomponents = {
-        MainActivityComponent.class})
+@Module
 @Singleton
 public abstract class MyApplicationModule {
 
