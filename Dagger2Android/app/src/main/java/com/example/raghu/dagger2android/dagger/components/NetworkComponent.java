@@ -14,5 +14,4 @@ import dagger.Component;
 public interface NetworkComponent  {
 
 
-
 }
