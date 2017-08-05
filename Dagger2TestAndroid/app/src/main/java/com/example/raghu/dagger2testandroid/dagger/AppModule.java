@@ -1,18 +1,9 @@
 package com.example.raghu.dagger2testandroid.dagger;
 
-/**
- * Created by raghu on 4/8/17.
- */
-
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.provider.SyncStateContract;
 import android.util.Log;
-
-
-import com.example.raghu.dagger2testandroid.api.Api;
-import com.example.raghu.dagger2testandroid.utils.Constants;
 
 import java.io.IOException;
 import java.security.cert.CertificateException;
@@ -46,18 +37,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 @Module
-@Singleton
-public abstract class MyApplicationModule {
-
-    private String PREF_NAME = "prefs";
-
+public class AppModule {
 
     @Provides
     @Singleton
     Context provideContext(Application application) {
         return application;
-
     }
+
+    private String PREF_NAME = "prefs";
+
 
 
     @Provides
@@ -76,7 +65,6 @@ public abstract class MyApplicationModule {
     @Provides
     @Singleton
     OkHttpClient provideOkHttpClient(Application application) {
-
 
 
         Interceptor interceptor = new Interceptor() {
@@ -115,20 +103,20 @@ public abstract class MyApplicationModule {
                 .readTimeout(30, TimeUnit.SECONDS)
                 .build();
 
+
         return client;
     }
 
     @Provides
     @Singleton
-    Api provideRetrofit(OkHttpClient okHttpClient) {
-        Api api = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+    Retrofit provideRetrofit(OkHttpClient okHttpClient) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.myjson.com/")
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create().create())
-                .build()
-                .create(Api.class);
-        return api;
+                .build();
+        return retrofit;
     }
 
     private static String bodyToString(final Request request) {
@@ -148,8 +136,8 @@ public abstract class MyApplicationModule {
     private static SSLContext trustAllHosts() {
         // Create a trust manager that does not validate certificate chains
         TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
-            public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                return new java.security.cert.X509Certificate[]{};
+            public X509Certificate[] getAcceptedIssuers() {
+                return new X509Certificate[]{};
             }
 
             public void checkClientTrusted(X509Certificate[] chain,

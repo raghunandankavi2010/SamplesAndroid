@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.raghu.dagger2testandroid.R;
+import com.example.raghu.dagger2testandroid.models.User;
 import com.example.raghu.dagger2testandroid.presenter.MainActivityPresenter;
 import com.example.raghu.dagger2testandroid.presenter.MainPresenterContract;
 
@@ -37,9 +38,14 @@ public class MainActivity extends AppCompatActivity implements MainPresenterCont
 
 
     @Override
-    public void showData(String message){
-        textView.setText(message);
+    public void showData(User user){
+        textView.setText(user.getName());
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mainPresenter.unSubscribe();
+    }
 }
