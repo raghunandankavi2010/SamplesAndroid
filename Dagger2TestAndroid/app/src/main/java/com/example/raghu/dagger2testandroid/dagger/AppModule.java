@@ -40,7 +40,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AppModule {
 
     @Provides
-    @Singleton
     Context provideContext(Application application) {
         return application;
     }

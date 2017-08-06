@@ -1,10 +1,9 @@
 package com.example.raghu.dagger2testandroid.ui.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.raghu.dagger2testandroid.R;
@@ -23,14 +22,28 @@ public class MainActivity extends AppCompatActivity implements MainPresenterCont
     MainActivityPresenter mainPresenter;
 
     private TextView textView;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = (TextView) findViewById(R.id.tv);
-        mainPresenter.doSomething();
+        textView =  findViewById(R.id.tv);
+        button =  findViewById(R.id.button);
+
+        if(savedInstanceState!=null) {
+            button.setEnabled(false);
+            textView.setText(savedInstanceState.getString("name"));
+        }
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainPresenter.doSomething();
+            }
+        });
+
 
 
     }
@@ -39,13 +52,15 @@ public class MainActivity extends AppCompatActivity implements MainPresenterCont
 
     @Override
     public void showData(User user){
+        button.setEnabled(false);
         textView.setText(user.getName());
     }
 
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mainPresenter.unSubscribe();
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("name",textView.getText().toString());
     }
 }

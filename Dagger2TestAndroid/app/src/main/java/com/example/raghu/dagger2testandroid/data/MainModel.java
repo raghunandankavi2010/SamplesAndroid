@@ -23,9 +23,17 @@ public class MainModel {
         this.retrofit = retrofit;
     }
 
+    /**\
+     *  Sample json hosted temporarily at https://api.myjson.com/bins/v6cg1
+     * {"user":{"name":"Raghunandan Kavi","age":"30"}}
+     */
+
     public Single loadData(){
 
-        Single<Example> response = retrofit.create(Api.class).getData();
+        /**
+         *  use cache to continue network operation during configuration change.
+         */
+        Single<Example> response = retrofit.create(Api.class).getData().cache();
         return response;
     }
 }
