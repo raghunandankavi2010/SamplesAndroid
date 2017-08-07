@@ -66,7 +66,7 @@ public class MainActivityPresenter implements MainPresenterContract.Presenter {
 
     @Override
     public void unSubscribe() {
-
+        mainView = null;
         disposable.dispose();
     }
 }
