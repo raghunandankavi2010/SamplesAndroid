@@ -1,6 +1,7 @@
 package com.example.raghu.dagger2testandroid.ui.main;
 
 import android.os.Bundle;
+import android.support.test.espresso.idling.CountingIdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,8 @@ import dagger.android.AndroidInjection;
 
 
 public class MainActivity extends AppCompatActivity implements MainPresenterContract.View{
+
+    CountingIdlingResource espressoTestIdlingResource = new CountingIdlingResource("Network_Call");
 
     @Inject
     MainActivityPresenter mainPresenter;
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenterCont
             @Override
             public void onClick(View view) {
                 mainPresenter.doSomething();
+                espressoTestIdlingResource.increment();
             }
         });
 
@@ -52,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenterCont
 
     @Override
     public void showData(User user){
+        espressoTestIdlingResource.decrement();
         button.setEnabled(false);
         textView.setText(user.getName());
     }
@@ -62,5 +67,11 @@ public class MainActivity extends AppCompatActivity implements MainPresenterCont
         super.onSaveInstanceState(outState);
 
         outState.putString("name",textView.getText().toString());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mainPresenter.unSubscribe();
     }
 }
