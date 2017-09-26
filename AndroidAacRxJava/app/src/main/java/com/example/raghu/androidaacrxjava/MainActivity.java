@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Pair;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.raghu.androidaacrxjava.models.Example;
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tv;
 
+    private ProgressBar pb;
+
     private ApiViewModel apiViewModel;
 
     @Override
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         AndroidInjection.inject(this);
         setContentView(R.layout.activity_main);
         tv = findViewById(R.id.name);
+        pb= findViewById(R.id.progressBar);
 
         apiViewModel = ViewModelProviders.of(this, viewModelFactory).get(ApiViewModel.class);
 
@@ -38,11 +43,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable Pair<Example, Throwable> exampleThrowablePair) {
 
-                if(exampleThrowablePair.first!=null){
-                    tv.setText(exampleThrowablePair.first.getUser().getName());
-                }else{
-                    exampleThrowablePair.second.printStackTrace();
+                if(exampleThrowablePair!=null) {
+                    if (exampleThrowablePair.first != null) {
+                        tv.setText(exampleThrowablePair.first.getUser().getName());
+                    } else {
+                        exampleThrowablePair.second.printStackTrace();
+                    }
                 }
+            }
+        });
+
+        apiViewModel.getCheck().observe(this, new Observer<Boolean>() {
+
+            @Override
+            public void onChanged(Boolean check) {
+
+                if(check){
+                    pb.setVisibility(View.VISIBLE);
+                }else {
+                    pb.setVisibility(View.GONE);
+                }
+
             }
         });
 
