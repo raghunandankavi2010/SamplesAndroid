@@ -15,6 +15,6 @@ import retrofit2.http.Headers;
 public interface Api {
 
     @Headers("Content-Type: application/json")
-    @GET("bins/v6cg1")
+    @GET("bins/9vq2d")
     Single<Example> getData();
 }
