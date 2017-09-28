@@ -24,4 +24,8 @@ public class ObservableString extends BaseObservable
     {
         return (a == null) ? (b == null) : a.equals(b);
     }
+
+    public boolean isEmpty() {
+        return value == null || value.isEmpty();
+    }
 }

@@ -2,6 +2,7 @@ package com.example.raghu.databindingaac;
 
 import android.databinding.BindingAdapter;
 import android.databinding.BindingConversion;
+import android.support.design.widget.TextInputLayout;
 import android.widget.EditText;
 
 public class EditTextBindings
@@ -19,6 +20,7 @@ public class EditTextBindings
                 {
                     observableString.set(s.toString());
                 }
+
             });
         }
         String newValue = observableString.get();
@@ -26,6 +28,11 @@ public class EditTextBindings
         {
             view.setText(newValue);
         }
+    }
+
+    @BindingAdapter("error")
+    public static void setErrorMessage(TextInputLayout view, String errorMessage) {
+        view.setError(errorMessage);
     }
 
 
