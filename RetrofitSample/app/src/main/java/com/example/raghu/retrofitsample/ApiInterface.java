@@ -4,10 +4,13 @@ package com.example.raghu.retrofitsample;
  * Created by raghu on 23/4/17.
  */
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 
 // to define endpoints of a URL we will use special retrofit annotations. we have used Get annotation in
@@ -19,4 +22,10 @@ public interface ApiInterface {
     //return value is alwayays a parameterized call<T> oject whose paremeter is generic so we can have
     @GET("movie/{id}")
     Call<MovieResponse> getMovieDetails(@Path("id") int id, @Query("api_key") String apiKey);
+
+    //@GET("statdirectory/exchange&json")
+    //Call<List<MyModel>>  getСurrency(@Query(value="date",encoded = true) String inputDate);
+
+    @GET
+    Call<List<MyModel>>  getСurrency(@Url String ur);
 }

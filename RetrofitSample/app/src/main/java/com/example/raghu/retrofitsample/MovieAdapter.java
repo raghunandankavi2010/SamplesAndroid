@@ -1,8 +1,11 @@
+/*
 package com.example.raghu.retrofitsample;
 
+*/
 /**
  * Created by raghu on 23/4/17.
- */
+ *//*
+
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -71,4 +74,4 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     public int getItemCount() {
         return movies.size();
     }
-}
+}*/

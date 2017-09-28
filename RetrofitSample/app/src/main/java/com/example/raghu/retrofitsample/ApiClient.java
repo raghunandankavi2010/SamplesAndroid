@@ -35,6 +35,13 @@ public class ApiClient
 
                 Request originalRequest = chain.request(); //Current Request
 
+
+             /*   originalRequest.newBuilder().addHeader()
+                Request newRequest = originalRequest.newBuilder()
+                        .addHeader(HeadersContract.HEADER_AUTHONRIZATION, O_AUTH_AUTHENTICATION)
+                        .addHeader(HeadersContract.HEADER_X_CLIENT_ID, CLIENT_ID)
+                        .build();
+                originalRequest.header()*/
                 Response response = chain.proceed(originalRequest); //Get response of the request
 
                 //I am logging the response body in debug mode. When I do this I consume the response (OKHttp only lets you do this once) so i have re-build a new one using the cached body
@@ -50,6 +57,7 @@ public class ApiClient
                 return response;
             }
         }).build();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .client(client)
                 .baseUrl(URL)
