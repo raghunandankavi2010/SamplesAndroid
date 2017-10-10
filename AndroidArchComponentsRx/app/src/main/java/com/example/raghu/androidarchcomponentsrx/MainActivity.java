@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.raghu.androidarchcomponentsrx.models.Example;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     ViewModelProvider.Factory viewModelFactory;
 
     private TextView tv;
+    private ProgressBar pb;
 
     private ApiViewModel apiViewModel;
 
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tv = findViewById(R.id.name);
 
+        pb = findViewById(R.id.progressBar);
+
         apiViewModel = ViewModelProviders.of(this, viewModelFactory).get(ApiViewModel.class);
 
         apiViewModel.getData().observe(this, new Observer<Resource<Example>>() {
@@ -42,12 +47,15 @@ public class MainActivity extends AppCompatActivity {
                 if(exampleResource!=null) {
                     if (exampleResource.status == Status.LOADING) {
 
+                        pb.setVisibility(View.VISIBLE);
                         Log.i("Tag","Loading");
                     }else if (exampleResource.status == Status.ERROR)  {
-
+                        pb.setVisibility(View.GONE);
+                        tv.setText(exampleResource.message);
                         Log.i("Tag","Error");
                     }
                     else {
+                        pb.setVisibility(View.GONE);
                         Example example = exampleResource.data;
                         tv.setText(example.getUser().getName());
                     }
