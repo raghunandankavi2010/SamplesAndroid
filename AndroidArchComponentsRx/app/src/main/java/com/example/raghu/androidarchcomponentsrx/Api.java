@@ -15,6 +15,6 @@ public interface Api {
 
     //https://api.myjson.com/bins/1apdwp
     @Headers("Content-Type: application/json")
-    @GET("bins/1apdwp")
+    @GET("bins/11zioh")
    Single<Response<Example>> getData();
 }
