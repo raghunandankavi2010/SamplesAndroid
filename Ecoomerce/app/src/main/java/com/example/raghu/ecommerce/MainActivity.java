@@ -6,7 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
+import com.example.raghu.ecommerce.listener.EndlessRecyclerViewScrollListener;
 import com.example.raghu.ecommerce.models.Product;
 
 import org.jsoup.Jsoup;
@@ -14,46 +18,110 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private List<Product>  mList_products = new ArrayList<>();
     private ProductAdapter mAdapter;
+    private boolean loadmore = false;
+    private ProgressBar pb;
+    private int page_count = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        pb = findViewById(R.id.progressBar);
         recyclerView = findViewById(R.id.recyclerView);
         mAdapter = new ProductAdapter(this);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        final GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                int spanCount = gridLayoutManager.getSpanCount();
+                switch (mAdapter.getItemViewType(position)) {
+                    case ProductAdapter.VIEW_ITEM:
+                        return 1;
+                    case ProductAdapter.VIEW_PROG:
+                        return spanCount;
+                    default:
+                        return -1;
+                }
+            }
+        });
+        recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.addItemDecoration(new GridItemDecoration());
         recyclerView.setAdapter(mAdapter);
 
-        getData();
+
+        recyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(page_count) {
+            @Override
+            public void onLoadMore(int current_page, int totalItemCount) {
+                page_count = current_page;
+                Log.i("Loading Page", "" + page_count);
+                loadmore = true;
+                getData(page_count);
+            }
+
+        });
+
+        getData(page_count);
     }
 
+    /**
+     *
+     * Should make inner class static
+     * it hold reference to outer class
+     * So on rotation activity should be destroyed-recreated
+     * any reference to the outer class may lead to
+     * mem leaks. For now orientation is fixed
+     */
     @SuppressLint("StaticFieldLeak")
-    public void getData(){
+    public void getData(int page) {
 
-        new AsyncTask<Void,Void,List<Product>>(){
+        new AsyncTask<Integer, Void, List<Product>>() {
 
             @Override
-            protected List<Product> doInBackground(Void... voids) {
+            protected void onPreExecute() {
+                super.onPreExecute();
+                if (loadmore) {
+                    recyclerView.post(new Runnable() {
+                        public void run() {
+                            mAdapter.add(null);
+                        }
+                    });
+
+                }
+
+                if(page_count==1){
+                    pb.setVisibility(View.VISIBLE);
+                }
+
+            }
+
+            @Override
+            protected List<Product> doInBackground(Integer... params) {
+
+                List<Product> mList_products;
                 try {
-                    Document doc = Jsoup.connect("https://ladyspyder.com/footwear/").get();
+
+                    Log.i("test", "" + "https://ladyspyder.com/footwear/page/" + params[0]);
+                    Document doc = Jsoup.connect("https://ladyspyder.com/footwear/page/" + params[0]).get();
+
                     Elements list_product = doc.select("div.list_product");
 
                     Elements col = list_product.select("[class=col-lg-15 col-sm-20 col-xs-30]");
 
+                    mList_products = new ArrayList<>(col.size());
                     for (Element cols : col) {
 
                         Product product = new Product();
-                        float star_val=0;
+                        float star_val = 0;
 
                         Elements cat = cols.select("div.item-cat");
                         Elements product_item = cat.select("div.product-item");
@@ -81,18 +149,18 @@ public class MainActivity extends AppCompatActivity {
                         Elements stars = stardiv.select("span");
                         for (Element star : stars) {
                             String star_name = star.attr("class");
-                            if(star_name.equals("star star-full")) {
-                                star_val = star_val+1f;
-                            }else if(star_name.equals("star star-half")) {
-                                star_val = star_val+0.5f;
+                            if (star_name.equals("star star-full")) {
+                                star_val = star_val + 1f;
+                            } else if (star_name.equals("star star-half")) {
+                                star_val = star_val + 0.5f;
                             }
                         }
                         product.setStars(star_val);
                         mList_products.add(product);
                     }
 
-                    return  mList_products;
 
+                    return mList_products;
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -103,10 +171,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(List<Product> products) {
                 super.onPostExecute(products);
-                if(products!=null)
-                mAdapter.addProducts(mList_products);
+
+                if(page_count==1){
+                    pb.setVisibility(View.GONE);
+                }
+                if (loadmore) {
+                    mAdapter.remove();
+                    loadmore = false;
+                }
+
+                if (products != null)
+                    mAdapter.addProducts(products);
             }
-        }.execute();
+        }.execute(page);
 
     }
 
