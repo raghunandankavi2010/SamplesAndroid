@@ -1,0 +1,82 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_10"
+        android:layout_marginTop="@dimen/spacing_10"
+        android:drawableLeft="@drawable/address"
+        android:drawablePadding="@dimen/spacing_10"
+        android:gravity="center_vertical"
+        android:text="Address"
+        android:textSize="@dimen/spacing_18" />
+
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_pro_flat_street"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_10"
+                    android:layout_marginStart="@dimen/spacing_10"
+                    android:padding="10dp"
+                    android:text="-"
+                    android:textColor="@color/textcolor"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/tv_change"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="@dimen/spacing_3"
+                    android:background="@drawable/bg_edit_text_rect"
+                    android:padding="@dimen/spacing_5"
+                    android:text="Change" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_pro_state_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_10"
+                android:layout_marginStart="@dimen/spacing_10"
+                android:padding="10dp"
+                android:textColor="@color/textcolor"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tv_pro_post_pin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_10"
+                android:layout_marginStart="@dimen/spacing_10"
+                android:padding="10dp"
+                android:textColor="@color/textcolor"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

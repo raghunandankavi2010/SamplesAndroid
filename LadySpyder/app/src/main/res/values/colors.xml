@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1187cb</color>
+    <color name="colorPrimaryDark">#1565C0</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="black">#000000</color>
+    <color name="textprimary">#464646</color>
+    <color name="textcolor">#888888</color>
+    <color name="lightgray">#E3E0E0</color>
+    <color name="blue">#54A4EA</color>
+    <color name="darkred">#ff1d1d</color>
+    <color name="lightred">#c0514e</color>
+    <color name="amber">#FFC200</color>
+    <color name="transparent">#fffafafa</color>
+    <color name="green">#00cb78</color>
+    <color name="dark_gray">#00374b</color>
+    <color name="white">#ffffff</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="monsoon">#777777</color>
+    <color name="jumbo">#888888</color>
+    <color name="aluminum">#999999</color>
+
+    <color name="viewBg">#f1f5f8</color>
+    <color name="album_title">#4c4c4c</color>
+    <color name="base">#AAAAAA</color>
+    <color name="iron">#CCCCCC</color>
+    <color name="light_cyan">#CEF6F5</color>
+    <color name="gray">#888888</color>
+    <color name="colorTilePrimary">#26a69a</color>
+    <color name="colorTilePrimaryDark">#1e8379</color>
+    <color name="colorTileAccent">#04d1bc</color>
+    <color name="selected_layout">#15456D</color>
+    <color name="background_stripe">#F8F8F8</color>
+    <color name="list_calendar">#E6EAF1</color>
+    <color name="selected">#0089A1</color>
+    <color name="selected_item">#125261</color>
+    <color name="searchbox_ousidecolor">#EDEDED</color>
+    <color name="name_color">#1C2A47</color>
+    <color name="addtoschedule">#F4F4F4</color>
+    <color name="addtoscheduletext">#43609D</color>
+    <color name="company_color">#BABABA</color>
+    <color name="position_color">#C3C3C3</color>
+    <color name="yellow">#DCBA00</color>
+    <color name="red">#B52C2C</color>
+    <color name="socialmediatxt">#555555</color>
+    <color name="linkcolor">#B7B7B7</color>
+    <color name="green_toolbar">#0F2729</color>
+    <color name="gray_leftpanel">#0F2729</color>
+    <color name="green_selected">#6DBA3A</color>
+
+
+    <color name="primaryColor_blue">#27adfa</color>
+    <color name="primaryColorDark_blue">#239be1</color>
+    <color name="primaryAccent_blue">#FFEBEE</color>
+
+    <color name="primaryColor_blue_dark">#1e67ec</color>
+    <color name="primaryColorDark_blue_dark">#1b5cd4</color>
+    <color name="primaryAccent_blue_dark">#4ce8c7</color>
+
+    <color name="primaryColor_purple">#a720f5</color>
+    <color name="primaryColorDark_purlple">#961cdc</color>
+    <color name="primaryAccent_purple">#4ce8c7</color>
+
+    <color name="primaryColor_black">#1d0042</color>
+    <color name="primaryColorDark_black">#1a003b</color>
+    <color name="primaryAccent_black">#239be1</color>
+
+    <color name="primaryColor_pink">#f52457</color>
+    <color name="primaryColorDark_pink">#dc204e</color>
+    <color name="primaryAccent_pink">#239be1</color>
+
+    <color name="primaryColor_teal">#009900</color>
+    <color name="primaryColorDark_teal">#009900</color>
+    <color name="primaryAccent_teal">#009900</color>
+
+    <color name="pink">#fb7299</color>
+    <color name="pink_dark">#b85671</color>
+    <color name="pink_trans">#99f0486c</color>
+
+    <color name="blue_dark">#1565C0</color>
+    <color name="blue_trans">#B41A78C3</color>
+
+    <color name="purple">#673AB7</color>
+    <color name="purple_dark">#311B92</color>
+    <color name="purple_trans">#673AB7</color>
+
+    <color name="green_dark">#009900</color>
+    <color name="green_trans">#009900</color>
+
+    <color name="green_light">#009900</color>
+    <color name="green_light_dark">#009900</color>
+    <color name="green_light_trans">#009900</color>
+
+    <color name="yellow_dark">#FBC02D</color>
+    <color name="yellow_trans">#99FDD835</color>
+
+    <color name="orange">#FF9800</color>
+    <color name="orange_dark">#EF6C00</color>
+    <color name="orange_trans">#99FF9800</color>
+
+    <color name="red_dark">#C62828</color>
+    <color name="red_trans">#99F44336</color>
+    <color name="commong_bg_color">#EBEBF1</color>
+
+
+    <color name="color_orange">#f49a3c</color>
+    <color name="color_blue">#00c1ea</color>
+    <color name="color_red">#de4a40</color>
+    <color name="color_green">#00a564</color>
+
+</resources>

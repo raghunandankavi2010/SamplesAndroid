@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.peakaeriest.ladyspyder">
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".helpers.LSApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+
+        <!-- [START fcm_default_icon] -->
+        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
+             See README(https://goo.gl/l4GJaQ) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <!-- [END fcm_default_icon] -->
+        <!-- [START fcm_default_channel] -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id"/>
+        <!-- [END fcm_default_channel] -->
+        <activity
+            android:name=".activities.LSLoginActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.LSMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/DrawerActivityTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activities.LSNavSample"
+            android:label="@string/title_activity_lsnav_sample"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.LSMenuDetailListActivity"
+            android:label="@string/sub_category"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.LSRegisterActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activities.LSForgotPasswordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".activities.LSProductListActivity" />
+
+        <activity
+            android:name=".LSProductDetailActivity"
+            android:label="Product Detail"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".activities.LSProductDetailActvity"
+            android:label="Product Detail"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".activities.LSCartActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activities.LSWishListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activities.LSMyOrdersActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Apptheme.ActionBar" />
+
+        <activity
+            android:name=".activities.LSAddAddressActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:name=".activities.LSOrderDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.LSOrderDetailActivity" />
+
+        <activity
+            android:name=".activities.LSSplashActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:theme="@style/Apptheme.ActionBar"
+            android:name=".activities.LSFeedbackActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:theme="@style/Apptheme.ActionBar"
+            android:name=".activities.LSAboutUsActivity" />
+
+        <activity
+            android:theme="@style/Apptheme.ActionBar"
+            android:name=".activities.LSContactUsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:theme="@style/Apptheme.ActionBar"
+            android:name=".activities.LSFaqActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".activities.LSRefundPolicyActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".activities.LSShippingActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:theme="@style/Apptheme.ActionBar"
+            android:name=".activities.LSUpdatePasswordActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activities.MainActivity"
+            android:parentActivityName=".activities.LSMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.LSMainActivity" />
+        </activity>
+
+        <activity
+            android:name=".activities.DetailActivity"
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+
+        <activity
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".activities.FilterActivity">
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".activities.MainActivity" />
+        </activity>
+
+        <service
+            android:name=".fcm.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".fcm.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

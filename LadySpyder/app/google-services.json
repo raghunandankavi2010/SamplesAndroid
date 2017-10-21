@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "415649265578",
+    "firebase_url": "https://ladyspyder-41fd0.firebaseio.com",
+    "project_id": "ladyspyder-41fd0",
+    "storage_bucket": "ladyspyder-41fd0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415649265578:android:a3b704b056db70bb",
+        "android_client_info": {
+          "package_name": "com.peakaeriest.ladyspyder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "415649265578-hiq9cjj17do9gvdlsvl5gbbaj7rhqe0u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.peakaeriest.ladyspyder",
+            "certificate_hash": "c8098621050787ca076ce6f05f3106d66d7aa70c"
+          }
+        },
+        {
+          "client_id": "415649265578-gevht46dghqrt5mt0acgt3qagku2loth.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtlhuDD6W_K3341bnVm2v75Y_GY8ZR4p0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "415649265578-gevht46dghqrt5mt0acgt3qagku2loth.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

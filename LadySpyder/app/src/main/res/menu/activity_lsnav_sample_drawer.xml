@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/group_ship" android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_shipment_delivery"
+            android:icon="@drawable/ic_delivery"
+            android:title="Shipping and Delivery" />
+
+        <item
+            android:id="@+id/nav_refund_policy"
+            android:icon="@drawable/ic_refund"
+            android:title="Refund Policy" />
+    </group>
+
+    <group android:id="@+id/group_social" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_share"
+            android:title="Share" />
+
+        <item
+            android:id="@+id/nav_feed_backs"
+            android:icon="@drawable/ic_feedback"
+            android:title="Feedbacks" />
+
+        <item
+            android:id="@+id/nav_faq"
+            android:icon="@drawable/ic_faq"
+            android:title="FAQ" />
+
+
+        <item
+            android:id="@+id/nav_about_us"
+            android:icon="@drawable/ic_about_us"
+            android:title="About Us" />
+
+        <item
+            android:id="@+id/nav_contact_us"
+            android:icon="@drawable/ic_contact_us"
+            android:title="Contact Us" />
+    </group>
+
+    <group android:id="@+id/group_settings" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_update_password"
+            android:icon="@drawable/ic_password"
+            android:title="Update Password" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@android:drawable/presence_offline"
+            android:title="Logout" />
+    </group>
+</menu>

@@ -1,0 +1,20 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:orientation="vertical">
+
+        <include layout="@layout/kd_include_my_account_user_information" />
+
+        <include layout="@layout/kd_include_my_account_address" />
+
+        <include layout="@layout/kd_include_chnage_passsword" />
+
+    </LinearLayout>
+
+</ScrollView>
