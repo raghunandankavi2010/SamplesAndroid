@@ -320,9 +320,10 @@ public class LSMainActivity extends LSBaseActivity implements BaseSliderView.OnS
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
+     /*   if (id == R.id.nav_home) {
             // Handle the camera action
-        } else if (id == R.id.nav_feed_backs) {
+        } else */
+     if (id == R.id.nav_feed_backs) {
             Intent intent = new Intent(LSMainActivity.this, LSFeedbackActivity.class);
             startActivity(intent);
 

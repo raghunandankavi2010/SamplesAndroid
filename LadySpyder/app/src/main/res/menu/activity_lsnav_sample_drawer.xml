@@ -3,10 +3,10 @@
 
     <group android:id="@+id/group_ship" android:checkableBehavior="single">
 
-        <item
+    <!--    <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
-            android:title="Home" />
+            android:title="Home" />-->
         <item
             android:id="@+id/nav_shipment_delivery"
             android:icon="@drawable/ic_delivery"

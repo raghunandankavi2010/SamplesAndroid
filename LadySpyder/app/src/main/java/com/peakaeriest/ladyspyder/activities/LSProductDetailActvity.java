@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.peakaeriest.ladyspyder.R;
 import com.squareup.picasso.Picasso;
 
+
 import java.util.ArrayList;
 
 public class LSProductDetailActvity extends AppCompatActivity {
@@ -56,7 +57,7 @@ public class LSProductDetailActvity extends AppCompatActivity {
 
             View view = layoutInflater.inflate(R.layout.layout_slider, container, false);
             ImageView im_slider = (ImageView) view.findViewById(R.id.im_slider);
-            Picasso.with(activity.getApplicationContext())
+            Picasso.with(activity)
                     .load(image_arraylist.get(position))
                     .placeholder(R.mipmap.ic_launcher) // optional
                     .error(R.mipmap.ic_launcher)         // optional
