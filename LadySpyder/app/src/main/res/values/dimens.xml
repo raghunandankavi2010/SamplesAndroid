@@ -55,4 +55,6 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="spacing_8">8dp</dimen>
+    <!-- 280dp for phones and 320dp for tablets -->
+    <dimen name="navigation_drawer_width">280dp</dimen>
 </resources>
