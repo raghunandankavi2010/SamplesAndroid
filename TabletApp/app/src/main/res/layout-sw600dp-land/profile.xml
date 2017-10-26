@@ -1,0 +1,38 @@
+<!--<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/partial_pane_width"
+    android:layout_height="@dimen/partial_pane_width">
+
+    <ImageView
+        android:background="@drawable/material_drawer_circle_mask"
+        android:src="@drawable/header"
+        android:id="@+id/material_drawer_icon"
+        android:layout_width="@dimen/material_mini_drawer_item_profile_icon"
+        android:layout_height="@dimen/material_mini_drawer_item_profile_icon"
+        android:layout_centerInParent="true"
+        android:clickable="false"
+       />
+</RelativeLayout>-->
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+     com.raghu.test.widgetsgets.BezelImageView
+            android:src="@drawable/profile2"
+            android:id="@+id/material_drawer_icon"
+            android:layout_width="@dimen/material_mini_drawer_item_profile_icon"
+            android:layout_height="@dimen/material_mini_drawer_item_profile_icon"
+            android:clickable="false"
+            android:elevation="1dp" />
+    </RelativeLayout>
+    -->
+<ImageView android:background="@drawable/material_drawer_circle_mask"
+    android:src="@drawable/header"
+    android:id="@+id/material_drawer_icon"
+    android:layout_width="@dimen/material_mini_drawer_item_profile_icon"
+    android:layout_height="@dimen/material_mini_drawer_item_profile_icon"
+    android:layout_centerInParent="true"
+    android:clickable="false"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

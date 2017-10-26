@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Tablet App</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="full">full</string>
+    <string name="partial">partial</string>
+    <string name="pane_2">Pane 2</string>
+</resources>

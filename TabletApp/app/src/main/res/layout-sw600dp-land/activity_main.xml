@@ -1,0 +1,51 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.raghu.test.MainActivity">
+    <include layout="@layout/toolbar" />
+
+    <com.raghu.test.widgets.CrossFadeSlidingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sliding_pane_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="@dimen/side_pane_width"
+            android:layout_height="match_parent"
+            android:background="@color/bg_light">
+            <android.support.design.widget.NavigationView
+                android:id="@+id/nav_view"
+                android:layout_width="@dimen/drawer_width"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:fitsSystemWindows="true"
+                app:elevation="2dp"
+                app:headerLayout="@layout/drawer_header"
+                app:menu="@menu/drawer" />
+            <android.support.design.widget.NavigationView
+                android:id="@+id/nav_view_partial"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:fitsSystemWindows="true"
+                app:elevation="2dp"
+                app:menu="@menu/drawer_mini_menu" />
+        </FrameLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/partial_pane_width"
+            android:layout_marginLeft="@dimen/partial_pane_width"
+            android:background="@color/black_t_50"
+            android:text="@string/pane_2"/>
+    </com.raghu.test.widgets.CrossFadeSlidingPaneLayout>
+</LinearLayout>
+
+
+
+
