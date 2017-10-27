@@ -23,6 +23,7 @@
 
     <!-- Your drawer content -->
     <android.support.design.widget.NavigationView
+        android:background="@android:color/white"
         android:id="@+id/nav_view"
         android:layout_width="320dp"
         android:layout_height="match_parent"

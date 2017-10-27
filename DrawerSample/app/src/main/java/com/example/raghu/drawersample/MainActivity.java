@@ -76,12 +76,21 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     public List<Items>  getItems() {
         List<Items> mList = new ArrayList<>(5);
 
+        Items header = new Items();
+        header.setHeader(0);
+        mList.add(header);
+        Items space = new Items();
+        space.setSpace(1);
+        mList.add(space);
         for(int i=0;i<5;i++){
             Items items = new Items();
             items.setName("Item "+i);
             items.setDrawable(draawables[i]);
             mList.add(items);
         }
+        Items divitems = new Items();
+        divitems.setDivider(true);
+        mList.add(5,divitems);
         return mList;
     }
 }

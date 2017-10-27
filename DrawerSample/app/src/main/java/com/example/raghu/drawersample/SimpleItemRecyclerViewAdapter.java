@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class SimpleItemRecyclerViewAdapter
     private static int View_Header =0;
     private static int View_Item = 1;
     private static int View_Space = 2;
+    private static int View_Divider = 3;
 
 
     SimpleItemRecyclerViewAdapter(Context parent,
@@ -62,6 +64,11 @@ public class SimpleItemRecyclerViewAdapter
                     .inflate(R.layout.space, parent, false);
             holder = new ViewHolder_Space(view);
 
+        }else if(viewType == View_Divider) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.divider_item, parent, false);
+            holder = new ViewHolder_Space(view);
+
         }
         return holder;
     }
@@ -71,14 +78,19 @@ public class SimpleItemRecyclerViewAdapter
 
         if (holder instanceof ViewHolder_Item) {
             ViewHolder_Item viewHolderitem = (ViewHolder_Item) holder;
-            viewHolderitem.bind(mValues.get(position-2), onItemClickListener);
+               viewHolderitem.bind(mValues.get(position ), onItemClickListener, getSelectedPosition());
+
         }else if( holder instanceof ViewHolder_header){
             ViewHolder_header viewHolder = (ViewHolder_header) holder;
             viewHolder.bind();
         }else if( holder instanceof ViewHolder_Space){
             ViewHolder_Space viewHolder = (ViewHolder_Space) holder;
 
+        }else if( holder instanceof ViewHolder_Divider){
+            ViewHolder_Divider viewHolder = (ViewHolder_Divider) holder;
+
         }
+
 
 
     }
@@ -90,15 +102,22 @@ public class SimpleItemRecyclerViewAdapter
 
     @Override
     public int getItemViewType (int position) {
-        if(isPositionHeader (position)) {
+        if(mValues.get(position).getHeader()==position) {
             return View_Header;
-        } else if(isPositionSpace (position)) {
+        } else if(mValues.get(position).getSpace()==position) {
             return View_Space;
+        }  else if(mValues.get(position).isDivider()) {
+            return View_Divider;
         } else  {
             return View_Item;
         }
 
     }
+    private boolean isPositionDivider (int position) {
+
+        return position == 3;
+    }
+
     private boolean isPositionHeader (int position) {
         return position == 0;
     }
@@ -109,14 +128,18 @@ public class SimpleItemRecyclerViewAdapter
 
     @Override
     public int getItemCount() {
-        return mValues.size()+2;
+        return mValues.size();
     }
 
     public void setSelectedPosition(int selectedPosition) {
         this.selectedPosition = selectedPosition;
     }
 
-    class ViewHolder_Item extends RecyclerView.ViewHolder {
+    public int getSelectedPosition() {
+        return selectedPosition;
+    }
+
+    static class ViewHolder_Item extends RecyclerView.ViewHolder {
 
         final TextView mContentView;
         final LinearLayout ll;
@@ -130,21 +153,21 @@ public class SimpleItemRecyclerViewAdapter
         }
 
 
-        public void bind(final Items item, final OnItemClickListener listener) {
+        public void bind(final Items item, final OnItemClickListener listener,int pos) {
 
             imageView.setImageResource(item.getDrawable());
             mContentView.setText(item.getName());
 
-            if (getAdapterPosition() == selectedPosition) {
-                imageView.setColorFilter(mContext.getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN);
+            if (getAdapterPosition() == pos) {
+                imageView.setColorFilter(mContentView.getContext().getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN);
                 mContentView.setTextColor(
-                        mContext.getResources().getColor(R.color.colorAccent));
+                        mContentView.getContext().getResources().getColor(R.color.colorAccent));
 
                 ll.setBackgroundResource(R.drawable.item_background);
             }
             else {
-                imageView.setColorFilter(null);
-                mContentView.setTextColor(Color.GRAY);
+                imageView.setColorFilter(mContentView.getContext().getResources().getColor(R.color.black), PorterDuff.Mode.SRC_IN);
+                mContentView.setTextColor(Color.BLACK);
                 ll.setBackgroundResource(android.R.color.white);
 
             }
@@ -166,7 +189,7 @@ public class SimpleItemRecyclerViewAdapter
     }
 
 
-    class ViewHolder_header extends RecyclerView.ViewHolder {
+    static class ViewHolder_header extends RecyclerView.ViewHolder {
 
         final TextView mContentView;
 
@@ -183,7 +206,7 @@ public class SimpleItemRecyclerViewAdapter
         }
     }
 
-    class ViewHolder_Space extends RecyclerView.ViewHolder {
+    static class ViewHolder_Space extends RecyclerView.ViewHolder {
 
         final View space;
 
@@ -193,7 +216,17 @@ public class SimpleItemRecyclerViewAdapter
             space = (View) view.findViewById(R.id.space);
 
         }
+    }
 
+    static class ViewHolder_Divider extends RecyclerView.ViewHolder {
 
+        final View divider;
+
+        ViewHolder_Divider(View view) {
+            super(view);
+
+            divider = (View) view.findViewById(R.id.material_drawer_divider);
+
+        }
     }
 }
