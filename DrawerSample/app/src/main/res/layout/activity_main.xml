@@ -21,7 +21,7 @@
 
     </FrameLayout>
 
-    <!-- Your drawer content -->
+
     <android.support.design.widget.NavigationView
         android:background="@android:color/white"
         android:id="@+id/nav_view"
@@ -31,11 +31,28 @@
         android:fitsSystemWindows="true"
         >
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <!--    <include
+                android:background="?android:attr/selectableItemBackground"
+                android:id="@+id/bottom"
+                android:layout_alignParentBottom="true"
+                layout="@layout/bottom_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>-->
         <android.support.v7.widget.RecyclerView
+            android:scrollbars="vertical"
+            android:layout_alignParentTop="true"
             android:id="@+id/item_list"
             android:layout_width="320dp"
             android:layout_height="match_parent"
          />
+
+
+
+        </RelativeLayout>
+
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

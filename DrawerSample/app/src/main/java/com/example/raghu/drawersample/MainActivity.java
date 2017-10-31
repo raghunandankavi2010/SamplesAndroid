@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     }
 
     public List<Items>  getItems() {
-        List<Items> mList = new ArrayList<>(5);
+        List<Items> mList = new ArrayList<>(10);
 
         Items header = new Items();
         header.setHeader(0);
@@ -82,15 +82,23 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         Items space = new Items();
         space.setSpace(1);
         mList.add(space);
-        for(int i=0;i<5;i++){
+        for(int i=0;i<10;i++){
             Items items = new Items();
             items.setName("Item "+i);
-            items.setDrawable(draawables[i]);
+            items.setDrawable(draawables[0]);
             mList.add(items);
         }
-        Items divitems = new Items();
-        divitems.setDivider(true);
-        mList.add(5,divitems);
+        Items section5 = new Items();
+        section5.setSection(true,"Section");
+        mList.add(5,section5);
+
+       /* Items divitems5 = new Items();
+        divitems5.setDivider(true);
+        mList.add(5,divitems5);*/
+
+        Items divitems3 = new Items();
+        divitems3.setDivider(true);
+        mList.add(3,divitems3);
         return mList;
     }
 }

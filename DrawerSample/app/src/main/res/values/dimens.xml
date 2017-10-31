@@ -11,4 +11,5 @@
     <dimen name="material_drawer_item_secondary_description">12sp</dimen>
     <dimen name="material_drawer_vertical_padding">16dp</dimen>
     <dimen name="material_drawer_padding">8dp</dimen>
+    <dimen name="material_drawer_item_section_text">14sp</dimen>
 </resources>

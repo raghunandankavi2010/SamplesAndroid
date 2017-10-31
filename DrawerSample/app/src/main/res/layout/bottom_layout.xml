@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ll"
+    android:focusable="true"
+    android:clickable="true"
+
     android:foreground="?android:attr/selectableItemBackground"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+
+    >
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/shadow"
+        />
+<LinearLayout
+    android:id="@+id/ll"
+
     android:layout_width="match_parent"
     android:layout_height="@dimen/material_drawer_item_primary"
     android:orientation="horizontal"
@@ -10,6 +25,7 @@
     android:paddingLeft="@dimen/material_drawer_vertical_padding"
     android:paddingRight="@dimen/material_drawer_vertical_padding"
     android:paddingStart="@dimen/material_drawer_vertical_padding">
+
 
 
     <ImageView
@@ -47,6 +63,6 @@
 
 
     </LinearLayout>
-
+</LinearLayout>
 
 </LinearLayout>

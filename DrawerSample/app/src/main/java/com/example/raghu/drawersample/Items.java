@@ -8,11 +8,25 @@ package com.example.raghu.drawersample;
 
 public class Items {
 
-    private String name;
+    private String name,section_name;
     private int drawable;
-    private boolean divider;
+    private boolean divider,section;
     private int header;
     private int space;
+
+
+    public void setSection(boolean isSection,String text){
+        section = isSection;
+        section_name = text;
+    }
+
+    public String getSection_name() {
+        return section_name;
+    }
+
+    public boolean isSection() {
+        return section;
+    }
 
     public void setHeader(int header) {
         this.header = header;

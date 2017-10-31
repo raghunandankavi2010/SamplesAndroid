@@ -34,6 +34,7 @@ public class SimpleItemRecyclerViewAdapter
     private static int View_Item = 1;
     private static int View_Space = 2;
     private static int View_Divider = 3;
+    private static int View_Section = 4;
 
 
     SimpleItemRecyclerViewAdapter(Context parent,
@@ -69,6 +70,11 @@ public class SimpleItemRecyclerViewAdapter
                     .inflate(R.layout.divider_item, parent, false);
             holder = new ViewHolder_Space(view);
 
+        }else if(viewType == View_Section) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.section, parent, false);
+            holder = new ViewHolder_Section(view);
+
         }
         return holder;
     }
@@ -89,8 +95,11 @@ public class SimpleItemRecyclerViewAdapter
         }else if( holder instanceof ViewHolder_Divider){
             ViewHolder_Divider viewHolder = (ViewHolder_Divider) holder;
 
-        }
+        }else if( holder instanceof ViewHolder_Section){
+            ViewHolder_Section viewHolder = (ViewHolder_Section) holder;
+            viewHolder.bindSection(mValues.get(position ));
 
+        }
 
 
     }
@@ -108,22 +117,12 @@ public class SimpleItemRecyclerViewAdapter
             return View_Space;
         }  else if(mValues.get(position).isDivider()) {
             return View_Divider;
-        } else  {
+        }  else if(mValues.get(position).isSection()) {
+            return View_Section;
+        }else  {
             return View_Item;
         }
 
-    }
-    private boolean isPositionDivider (int position) {
-
-        return position == 3;
-    }
-
-    private boolean isPositionHeader (int position) {
-        return position == 0;
-    }
-
-    private boolean isPositionSpace (int position) {
-        return position == 1;
     }
 
     @Override
@@ -227,6 +226,25 @@ public class SimpleItemRecyclerViewAdapter
 
             divider = (View) view.findViewById(R.id.material_drawer_divider);
 
+        }
+    }
+
+    static class ViewHolder_Section extends RecyclerView.ViewHolder {
+
+        final View divider;
+        final TextView section_name;
+
+        ViewHolder_Section(View view) {
+            super(view);
+
+            divider = (View) view.findViewById(R.id.material_drawer_divider);
+            section_name = (TextView) view.findViewById(R.id.material_drawer_name);
+
+        }
+
+        public void bindSection(Items items) {
+            if(!TextUtils.isEmpty(items.getSection_name()))
+            section_name.setText(items.getSection_name());
         }
     }
 }
