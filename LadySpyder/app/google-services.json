@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "415649265578",
-    "firebase_url": "https://ladyspyder-41fd0.firebaseio.com",
-    "project_id": "ladyspyder-41fd0",
-    "storage_bucket": "ladyspyder-41fd0.appspot.com"
+    "project_number": "132922498189",
+    "firebase_url": "https://lady-spyder.firebaseio.com",
+    "project_id": "lady-spyder",
+    "storage_bucket": "lady-spyder.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:415649265578:android:a3b704b056db70bb",
+        "mobilesdk_app_id": "1:132922498189:android:f10c838d547fd6db",
         "android_client_info": {
-          "package_name": "com.peakaeriest.ladyspyder"
+          "package_name": "com.ladyspyd"
         }
       },
       "oauth_client": [
         {
-          "client_id": "415649265578-hiq9cjj17do9gvdlsvl5gbbaj7rhqe0u.apps.googleusercontent.com",
+          "client_id": "132922498189-athkdmtqnq05ns59pvjpnum6478sp3db.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.peakaeriest.ladyspyder",
-            "certificate_hash": "c8098621050787ca076ce6f05f3106d66d7aa70c"
+            "package_name": "com.ladyspyd",
+            "certificate_hash": "2e986c3f00c78917130e70387f1a03280a4d7c23"
           }
         },
         {
-          "client_id": "415649265578-gevht46dghqrt5mt0acgt3qagku2loth.apps.googleusercontent.com",
+          "client_id": "132922498189-5t0b7r029hsp7h0km19nsiki7cj46qfu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBtlhuDD6W_K3341bnVm2v75Y_GY8ZR4p0"
+          "current_key": "AIzaSyDgfr4WymNMpjX-br2Qqaz-wFZ-KCOK_EA"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "415649265578-gevht46dghqrt5mt0acgt3qagku2loth.apps.googleusercontent.com",
+              "client_id": "132922498189-5t0b7r029hsp7h0km19nsiki7cj46qfu.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

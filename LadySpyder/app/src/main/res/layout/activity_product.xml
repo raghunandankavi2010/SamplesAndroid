@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
-        app:spanCount="2"
+        tools:spanCount="6"
         tools:listitem="@layout/row_items"
         app:layoutManager="android.support.v7.widget.GridLayoutManager"
         android:id="@+id/recyclerView"

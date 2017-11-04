@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/menu_low"
-        android:title="Low-High(Price)" />
+    <item
+        android:id="@+id/menu_low"
+        android:title="Low-High(Price)"
+        app:showAsAction="never" />
 
-    <item android:id="@+id/menu_high"
-        android:title="High-Low(Price)" />
+    <item
+        android:id="@+id/menu_high"
+        android:title="High-Low(Price)"
 
-    <item android:id="@+id/menu_discount"
-        android:title="Discount" />
+        app:showAsAction="never" />
 
-    <item android:id="@+id/menu_popularity"
-        android:title="Popularity" />
-    <item android:id="@+id/menu_newest"
-        android:title="Newest" />
+    <item
+        android:id="@+id/menu_discount"
+        android:title="Discount"
 
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_popularity"
+        android:title="Popularity"
+
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_newest"
+        android:title="Newest"
+        app:showAsAction="never" />
 
 
 </menu>

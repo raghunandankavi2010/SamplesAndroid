@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <group android:id="@+id/group_tracking" android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/nav_tracking"
+            android:icon="@drawable/ic_delivery"
+            android:title="Tracking" />
+
+    </group>
     <group android:id="@+id/group_ship" android:checkableBehavior="single">
 
-    <!--    <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_home"
-            android:title="Home" />-->
-        <item
-            android:id="@+id/nav_shipment_delivery"
-            android:icon="@drawable/ic_delivery"
-            android:title="Shipping and Delivery" />
 
         <item
             android:id="@+id/nav_refund_policy"
@@ -33,6 +34,11 @@
             android:id="@+id/nav_faq"
             android:icon="@drawable/ic_faq"
             android:title="FAQ" />
+
+        <item
+            android:id="@+id/nav_shipping"
+            android:icon="@drawable/ic_delivery"
+            android:title="Shipping and Delivery" />
 
 
         <item
