@@ -41,17 +41,33 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         String title = getIntent().getStringExtra("title");
-        DetailFragment detailFragment = DetailFragment.getInstance(title);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-        // Replace whatever is in the fragment_container view with this fragment,
-        // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.container, detailFragment, "frag_detail");
+        if(savedInstanceState==null) {
+            DetailFragment detailFragment = DetailFragment.getInstance(title);
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-        //transaction.addToBackStack(null);
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack so the user can navigate back
+            transaction.replace(R.id.container, detailFragment, "frag_detail");
 
-        // Commit the transaction
-        transaction.commit();
+            //transaction.addToBackStack(null);
+
+            // Commit the transaction
+            transaction.commit();
+        }else {
+            DetailFragment detailFragment = (DetailFragment) getSupportFragmentManager().findFragmentByTag("frag_detail");
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack so the user can navigate back
+            transaction.replace(R.id.container, detailFragment, "frag_detail");
+
+            //transaction.addToBackStack(null);
+
+            // Commit the transaction
+            transaction.commit();
+
+        }
     }
 
     @Override

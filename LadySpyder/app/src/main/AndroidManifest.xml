@@ -49,11 +49,12 @@
             </intent-filter>
         </activity>
         <activity
-
+            android:launchMode="singleTop"
             android:name="com.ladyspyd.activities.LSMainActivity"
             android:theme="@style/DrawerActivityTheme"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
+            android:theme="@style/AppTheme.NoActionBar"
             android:name="com.ladyspyd.activities.LSRegisterActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -101,6 +102,7 @@
             android:theme="@style/Apptheme.ActionBar" />
 
         <activity
+
             android:name="com.ladyspyd.activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
 

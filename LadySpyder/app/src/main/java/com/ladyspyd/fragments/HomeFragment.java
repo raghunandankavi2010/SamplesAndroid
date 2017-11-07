@@ -39,6 +39,7 @@ import com.ladyspyd.models.LSBannerModel;
 import com.ladyspyd.models.LSPopularProductPojo;
 import com.ladyspyd.rest.APIInterface;
 import com.ladyspyd.rest.ApiClient;
+import com.rd.PageIndicatorView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,7 +64,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
     private int currentpage = 0;
     private LSCategoryListAdapter listAdapter;
     private ExpandableListView exListView;
-    private  List<String> listDataHeader;
+    private List<String> listDataHeader;
     private HashMap<String, List<GetMainCategoryResponse.SubCategory>> listDataChild;
     private ProgressBar pb;
     private Handler handler = new Handler();
@@ -93,11 +94,9 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
         }
     }
 
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         if (LSCheckNetwork.isInternetAvailable(getActivity())) {
             getMainCategories();
             getBanners();
@@ -106,17 +105,16 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
         }
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.kd_home_fragment, container, false);
 
+
         mProductPojo = new ArrayList<>();
         exListView = (ExpandableListView) view.findViewById(R.id.lvExp);
         exListView.setVisibility(View.GONE);
         pb = (ProgressBar) view.findViewById(R.id.pb);
-
 
 
         // List view Group click listener
@@ -190,9 +188,9 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
 
                     intent.putExtra("title", "handbags");
                 } else {*/
-                    mCallback.onCategoriesSelected(listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getSubCategoryName());
-                    LSApp.getInstance().getPrefs().setTitle(listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getSubCategoryName());
-                    intent.putExtra("title", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getSubCategoryName());
+                mCallback.onCategoriesSelected(listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getSubCategoryName());
+                LSApp.getInstance().getPrefs().setTitle(listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getSubCategoryName());
+                intent.putExtra("title", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).getSubCategoryName());
                 //}
 
                 // startActivity(intent);
@@ -201,6 +199,10 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
             }
         });
         return view;
+    }
+
+    private void setUpViewPager() {
+
     }
 
     @Override
@@ -230,21 +232,31 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
 
     }
 
+    private Runnable runnableCode;
+
     private void init(List<LSBannerModel.Banner> banners) {
         try {
-            vp_slider = (ViewPager) view.findViewById(R.id.vp_slider);
-            ll_dots = (LinearLayout) view.findViewById(R.id.ll_dots);
+
+            //ll_dots = (LinearLayout) view.findViewById(R.id.ll_dots);
+
             slider_image_list = new ArrayList<>();
             for (int i = 0; i < banners.size(); i++) {
                 slider_image_list.add(banners.get(i).getBannerImage());
             }
-         Runnable runnableCode = new Runnable() {
+            vp_slider = (ViewPager) view.findViewById(R.id.vp_slider);
+            sliderPagerAdapter = new SliderPagerAdapter(getActivity(), slider_image_list);
+            vp_slider.setAdapter(sliderPagerAdapter);
+            PageIndicatorView pageIndicatorView = (PageIndicatorView) view.findViewById(R.id.pageIndicatorView);
+            pageIndicatorView.setViewPager(vp_slider);
+            runnableCode = new Runnable() {
 
                 public void run() {
                     if (currentpage == slider_image_list.size() - 1) {
                         currentpage = 0;
+                    } else {
+                        currentpage++;
                     }
-                    vp_slider.setCurrentItem(++currentpage, true);
+                    vp_slider.setCurrentItem(currentpage, true);
                     handler.postDelayed(this, 4000); // determines the execution interval
                 }
 
@@ -252,8 +264,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
 
 
             handler.postDelayed(runnableCode, 4000);
-            sliderPagerAdapter = new SliderPagerAdapter(getActivity(), slider_image_list);
-            vp_slider.setAdapter(sliderPagerAdapter);
+
             vp_slider.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
                 public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -263,7 +274,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
                 @Override
                 public void onPageSelected(int position) {
                     currentpage = position;
-                    addBottomDots(position);
+                    //addBottomDots(position);
                 }
 
                 @Override
@@ -276,6 +287,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
         }
     }
 
+/*
     private void addBottomDots(int currentPage) {
         dots = new TextView[slider_image_list.size()];
 
@@ -291,6 +303,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
         if (dots.length > 0)
             dots[currentPage].setTextColor(Color.parseColor("#FFFFFF"));
     }
+*/
 
 
     public class SliderPagerAdapter extends PagerAdapter {
@@ -372,7 +385,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
                             }
                             listAdapter = new LSCategoryListAdapter(getActivity(), listDataHeader, listDataChild);
                             exListView.setAdapter(listAdapter);
-                         try {
+                            try {
 
                                 if (getResources().getBoolean(R.bool.isTablet)) {
                                     LSApp.getInstance().getPrefs().setTitle("women-clothing");
@@ -424,18 +437,21 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
     /**
      * Get banners
      */
+
+    Call<LSBannerModel> call;
+
     private void getBanners() {
 /*        Map<String, String> header = new HashMap<>();
         header.put("Content-Type", "application/json");*/
         APIInterface appInterface = ApiClient.getClient3().create(APIInterface.class);
-        Call<LSBannerModel> call = appInterface.getBanners();
+        call = appInterface.getBanners();
         call.enqueue(new Callback<LSBannerModel>() {
             @Override
             public void onResponse(Call<LSBannerModel> call, Response<LSBannerModel> response) {
                 //hideProgressDialog();
                 try {
                     init(response.body().getBanners());
-                    addBottomDots(currentpage);
+                    //addBottomDots(currentpage);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -448,5 +464,12 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
         });
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (call != null)
+            call.cancel();
+        if (handler != null && runnableCode != null)
+            handler.removeCallbacks(runnableCode);
+    }
 }

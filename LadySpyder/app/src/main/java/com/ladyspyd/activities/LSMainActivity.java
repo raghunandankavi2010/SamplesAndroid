@@ -2,6 +2,7 @@ package com.ladyspyd.activities;
 
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -32,9 +33,12 @@ public class LSMainActivity extends LSBaseActivity implements BaseSliderView.OnS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        if (getResources().getBoolean(R.bool.isTablet)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_home);
 
         Fabric.with(this, new Crashlytics());

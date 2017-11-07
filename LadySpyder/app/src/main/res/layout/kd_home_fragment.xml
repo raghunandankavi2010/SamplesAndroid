@@ -2,6 +2,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
 
@@ -30,14 +31,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
-                <LinearLayout
+                <com.rd.PageIndicatorView
+                    android:layout_marginBottom="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/pageIndicatorView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:piv_viewPager="@+id/vp_slider"/>
+
+               <!-- <LinearLayout
                     android:id="@+id/ll_dots"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
-                    android:orientation="horizontal" />
+                    android:orientation="horizontal" />-->
             </RelativeLayout>
 
         </LinearLayout>

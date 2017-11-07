@@ -185,24 +185,6 @@ public class DetailActivity extends AppCompatActivity {
                             "    appBanners[i].style.display = 'none';\n" +
                             "}\n");
 
-                  /*  view.loadUrl("javascript:var appBanners = document.getElementsByClassName('continue_shopping')[0].style.display = 'none', i;\n" +
-                            "\n" +
-                            "for (var i = 0; i < appBanners.length; i ++) {\n" +
-                            "    appBanners[i].style.display = 'none';\n" +
-                            "}\n");
-*/
-                   /*view.loadUrl("javascript:var appBanners = document.getElementsByClassName('pull-left link_continue_shopping'), i;\n" +
-                            "\n" +
-                            "for (var i = 0; i < appBanners.length; i ++) {\n" +
-                            "    appBanners[i].style.display = 'none';\n" +
-                            "}\n");*/
-                   /*    view.loadUrl("javascript:var appBanners1 = document.getElementsByClassName('link_continue_shopping'), i;\n" +
-                            "\n" +
-                            "for (var i = 0; i < appBanners1.length; i ++) {\n" +
-                            "    appBanners1[i].style.display = 'none';\n" +
-                            "}\n");
-                    */
-
 
                 }else{
                     view.loadUrl("javascript:var appBanners = document.getElementsByClassName('col-xs-60 col-sm-60')[0].style.display = 'none',i;\n" +
@@ -237,7 +219,7 @@ public class DetailActivity extends AppCompatActivity {
         webView.loadUrl(getIntent().getStringExtra("title_url"));
 
         webView.setWebViewClient(yourWebClient);
-        //setContentView(webView );
+
     }
 
     @Override

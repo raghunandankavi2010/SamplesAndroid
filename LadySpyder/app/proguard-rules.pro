@@ -112,6 +112,8 @@
 
 -keeppackagenames org.jsoup.nodes
 
+-keep class com.rd.PageIndicatorView.** { *; }
+
 
 
 
