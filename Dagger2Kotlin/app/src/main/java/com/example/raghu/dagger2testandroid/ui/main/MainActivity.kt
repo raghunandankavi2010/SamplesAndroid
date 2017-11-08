@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
     lateinit var mainPresenter: MainActivityPresenter
     lateinit  var binding: ActivityMainBinding
 
+    var user:User? =null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +36,8 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
 
 
         if (savedInstanceState != null) {
-            binding.button.isEnabled = false
-            binding.tv.text = savedInstanceState.getString("name")
+            this.user = user
+            binding.user = savedInstanceState.getParcelable("user")
         }
 
         binding.button.setOnClickListener { mainPresenter.doSomething() }
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
     }
 
     override fun showData(user: User) {
+        this.user =user
          binding.user = user
     }
 
@@ -57,6 +59,7 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
     public override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState.putString("name", binding.tv.text.toString())
+        outState.putParcelable("user",binding.user)
+
     }
 }

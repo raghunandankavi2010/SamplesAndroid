@@ -26,6 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:enabled='@{user != null ? false : true}'
             android:text="GET NAME"
             android:id="@+id/button"
             android:layout_width="wrap_content"
