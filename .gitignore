@@ -60,3 +60,7 @@ LadySpyder/\.idea/
 DrawerSample/\.idea/
 
 TabletApp/\.idea/
+
+Dagger2Kotlin/build/android-profile/
+
+Dagger2Kotlin/\.idea/

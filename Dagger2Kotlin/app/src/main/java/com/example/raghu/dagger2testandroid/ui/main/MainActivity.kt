@@ -36,18 +36,18 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
             textView!!.text = savedInstanceState.getString("name")
         }
 
-        button!!.setOnClickListener { mainPresenter!!.doSomething() }
+        button?.setOnClickListener { mainPresenter.doSomething() }
 
 
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mainPresenter!!.unSubscribe()
+        mainPresenter.unSubscribe()
     }
 
     override fun showData(user: User) {
-        button!!.isEnabled = false
+        button?.isEnabled = false
         textView!!.text = user.name
     }
 
