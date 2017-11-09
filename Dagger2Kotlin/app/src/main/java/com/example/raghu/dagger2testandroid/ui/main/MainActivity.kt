@@ -1,31 +1,31 @@
 package com.example.raghu.dagger2testandroid.ui.main
 
-import android.databinding.DataBindingUtil
+
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
-import android.widget.Button
-import android.widget.TextView
-
 import com.example.raghu.dagger2testandroid.R
-import com.example.raghu.dagger2testandroid.R.id.button
 import com.example.raghu.dagger2testandroid.databinding.ActivityMainBinding
 import com.example.raghu.dagger2testandroid.models.User
 import com.example.raghu.dagger2testandroid.presenter.MainActivityPresenter
 import com.example.raghu.dagger2testandroid.presenter.MainPresenterContract
-
-import javax.inject.Inject
-
+import com.example.raghu.dagger2testandroid.ui.SetContentView
 import dagger.android.AndroidInjection
+import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity(), MainPresenterContract.View {
 
     @Inject
     lateinit var mainPresenter: MainActivityPresenter
-    private val binding: ActivityMainBinding by lazy {
+
+    val binding: ActivityMainBinding by SetContentView<AppCompatActivity,ActivityMainBinding>(R.layout.activity_main)
+
+    /**
+     *  private val binding: ActivityMainBinding by lazy {
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-    }
+        }
+     */
 
     private var user:User? =null
 
@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
+
 
 
         if (savedInstanceState != null) {
