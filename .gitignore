@@ -68,3 +68,5 @@ Dagger2Kotlin/\.idea/
 Dagger2Kotlin/app/app\.iml
 
 Dagger2Kotlin/\.gradle/4\.1/
+
+Dagger2Kotlin/build/generated/mockable-android-26\.v3\.jar
