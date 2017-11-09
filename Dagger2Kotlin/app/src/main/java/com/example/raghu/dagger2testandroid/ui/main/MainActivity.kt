@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
     }
 
-    var user:User? =null
+    private var user:User? =null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
