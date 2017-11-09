@@ -23,7 +23,9 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
 
     @Inject
     lateinit var mainPresenter: MainActivityPresenter
-    lateinit  var binding: ActivityMainBinding
+    private val binding: ActivityMainBinding by lazy {
+        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+    }
 
     var user:User? =null
 
@@ -31,8 +33,6 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
 
         if (savedInstanceState != null) {
