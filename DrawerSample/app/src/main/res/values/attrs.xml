@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MaterialDrawer"></declare-styleable>
+
+    <declare-styleable name="ScrimInsetsView">
+        <attr name="siv_insetForeground" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="ScrimInsetsRelativeLayout">
+        <attr name="sirl_insetForeground" format="reference|color" />
+    </declare-styleable>
+
+    <style name="Widget.Materialize.ScrimInsetsRelativeLayout" parent="">
+        <item name="sirl_insetForeground">#4000</item>
+    </style>
+</resources>

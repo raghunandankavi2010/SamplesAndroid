@@ -20,39 +20,32 @@
         <include layout="@layout/toolbar" />
 
     </FrameLayout>
-
-
-    <android.support.design.widget.NavigationView
-        android:background="@android:color/white"
-        android:id="@+id/nav_view"
+    
+    <com.example.raghu.drawersample.ScrimInsetsRelativeLayout
         android:layout_width="320dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        >
-
-        <RelativeLayout
+        android:background="@android:color/white"
+        android:fitsSystemWindows="true">
+        <include
+            android:layout_alignParentBottom="true"
+            android:id="@+id/bottom"
+            layout="@layout/bottom_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <!--    <include
-                android:background="?android:attr/selectableItemBackground"
-                android:id="@+id/bottom"
-                android:layout_alignParentBottom="true"
-                layout="@layout/bottom_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>-->
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground" />
+
+
+
         <android.support.v7.widget.RecyclerView
-            android:scrollbars="vertical"
-            android:layout_alignParentTop="true"
+           android:layout_above="@+id/bottom"
             android:id="@+id/item_list"
             android:layout_width="320dp"
             android:layout_height="match_parent"
-         />
+            android:layout_alignParentTop="true"
+            android:scrollbars="vertical" />
 
+    </com.example.raghu.drawersample.ScrimInsetsRelativeLayout>
 
-
-        </RelativeLayout>
-
-    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
