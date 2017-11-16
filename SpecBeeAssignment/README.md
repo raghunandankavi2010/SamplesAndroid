@@ -2,20 +2,7 @@
 
 Problem
 
-1) UI Assignment:
-
-Create the screen as per the visual design. All necessary media assets are
-available in the attachment. Slider, tabs and other design elements should be
-functional as per the visual design.
-2) Google Map Integration Assignment:
-
-Allow users to search location using search view.
-Use 2 fragments to display results. In the first fragment load google map with
-searched location pointer and the second fragment with address and weather
-information.
-Use google apis to get results.
-Please refer to the visual design attached.
-3) Dynamic data in RecyclerView Assignment:
+Dynamic data in RecyclerView Assignment:
 
 Create an activity with recyclerview and 2 fab buttons.
 On click of photo fab button capture a picture from the mobile camera and load it
