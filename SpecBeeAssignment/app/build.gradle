@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
@@ -19,6 +21,9 @@ android {
     }
 
 
+    dataBinding {
+        enabled = true
+    }
 }
 
 
@@ -30,15 +35,18 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile("com.github.hotchemi:permissionsdispatcher:${latest_version}") {
+    implementation("com.github.hotchemi:permissionsdispatcher:${latest_version}") {
         // if you don't use android.app.Fragment you can exclude support for them
         exclude module: "support-v13"
     }
-    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:${latest_version}"
+    kapt "com.github.hotchemi:permissionsdispatcher-processor:${latest_version}"
     implementation 'com.android.support:recyclerview-v7:27.0.1'
     implementation 'com.android.support:design:27.0.1'
     implementation 'com.android.support:cardview-v7:27.0.1'
 
     implementation 'com.github.bumptech.glide:glide:4.2.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.2.0'
+    kapt 'com.github.bumptech.glide:compiler:4.2.0'
+
+    kapt 'com.android.databinding:compiler:3.0.0'
+
 }
