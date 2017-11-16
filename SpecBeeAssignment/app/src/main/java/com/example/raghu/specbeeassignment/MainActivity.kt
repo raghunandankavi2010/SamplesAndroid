@@ -60,12 +60,15 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             }
 
 
-            binding.recyclerView.setHasFixedSize(true)
-            val spacingInPixels = resources.getDimensionPixelSize(R.dimen.spacing)
-            binding.recyclerView.addItemDecoration(RecyclerViewMargin(spacingInPixels, 1))
-            binding.recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
-            mAdapter = ImageAdapter(this@MainActivity, this@MainActivity)
-            binding.recyclerView.adapter = mAdapter
+            binding.recyclerView?.apply {
+                setHasFixedSize(true)
+                val spacingInPixels = resources.getDimensionPixelSize(R.dimen.spacing)
+                addItemDecoration(RecyclerViewMargin(spacingInPixels, 1))
+                layoutManager = LinearLayoutManager(this@MainActivity)
+                mAdapter = ImageAdapter(this@MainActivity, this@MainActivity)
+                adapter = mAdapter
+            }
+            
 
 
         }
