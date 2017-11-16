@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                         }
                     });
         }
-        else if(requestCode==REQUEST_RESULT)
+        else if(requestCode==REQUEST_RESULT && resultCode == RESULT_OK)
         {
 
             Items items = new Items();
