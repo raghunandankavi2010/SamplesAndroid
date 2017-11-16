@@ -1,7 +1,6 @@
 package com.example.raghu.specbeeassignment;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,9 +13,6 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,8 +85,7 @@ public class ImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
             RequestManager requestManager = Glide.with(root.getContext());
-            //requestManager.clear(imgViewIcon);
-            //imgViewIcon.setImageDrawable(null);
+
             try {
                 if(item.getAbsolutePath()!=null) {
 
@@ -107,12 +102,6 @@ public class ImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-         /*   try {
-                InputStream ims = new FileInputStream(item);
-                image.setImageBitmap(BitmapFactory.decodeStream(ims));
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }*/
 
             root.setOnClickListener(new View.OnClickListener() {
                 @Override

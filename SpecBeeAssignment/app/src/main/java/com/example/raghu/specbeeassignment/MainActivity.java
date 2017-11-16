@@ -253,6 +253,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     @Override
     public void onItemClick(String path) {
 
+        Toast.makeText(this.getApplicationContext(),path.toString(),Toast.LENGTH_SHORT).show();
     }
 
 }
