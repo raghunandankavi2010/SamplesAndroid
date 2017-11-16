@@ -19,8 +19,8 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <EditText
-        android:gravity="top|left"
-        android:padding="5dp"
+        android:gravity="center_vertical"
+        android:padding="10dp"
         android:elevation="4dp"
         android:hint="Enter Text"
         app:layout_constraintEnd_toEndOf="parent"

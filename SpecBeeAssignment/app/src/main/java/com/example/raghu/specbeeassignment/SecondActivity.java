@@ -1,5 +1,6 @@
 package com.example.raghu.specbeeassignment;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,8 +19,6 @@ import java.util.List;
 
 public class SecondActivity extends AppCompatActivity {
 
-    private TextAdapter mAdapter;
-    private List<String> mList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,24 +38,18 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!TextUtils.isEmpty(editText.getText().toString())){
-                    TextItem item = new TextItem();
-                    item.setText(editText.getText().toString());
-                    mAdapter.add(item);
+                    Intent intent=new Intent();
+
+                    intent.putExtra("MESSAGE",editText.getText().toString());
+                    setResult(MainActivity.REQUEST_RESULT,intent);
+                    finish();
                 }else {
-                    Toast.makeText(SecondActivity.this.getApplicationContext(),"PleaseEnter text ",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SecondActivity.this.getApplicationContext(),"Please Enter text ",Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
-        recyclerView.addItemDecoration(new RecyclerViewMargin(spacingInPixels,1));
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        mAdapter = new TextAdapter(this);
-        recyclerView.setAdapter(mAdapter);
-    }
+        }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

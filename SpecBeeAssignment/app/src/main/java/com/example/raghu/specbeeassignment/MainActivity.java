@@ -37,6 +37,7 @@ import permissions.dispatcher.RuntimePermissions;
 public class MainActivity extends AppCompatActivity implements OnItemClickListener {
 
     private static final int REQUEST_TAKE_PHOTO = 504;
+    public static final int REQUEST_RESULT = 101;
     private RecyclerView recyclerView;
     private String mCurrentPhotoPath;
     private ImageAdapter mAdapter;
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
             public void onClick(View view) {
 
                 Intent intent = new Intent(MainActivity.this,SecondActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,REQUEST_RESULT);
             }
         });
 
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 
 
     }
+
 
     @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     public void captureImageViaCamera() {
@@ -175,7 +177,8 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         Toast.makeText(this, "Never ask again", Toast.LENGTH_SHORT).show();
     }
 
-    @OnShowRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
+
+    //@OnShowRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showRationaleForRead(final PermissionRequest request) {
         new AlertDialog.Builder(this)
                 .setMessage("Permission required for READ")
@@ -220,7 +223,10 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
             // Show the thumbnail on ImageView
             Uri imageUri = Uri.parse(mCurrentPhotoPath);
             File file = new File(imageUri.getPath());
-            mAdapter.add(file);
+
+            Items items = new Items();
+            items.setUrl(file.getAbsolutePath());
+            mAdapter.add(items);
 
 
             // ScanFile so it will be appeared on Gallery
@@ -230,6 +236,13 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                         public void onScanCompleted(String path, Uri uri) {
                         }
                     });
+        }
+        else if(requestCode==REQUEST_RESULT)
+        {
+
+            Items items = new Items();
+            items.setText(data.getStringExtra("MESSAGE"));
+            mAdapter.add(items);
         }
     }
 
@@ -254,6 +267,11 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     public void onItemClick(String path) {
 
         Toast.makeText(this.getApplicationContext(),path.toString(),Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onItemClickText(String text) {
+        Toast.makeText(this.getApplicationContext(),text,Toast.LENGTH_SHORT).show();
     }
 
 }

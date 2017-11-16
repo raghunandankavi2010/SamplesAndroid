@@ -3,16 +3,17 @@ package com.example.raghu.specbeeassignment;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,44 +23,68 @@ import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<File> mlist_images = new ArrayList<>();
+    private List<Items> mItems = new ArrayList<>();
     private Context mContext;
+
+    public static final int VIEW_IMAGE = 1;
+    public static final int VIEW_TEXT = 0;
 
     private OnItemClickListener onItemClickListener;
 
 
     public ImageAdapter(Context context, OnItemClickListener onItemClickListener) {
-        this.mlist_images = new ArrayList<>();
+        this.mItems = new ArrayList<>();
         this.mContext = context;
         this.onItemClickListener = onItemClickListener;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent,
+
                                                       int viewType) {
 
-        View itemLayoutView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row_items, parent, false);
-        // create ViewHolder
-        RecyclerView.ViewHolder viewHolder = new ViewHolder(itemLayoutView);
 
+        RecyclerView.ViewHolder viewHolder;
+        if (viewType == VIEW_IMAGE) {
+            View itemLayoutView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.row_items, parent, false);
+            // create ViewHolder
+            viewHolder = new ViewHolder(itemLayoutView);
+        } else {
+            View v = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.row_text, parent, false);
+
+            viewHolder = new ViewHolder_Text(v);
+        }
 
         return viewHolder;
+
+
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
 
+        if (viewHolder instanceof ViewHolder) {
 
-        final ViewHolder mHolder = (ViewHolder) viewHolder;
-        mHolder.bind(mlist_images.get(position), onItemClickListener);
+            final ViewHolder mHolder = (ViewHolder) viewHolder;
+            mHolder.bind(mItems.get(position), onItemClickListener);
+
+        } else {
+            final ViewHolder_Text mHolder = (ViewHolder_Text) viewHolder;
+            mHolder.bind(mItems.get(position), onItemClickListener);
+        }
+
+
 
 
     }
 
 
-    public void add(File images) {
-        mlist_images.add(images);
+    public void add(Items items) {
+
+            mItems.add(items);
+
         notifyItemInserted(getItemCount());
     }
 
@@ -78,7 +103,7 @@ public class ImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         }
 
-        public void bind(final File item, final OnItemClickListener listener) {
+        public void bind(final Items item, final OnItemClickListener listener) {
 
 
             RequestOptions cropOptions = new RequestOptions().placeholder(R.mipmap.ic_launcher);
@@ -87,11 +112,11 @@ public class ImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             RequestManager requestManager = Glide.with(root.getContext());
 
             try {
-                if(item.getAbsolutePath()!=null) {
+                if(item.getUrl()!=null) {
 
                     requestManager.asBitmap()
                             .apply(cropOptions)
-                            .load(item.getAbsolutePath())
+                            .load(item.getUrl())
                             .into(image);
 
                 }else {
@@ -106,19 +131,57 @@ public class ImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             root.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onItemClick(item.getAbsolutePath());
+                    listener.onItemClick(item.getUrl());
+                }
+            });
+
+        }
+    }
+
+    public static class ViewHolder_Text extends RecyclerView.ViewHolder {
+
+        private TextView text;
+
+        private CardView root;
+
+
+        public ViewHolder_Text(View itemLayoutView) {
+            super(itemLayoutView);
+            root = itemLayoutView.findViewById(R.id.root);
+
+            text = (TextView) itemLayoutView.findViewById(R.id.textView);
+
+        }
+
+        public void bind(final Items item, final OnItemClickListener listener) {
+
+            if (!TextUtils.isEmpty(item.getText())) {
+                text.setText(item.getText());
+            }
+
+
+            root.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClickText(item.getText());
                 }
             });
 
         }
 
-
     }
+
 
     @Override
     public int getItemCount() {
 
-        return mlist_images.size();
+        return mItems.size();
+    }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        return mItems.get(position).getUrl() != null ? VIEW_IMAGE : VIEW_TEXT;
     }
 }
 

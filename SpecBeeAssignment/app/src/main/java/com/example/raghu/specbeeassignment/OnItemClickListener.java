@@ -9,4 +9,5 @@ import java.io.File;
 
 public interface OnItemClickListener {
     void onItemClick(String  path);
-}
+    void onItemClickText(String  text);
+};
