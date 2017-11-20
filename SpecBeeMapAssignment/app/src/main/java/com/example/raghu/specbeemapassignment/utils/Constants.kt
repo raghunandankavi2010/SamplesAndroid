@@ -8,7 +8,10 @@ class Constants {
 
     companion object {
 
-        val BASE_URL = " https://maps.googleapis.com/"
+        val BASE_URL = "https://maps.googleapis.com/"
+
+        val BASE_URL_WEATHER ="http://api.openweathermap.org/"
+
     }
 
 }

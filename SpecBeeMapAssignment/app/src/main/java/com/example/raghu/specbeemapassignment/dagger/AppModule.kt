@@ -111,6 +111,20 @@ class AppModule {
 
 
     @Provides
+    @Singleton
+    @Named("Weather")
+    internal fun provideRetrofitForWeather(okHttpClient: OkHttpClient): Retrofit {
+        val retrofit = Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL_WEATHER)
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build()
+        return retrofit
+    }
+
+
+    @Provides
     @Named("cached")
     @Singleton
     internal fun provideOkHttpCache(application: Application): Cache {

@@ -16,8 +16,22 @@ import javax.inject.Inject
 
 class MainActivityPresenter @Inject
 constructor( var mainView: MainPresenterContract.View?,  val mainModel: MainModel) : MainPresenterContract.Presenter {
+
+    override fun getWeatherData(lat: Double,lng:Double, APPID: String) {
+
+        singlew = mainModel.weatherData(lat,lng,APPID)
+        disposable.add(singlew!!.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+
+                .subscribeBy(// named arguments for lambda Subscribers
+                        onSuccess = { example:com.example.raghu.specbeemapassignment.models.weather.Example ->mainView !!. showDataWeather (example) },
+                        onError = { e: Throwable -> e.printStackTrace()}))
+
+    }
+
     private val disposable = CompositeDisposable()
     private var  single : Single<Example>? =null
+    private var  singlew : Single<com.example.raghu.specbeemapassignment.models.weather.Example>? =null
 
 
     override fun doSomething(query: String, key: String) {
@@ -37,7 +51,7 @@ constructor( var mainView: MainPresenterContract.View?,  val mainModel: MainMode
 
     override fun unSubscribe() {
         mainView = null
-        //disposable.dispose()
+        disposable.dispose()
     }
 
     companion object {

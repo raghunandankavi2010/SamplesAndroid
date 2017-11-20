@@ -12,6 +12,7 @@ interface MainPresenterContract {
     interface View {
 
         fun showData(example: Example)
+        fun showDataWeather(example: com.example.raghu.specbeemapassignment.models.weather.Example)
 
 
     }
@@ -19,6 +20,7 @@ interface MainPresenterContract {
     interface Presenter {
 
         fun doSomething(query:String,key:String)
+        fun getWeatherData(lat:Double,lng:Double,APPID:String)
 
         fun unSubscribe()
     }
