@@ -90,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
     /** A {@link BroadcastReceiver} to receive action item events from Picture-in-Picture mode. */
     private BroadcastReceiver mReceiver;
 
-    private String mPlay;
-    private String mPause;
+    private boolean check;
+
 
 
 
@@ -168,9 +168,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    private PlaybackControlView controlView;
     private void initFullscreenButton() {
 
-        PlaybackControlView controlView = mExoPlayerView.findViewById(R.id.exo_controller);
+        controlView = mExoPlayerView.findViewById(R.id.exo_controller);
         mFullScreenIcon = controlView.findViewById(R.id.exo_fullscreen_icon);
         mFullScreenButton = controlView.findViewById(R.id.exo_fullscreen_button);
         mFullScreenButton.setOnClickListener(new View.OnClickListener() {
@@ -266,8 +267,9 @@ public class MainActivity extends AppCompatActivity {
 
             mVideoSource = new HlsMediaSource(daUri, dataSourceFactory, 1, null, null);
         }
-
-        initExoPlayer();
+        if(!check) {
+            initExoPlayer();
+        }
 
         if (mExoPlayerFullscreen) {
             ((ViewGroup) mExoPlayerView.getParent()).removeView(mExoPlayerView);
@@ -279,27 +281,46 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
+    protected void onPause() {
+        super.onPause();
+
+        if(isInPictureInPictureMode()){
+            check =true;
+        }
+    }
+
+    @Override
     protected void onStop() {
 
         super.onStop();
+        mExoPlayerView.getPlayer().setPlayWhenReady(false);
         //if(!isInPictureInPictureMode()) {
 
-            mResumeWindow = mExoPlayerView.getPlayer().getCurrentWindowIndex();
-            mResumePosition = Math.max(0, mExoPlayerView.getPlayer().getContentPosition());
 
-            if (mExoPlayerView != null && mExoPlayerView.getPlayer() != null) {
-                mExoPlayerView.getPlayer().release();
-            }
-
-            if (mFullScreenDialog != null)
-                mFullScreenDialog.dismiss();
        // }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mResumeWindow = mExoPlayerView.getPlayer().getCurrentWindowIndex();
+        mResumePosition = Math.max(0, mExoPlayerView.getPlayer().getContentPosition());
+
+
+
+        if (mExoPlayerView != null && mExoPlayerView.getPlayer() != null) {
+            mExoPlayerView.getPlayer().release();
+        }
+
+        if (mFullScreenDialog != null)
+            mFullScreenDialog.dismiss();
+
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
+         if (hasFocus) {
             //adjustFullScreen(getResources().getConfiguration());
         }
     }
@@ -309,6 +330,7 @@ public class MainActivity extends AppCompatActivity {
             boolean isInPictureInPictureMode, Configuration configuration) {
         super.onPictureInPictureModeChanged(isInPictureInPictureMode, configuration);
         if (isInPictureInPictureMode) {
+            controlView.setVisibility(View.GONE);
             // Starts receiving events from action items in PiP mode.
             mReceiver =
                     new BroadcastReceiver() {
@@ -337,7 +359,7 @@ public class MainActivity extends AppCompatActivity {
             // We are out of PiP mode. We can stop receiving events from it.
             unregisterReceiver(mReceiver);
             mReceiver = null;
-          
+            controlView.setVisibility(View.VISIBLE);
         }
     }
 
@@ -359,3 +381,4 @@ public class MainActivity extends AppCompatActivity {
         minimize();
     }
 }
+
