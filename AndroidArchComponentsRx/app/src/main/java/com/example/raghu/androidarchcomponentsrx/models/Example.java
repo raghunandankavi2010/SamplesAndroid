@@ -11,11 +11,12 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Example implements Parcelable {
+public class Example implements Parcelable{
+
 
     @SerializedName("user")
     @Expose
-    private User user;
+    public User user;
 
     public Example(Parcel in) {
         user = in.readParcelable(User.class.getClassLoader());
@@ -54,6 +55,7 @@ public class Example implements Parcelable {
     public void setUser(User user) {
         this.user = user;
     }
+
 
 
 }

@@ -3,6 +3,7 @@ package com.example.raghu.androidarchcomponentsrx.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -56,6 +57,7 @@ public class User implements Parcelable {
 
     public void setName(String name) {
         this.name = name;
+
     }
 
     public String getAge() {
@@ -65,4 +67,7 @@ public class User implements Parcelable {
     public void setAge(String age) {
         this.age = age;
     }
+
+
+
 }

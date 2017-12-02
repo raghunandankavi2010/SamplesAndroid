@@ -3,17 +3,16 @@ package com.example.raghu.androidarchcomponentsrx;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.databinding.DataBindingUtil;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.raghu.androidarchcomponentsrx.databinding.ActivityMainBinding;
 import com.example.raghu.androidarchcomponentsrx.models.Example;
 import com.example.raghu.androidarchcomponentsrx.vo.Resource;
-import com.example.raghu.androidarchcomponentsrx.vo.Status;
 
 import javax.inject.Inject;
 
@@ -28,12 +27,16 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar pb;
 
     private ApiViewModel apiViewModel;
+    private ActivityMainBinding binding;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AndroidInjection.inject(this);
-        setContentView(R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         tv = findViewById(R.id.name);
 
         pb = findViewById(R.id.progressBar);
@@ -44,7 +47,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable Resource<Example> exampleResource) {
 
-                if(exampleResource!=null) {
+                binding.setExample(exampleResource.data);
+
+                binding.setResource(exampleResource);
+
+
+           /*     if(exampleResource!=null) {
                     if (exampleResource.status == Status.LOADING) {
 
                         pb.setVisibility(View.VISIBLE);
@@ -59,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                         Example example = exampleResource.data;
                         tv.setText(example.getUser().getName());
                     }
-                }
+                }*/
 
             }
         });

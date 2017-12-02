@@ -1,7 +1,6 @@
 package com.example.raghu.androidarchcomponentsrx.repo;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MediatorLiveData;
 
 import com.example.raghu.androidarchcomponentsrx.Api;
 import com.example.raghu.androidarchcomponentsrx.models.Example;
@@ -22,7 +21,7 @@ import retrofit2.Retrofit;
 public class ApiRepository {
 
     private Retrofit retrofit;
-    private ApiLiveData apiLiveData = new ApiLiveData();
+    private ApiLiveData<Example> apiLiveData = new ApiLiveData<>();
 
     @Inject
     public ApiRepository(Retrofit retrofit) {
@@ -31,7 +30,7 @@ public class ApiRepository {
 
     }
 
-    public MediatorLiveData<Resource<Example>> getData(){
+    public LiveData<Resource<Example>> getData(){
 
       Single<Response<Example>> exampleSingle =  retrofit.create(Api.class).getData();
       exampleSingle.cache();

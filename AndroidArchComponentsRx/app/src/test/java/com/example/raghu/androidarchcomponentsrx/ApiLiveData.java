@@ -1,9 +1,7 @@
-package com.example.raghu.androidarchcomponentsrx.repo;
+package com.example.raghu.androidarchcomponentsrx;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MediatorLiveData;
 
-import com.example.raghu.androidarchcomponentsrx.models.Example;
 import com.example.raghu.androidarchcomponentsrx.vo.Resource;
 
 import io.reactivex.Single;
