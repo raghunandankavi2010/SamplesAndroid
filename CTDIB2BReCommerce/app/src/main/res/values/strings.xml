@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">CTDI  B2B ReCommerce</string>
+    <string name="app_logo">app logo</string>
+    <string name="e_mail">Email</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="description">password toggle</string>
+    <string name="new_user">New User?</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="b2b_commerce_made_easy">B2B Commerce Made Easy</string>
+    <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="name">Name</string>
+    <string name="business_name">Business name</string>
+    <string name="phone">Mobile number</string>
+    <string name="submit">Submit</string>
+    <string name="designation">Designation</string>
+    <string name="confirm_password">Confirm Password</string>
+</resources>
