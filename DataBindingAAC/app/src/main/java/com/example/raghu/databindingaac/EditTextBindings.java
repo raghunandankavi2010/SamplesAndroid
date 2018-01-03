@@ -2,43 +2,40 @@ package com.example.raghu.databindingaac;
 
 import android.databinding.BindingAdapter;
 import android.databinding.BindingConversion;
-import android.support.design.widget.TextInputLayout;
+import android.support.v4.util.Pair;
 import android.widget.EditText;
 
 public class EditTextBindings
 {
-    @BindingAdapter({"binding"})
-    public static void bindEditText(EditText view, final ObservableString observableString)
-    {
-        if (view.getTag(R.id.binded) == null)
-        {
-            view.setTag(R.id.binded, true);
-            view.addTextChangedListener(new TextWatcherAdapter()
-            {
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count)
-                {
-                    observableString.set(s.toString());
-                }
-
-            });
-        }
-        String newValue = observableString.get();
-        if (!view.getText().toString().equals(newValue))
-        {
-            view.setText(newValue);
-        }
-    }
-
-    @BindingAdapter("error")
-    public static void setErrorMessage(TextInputLayout view, String errorMessage) {
-        view.setError(errorMessage);
-    }
-
 
     @BindingConversion
-    public static String convertObservableStringToString(ObservableString observableString)
-    {
-        return observableString.get();
+    public static String convertBindableToString(
+            BindableString bindableString) {
+        return bindableString.get();
+    }
+
+    @BindingAdapter({"app:binding"})
+    public static void bindEditText(EditText view,
+                                    final BindableString bindableString) {
+        Pair<BindableString, TextWatcherAdapter> pair =
+                (Pair) view.getTag(R.id.binded);
+        if (pair == null || pair.first != bindableString) {
+            if (pair != null) {
+                view.removeTextChangedListener(pair.second);
+            }
+            TextWatcherAdapter watcher = new TextWatcherAdapter() {
+                public void onTextChanged(CharSequence s,
+                                          int start, int before, int count) {
+                    bindableString.set(s.toString());
+                }
+            };
+            view.setTag(R.id.binded,
+                    new Pair<>(bindableString, watcher));
+            view.addTextChangedListener(watcher);
+        }
+        String newValue = bindableString.get();
+        if (!view.getText().toString().equals(newValue)) {
+            view.setText(newValue);
+        }
     }
 }

@@ -35,6 +35,20 @@
             android:hint="Text 2"
             app:binding="@{viewModel.someText}" />
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:error="@{viewModel.error2}">
+
+            <EditText
+                android:id="@+id/edit_input2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Text 1"
+                app:binding="@{viewModel.someText2}" />
+        </android.support.design.widget.TextInputLayout>
+
+
         <Button
             android:text="Click"
             android:id="@+id/button"

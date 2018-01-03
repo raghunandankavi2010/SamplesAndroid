@@ -6,8 +6,10 @@ import android.util.Log;
 
 public class ViewModel extends android.arch.lifecycle.AndroidViewModel {
 
-    public ObservableString someText = new ObservableString();
-    public ObservableString error = new ObservableString();
+    public BindableString someText = new BindableString();
+    public BindableString error = new BindableString();
+    public BindableString someText2 = new BindableString();
+    public BindableString error2 = new BindableString();
 
     public ViewModel(Application application) {
         super(application);
@@ -30,6 +32,11 @@ public class ViewModel extends android.arch.lifecycle.AndroidViewModel {
             error.set("Edit Text is Empty");
         }else {
             error.set("");
+        }
+        if(TextUtils.isEmpty(someText2.get())){
+            error2.set("Edit Text 2is Empty");
+        }else {
+            error2.set("");
         }
     }
 }

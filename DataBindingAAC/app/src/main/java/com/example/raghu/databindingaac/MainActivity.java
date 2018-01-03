@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+
         final ViewModel model = ViewModelProviders.of(this).get(ViewModel.class);
 
         binding.setViewModel(model);
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                model.printData();
+                model.check();
 
             }
         });
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity
             }
         };
         binding.editInput.addTextChangedListener(watcher);
+        binding.editInput2.addTextChangedListener(watcher);
 
 
 
