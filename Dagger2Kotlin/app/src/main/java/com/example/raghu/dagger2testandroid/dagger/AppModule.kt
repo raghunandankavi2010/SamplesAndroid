@@ -3,7 +3,6 @@ package com.example.raghu.dagger2testandroid.dagger
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import android.provider.SyncStateContract
 import android.util.Log
 import com.example.raghu.dagger2testandroid.utils.Constants
 

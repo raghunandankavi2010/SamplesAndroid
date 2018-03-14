@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
 
     /**
      *  private val binding: ActivityMainBinding by lazy {
-        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        }
+    DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+    }
      */
 
     private var user:User? =null
@@ -50,9 +50,9 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
         mainPresenter.unSubscribe()
     }
 
-    override fun showData(user: User) {
+    override fun showData(user: User?) {
         this.user =user
-         binding.user = user
+        binding.user = user
     }
 
 

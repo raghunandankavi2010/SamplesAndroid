@@ -2,13 +2,19 @@ package com.example.raghu.dagger2testandroid.presenter
 
 
 import com.example.raghu.dagger2testandroid.data.MainModel
+import com.example.raghu.dagger2testandroid.data.Result
 import com.example.raghu.dagger2testandroid.models.Example
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 import javax.inject.Inject
+import kotlin.coroutines.experimental.CoroutineContext
 
 
 /**
@@ -16,9 +22,12 @@ import javax.inject.Inject
  */
 
 class MainActivityPresenter @Inject
-constructor( var mainView: MainPresenterContract.View?,  val mainModel: MainModel) : MainPresenterContract.Presenter {
+constructor( var mainView: MainPresenterContract.View?,  val mainModel: MainModel): MainPresenterContract.Presenter {
+
     private val disposable = CompositeDisposable()
     private var  single :Single<Example>? =null
+    private val uiContext: CoroutineContext = UI
+    private val bgContext: CoroutineContext = CommonPool
 
 
     override fun doSomething() {
@@ -34,6 +43,16 @@ constructor( var mainView: MainPresenterContract.View?,  val mainModel: MainMode
 
     }
 
+    override fun getData() {
+        launch(uiContext) {
+            val task = async(bgContext) { mainModel.getData_user("Raghunandan Kavi") }
+            val result = task.await() // non ui thread, suspend until finished
+            if(result is Result.Success){
+                var example = result.data
+                mainView?.showData(example.user)
+            }
+        }
+    }
 
 
     override fun unSubscribe() {

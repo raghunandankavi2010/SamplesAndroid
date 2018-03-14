@@ -1,13 +1,17 @@
 package com.example.raghu.dagger2testandroid.data
 
+import android.os.SystemClock
+import android.text.TextUtils
 import com.example.raghu.dagger2testandroid.api.Api
 import com.example.raghu.dagger2testandroid.models.Example
+import com.example.raghu.dagger2testandroid.models.User
 
 import javax.inject.Inject
 import javax.inject.Singleton
 
 import io.reactivex.Single
 import retrofit2.Retrofit
+import java.lang.Exception
 
 /**
  * Created by raghu on 4/8/17.
@@ -26,7 +30,23 @@ constructor( val retrofit: Retrofit) {
         /**
          * use cache to continue network operation during configuration change.
          */
-        val response = retrofit.create(Api::class.java).getData().cache()
+        val response = retrofit.create(Api::class.java).data.cache()
         return response
+    }
+
+    fun getData_user(uName: String):Result<Example> {
+        SystemClock.sleep(5000)
+        if(!TextUtils.isEmpty(uName))
+        {
+            var user = User()
+            user.name = uName
+            user.age = "30"
+            var example = Example()
+            example.user = user
+            return  Result.Success(example)
+
+        }else {
+            return  Result.Error(Exception("Name cannot be empty"))
+        }
     }
 }
