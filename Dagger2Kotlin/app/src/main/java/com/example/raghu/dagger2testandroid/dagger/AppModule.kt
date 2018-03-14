@@ -3,9 +3,7 @@ package com.example.raghu.dagger2testandroid.dagger
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import android.provider.SyncStateContract
 import android.util.Log
-import com.example.raghu.dagger2testandroid.utils.Constants
 
 import java.io.IOException
 import java.security.cert.CertificateException
@@ -101,7 +99,7 @@ class AppModule {
     @Singleton
     internal fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         val retrofit = Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl("https://api.myjson.com/")
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

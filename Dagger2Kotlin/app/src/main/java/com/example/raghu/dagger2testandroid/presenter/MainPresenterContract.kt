@@ -18,6 +18,8 @@ interface MainPresenterContract {
 
     interface Presenter {
 
+        fun getData_coroutines()
+
         fun doSomething()
 
         fun unSubscribe()
