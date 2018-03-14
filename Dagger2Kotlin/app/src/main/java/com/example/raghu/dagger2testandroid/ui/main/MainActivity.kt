@@ -36,22 +36,23 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
 
 
         if (savedInstanceState != null) {
-            this.user = user
             binding.user = savedInstanceState.getParcelable("user")
         }
 
-        binding.button.setOnClickListener { mainPresenter.doSomething() }
+        binding.button.setOnClickListener { 
+        //mainPresenter.doSomething()
+          mainPresenter.getData()
+        }
 
 
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mainPresenter.unSubscribe()
+        //mainPresenter.unSubscribe()
     }
 
     override fun showData(user: User?) {
-        this.user =user
         binding.user = user
     }
 
