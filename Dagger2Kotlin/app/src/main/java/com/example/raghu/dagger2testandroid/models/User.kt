@@ -10,16 +10,8 @@ import com.google.gson.annotations.SerializedName
  * Created by raghu on 5/8/17.
  */
 
-class User  : Parcelable {
-    @SerializedName("name")
-    @Expose
-    var name: String? = null
-
-    @SerializedName("age")
-    @Expose
-    var age: String? = null
-
-    constructor() {}
+data class User(@SerializedName("name") @Expose val name:String,
+                @SerializedName("age") @Expose var age: String)  : Parcelable {
 
     companion object {
         @JvmField val CREATOR: Parcelable.Creator<User> = object : Parcelable.Creator<User> {
@@ -29,9 +21,15 @@ class User  : Parcelable {
     }
 
     constructor(source: Parcel) : this(
+            source.readString(),
+            source.readString()
+
     )
 
     override fun describeContents() = 0
 
-    override fun writeToParcel(dest: Parcel, flags: Int) {}
+    override fun writeToParcel(dest: Parcel, flags: Int) {
+        dest.writeString(name)
+        dest.writeString(age)
+    }
 }

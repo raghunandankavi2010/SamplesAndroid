@@ -26,7 +26,7 @@ constructor( val retrofit: Retrofit) {
         /**
          * use cache to continue network operation during configuration change.
          */
-        val response = retrofit.create(Api::class.java).data.cache()
+        val response = retrofit.create(Api::class.java).getData().cache()
         return response
     }
 }

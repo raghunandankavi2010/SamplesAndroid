@@ -12,7 +12,7 @@ import retrofit2.http.Headers
 interface Api {
 
     @Headers("Content-Type: application/json")
-    @GET("bins/u77vl")
+    @GET("bins/sm3jj")
     fun getData() : Single<Example>
 
 }
