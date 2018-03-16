@@ -32,13 +32,11 @@ import com.bumptech.glide.Glide;
 
 import java.util.Random;
 
-public class CheeseDetailActivity extends AppCompatActivity  implements AppBarLayout.OnOffsetChangedListener {
+public class CheeseDetailActivity extends AppCompatActivity   {
 
     public static final String EXTRA_NAME = "cheese_name";
-    private  HeaderView toolbarHeaderView;
-    private HeaderView floatHeaderView;
     private AppBarLayout appBarLayout;
-    private boolean isHideToolbarView = false;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,34 +53,17 @@ public class CheeseDetailActivity extends AppCompatActivity  implements AppBarLa
 
         appBarLayout = findViewById(R.id.appbar);
 
-        CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle("");
+        android.support.design.widget.SubtitleCollapsingToolbarLayout collapsingToolbar =
+                (android.support.design.widget.SubtitleCollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle(cheeseName);
+        collapsingToolbar.setSubtitle("Sub-title");
+        collapsingToolbar.setExpandedTitleTextAppearance(R.style.expandedappbar);
+        collapsingToolbar.setCollapsedTitleTextAppearance(R.style.collapsedappbar);
 
         loadBackdrop();
-        toolbarHeaderView = findViewById(R.id.toolbar_header_view);
-                toolbarHeaderView.bindTo(cheeseName, "Sub-title");
-        floatHeaderView =findViewById(R.id.float_header_view);
-        floatHeaderView.bindTo(cheeseName, "Sub-title");
 
-        appBarLayout.addOnOffsetChangedListener(this);
     }
 
-    @Override
-    public void onOffsetChanged(AppBarLayout appBarLayout, int offset) {
-
-        int maxScroll = appBarLayout.getTotalScrollRange();
-        float percentage = (float) Math.abs(offset) / (float) maxScroll;
-
-        if (percentage == 1f && isHideToolbarView) {
-            toolbarHeaderView.setVisibility(View.VISIBLE);
-            isHideToolbarView = !isHideToolbarView;
-
-        } else if (percentage < 1f && !isHideToolbarView) {
-            toolbarHeaderView.setVisibility(View.GONE);
-            isHideToolbarView = !isHideToolbarView;
-        }
-    }
 
 
 

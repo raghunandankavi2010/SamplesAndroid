@@ -29,13 +29,14 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:fitsSystemWindows="true">
 
-        <android.support.design.widget.CollapsingToolbarLayout
+        <android.support.design.widget.SubtitleCollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp">
 
@@ -54,17 +55,17 @@
                 android:layout_height="?attr/actionBarSize"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:layout_collapseMode="pin">
-             <include
+         <!--    <include
                 android:id="@+id/toolbar_header_view"
-                layout="@layout/header_view"
+                layout="@layout/header_view_toolbar"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_marginRight="@dimen/header_view_end_margin_right"
                 android:visibility="gone"
-                />
+                />-->
             </android.support.v7.widget.Toolbar>
 
-        </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.SubtitleCollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -170,6 +171,7 @@
         android:src="@drawable/ic_discuss"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"/>
+<!--
 
     <include
         android:id="@+id/float_header_view"
@@ -178,5 +180,6 @@
         android:layout_height="wrap_content"
         app:layout_behavior="com.support.android.designlibdemo.ViewBehavior"
         />
+-->
 
 </android.support.design.widget.CoordinatorLayout>
