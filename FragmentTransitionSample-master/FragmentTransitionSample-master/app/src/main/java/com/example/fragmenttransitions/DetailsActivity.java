@@ -15,11 +15,11 @@ public class DetailsActivity extends AppCompatActivity {
 
         int kittenNumber = getIntent().getIntExtra("pos",0);
         DetailsFragment kittenDetails = DetailsFragment.newInstance(kittenNumber);
-       /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             kittenDetails.setSharedElementEnterTransition(new DetailsTransition());
             kittenDetails.setEnterTransition(new Fade());
             kittenDetails.setSharedElementReturnTransition(new DetailsTransition());
-        }*/
+        }
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.activity_details, kittenDetails)
