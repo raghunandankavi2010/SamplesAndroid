@@ -24,6 +24,8 @@ import kotlin.coroutines.experimental.CoroutineContext
 class MainActivityPresenter @Inject
 constructor( var mainView: MainPresenterContract.View?,  val mainModel: MainModel): MainPresenterContract.Presenter {
 
+
+
     private val disposable = CompositeDisposable()
     private var  single :Single<Example>? =null
     private val uiContext: CoroutineContext = UI
@@ -53,7 +55,16 @@ constructor( var mainView: MainPresenterContract.View?,  val mainModel: MainMode
             }
         }
     }
+    override fun getData_with_coroutines_retrofit() {
+        launch(uiContext) {
 
+            val result = mainModel.getData()
+            if(result is Result.Success){
+                var example = result.data
+                mainView?.showData(example.user)
+            }
+        }
+    }
 
     override fun unSubscribe() {
         mainView = null

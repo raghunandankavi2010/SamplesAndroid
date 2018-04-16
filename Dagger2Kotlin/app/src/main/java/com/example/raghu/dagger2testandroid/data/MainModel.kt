@@ -2,6 +2,7 @@ package com.example.raghu.dagger2testandroid.data
 
 import android.os.SystemClock
 import android.text.TextUtils
+import android.util.Log
 import com.example.raghu.dagger2testandroid.api.Api
 import com.example.raghu.dagger2testandroid.models.Example
 import com.example.raghu.dagger2testandroid.models.User
@@ -10,6 +11,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 import io.reactivex.Single
+import retrofit2.HttpException
 import retrofit2.Retrofit
 import java.lang.Exception
 
@@ -34,14 +36,31 @@ constructor( val retrofit: Retrofit) {
         return response
     }
 
+    suspend fun getData():Result<Example>{
+
+        try {
+            val response = retrofit.create(Api::class.java).data_corountine
+            val result = response.await()
+            return Result.Success(result)
+        } catch (e: HttpException) {
+            // Catch http errors
+          return Result.Error(e)
+        } catch (e: Throwable) {
+         return Result.Error(e)
+        }
+    }
+
+
+
+
     fun getData_user(uName: String):Result<Example> {
         SystemClock.sleep(5000)
         if(!TextUtils.isEmpty(uName))
         {
-            var user = User()
+            val user = User()
             user.name = uName
             user.age = "30"
-            var example = Example()
+            val example = Example()
             example.user = user
             return  Result.Success(example)
 

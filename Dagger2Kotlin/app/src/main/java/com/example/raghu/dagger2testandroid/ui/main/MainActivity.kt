@@ -1,8 +1,10 @@
 package com.example.raghu.dagger2testandroid.ui.main
 
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.example.raghu.dagger2testandroid.R
 import com.example.raghu.dagger2testandroid.databinding.ActivityMainBinding
 import com.example.raghu.dagger2testandroid.models.User
@@ -39,13 +41,22 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
             binding.user = savedInstanceState.getParcelable("user")
         }
 
-        binding.button.setOnClickListener { 
-        //mainPresenter.doSomething()
-          mainPresenter.getData()
+        binding.button.setOnClickListener(onClickListener)
+        binding.button.setOnClickListener {
+           // mainPresenter.doSomething()
+            //mainPresenter.getData()
+            mainPresenter.getData_with_coroutines_retrofit()
         }
 
 
     }
+
+    val onClickListener = object: View.OnClickListener{
+        override fun onClick(p0: View?) {
+
+        }
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()

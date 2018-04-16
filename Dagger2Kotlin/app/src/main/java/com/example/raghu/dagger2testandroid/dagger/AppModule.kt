@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import com.example.raghu.dagger2testandroid.utils.Constants
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 
 import java.io.IOException
 import java.security.cert.CertificateException
@@ -96,7 +97,7 @@ class AppModule {
         return client
     }
 
-    @Provides
+   /* @Provides
     @Singleton
     internal fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         val retrofit = Retrofit.Builder()
@@ -104,6 +105,18 @@ class AppModule {
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build()
+        return retrofit
+    }
+*/
+    @Provides
+    @Singleton
+    internal fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        val retrofit = Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .build()
         return retrofit
     }

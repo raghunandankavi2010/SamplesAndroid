@@ -25,6 +25,7 @@ interface MainPresenterContract {
         fun getData()
 
         fun doSomething()
+        fun getData_with_coroutines_retrofit()
 
         fun unSubscribe()
     }
