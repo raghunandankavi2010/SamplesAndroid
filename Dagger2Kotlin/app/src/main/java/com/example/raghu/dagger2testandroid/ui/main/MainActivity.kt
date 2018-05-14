@@ -1,7 +1,6 @@
 package com.example.raghu.dagger2testandroid.ui.main
 
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -20,7 +19,7 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
     @Inject
     lateinit var mainPresenter: MainActivityPresenter
 
-    private val binding: ActivityMainBinding by SetContentView<AppCompatActivity,ActivityMainBinding>(R.layout.activity_main)
+    private val binding: ActivityMainBinding by SetContentView(R.layout.activity_main)
 
     /**
      *  private val binding: ActivityMainBinding by lazy {
