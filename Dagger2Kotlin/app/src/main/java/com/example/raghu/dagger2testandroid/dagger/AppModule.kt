@@ -41,6 +41,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 class AppModule {
 
+
     @Provides
     internal fun provideContext(application: Application): Context {
         return application
@@ -140,9 +141,9 @@ class AppModule {
             try {
                 val copy = request.newBuilder().build()
                 val buffer = Buffer()
-                if (copy != null && copy.body() != null)
+
                 // make sure its not null to avoif NPE
-                    copy.body()!!.writeTo(buffer)
+                    copy?.body()?.writeTo(buffer)
                 return buffer.readUtf8()
             } catch (e: IOException) {
                 return "did not work"

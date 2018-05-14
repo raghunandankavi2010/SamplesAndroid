@@ -1,7 +1,6 @@
 
 package com.example.raghu.dagger2testandroid.ui
 
-
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.support.annotation.LayoutRes
@@ -17,6 +16,6 @@ class SetContentView<in R: AppCompatActivity,out T: ViewDataBinding>(@LayoutRes 
 
             value = value ?: DataBindingUtil.setContentView<T>(thisRef,layoutRes)
 
-        return value
+        return value!!
     }
 }

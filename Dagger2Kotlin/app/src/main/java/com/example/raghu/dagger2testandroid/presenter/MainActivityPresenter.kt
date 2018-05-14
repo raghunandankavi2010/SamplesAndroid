@@ -62,6 +62,8 @@ constructor( var mainView: MainPresenterContract.View?,  val mainModel: MainMode
             if(result is Result.Success){
                 var example = result.data
                 mainView?.showData(example.user)
+            }else if( result is Result.Error) {
+                result.exception.printStackTrace()
             }
         }
     }

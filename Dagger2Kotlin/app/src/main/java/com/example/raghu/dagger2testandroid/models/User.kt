@@ -19,7 +19,7 @@ class User  : Parcelable {
     @Expose
     var age: String? = null
 
-    constructor() {}
+    constructor()
 
     companion object {
         @JvmField val CREATOR: Parcelable.Creator<User> = object : Parcelable.Creator<User> {
