@@ -5,16 +5,11 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 
 class MainActivity : AppCompatActivity() {
-
 
 
     lateinit var toolbar: Toolbar
@@ -24,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         toolbar = findViewById<android.support.v7.widget.Toolbar>(R.id.my_toolbar)
         setSupportActionBar(toolbar)
-
 
         navController = findNavController(R.id.my_nav_host_fragment)
         setupActionBarWithNavController(navController)
