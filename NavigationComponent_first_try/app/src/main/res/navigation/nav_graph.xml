@@ -21,19 +21,12 @@
         <action
             android:id="@+id/action_dashBoard_to_notifications"
             app:destination="@id/navigation_notifications" />
-        <action
-            android:id="@+id/action_dashbaord_to_home"
-            app:popUpTo="@id/homeFragment"
-            />
+
     </fragment>
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.raghu.myapplication.Notifications"
         android:label="Notifications"
         tools:layout="@layout/fragment_notifications" >
-        <action
-            android:id="@+id/action_notification_to_dashbaord"
-            app:popUpTo="@id/navigation_dashboard"
-            />
     </fragment>
 </navigation>

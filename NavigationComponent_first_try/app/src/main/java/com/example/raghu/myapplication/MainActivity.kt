@@ -6,8 +6,12 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,17 +25,17 @@ class MainActivity : AppCompatActivity() {
         toolbar = findViewById<android.support.v7.widget.Toolbar>(R.id.my_toolbar)
         setSupportActionBar(toolbar)
 
-         navController = Navigation.findNavController(this,R.id.my_nav_host_fragment)
 
-        NavigationUI.setupActionBarWithNavController(this,navController)
+        navController = findNavController(R.id.my_nav_host_fragment)
+        setupActionBarWithNavController(navController)
 
-        setupWithNavController(findViewById<BottomNavigationView>(R.id.navigation),  navController)
-
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp()
+        findViewById<BottomNavigationView>(R.id.navigation)
+                .setupWithNavController(navController)
 
     }
+
+
+    override fun onSupportNavigateUp()
+            = findNavController(R.id.my_nav_host_fragment).navigateUp()
 
 }
