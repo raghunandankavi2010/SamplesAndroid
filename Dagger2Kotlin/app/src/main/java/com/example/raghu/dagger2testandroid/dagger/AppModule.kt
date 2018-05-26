@@ -4,7 +4,11 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import com.example.raghu.dagger2testandroid.api.PostProcessingEnabler
 import com.example.raghu.dagger2testandroid.utils.Constants
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 
 import java.io.IOException
@@ -98,21 +102,35 @@ class AppModule {
         return client
     }
 
-   /* @Provides
+    /**
+     * for Retrofit with RxJava2
+     */
+
+    @Provides
     @Singleton
     internal fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        /**
+         * Custom gson post processing
+         * Source : https://medium.com/@elye.project/thanks-for-informing-e34556fa18ee
+         */
+        val gson = GsonBuilder().registerTypeAdapterFactory(PostProcessingEnabler()).create()
         val retrofit = Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
         return retrofit
     }
-*/
-    @Provides
+
+    /**
+     * Uncomment for coroutines
+     */
+    /*@Provides
     @Singleton
     internal fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+
+
         val retrofit = Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .client(okHttpClient)
@@ -120,7 +138,7 @@ class AppModule {
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .build()
         return retrofit
-    }
+    }*/
 
 
     @Provides

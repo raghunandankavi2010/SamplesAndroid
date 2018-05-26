@@ -3,6 +3,7 @@ package com.example.raghu.dagger2testandroid.ui.main
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import com.example.raghu.dagger2testandroid.R
 import com.example.raghu.dagger2testandroid.databinding.ActivityMainBinding
@@ -42,9 +43,9 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
 
         binding.button.setOnClickListener(onClickListener)
         binding.button.setOnClickListener {
-           // mainPresenter.doSomething()
+            mainPresenter.doSomething()
             //mainPresenter.getData()
-            mainPresenter.getData_with_coroutines_retrofit()
+            //mainPresenter.getData_with_coroutines_retrofit()
         }
 
 
@@ -62,8 +63,9 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
         //mainPresenter.unSubscribe()
     }
 
-    override fun showData(user: User?) {
+    override fun showData(user: User?,isExample:Boolean) {
         binding.user = user
+        Log.i("Boolean value",""+isExample)
     }
 
 

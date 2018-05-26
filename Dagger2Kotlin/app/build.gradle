@@ -39,8 +39,8 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$rootProject.ext.supportlib"
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation 'com.google.dagger:dagger-android:2.15'
     kapt 'com.google.dagger:dagger-compiler:2.15'
@@ -51,7 +51,7 @@ dependencies {
     implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.10'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit"
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
     implementation "com.squareup.retrofit2:converter-scalars:$rootProject.ext.retrofit"
 
     implementation 'io.reactivex.rxjava2:rxjava:2.1.10'
@@ -62,11 +62,17 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.1"
 
-    testImplementation "org.mockito:mockito-core:2.12.0"
+    testImplementation "org.mockito:mockito-core:2.18.3"
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.18.3'
+
     implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0'
     /*  testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"*/
 
     //kapt 'com.android.databinding:compiler:3.1.0'
+    // https://mvnrepository.com/artifact/org.mockito/mockito-all
+    testImplementation group: 'org.mockito', name: 'mockito-all', version: '2.0.2-beta'
+
 
 }
 

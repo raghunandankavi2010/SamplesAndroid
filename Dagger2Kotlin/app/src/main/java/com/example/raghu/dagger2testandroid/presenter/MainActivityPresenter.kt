@@ -4,6 +4,7 @@ package com.example.raghu.dagger2testandroid.presenter
 import com.example.raghu.dagger2testandroid.data.MainModel
 import com.example.raghu.dagger2testandroid.data.Result
 import com.example.raghu.dagger2testandroid.models.Example
+import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -13,6 +14,7 @@ import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.launch
+import java.util.function.BiConsumer
 import javax.inject.Inject
 import kotlin.coroutines.experimental.CoroutineContext
 
@@ -22,7 +24,7 @@ import kotlin.coroutines.experimental.CoroutineContext
  */
 
 class MainActivityPresenter @Inject
-constructor( var mainView: MainPresenterContract.View?,  val mainModel: MainModel): MainPresenterContract.Presenter {
+constructor(var mainView: MainPresenterContract.View?, val mainModel: MainModel, val schedulerio: Scheduler, val mainThread:Scheduler ): MainPresenterContract.Presenter {
 
 
 
@@ -35,10 +37,10 @@ constructor( var mainView: MainPresenterContract.View?,  val mainModel: MainMode
     override fun doSomething() {
 
         single = mainModel.loadData()
-        disposable.add(single!!.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+        disposable.add(single!!.subscribeOn(schedulerio)
+                .observeOn(mainThread)
                 .subscribeBy(// named arguments for lambda Subscribers
-                        onSuccess = { example:Example ->mainView !!. showData (example.user) },
+                        onSuccess = { example:Example ->mainView !!. showData (example.user,example.isExample) },
                         onError = { e: Throwable -> e.printStackTrace()}))
 
 
@@ -51,7 +53,7 @@ constructor( var mainView: MainPresenterContract.View?,  val mainModel: MainMode
             val result = task.await() // non ui thread, suspend until finished
             if(result is Result.Success){
                 var example = result.data
-                mainView?.showData(example.user)
+                mainView?.showData(example.user,example.isExample)
             }
         }
     }
@@ -61,7 +63,7 @@ constructor( var mainView: MainPresenterContract.View?,  val mainModel: MainMode
             val result = mainModel.getData()
             if(result is Result.Success){
                 var example = result.data
-                mainView?.showData(example.user)
+                mainView?.showData(example.user,example.isExample)
             }else if( result is Result.Error) {
                 result.exception.printStackTrace()
             }
