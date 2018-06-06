@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.example.raghu.androidaacrxjava"
         minSdkVersion 15
@@ -17,35 +17,38 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    implementation "android.arch.lifecycle:extensions:1.0.0-alpha9-1"
-    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha9-1"
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
     // https://mvnrepository.com/artifact/com.google.dagger/dagger
-    implementation group: 'com.google.dagger', name: 'dagger', version: '2.11'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
-    implementation 'com.google.dagger:dagger-android-support:2.11' // if you use the support libraries
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
+    implementation group: 'com.google.dagger', name: 'dagger', version: '2.16'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
+    implementation 'com.google.dagger:dagger-android-support:2.16' // if you use the support libraries
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.16'
 
     // https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava
-    implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.1.4'
+    implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.1.14'
     // https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxandroid
-    implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: '2.0.1'
+    implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: '2.0.2'
 
     // https://mvnrepository.com/artifact/com.squareup.retrofit2/adapter-rxjava2
-    implementation group: 'com.squareup.retrofit2', name: 'adapter-rxjava2', version: '2.3.0'
+    implementation group: 'com.squareup.retrofit2', name: 'adapter-rxjava2', version: '2.4.0'
     // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
-    implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.3.0'
+    implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.4.0'
     // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
-    implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.3.0'
+    implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.4.0'
 
 }
