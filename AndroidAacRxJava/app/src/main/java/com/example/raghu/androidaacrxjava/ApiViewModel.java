@@ -19,8 +19,8 @@ public class ApiViewModel extends ViewModel {
 
 
     private ApiRepository apiRepository;
-    private MediatorLiveData<Pair<Example, Throwable>> data;
-    private MediatorLiveData<Boolean> check = new MediatorLiveData<Boolean>();
+    public MediatorLiveData<Pair<Example, Throwable>> data;
+    public MediatorLiveData<Boolean> check = new MediatorLiveData<Boolean>();
 
     @Inject
     ApiViewModel(ApiRepository apiRepository) {

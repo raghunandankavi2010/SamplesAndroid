@@ -3,6 +3,8 @@ package com.example.raghu.androidaacrxjava;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import com.example.raghu.androidaacrxjava.models.Example;
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
+import com.example.raghu.androidaacrxjava.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,12 +30,17 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar pb;
 
     private ApiViewModel apiViewModel;
+    View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AndroidInjection.inject(this);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        apiViewModel = ViewModelProviders.of(this, viewModelFactory).get(ApiViewModel.class);
+        binding.setViewmodel(apiViewModel);
+        binding.setLifecycleOwner(this);
+    /*    setContentView(R.layout.activity_main);
         tv = findViewById(R.id.name);
         pb= findViewById(R.id.progressBar);
 
@@ -66,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+*/
 
     }
 
