@@ -33,8 +33,7 @@ public class ApiRepository {
 
     public ApiLiveData<Pair<Example,Throwable>> getData(){
 
-      Single<Response<Example>> exampleSingle =  retrofit.create(Api.class).getData();
-      exampleSingle.cache();
+      Single<Response<Example>> exampleSingle =  retrofit.create(Api.class).getData().cache();
       apiLiveData.getData(exampleSingle);
 
       return apiLiveData;
