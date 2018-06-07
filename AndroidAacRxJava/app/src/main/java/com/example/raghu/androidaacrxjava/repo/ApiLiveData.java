@@ -19,7 +19,7 @@ import retrofit2.Response;
 
 public class ApiLiveData<T> extends MediatorLiveData<Pair<Example,Throwable>> {
 
-    Disposable disposable;
+   private Disposable disposable;
 
 
     public void getData(Single<Response<Example>> apicall){
