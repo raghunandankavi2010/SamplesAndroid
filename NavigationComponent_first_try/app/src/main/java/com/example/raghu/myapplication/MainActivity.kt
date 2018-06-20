@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<BottomNavigationView>(R.id.navigation)
                 .setupWithNavController(navController)
 
+
     }
 
 

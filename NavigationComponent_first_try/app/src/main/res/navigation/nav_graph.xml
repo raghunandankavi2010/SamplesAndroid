@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.raghu.myapplication.DashBoard"
-        android:label="DashBoard"
+
         tools:layout="@layout/fragment_dash_board" >
     <!-- <action
             android:id="@+id/action_dashBoard_to_notifications"
