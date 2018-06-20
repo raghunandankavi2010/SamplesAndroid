@@ -39,9 +39,13 @@ constructor(var mainView: MainPresenterContract.View?, val mainModel: MainModel,
         single = mainModel.loadData()
         disposable.add(single!!.subscribeOn(schedulerio)
                 .observeOn(mainThread)
-                .subscribeBy(// named arguments for lambda Subscribers
+                .subscribe(
+                        { example:Example -> mainView !!. showData (example.user,example.isExample) },
+                        { throwable:Throwable -> throwable.printStackTrace()}
+                ))
+                /*.subscribeBy(// named arguments for lambda Subscribers
                         onSuccess = { example:Example ->mainView !!. showData (example.user,example.isExample) },
-                        onError = { e: Throwable -> e.printStackTrace()}))
+                        onError = { e: Throwable -> e.printStackTrace()}))*/
 
 
 

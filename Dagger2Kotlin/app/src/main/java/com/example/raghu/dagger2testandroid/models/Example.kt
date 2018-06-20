@@ -33,11 +33,16 @@ data class Example(@SerializedName("user") @Expose var user: User? = null, var i
         writeBoolean(isExample)
     }
 
+
     companion object {
         @JvmField
-        val CREATOR= parcelableCreator(::Example)
+        val CREATOR = parcelableCreatorTry({
+            Example(it)
+        })
 
     }
+
+
 }
 
 

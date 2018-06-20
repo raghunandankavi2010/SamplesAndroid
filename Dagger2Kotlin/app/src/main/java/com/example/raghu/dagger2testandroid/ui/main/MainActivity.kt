@@ -41,21 +41,13 @@ class MainActivity : AppCompatActivity(), MainPresenterContract.View {
             binding.user = savedInstanceState.getParcelable("user")
         }
 
-        binding.button.setOnClickListener(onClickListener)
-        binding.button.setOnClickListener {
+        binding.button.setOnClickListener({
             mainPresenter.doSomething()
             //mainPresenter.getData()
             //mainPresenter.getData_with_coroutines_retrofit()
-        }
-
-
+            })
     }
 
-    val onClickListener = object: View.OnClickListener{
-        override fun onClick(p0: View?) {
-
-        }
-    }
 
 
     override fun onDestroy() {

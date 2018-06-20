@@ -1,19 +1,18 @@
 package com.example.raghu.dagger2testandroid.data
 
+
 import android.os.SystemClock
 import android.text.TextUtils
-import android.util.Log
 import com.example.raghu.dagger2testandroid.api.Api
 import com.example.raghu.dagger2testandroid.models.Example
 import com.example.raghu.dagger2testandroid.models.User
-
-import javax.inject.Inject
-import javax.inject.Singleton
-
 import io.reactivex.Single
 import retrofit2.HttpException
 import retrofit2.Retrofit
 import java.lang.Exception
+import javax.inject.Inject
+import javax.inject.Singleton
+
 
 /**
  * Created by raghu on 4/8/17.
@@ -68,6 +67,5 @@ constructor( val retrofit: Retrofit) {
             return  Result.Error(Exception("Name cannot be empty"))
         }
     }
-
 
 }
