@@ -37,13 +37,13 @@ public class SimpleItemRecyclerViewAdapter
     private static int View_Section = 4;
 
 
-    SimpleItemRecyclerViewAdapter(Context parent,
+   public SimpleItemRecyclerViewAdapter(Context parent,
                                   List<Items> items, OnItemClickListener onItemClickListener
     ) {
         mValues = items;
         mContext = parent;
         this.onItemClickListener = onItemClickListener;
-
+        setSelectedPosition(2);
     }
 
     @Override
@@ -152,7 +152,7 @@ public class SimpleItemRecyclerViewAdapter
         }
 
 
-        public void bind(final Items item, final OnItemClickListener listener,int pos) {
+        void bind(final Items item, final OnItemClickListener listener, int pos) {
 
             imageView.setImageResource(item.getDrawable());
             mContentView.setText(item.getName());
@@ -178,7 +178,7 @@ public class SimpleItemRecyclerViewAdapter
 
                     // check if item still exists
                     if (pos != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(pos);
+                        listener.onItemClick(pos,item);
                     }
 
                 }
