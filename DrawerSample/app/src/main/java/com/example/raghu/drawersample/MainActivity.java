@@ -9,7 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,15 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     private SimpleItemRecyclerViewAdapter mAdapter;
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
+    private String item_name;
+
+    public void setItem_name(String item_name) {
+        this.item_name = item_name;
+    }
+
+    public String getItem_name() {
+        return item_name;
+    }
 
     private int draawables[] = {R.drawable.ic_action_add,
             R.drawable.ic_action_bookmark,
@@ -43,11 +54,11 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         mAdapter = new SimpleItemRecyclerViewAdapter(this, getItems(),this);
         recyclerView.setAdapter(mAdapter);
-
     }
 
 
@@ -62,15 +73,20 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 }
             });
         }
-
-
     }
 
 
     @Override
-    public void onItemClick(int pos) {
-        mAdapter.setSelectedPosition(pos);
-        mAdapter.notifyDataSetChanged();
+    public void onItemClick(int pos,Items item) {
+
+        if(!TextUtils.isEmpty(getItem_name()) && item.getName().equals(getItem_name())){
+            Toast.makeText(MainActivity.this.getApplicationContext(),"Item is already selected",Toast.LENGTH_LONG).show();
+        }else{
+            setItem_name(item.getName());
+            mAdapter.setSelectedPosition(pos);
+            mAdapter.notifyDataSetChanged();
+        }
+        mDrawerLayout.closeDrawers();
     }
 
     public List<Items>  getItems() {
@@ -82,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         Items space = new Items();
         space.setSpace(1);
         mList.add(space);
-        for(int i=0;i<10;i++){
+        for(int i=0;i<15;i++){
             Items items = new Items();
             items.setName("Item "+i);
             items.setDrawable(draawables[0]);
