@@ -6,5 +6,5 @@ package com.example.raghu.drawersample;
 
 public interface OnItemClickListener {
 
-    public void onItemClick(int pos);
+     void onItemClick(int pos,Items items);
 }
