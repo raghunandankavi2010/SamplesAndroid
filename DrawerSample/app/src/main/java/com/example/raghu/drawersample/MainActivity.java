@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         return item_name;
     }
 
-    private int draawables[] = {R.drawable.ic_action_add,
+    private int drawables[] = {R.drawable.ic_action_add,
             R.drawable.ic_action_bookmark,
             R.drawable.ic_action_explore,
             R.drawable.ic_action_favorite,
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         for(int i=0;i<15;i++){
             Items items = new Items();
             items.setName("Item "+i);
-            items.setDrawable(draawables[0]);
+            items.setDrawable(drawables[0]);
             mList.add(items);
         }
         Items section5 = new Items();
