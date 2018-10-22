@@ -1,9 +1,7 @@
 package me.raghu.downloadfile
 
 import android.os.Bundle
-import android.provider.Contacts
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
@@ -26,7 +24,6 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
     private var value = 0
     private val list = ArrayList<String>()
-    // private var downloadFile: DownloadFile = DownloadFile
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,4 +73,6 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         super.onDestroy()
         job.cancel()
     }
+
+
 }

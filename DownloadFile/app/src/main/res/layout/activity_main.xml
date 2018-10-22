@@ -28,8 +28,8 @@
 
         <me.raghu.downloadfile.CircleProgressBar
                 android:id="@+id/progressBar"
-                android:layout_width="215dp"
-                android:layout_height="215dp"
+                android:layout_width="205dp"
+                android:layout_height="205dp"
                 android:layout_centerInParent="true"
                 app:progress="0"
                 app:progressBarThickness="4dp"/>
