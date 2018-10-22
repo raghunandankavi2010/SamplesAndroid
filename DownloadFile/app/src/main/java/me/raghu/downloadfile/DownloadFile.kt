@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.withContext
 import java.io.EOFException
 import java.io.InputStream
@@ -16,19 +17,11 @@ object DownloadFile {
     private val READ_SIZE = 1024 * 2
 
 
-    suspend fun downloadFile(url: URL, channel: Channel<Float>): ByteArray? = withContext(Dispatchers.IO) {
-
+    suspend fun downloadFile(url: URL, channel: SendChannel<Float>): ByteArray? = withContext(Dispatchers.IO) {
 
         var byteBuffer: ByteArray? = null
 
         try {
-            // Before continuing, checks to see that the Thread hasn't been
-            // interrupted
-            if (Thread.interrupted()) {
-
-                throw InterruptedException()
-            }
-
             // If there's no cache buffer for this image
             if (null == byteBuffer) {
 
@@ -153,7 +146,6 @@ object DownloadFile {
                     e.printStackTrace()
 
                 } finally {
-                    channel.send(100f)
                     channel.close()
                     if (null != byteStream) {
                         try {

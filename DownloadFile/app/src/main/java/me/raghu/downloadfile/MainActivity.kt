@@ -6,6 +6,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
+import java.lang.Exception
 import java.net.URL
 import java.util.*
 import kotlin.coroutines.CoroutineContext
@@ -42,29 +43,33 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         progressBar.visibility = View.GONE
         button.setOnClickListener {
             val channel = Channel<Float>()
-            uiScope.launch {
+           uiScope.launch {
                 if(value < list.size) {
-                    val url = URL(list[value])
-                    progressBar.visibility = View.VISIBLE
-                    val byteArray = downloadFile.downloadFile(url, channel)
-                    val bitmap = downloadFile.processImage(
-                        byteArray!!,
-                        resources.getDimensionPixelSize(R.dimen.crop),
-                        resources.getDimensionPixelSize(R.dimen.crop)
-                    )
-                    val d = RoundedDrawable(bitmap, resources.getDimensionPixelSize(R.dimen.crop).toFloat())
-                    avatar.setImageDrawable(d)
-                    value++
+                    try {
+                        val url = URL(list[value])
+                        progressBar.visibility = View.VISIBLE
+                        progressBar.progress = 0f
+                        val byteArray = downloadFile.downloadFile(url, channel)
+                        progressBar.visibility = View.GONE
+                        val bitmap = downloadFile.processImage(
+                            byteArray!!,
+                            resources.getDimensionPixelSize(R.dimen.crop),
+                            resources.getDimensionPixelSize(R.dimen.crop)
+                        )
+                        val d = RoundedDrawable(bitmap, resources.getDimensionPixelSize(R.dimen.crop).toFloat())
+                        avatar.setImageDrawable(d)
+                        value++
+                    } catch (e: Exception){
+                        channel.close()
+                        e.printStackTrace()
+                    }
                 }
 
-            }
-           uiScope.launch {
-               for (y in channel) {
-                   progressBar.progress = y
-                   if(y == 100f) {
-                       progressBar.visibility = View.GONE
-                   }
-               }
+           }
+         uiScope.launch {
+             for (y in channel) {
+                 progressBar.progress = y
+             }
            }
         }
     }
