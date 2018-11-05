@@ -43,8 +43,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         progressBar.visibility = View.GONE
         button.setOnClickListener {
             val channel = Channel<Float>()
-           uiScope.launch {
-                if(value < list.size) {
+            uiScope.launch {
+                if (value < list.size) {
                     try {
                         val url = URL(list[value])
                         progressBar.visibility = View.VISIBLE
@@ -59,18 +59,18 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
                         val d = RoundedDrawable(bitmap, resources.getDimensionPixelSize(R.dimen.crop).toFloat())
                         avatar.setImageDrawable(d)
                         value++
-                    } catch (e: Exception){
+                    } catch (e: Exception) {
                         channel.close()
                         e.printStackTrace()
                     }
                 }
+            }
 
-           }
-         uiScope.launch {
-             for (y in channel) {
-                 progressBar.progress = y
-             }
-           }
+          uiScope.launch {
+                 for (y in channel) {
+                    progressBar.progress = y
+                }
+            }
         }
     }
 
@@ -78,6 +78,5 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         super.onDestroy()
         job.cancel()
     }
-
 
 }

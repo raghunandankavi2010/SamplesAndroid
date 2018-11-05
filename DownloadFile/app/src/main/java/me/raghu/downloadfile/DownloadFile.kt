@@ -3,9 +3,10 @@ package me.raghu.downloadfile
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.withContext
 import java.io.EOFException
 import java.io.InputStream
@@ -166,7 +167,6 @@ object DownloadFile {
         byteBuffer
 
     }
-
 
     suspend fun processImage(byteArray: ByteArray, targetWidth: Int, targetHeight: Int): Bitmap? = withContext(Dispatchers.IO) {
 

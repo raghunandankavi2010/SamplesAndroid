@@ -145,7 +145,7 @@ public class CircleProgressBar extends View {
     public void setProgressWithAnimation(float progress) {
 
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(this, "progress", progress);
-        objectAnimator.setDuration(500);
+        objectAnimator.setDuration(5000);
         objectAnimator.setInterpolator(new DecelerateInterpolator());
         objectAnimator.start();
     }
