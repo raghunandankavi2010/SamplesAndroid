@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ConstraintLayout-Demo</string>
+    <string name="action_settings">Settings</string>
+    <string name="circular_label">Universe</string>
+</resources>
