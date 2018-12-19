@@ -47,7 +47,7 @@ public class RoundedDrawable extends Drawable {
         matrix.mapRect(src);
 
         maskPath.reset();
-        maskPath.addRoundRect(src, maskRadii,maskRadii, Path.Direction.CW);
+        maskPath.addRoundRect(src, maskRadii, maskRadii, Path.Direction.CW);
 
     }
 
@@ -56,7 +56,16 @@ public class RoundedDrawable extends Drawable {
         canvas.drawPath(maskPath, maskPaint);
     }
 
-    @Override public void setAlpha(int alpha) {}
-    @Override public void setColorFilter(ColorFilter cf) {}
-    @Override public int getOpacity() {return PixelFormat.TRANSLUCENT;}
+    @Override
+    public void setAlpha(int alpha) {
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter cf) {
+    }
+
+    @Override
+    public int getOpacity() {
+        return PixelFormat.TRANSLUCENT;
+    }
 }
