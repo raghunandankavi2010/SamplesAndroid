@@ -9,6 +9,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import raghu.me.myapplication.model.Users;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,6 +20,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ListScreen extends AppCompatActivity implements ListAdapter.OnClickListener {
 
@@ -33,8 +37,18 @@ public class ListScreen extends AppCompatActivity implements ListAdapter.OnClick
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(mAdapter);
+        Interceptor logging = new HttpLoggingInterceptor();
+        ((HttpLoggingInterceptor) logging).setLevel(HttpLoggingInterceptor.Level.BASIC);
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .build();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
