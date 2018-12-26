@@ -1,4 +1,4 @@
-package raghu.me.myapplication;
+package raghu.me.myapplication.network;
 
 import raghu.me.myapplication.model.Users;
 import retrofit2.Call;

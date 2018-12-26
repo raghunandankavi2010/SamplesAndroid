@@ -2,20 +2,20 @@ package raghu.me.myapplication
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.ProgressBar
 import org.koin.android.ext.android.inject
 import raghu.me.myapplication.model.Users
-import raghu.me.myapplication.network.RetrofitDependency
+import raghu.me.myapplication.network.Api
+import raghu.me.myapplication.network.RetrofitInterface
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.security.AccessController.getContext
 
 
 class ListScreen : AppCompatActivity(), ListAdapter.OnClickListener {
@@ -23,7 +23,7 @@ class ListScreen : AppCompatActivity(), ListAdapter.OnClickListener {
     private var progressbar: ProgressBar? = null
     private var recyclerView: RecyclerView? = null
     private var mAdapter: ListAdapter? = null
-    private val retrofit: RetrofitDependency by inject()
+    private val retrofitDependency: RetrofitInterface by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +35,15 @@ class ListScreen : AppCompatActivity(), ListAdapter.OnClickListener {
             it.layoutManager = LinearLayoutManager(this)
             it.setHasFixedSize(true)
             it.adapter = mAdapter
-            val dividerItemDecoration = DividerItemDecoration(this,DividerItemDecoration.VERTICAL)
+            val dividerItemDecoration = DividerItemDecoration(
+                this,
+                DividerItemDecoration.VERTICAL
+            )
             ContextCompat.getDrawable(this,R.drawable.divider)?.let { it1 -> dividerItemDecoration.setDrawable(it1) }
             it.addItemDecoration(dividerItemDecoration)
         }
 
-        val service = retrofit.provideRetrofit().create(Api::class.java)
+        val service = retrofitDependency.provideRetrofit().create(Api::class.java)
         service.users.enqueue(object : Callback<List<Users>> {
             override fun onResponse(call: Call<List<Users>>, response: Response<List<Users>>) {
                 if (response.isSuccessful) {

@@ -18,12 +18,11 @@ class RetrofitDependency : RetrofitInterface {
             .readTimeout(30, TimeUnit.SECONDS)
             .build()
 
-        val retrofit = Retrofit.Builder()
+        return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        return retrofit
 
     }
 }
