@@ -52,17 +52,10 @@ class ListAdapter(context: Context) : RecyclerView.Adapter<ListAdapter.MyViewHol
 
     class MyViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
-        var name: TextView
-        var emailId: TextView
-        val rootView: View
+        var name: TextView = v.findViewById(R.id.name)
+        var emailId: TextView = v.findViewById(R.id.email)
+        val rootView: View = v.findViewById(R.id.rootLayout)
 
-        init {
-            name = v.findViewById(R.id.name)
-            emailId = v.findViewById(R.id.email)
-            rootView = v.findViewById(R.id.rootLayout)
-
-
-        }
     }
 
 
