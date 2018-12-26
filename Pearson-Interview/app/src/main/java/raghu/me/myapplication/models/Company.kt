@@ -2,18 +2,17 @@ package raghu.me.myapplication.models
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
 
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Company(
-    @SerializedName("name")
-    @Expose
+    @Json(name= "name")
     var name: String? = null,
-    @SerializedName("catchPhrase")
-    @Expose
+    @Json(name= "catchPhrase")
     var catchPhrase: String? = null,
-    @SerializedName("bs")
-    @Expose
+    @Json(name= "bs")
     var bs: String? = null
 ) : Parcelable {
     constructor(source: Parcel) : this(

@@ -2,15 +2,14 @@ package raghu.me.myapplication.models
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Geo(
-    @SerializedName("lat")
-    @Expose
+    @Json(name= "lat")
     var lat: String? = null,
-    @SerializedName("lng")
-    @Expose
+    @Json(name= "lng")
     var lng: String? = null
 ) : Parcelable {
     constructor(source: Parcel) : this(
