@@ -1,0 +1,69 @@
+package raghu.me.myapplication
+
+import android.content.Intent
+import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.view.View
+import android.widget.ProgressBar
+import org.koin.android.ext.android.inject
+import raghu.me.myapplication.model.Users
+import raghu.me.myapplication.network.RetrofitDependency
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.security.AccessController.getContext
+
+
+class ListScreen : AppCompatActivity(), ListAdapter.OnClickListener {
+
+    private var progressbar: ProgressBar? = null
+    private var recyclerView: RecyclerView? = null
+    private var mAdapter: ListAdapter? = null
+    private val retrofit: RetrofitDependency by inject()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_list)
+        progressbar = findViewById(R.id.progressBar)
+        recyclerView = findViewById(R.id.recyclerView)
+        mAdapter = ListAdapter(this)
+        recyclerView?.let {
+            it.layoutManager = LinearLayoutManager(this)
+            it.setHasFixedSize(true)
+            it.adapter = mAdapter
+            val dividerItemDecoration = DividerItemDecoration(this,DividerItemDecoration.VERTICAL)
+            ContextCompat.getDrawable(this,R.drawable.divider)?.let { it1 -> dividerItemDecoration.setDrawable(it1) }
+            it.addItemDecoration(dividerItemDecoration)
+        }
+
+        val service = retrofit.provideRetrofit().create(Api::class.java)
+        service.users.enqueue(object : Callback<List<Users>> {
+            override fun onResponse(call: Call<List<Users>>, response: Response<List<Users>>) {
+                if (response.isSuccessful) {
+                    progressbar!!.visibility = View.GONE
+                    recyclerView!!.visibility = View.VISIBLE
+                    val list = response.body()
+                    list?.let { mAdapter!!.setData(it) }
+                }
+            }
+
+            override fun onFailure(call: Call<List<Users>>, t: Throwable) {
+                progressbar!!.visibility = View.GONE
+                t.printStackTrace()
+            }
+        })
+    }
+
+    override fun onClick(user: Users) {
+        val intent = Intent(this, DetailScreen::class.java)
+        intent.putExtra("user", user)
+        startActivity(intent)
+
+    }
+}
+
+
