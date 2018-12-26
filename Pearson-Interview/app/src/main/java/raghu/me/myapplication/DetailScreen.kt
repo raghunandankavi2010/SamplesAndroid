@@ -3,7 +3,7 @@ package raghu.me.myapplication
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
-import raghu.me.myapplication.model.Users
+import raghu.me.myapplication.models.Users
 
 class DetailScreen : AppCompatActivity() {
 
@@ -14,6 +14,6 @@ class DetailScreen : AppCompatActivity() {
         val bundle = intent.extras
         val user = bundle!!.getParcelable<Users>("user")
         if (user != null)
-            tv.text = user.address.street
+            tv.text = user.address!!.street
     }
 }

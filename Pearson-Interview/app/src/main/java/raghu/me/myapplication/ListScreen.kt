@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.ProgressBar
 import org.koin.android.ext.android.inject
-import raghu.me.myapplication.model.Users
+import raghu.me.myapplication.models.Users
 import raghu.me.myapplication.network.Api
 import raghu.me.myapplication.network.RetrofitInterface
 import retrofit2.Call

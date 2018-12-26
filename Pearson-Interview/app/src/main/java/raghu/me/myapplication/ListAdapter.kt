@@ -6,8 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import raghu.me.myapplication.ListAdapter.MyViewHolder
-import raghu.me.myapplication.model.Users
+import raghu.me.myapplication.models.Users
 
 import java.util.ArrayList
 
