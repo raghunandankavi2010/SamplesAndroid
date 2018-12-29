@@ -1,4 +1,4 @@
-package raghu.me.myapplication
+package raghu.me.myapplication.ui
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import raghu.me.myapplication.R
 import raghu.me.myapplication.models.Users
 
 import java.util.ArrayList

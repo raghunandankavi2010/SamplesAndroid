@@ -1,4 +1,4 @@
-package raghu.me.myapplication.network
+package raghu.me.myapplication.di
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

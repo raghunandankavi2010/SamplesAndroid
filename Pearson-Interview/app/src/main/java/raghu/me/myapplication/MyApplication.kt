@@ -2,7 +2,7 @@ package raghu.me.myapplication
 
 import android.app.Application
 import org.koin.android.ext.android.startKoin
-import raghu.me.myapplication.network.applicationModule
+import raghu.me.myapplication.di.applicationModule
 
 class MyApplication : Application() {
 

@@ -1,8 +1,9 @@
-package raghu.me.myapplication
+package raghu.me.myapplication.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
+import raghu.me.myapplication.R
 import raghu.me.myapplication.models.Users
 
 class DetailScreen : AppCompatActivity() {

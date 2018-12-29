@@ -1,4 +1,4 @@
-package raghu.me.myapplication.network
+package raghu.me.myapplication.di
 
 import retrofit2.Retrofit
 
