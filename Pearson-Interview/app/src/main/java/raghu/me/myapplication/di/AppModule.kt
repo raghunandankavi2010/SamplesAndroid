@@ -13,10 +13,11 @@ import raghu.me.myapplication.ui.ListScreenViewModel
 val applicationModule = module {
 
 
+    single("retrofit") {RetrofitDependency()} bind RetrofitInterface::class
 
-    single<raghu.me.myapplication.di.ListRepository> { ListRepositoryImpl() }
+    single("ListRepository") { ListRepositoryImpl(get("retrofit")) } bind ListRepository::class
 
     // ListScreenViewModel
-    viewModel { ListScreenViewModel(get()) }
+    viewModel { ListScreenViewModel(get("ListRepository")) }
 
 }

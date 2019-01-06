@@ -10,11 +10,11 @@ import retrofit2.Callback
 import retrofit2.Response
 import raghu.me.myapplication.di.RetrofitDependency
 
-class ListRepositoryImpl: ListRepository {
+class ListRepositoryImpl(private val retrofitDependency: RetrofitDependency): ListRepository {
 
     var data = MutableLiveData<List<Users>>()
 
-    override fun  getUsers(retrofitDependency: RetrofitDependency): MutableLiveData<List<Users>>{
+    override fun  getUsers(): MutableLiveData<List<Users>>{
         val service = retrofitDependency.provideRetrofit().create(Api::class.java)
         service.users.enqueue(object : Callback<List<Users>> {
             override fun onResponse(call: Call<List<Users>>, response: Response<List<Users>>) {
