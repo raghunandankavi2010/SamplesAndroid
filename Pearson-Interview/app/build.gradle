@@ -75,4 +75,7 @@ dependencies {
 
     // optional - Test helpers for LiveData
     testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
+
+    //databinding
+    kapt 'com.android.databinding:compiler:3.2.0-alpha10'
 }

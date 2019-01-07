@@ -8,12 +8,16 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
+import android.widget.ActionMenuView
 import android.widget.ProgressBar
 import androidx.core.content.ContextCompat.startActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import raghu.me.myapplication.R
+import raghu.me.myapplication.databinding.ActivityListBinding
 import raghu.me.myapplication.models.Users
 import raghu.me.myapplication.network.Api
 import raghu.me.myapplication.di.RetrofitInterface
@@ -32,11 +36,10 @@ class ListScreen : AppCompatActivity(), ListAdapter.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_list)
-        progressbar = findViewById(R.id.progressBar)
-        recyclerView = findViewById(R.id.recyclerView)
+        val binding: ActivityListBinding = DataBindingUtil.setContentView(this,R.layout.activity_list)
+        binding.setLifecycleOwner(this)
         mAdapter = ListAdapter(this)
-        recyclerView?.let {
+        binding.recyclerView?.let {
             it.layoutManager = LinearLayoutManager(this)
             it.setHasFixedSize(true)
             it.adapter = mAdapter
@@ -47,31 +50,14 @@ class ListScreen : AppCompatActivity(), ListAdapter.OnClickListener {
             ContextCompat.getDrawable(this, R.drawable.divider)?.let { it1 -> dividerItemDecoration.setDrawable(it1) }
             it.addItemDecoration(dividerItemDecoration)
         }
-        progressbar!!.visibility = View.VISIBLE
+        binding.progressBar.visibility = View.VISIBLE
         listScreenViewModel.getUsers().observe(this,
             Observer<List<Users>> { t ->
-                progressbar!!.visibility = View.INVISIBLE
-                recyclerView!!.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.INVISIBLE
+                binding.recyclerView.visibility = View.VISIBLE
                 mAdapter!!.setData(t)
             })
 
-
-        /*val service = retrofitDependency.provideRetrofit().create(Api::class.java)
-        service.users.enqueue(object : Callback<List<Users>> {
-            override fun onResponse(call: Call<List<Users>>, response: Response<List<Users>>) {
-                if (response.isSuccessful) {
-                    progressbar!!.visibility = View.GONE
-                    recyclerView!!.visibility = View.VISIBLE
-                    val list = response.body()
-                    list?.let { mAdapter!!.setData(it) }
-                }
-            }
-
-            override fun onFailure(call: Call<List<Users>>, t: Throwable) {
-                progressbar!!.visibility = View.GONE
-                t.printStackTrace()
-            }
-        })*/
     }
 
     override fun onClick(user: Users) {
