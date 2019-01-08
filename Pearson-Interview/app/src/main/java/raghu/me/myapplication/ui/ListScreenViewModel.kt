@@ -9,7 +9,6 @@ import raghu.me.myapplication.models.Users
 
 class ListScreenViewModel(private val repo: ListRepository) : ViewModel() {
 
-
     fun getUsers() : LiveData<List<Users>> {
         return  repo.getUsers()
     }

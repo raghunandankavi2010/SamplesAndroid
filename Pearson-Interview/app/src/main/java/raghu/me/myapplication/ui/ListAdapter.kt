@@ -3,10 +3,10 @@ package raghu.me.myapplication.ui
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import raghu.me.myapplication.R
+import raghu.me.myapplication.databinding.RowListBinding
 import raghu.me.myapplication.models.Users
 
 import java.util.ArrayList
@@ -25,17 +25,17 @@ class ListAdapter(context: Context) : RecyclerView.Adapter<ListAdapter.MyViewHol
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, i: Int): MyViewHolder {
-        val v = LayoutInflater.from(parent.context)
-            .inflate(R.layout.row_list, parent, false) as View
 
-        return MyViewHolder(v)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = DataBindingUtil.inflate<RowListBinding>(layoutInflater, R.layout.row_list, parent, false)
+        return MyViewHolder(binding)
+
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.name.text = mList[position].name
-        holder.emailId.text = mList[position].email
-        holder.rootView.tag = position
-        holder.rootView.setOnClickListener { v ->
+        holder.binding.user = mList[position]
+        holder.binding.rootLayout.tag = position
+        holder.binding.rootLayout.setOnClickListener { v ->
             val pos = v.tag as Int
             onClickListener.onClick(mList[pos])
         }
@@ -51,13 +51,5 @@ class ListAdapter(context: Context) : RecyclerView.Adapter<ListAdapter.MyViewHol
         notifyDataSetChanged()
     }
 
-    class MyViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        // each data item is just a string in this case
-        var name: TextView = v.findViewById(R.id.name)
-        var emailId: TextView = v.findViewById(R.id.email)
-        val rootView: View = v.findViewById(R.id.rootLayout)
-
-    }
-
-
+    class MyViewHolder(val binding: RowListBinding) : RecyclerView.ViewHolder(binding.root)
 }
