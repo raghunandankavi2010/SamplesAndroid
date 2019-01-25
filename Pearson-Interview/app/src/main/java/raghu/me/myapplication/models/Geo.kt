@@ -25,8 +25,7 @@ data class Geo(
     }
 
     companion object {
-        @JvmField
-        val CREATOR = parcelableCreator(::Geo)
+        @JvmField val CREATOR = parcelableCreator(::Geo)
     }
 }
 
