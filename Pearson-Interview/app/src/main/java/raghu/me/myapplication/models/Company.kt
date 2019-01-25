@@ -14,14 +14,13 @@ data class Company(
     var catchPhrase: String? = null,
     @Json(name= "bs")
     var bs: String? = null
-) : Parcelable {
-    constructor(source: Parcel) : this(
-        source.readString(),
-        source.readString(),
-        source.readString()
-    )
+) : KParcelable {
 
-    override fun describeContents() = 0
+    private constructor(p: Parcel) : this(
+        name = p.readString(),
+        catchPhrase = p.readString(),
+        bs = p.readString())
+
 
     override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
         writeString(name)
@@ -30,12 +29,9 @@ data class Company(
     }
 
     companion object {
-        @JvmField
-        val CREATOR: Parcelable.Creator<Company> = object : Parcelable.Creator<Company> {
-            override fun createFromParcel(source: Parcel): Company = Company(source)
-            override fun newArray(size: Int): Array<Company?> = arrayOfNulls(size)
-        }
+        @JvmField val CREATOR = parcelableCreator(::Company)
     }
+
 }
 
 

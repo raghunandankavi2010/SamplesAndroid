@@ -6,41 +6,33 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Address(
-    @Json(name= "street")
-    var street: String? = null,
-    @Json(name= "suite")
-    var suite: String? = null,
-    @Json(name= "city")
-    var city: String? = null,
-    @Json(name= "zipcode")
-    var zipcode: String? = null,
-    @Json(name= "geo")
-    var geo: Geo? = null
-) : Parcelable {
-    constructor(source: Parcel) : this(
-        source.readString(),
-        source.readString(),
-        source.readString(),
-        source.readString(),
-        source.readParcelable<Geo>(Geo::class.java.classLoader)
-    )
+data class Address(@Json(name= "street")
+              var street: String? = null,
+              @Json(name= "suite")
+              var suite: String? = null,
+              @Json(name= "city")
+              var city: String? = null,
+              @Json(name= "zipcode")
+              var zipcode: String? = null,
+              @Json(name= "geo")
+              var geo: Geo? = null) : KParcelable {
 
-    override fun describeContents() = 0
+    private constructor(p: Parcel) : this(
+        street = p.readString(),
+        suite = p.readString(),
+        city = p.readString(),
+        zipcode = p.readString(),
+        geo = p.readTypedObjectCompat(Geo.CREATOR))
 
     override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
         writeString(street)
         writeString(suite)
         writeString(city)
         writeString(zipcode)
-        writeParcelable(geo, 0)
+        writeTypedObjectCompat(geo, flags)
     }
 
     companion object {
-        @JvmField
-        val CREATOR: Parcelable.Creator<Address> = object : Parcelable.Creator<Address> {
-            override fun createFromParcel(source: Parcel): Address = Address(source)
-            override fun newArray(size: Int): Array<Address?> = arrayOfNulls(size)
-        }
+        @JvmField val CREATOR = parcelableCreator(::Address)
     }
 }
