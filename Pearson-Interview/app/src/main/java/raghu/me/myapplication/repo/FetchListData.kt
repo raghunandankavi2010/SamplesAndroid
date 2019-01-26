@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import raghu.me.myapplication.di.RetrofitDependency
 import raghu.me.myapplication.models.Users
 import raghu.me.myapplication.network.*
-import raghu.me.myapplication.vo.Resource
 
 class FetchListData constructor(
      private val retrofitDependency: RetrofitDependency): Runnable {
