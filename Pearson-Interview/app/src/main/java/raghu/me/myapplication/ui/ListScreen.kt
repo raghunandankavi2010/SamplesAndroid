@@ -2,24 +2,21 @@ package raghu.me.myapplication.ui
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.core.content.ContextCompat
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.View
-import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import org.koin.android.viewmodel.ext.android.viewModel
 import raghu.me.myapplication.R
 import raghu.me.myapplication.databinding.ActivityListBinding
 import raghu.me.myapplication.models.Users
+import raghu.me.myapplication.repo.Result
 
 class ListScreen : AppCompatActivity(), ListAdapter.OnClickListener {
 
-    private var progressbar: ProgressBar? = null
-    private var recyclerView: RecyclerView? = null
     private var mAdapter: ListAdapter? = null
     private val listScreenViewModel: ListScreenViewModel by viewModel()
 
@@ -44,10 +41,14 @@ class ListScreen : AppCompatActivity(), ListAdapter.OnClickListener {
 
         binding.progressBar.visibility = View.VISIBLE
         listScreenViewModel.getUsers().observe(this,
-            Observer<List<Users>> { t ->
+            Observer<raghu.me.myapplication.repo.Result<List<Users>>> { t ->
+
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.recyclerView.visibility = View.VISIBLE
-                mAdapter!!.setData(t)
+                if(t is Result.Success){
+                    mAdapter!!.setData(t.data)
+                }
+
             })
     }
 
