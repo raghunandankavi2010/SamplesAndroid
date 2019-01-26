@@ -41,15 +41,15 @@ class ListScreen : AppCompatActivity(), ListAdapter.OnClickListener {
 
         binding.progressBar.visibility = View.VISIBLE
         listScreenViewModel.getUsers().observe(this,
-            Observer<raghu.me.myapplication.repo.Result<List<Users>>> { t ->
+                Observer<raghu.me.myapplication.repo.Result<List<Users>>> { t ->
 
-                binding.progressBar.visibility = View.INVISIBLE
-                binding.recyclerView.visibility = View.VISIBLE
-                if(t is Result.Success){
-                    mAdapter!!.setData(t.data)
-                }
+                    binding.progressBar.visibility = View.INVISIBLE
+                    binding.recyclerView.visibility = View.VISIBLE
+                    if(t!=null && t is Result.Success){
+                        mAdapter!!.setData(t.data)
+                    }
 
-            })
+                })
     }
 
     override fun onClick(user: Users) {
