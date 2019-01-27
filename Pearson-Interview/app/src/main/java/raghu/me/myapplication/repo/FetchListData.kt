@@ -20,7 +20,5 @@ class FetchListData constructor(
             val errorBody = response.errorBody() as Throwable
             data.postValue(Result.Error(errorBody))
         }
-
     }
-
 }

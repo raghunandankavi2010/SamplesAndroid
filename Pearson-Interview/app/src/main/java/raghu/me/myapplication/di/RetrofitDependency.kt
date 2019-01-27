@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 class RetrofitDependency : RetrofitInterface {
     override fun provideRetrofit(): Retrofit {
         val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BASIC
+        logging.level = HttpLoggingInterceptor.Level.BODY
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(logging)
             .connectTimeout(10, TimeUnit.SECONDS)
