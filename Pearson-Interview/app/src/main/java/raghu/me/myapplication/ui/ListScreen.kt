@@ -2,7 +2,6 @@ package raghu.me.myapplication.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingComponent
@@ -20,7 +19,7 @@ import raghu.me.myapplication.databinding.ActivityListBinding
 import raghu.me.myapplication.models.Users
 import raghu.me.myapplication.repo.Result
 
-class ListScreen : AppCompatActivity(), ListAdapter.OnClickListener {
+class ListScreen : AppCompatActivity() {
 
     private var mAdapter: ListAdapter? = null
     private val listScreenViewModel: ListScreenViewModel by viewModel()
@@ -35,7 +34,11 @@ class ListScreen : AppCompatActivity(), ListAdapter.OnClickListener {
 
         var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
         //val adapter = ContributorAdapter(dataBindingComponent, appExecutors)
-        mAdapter = ListAdapter(dataBindingComponent,appExecutors,this)
+        mAdapter = ListAdapter(dataBindingComponent,appExecutors,this){
+            user -> val intent = Intent(this, DetailScreen::class.java)
+            intent.putExtra("user", user)
+            startActivity(intent)
+        }
 
         binding.recyclerView.let {
             it.layoutManager = LinearLayoutManager(this)
@@ -67,12 +70,6 @@ class ListScreen : AppCompatActivity(), ListAdapter.OnClickListener {
                 })
     }
 
-    override fun onClick(user: Users) {
-        val intent = Intent(this, DetailScreen::class.java)
-        intent.putExtra("user", user)
-        startActivity(intent)
-
-    }
 }
 
 
