@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.example.github.binding
+package raghu.me.myapplication.binding
 
 import androidx.databinding.BindingAdapter
 import android.view.View
