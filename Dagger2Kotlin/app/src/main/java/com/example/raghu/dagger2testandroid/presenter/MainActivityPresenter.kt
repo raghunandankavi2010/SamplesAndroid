@@ -7,10 +7,7 @@ import com.example.raghu.dagger2testandroid.models.User
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 
@@ -25,7 +22,9 @@ constructor(var mainView: MainPresenterContract.View?, val mainModel: MainModel,
 
     private val disposable = CompositeDisposable()
     private var  single :Single<User>? =null
-    //private val bgContext: CoroutineContext = CommonPool
+    private val uiScope = CoroutineScope(Dispatchers.Main)
+    private var job: Job? = null
+
 
 
     override fun doSomething() {
@@ -46,8 +45,8 @@ constructor(var mainView: MainPresenterContract.View?, val mainModel: MainModel,
     }
 
     override fun getData() {
-        GlobalScope.launch(Dispatchers.Main) {
-            val task = async { mainModel.getData_user("Raghunandan Kavi") }
+        job = uiScope.launch{
+            val task = async(Dispatchers.IO) { mainModel.getData_user("Raghunandan Kavi") }
             val result = task.await() // non ui thread, suspend until finished
             if(result is Result.Success){
                 var user = result.data
@@ -56,7 +55,7 @@ constructor(var mainView: MainPresenterContract.View?, val mainModel: MainModel,
         }
     }
     override fun getData_with_coroutines_retrofit() {
-        GlobalScope.launch(Dispatchers.Main) {
+        job = uiScope.launch {
 
             val result = mainModel.getData()
             if(result is Result.Success){
@@ -70,6 +69,7 @@ constructor(var mainView: MainPresenterContract.View?, val mainModel: MainModel,
 
     override fun unSubscribe() {
         mainView = null
+        job?.cancel()
         //disposable.dispose()
     }
 
