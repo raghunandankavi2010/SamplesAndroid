@@ -1,42 +1,33 @@
 package com.example.raghu.dagger2testandroid.dagger
 
+/*import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder*/
+
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
-import com.example.raghu.dagger2testandroid.api.PostProcessingEnabler
 import com.example.raghu.dagger2testandroid.utils.Constants
-import com.google.gson.FieldNamingPolicy
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
-
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import dagger.Module
+import dagger.Provides
+import okhttp3.*
+import okio.Buffer
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+//import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.IOException
-import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
-
 import javax.inject.Named
 import javax.inject.Singleton
 import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.SSLContext
-import javax.net.ssl.SSLSession
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
-
-import dagger.Module
-import dagger.Provides
-
-import okhttp3.Cache
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
-import okhttp3.ResponseBody
-import okio.Buffer
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * Created by raghu on 4/8/17.
@@ -113,11 +104,12 @@ class AppModule {
          * Custom gson post processing
          * Source : https://medium.com/@elye.project/thanks-for-informing-e34556fa18ee
          */
-        val gson = GsonBuilder().registerTypeAdapterFactory(PostProcessingEnabler()).create()
+        //val gson = GsonBuilder().registerTypeAdapterFactory(PostProcessingEnabler()).create()
+        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
         val retrofit = Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
         return retrofit

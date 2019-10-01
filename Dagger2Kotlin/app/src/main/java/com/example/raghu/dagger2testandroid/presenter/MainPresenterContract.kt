@@ -15,7 +15,7 @@ interface MainPresenterContract {
 
     interface View {
 
-        fun showData(user: User?,isExample:Boolean)
+        fun showData(user: User?)
 
 
     }

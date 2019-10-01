@@ -1,5 +1,6 @@
 package com.example.raghu.dagger2testandroid.api
 
+/*
 import com.example.raghu.dagger2testandroid.PostProcessable
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
@@ -29,4 +30,4 @@ class PostProcessingEnabler : TypeAdapterFactory {
             }
         }
     }
-}
+}*/

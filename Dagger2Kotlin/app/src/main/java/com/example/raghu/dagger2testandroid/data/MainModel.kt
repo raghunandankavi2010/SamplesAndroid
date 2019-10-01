@@ -4,7 +4,6 @@ package com.example.raghu.dagger2testandroid.data
 import android.os.SystemClock
 import android.text.TextUtils
 import com.example.raghu.dagger2testandroid.api.Api
-import com.example.raghu.dagger2testandroid.models.Example
 import com.example.raghu.dagger2testandroid.models.User
 import io.reactivex.Single
 import retrofit2.HttpException
@@ -26,7 +25,7 @@ constructor( val retrofit: Retrofit) {
      * {"user":{"name":"Raghunandan Kavi","age":"30"}}
      */
 
-    fun loadData(): Single<Example> {
+    fun loadData(): Single<User> {
 
         /**
          * use cache to continue network operation during configuration change.
@@ -35,11 +34,11 @@ constructor( val retrofit: Retrofit) {
         return response
     }
 
-    suspend fun getData():Result<Example>{
+    suspend fun getData():Result<User>{
 
         try {
-            val response = retrofit.create(Api::class.java).data_corountine
-            val result = response.await()
+            val api = retrofit.create(Api::class.java)
+            val result= api.data_coroutines()
             return Result.Success(result)
         } catch (e: HttpException) {
             // Catch http errors
@@ -52,16 +51,15 @@ constructor( val retrofit: Retrofit) {
 
 
 
-    fun getData_user(uName: String):Result<Example> {
+    fun getData_user(uName: String):Result<User> {
         SystemClock.sleep(5000)
         if(!TextUtils.isEmpty(uName))
         {
             val user = User()
             user.name = uName
             user.age = "30"
-            val example = Example()
-            example.user = user
-            return  Result.Success(example)
+
+            return  Result.Success(user)
 
         }else {
             return  Result.Error(Exception("Name cannot be empty"))

@@ -3,20 +3,15 @@ package com.example.raghu.dagger2testandroid.presenter
 
 import com.example.raghu.dagger2testandroid.data.MainModel
 import com.example.raghu.dagger2testandroid.data.Result
-import com.example.raghu.dagger2testandroid.models.Example
+import com.example.raghu.dagger2testandroid.models.User
 import io.reactivex.Scheduler
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
-import java.util.function.BiConsumer
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.coroutines.experimental.CoroutineContext
 
 
 /**
@@ -29,9 +24,8 @@ constructor(var mainView: MainPresenterContract.View?, val mainModel: MainModel,
 
 
     private val disposable = CompositeDisposable()
-    private var  single :Single<Example>? =null
-    private val uiContext: CoroutineContext = UI
-    private val bgContext: CoroutineContext = CommonPool
+    private var  single :Single<User>? =null
+    //private val bgContext: CoroutineContext = CommonPool
 
 
     override fun doSomething() {
@@ -40,7 +34,7 @@ constructor(var mainView: MainPresenterContract.View?, val mainModel: MainModel,
         disposable.add(single!!.subscribeOn(schedulerio)
                 .observeOn(mainThread)
                 .subscribe(
-                        { example:Example -> mainView !!. showData (example.user,example.isExample) },
+                        { user:User -> mainView !!. showData (user) },
                         { throwable:Throwable -> throwable.printStackTrace()}
                 ))
                 /*.subscribeBy(// named arguments for lambda Subscribers
@@ -52,22 +46,22 @@ constructor(var mainView: MainPresenterContract.View?, val mainModel: MainModel,
     }
 
     override fun getData() {
-        launch(uiContext) {
-            val task = async(bgContext) { mainModel.getData_user("Raghunandan Kavi") }
+        GlobalScope.launch(Dispatchers.Main) {
+            val task = async { mainModel.getData_user("Raghunandan Kavi") }
             val result = task.await() // non ui thread, suspend until finished
             if(result is Result.Success){
-                var example = result.data
-                mainView?.showData(example.user,example.isExample)
+                var user = result.data
+                mainView?.showData(user)
             }
         }
     }
     override fun getData_with_coroutines_retrofit() {
-        launch(uiContext) {
+        GlobalScope.launch(Dispatchers.Main) {
 
             val result = mainModel.getData()
             if(result is Result.Success){
-                var example = result.data
-                mainView?.showData(example.user,example.isExample)
+                var user = result.data
+                mainView?.showData(user)
             }else if( result is Result.Error) {
                 result.exception.printStackTrace()
             }
