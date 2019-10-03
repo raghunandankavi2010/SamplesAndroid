@@ -9,8 +9,15 @@ import timber.log.Timber
 class ContactsDataSource(private val contentResolver: ContentResolver) :
         PositionalDataSource<Contact>() {
 
-
     companion object {
+        private val PROJECTION = arrayOf(
+        ContactsContract.Profile._ID,
+        ContactsContract.Profile.DISPLAY_NAME_PRIMARY,
+        ContactsContract.Profile.LOOKUP_KEY,
+        ContactsContract.Profile.PHOTO_THUMBNAIL_URI
+        )
+    }
+/*    companion object {
         private val PROJECTION = arrayOf(
                 ContactsContract.Contacts._ID,
                 ContactsContract.Contacts.DISPLAY_NAME_PRIMARY,
@@ -18,7 +25,7 @@ class ContactsDataSource(private val contentResolver: ContentResolver) :
                 ContactsContract.Contacts.PHOTO_THUMBNAIL_URI
 
         )
-    }
+    }*/
 
 
     override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<Contact>) {
@@ -45,21 +52,21 @@ class ContactsDataSource(private val contentResolver: ContentResolver) :
                 var name = it.getString(it.getColumnIndex(PROJECTION[1]))
                 var photoUri = it.getString(it.getColumnIndex(PROJECTION[3]))
                 val lookupKey = it.getString(it.getColumnIndex(PROJECTION[2]))
-                var phoneNumber = getPhone(contentResolver, it.getString(
-                        it.getColumnIndex(ContactsContract.Contacts._ID)))
+               // var phoneNumber = getPhone(contentResolver, it.getString(
+                 //       it.getColumnIndex(ContactsContract.Contacts._ID)))
                 if (name == null) {
                     name = ""
                 }
                 if (photoUri == null) {
                     photoUri = ""
                 }
-                if (phoneNumber == null) {
-                    phoneNumber = ""
-                }
+                //if (phoneNumber == null) {
+               //     phoneNumber = ""
+                //}
                 Timber.i(String.format("Name : %s", name))
                 Timber.i(String.format("Photo : %s", photoUri))
 
-                contacts.add(Contact(id, lookupKey, name, photoUri, phoneNumber))
+                contacts.add(Contact(id, lookupKey, name, photoUri))
                 cursor.moveToNext()
             }
         }

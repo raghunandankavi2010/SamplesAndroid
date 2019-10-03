@@ -32,7 +32,7 @@ class ContactsAdapter(diffCallback: DiffUtil.ItemCallback<Contact>,private val i
     inner class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: Contact?) {
             userName.text = item?.name
-            userPhone.text = item?.phoneNumber
+           // userPhone.text = item?.phoneNumber
             if(item?.photoUri!=null) {
                 Glide.with(itemView.context)
                         .load(item.photoUri)

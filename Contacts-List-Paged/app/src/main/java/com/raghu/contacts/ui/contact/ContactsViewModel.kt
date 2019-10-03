@@ -20,7 +20,9 @@ class ContactsViewModel(private val contentResolver: ContentResolver) : ViewMode
 
     fun loadContacts() {
         val config = PagedList.Config.Builder()
-                .setPageSize(20)
+                .setPrefetchDistance(5)
+                .setPageSize(10)
+                .setInitialLoadSizeHint(10)
                 .setEnablePlaceholders(false)
                 .build()
         contactsList = LivePagedListBuilder<Int, Contact>(

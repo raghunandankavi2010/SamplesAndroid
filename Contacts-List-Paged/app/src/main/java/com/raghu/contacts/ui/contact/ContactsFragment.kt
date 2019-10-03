@@ -47,7 +47,7 @@ class ContactsFragment : Fragment() {
             val intent = Intent(activity,DetailActivity::class.java)
             intent.let {
                 it.putExtra("name",outer.name)
-                it.putExtra("phoneNumber",outer.phoneNumber)
+                //it.putExtra("phoneNumber",outer.phoneNumber)
                 startActivity(it)
             }
 

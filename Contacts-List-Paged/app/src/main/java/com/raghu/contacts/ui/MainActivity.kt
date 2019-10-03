@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
     fun showContactsFragment() {
         supportFragmentManager.beginTransaction()
                 .replace(R.id.container, ContactsFragment())
-                .addToBackStack("contacts fragment")
                 .commitAllowingStateLoss()
     }
 
