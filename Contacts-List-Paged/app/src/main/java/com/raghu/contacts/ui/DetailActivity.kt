@@ -18,6 +18,9 @@ class DetailActivity: AppCompatActivity() {
         val username = intent.getStringExtra("name")
         name.text = username
 
+        /**
+         * Can be moved to a thread
+         */
         val cr = contentResolver
         val cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null,
                 "DISPLAY_NAME = '$username'", null, null)

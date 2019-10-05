@@ -87,14 +87,14 @@ class ContactsDataSource(private val contentResolver: ContentResolver) :
 
                 arrayOf(contactID), null)
 
-        if (cursorPhone != null && cursorPhone!!.moveToFirst()) {
-            contactNumber = cursorPhone!!.getString(cursorPhone!!.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+        if (cursorPhone != null && cursorPhone.moveToFirst()) {
+            contactNumber = cursorPhone.getString(cursorPhone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
 
         }
 
-        if (cursorPhone != null)
-            cursorPhone!!.close()
+        cursorPhone?.close()
 
         return contactNumber
     }
+
 }

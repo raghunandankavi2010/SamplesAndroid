@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.raghu.contacts.R
 import com.raghu.contacts.data.Contact
 import com.raghu.contacts.ui.DetailActivity
+import com.raghu.contacts.utils.openActivity
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import org.koin.android.architecture.ext.viewModel
 
@@ -43,14 +44,11 @@ class ContactsFragment : Fragment() {
             }
         }
 
-        val adapter = ContactsAdapter(diffCallback) { outer->
-            val intent = Intent(activity,DetailActivity::class.java)
-            intent.let {
-                it.putExtra("name",outer.name)
-                //it.putExtra("phoneNumber",outer.phoneNumber)
-                startActivity(it)
-            }
+        val adapter = ContactsAdapter(diffCallback) {
 
+             activity?.openActivity(DetailActivity::class.java) {
+                 putString("name",it.name)
+             }
         }
         contactsList.adapter = adapter
 
