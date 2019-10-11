@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Sticker</string>
+    <string name="add_sticker">Add Sticker</string>
+    <string name="sticker_image">Sticker Image</string>
+</resources>
