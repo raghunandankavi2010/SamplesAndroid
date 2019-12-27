@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.raghu.databindingaac.ViewModel" />
+            type="com.example.raghu.databindingaac.MyViewModel" />
     </data>
 
     <LinearLayout
@@ -16,7 +16,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:error="@{viewModel.error}">
@@ -26,16 +26,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Text 1"
-                app:binding="@{viewModel.someText}" />
-        </android.support.design.widget.TextInputLayout>
+                binding="@{viewModel.someText}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Text 2"
-            app:binding="@{viewModel.someText}" />
+            binding="@{viewModel.someText}" />
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:error="@{viewModel.error2}">
@@ -45,8 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Text 1"
-                app:binding="@{viewModel.someText2}" />
-        </android.support.design.widget.TextInputLayout>
+                binding="@{viewModel.someText2}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button
