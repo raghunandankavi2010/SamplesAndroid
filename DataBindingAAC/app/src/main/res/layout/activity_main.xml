@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -19,40 +18,39 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/text_1"
             app:error="@{viewModel.error}">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_input"
+                binding="@{viewModel.someText}"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Text 1"
-                binding="@{viewModel.someText}" />
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            binding="@{viewModel.someText}"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Text 2"
-            binding="@{viewModel.someText}" />
+            android:layout_height="wrap_content" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/text_2"
             app:error="@{viewModel.error2}">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_input2"
+                binding="@{viewModel.someText2}"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Text 1"
-                binding="@{viewModel.someText2}" />
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button
-            android:text="Click"
             android:id="@+id/button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/validate" />
     </LinearLayout>
 </layout>
