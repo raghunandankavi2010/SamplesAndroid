@@ -1,6 +1,8 @@
 package com.example.raghu.rxjava2invalidatecache;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
@@ -8,11 +10,13 @@ import android.widget.TextView;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
-import io.reactivex.Flowable;
-import io.reactivex.Observable;
-import io.reactivex.Single;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Consumer;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         Single<Integer> o = Single.just(1)
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
-                    public void accept(@io.reactivex.annotations.NonNull Disposable disposable) throws Exception {
+                    public void accept(@NonNull Disposable disposable) throws Exception {
                         textView.append("Completed \n");
                         Log.i(TAG, "completed");
                     }
@@ -46,14 +50,14 @@ public class MainActivity extends AppCompatActivity {
         Single<Integer> o2 = Single.unsafeCreate(cacher);
         o2.subscribe(new Consumer<Integer>() {
             @Override
-            public void accept(@io.reactivex.annotations.NonNull Integer integer) throws Exception {
+            public void accept(@NonNull Integer integer) throws Exception {
                 textView.append(""+integer+" \n");
                 Log.i(TAG, "" + integer);
             }
         });
         o2.subscribe(new Consumer<Integer>() {
             @Override
-            public void accept(@io.reactivex.annotations.NonNull Integer integer) throws Exception {
+            public void accept(@NonNull Integer integer) throws Exception {
                 textView.append(""+integer+" \n");
                 Log.i(TAG, "" + integer);
             }
@@ -62,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         textView.append("Cache Reset" +"\n");
         o2.subscribe(new Consumer<Integer>() {
             @Override
-            public void accept(@io.reactivex.annotations.NonNull Integer integer) throws Exception {
+            public void accept(@NonNull Integer integer) throws Exception {
                 textView.append(""+integer+" \n");
                 Log.i(TAG, "" + integer);
             }
@@ -112,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         Observable<Integer> o = Observable.just(1)
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
-                    public void accept(@io.reactivex.annotations.NonNull Disposable disposable) throws Exception {
+                    public void accept(@NonNull Disposable disposable) throws Exception {
                         textView.append("Completed \n");
                         Log.i(TAG, "completed");
                     }
@@ -123,14 +127,14 @@ public class MainActivity extends AppCompatActivity {
         Observable<Integer> o2 = Observable.unsafeCreate(cacher);
         o2.subscribe(new Consumer<Integer>() {
             @Override
-            public void accept(@io.reactivex.annotations.NonNull Integer integer) throws Exception {
+            public void accept(@NonNull Integer integer) throws Exception {
                 textView.append(""+integer+" \n");
                 Log.i(TAG, "" + integer);
             }
         });
         o2.subscribe(new Consumer<Integer>() {
             @Override
-            public void accept(@io.reactivex.annotations.NonNull Integer integer) throws Exception {
+            public void accept(@NonNull Integer integer) throws Exception {
                 textView.append(""+integer+" \n");
                 Log.i(TAG, "" + integer);
             }
@@ -139,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         textView.append("Cache Reset" +"\n");
         o2.subscribe(new Consumer<Integer>() {
             @Override
-            public void accept(@io.reactivex.annotations.NonNull Integer integer) throws Exception {
+            public void accept(@NonNull Integer integer) throws Exception {
                 textView.append(""+integer+" \n");
                 Log.i(TAG, "" + integer);
             }
@@ -150,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         Maybe<Integer> o = Maybe.just(1)
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
-                    public void accept(@io.reactivex.annotations.NonNull Disposable disposable) throws Exception {
+                    public void accept(@NonNull Disposable disposable) throws Exception {
                         textView.append("Completed \n");
                         Log.i(TAG, "completed");
                     }
@@ -161,14 +165,14 @@ public class MainActivity extends AppCompatActivity {
         Maybe<Integer> o2 = Maybe.unsafeCreate(cacher);
         o2.subscribe(new Consumer<Integer>() {
             @Override
-            public void accept(@io.reactivex.annotations.NonNull Integer integer) throws Exception {
+            public void accept(@NonNull Integer integer) throws Exception {
                 textView.append(""+integer+" \n");
                 Log.i(TAG, "" + integer);
             }
         });
         o2.subscribe(new Consumer<Integer>() {
             @Override
-            public void accept(@io.reactivex.annotations.NonNull Integer integer) throws Exception {
+            public void accept(@NonNull Integer integer) throws Exception {
                 textView.append(""+integer+" \n");
                 Log.i(TAG, "" + integer);
             }
@@ -177,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
         textView.append("Cache Reset" +"\n");
         o2.subscribe(new Consumer<Integer>() {
             @Override
-            public void accept(@io.reactivex.annotations.NonNull Integer integer) throws Exception {
+            public void accept(@NonNull Integer integer) throws Exception {
                 textView.append(""+integer+" \n");
                 Log.i(TAG, "" + integer);
             }

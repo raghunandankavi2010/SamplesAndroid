@@ -9,7 +9,8 @@ import org.reactivestreams.Subscriber;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
+
 
 /**
  * Created by raghu on 14/5/17.

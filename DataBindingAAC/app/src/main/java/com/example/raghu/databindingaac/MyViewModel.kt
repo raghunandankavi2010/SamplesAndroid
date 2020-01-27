@@ -4,35 +4,33 @@ import android.app.Application
 import android.text.TextUtils
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 
 class MyViewModel(application: Application?) : AndroidViewModel(application!!) {
-    @JvmField
-    var someText = BindableString()
-    @JvmField
-    var error = BindableString()
-    @JvmField
-    var someText2 = BindableString()
-    @JvmField
-    var error2 = BindableString()
+    //@JvmField
+    var someText = MutableLiveData<String>()
+    //@JvmField
+    var error = MutableLiveData<String>()
+    //@JvmField
+    var someText2 = MutableLiveData<String>()
+    //@JvmField
+    var error2 = MutableLiveData<String>()
     fun printData() {
-        Log.i("TAG", "" + someText.get())
+        Log.i("TAG", "" + someText.value)
     }
-
-    fun reset() {
-        error.set(null)
-        someText.set(null)
-    }
+    
 
     fun check() {
-        if (TextUtils.isEmpty(someText.get())) {
-            error.set("Edit Text is Empty")
+        Log.i("TAG", "Called")
+        if (TextUtils.isEmpty(someText.value)) {
+            error.value = ("Edit Text is Empty")
         } else {
-            error.set("")
+            error.value=("")
         }
-        if (TextUtils.isEmpty(someText2.get())) {
-            error2.set("Edit Text 2is Empty")
+        if (TextUtils.isEmpty(someText2.value)) {
+            error2.value=("Edit Text 2is Empty")
         } else {
-            error2.set("")
+            error2.value=("")
         }
     }
 }

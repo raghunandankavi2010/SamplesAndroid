@@ -3,12 +3,14 @@ package com.example.raghu.rxjava2invalidatecache;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import io.reactivex.Single;
-import io.reactivex.SingleObserver;
-import io.reactivex.SingleSource;
-import io.reactivex.annotations.NonNull;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.core.SingleObserver;
+import io.reactivex.rxjava3.core.SingleSource;
+
 
 /**
  * Created by raghu on 13/5/17.

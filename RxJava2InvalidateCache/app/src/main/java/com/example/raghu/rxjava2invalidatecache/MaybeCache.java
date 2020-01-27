@@ -2,12 +2,14 @@ package com.example.raghu.rxjava2invalidatecache;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import io.reactivex.Maybe;
-import io.reactivex.MaybeObserver;
-import io.reactivex.MaybeSource;
-import io.reactivex.annotations.NonNull;
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.core.MaybeObserver;
+import io.reactivex.rxjava3.core.MaybeSource;
+
 
 /**
  * Created by raghu on 17/5/17.
