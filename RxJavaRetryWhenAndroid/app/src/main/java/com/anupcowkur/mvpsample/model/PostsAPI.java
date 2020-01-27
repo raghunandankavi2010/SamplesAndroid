@@ -3,12 +3,14 @@ package com.anupcowkur.mvpsample.model;
 import android.util.Log;
 
 import com.anupcowkur.mvpsample.model.pojo.Post;
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
 
 import java.util.List;
 
-import io.reactivex.Observable;
+
+import io.reactivex.rxjava3.core.Observable;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
@@ -22,7 +24,7 @@ public class PostsAPI {
 
     private Observable<List<Post>> postsObservable = new Retrofit.Builder()
             .baseUrl("http://jsonplaceholder.typicode.com/")
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build().create(PostService.class).getPostsList();
 

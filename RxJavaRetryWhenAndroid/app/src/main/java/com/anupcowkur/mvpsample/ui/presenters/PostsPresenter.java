@@ -18,13 +18,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.functions.BiFunction;
-import io.reactivex.functions.Function;
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableSource;
+import io.reactivex.rxjava3.functions.BiFunction;
+import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.observers.DisposableObserver;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 
 public class PostsPresenter {
@@ -161,7 +161,7 @@ public class PostsPresenter {
                                 return new Pair<>(error, UNCHECKED_ERROR_TYPE_CODE);
                             }
                         })
-                        .flatMap(new io.reactivex.functions.Function<Pair<Throwable, Integer>, ObservableSource<? extends Long>>() {
+                        .flatMap(new Function<Pair<Throwable, Integer>, ObservableSource<? extends Long>>() {
                             @Override
                             public ObservableSource<? extends Long> apply(Pair<Throwable, Integer> errorRetryCountTuple) throws Exception {
                                 int retryAttempt = errorRetryCountTuple.second;
