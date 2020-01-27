@@ -2,7 +2,7 @@ package com.anupcowkur.mvpsample.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.anupcowkur.mvpsample.R;
 import com.anupcowkur.mvpsample.dagger.DaggerInjector;
