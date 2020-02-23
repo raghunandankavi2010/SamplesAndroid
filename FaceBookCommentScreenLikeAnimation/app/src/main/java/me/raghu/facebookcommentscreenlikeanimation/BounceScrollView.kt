@@ -98,9 +98,9 @@ class BounceScrollView(context: Context, attrs: AttributeSet?, defStyleAttr: Int
                 mPreDelta = 0
                 //mOverScrolledDistance = 0;
                 val half = (Resources.getSystem().displayMetrics.heightPixels.toFloat()/2)
-                val scrolledDistance = mOverScrolledDistance
+                val scrolledDistance = Math.abs(mOverScrolledDistance)
                 percentVertical = (ev.rawY + dY) / deviceHeight.toFloat()
-                Log.i("Scrolled Distance", "$scrolledDistance")
+                Log.i("Scrolled Distance", "$scrolledDistance"+"half"+half)
                 when (getDirection(startX = startX, startY = startY, endX = ev.rawX, endY = ev.rawY)) {
                     is Direction.UP -> {
 
@@ -113,7 +113,7 @@ class BounceScrollView(context: Context, attrs: AttributeSet?, defStyleAttr: Int
                     }
                     is Direction.DOWN ->{
                         mAnimator = if (Math.abs(scrolledDistance) > half) {
-                            Log.i("Scrolled Distance up", "$mOverScrolledDistance and half of device height $half")
+                            Log.i("Scrolled Distance down", "$mOverScrolledDistance and half of device height $half")
                             ObjectAnimator.ofFloat(mChildView, View.TRANSLATION_Y, Resources.getSystem().displayMetrics.heightPixels.toFloat())
                         } else {
                             ObjectAnimator.ofFloat(mChildView, View.TRANSLATION_Y, 0f)
@@ -140,6 +140,8 @@ class BounceScrollView(context: Context, attrs: AttributeSet?, defStyleAttr: Int
 
                     override fun onAnimationEnd(animation: Animator?) {
                        mOverScrolledDistance = 0
+                        startX = 0f
+                        startY = 0f
 
                         val translationY = mChildView!!.translationY
 
