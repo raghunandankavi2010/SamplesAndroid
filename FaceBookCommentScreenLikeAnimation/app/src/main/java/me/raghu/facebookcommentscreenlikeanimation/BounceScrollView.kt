@@ -29,6 +29,7 @@ class BounceScrollView(context: Context, attrs: AttributeSet?, defStyleAttr: Int
     private var mAnimator: ObjectAnimator? = null
     private var mScrollListener: OnScrollListener? = null
     private var mOverScrollListener: OnOverScrollListener? = null
+    private var mDismissListener: OnDismissListener? = null
     private var startX = 0F
     private var startY = 0F
     private var dX = 0F
@@ -124,7 +125,6 @@ class BounceScrollView(context: Context, attrs: AttributeSet?, defStyleAttr: Int
                 if (isScrollHorizontally) {
                     mAnimator = ObjectAnimator.ofFloat(mChildView, View.TRANSLATION_X, 0f)
                 } else {
-                    TODO()
                     // mAnimator = ObjectAnimator.ofFloat(mChildView, View.TRANSLATION_Y, 0);
                 }
                 mAnimator?.setDuration(mBounceDelay)?.interpolator = mInterpolator
@@ -140,6 +140,13 @@ class BounceScrollView(context: Context, attrs: AttributeSet?, defStyleAttr: Int
 
                     override fun onAnimationEnd(animation: Animator?) {
                        mOverScrolledDistance = 0
+
+                        val translationY = mChildView!!.translationY
+
+                        Log.i("ScrollView height",""+mChildView!!.translationY )
+                            if(translationY==Resources.getSystem().displayMetrics.heightPixels.toFloat() || translationY == -Resources.getSystem().displayMetrics.heightPixels.toFloat()){
+                            mDismissListener?.onDismiss(true)
+                        }
                     }
 
                     override fun onAnimationCancel(animation: Animator?) {
@@ -244,6 +251,15 @@ class BounceScrollView(context: Context, attrs: AttributeSet?, defStyleAttr: Int
         mOverScrollListener = overScrollListener
     }
 
+    fun setOnDismissListener(onDismissListener: OnDismissListener?) {
+        mDismissListener = onDismissListener
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    interface OnDismissListener {
+
+        fun onDismiss(dimissable: Boolean)
+    }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     interface OnScrollListener {
