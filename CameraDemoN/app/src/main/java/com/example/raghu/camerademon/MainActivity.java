@@ -25,6 +25,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;
@@ -187,6 +189,11 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
             // Show the thumbnail on ImageView
             Uri imageUri = Uri.parse(mCurrentPhotoPath);
+            InputStreamRequestBody inputStreamRequestBody = new InputStreamRequestBody( MediaType.parse("image/*"),getContentResolver(),imageUri)
+            MultipartBody.Part.createFormData(
+                    "pic", "myPic", inputStreamRequestBody
+            )
+
             File file = new File(imageUri.getPath());
             try {
                 InputStream ims = new FileInputStream(file);

@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,14 +18,23 @@ class CommentDialogFragment : DialogFragment() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var dataset: Array<String>
     private var isScrolling: Boolean = false
+    private var isUp: Boolean = false
+    private var isDown: Boolean = false
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        setStyle(DialogFragment.STYLE_NORMAL,
-                android.R.style.Theme_DeviceDefault_NoActionBar_Fullscreen)
+        setStyle(
+            DialogFragment.STYLE_NORMAL,
+            android.R.style.Theme_DeviceDefault_NoActionBar_Fullscreen
+        )
         return super.onCreateDialog(savedInstanceState)
 
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         initDataset()
         return inflater.inflate(R.layout.facebook_comment, container, false)
     }
@@ -40,12 +48,12 @@ class CommentDialogFragment : DialogFragment() {
         with(rv) {
             layoutManager = linearLayoutManager
             adapter = CustomAdapter(dataset)
-            addItemDecoration(DividerItemDecoration(activity,DividerItemDecoration.VERTICAL))
+            addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
         }
 
-        mBounceScrollView.setOnDismissListener(object: BounceScrollView.OnDismissListener{
+        mBounceScrollView.setOnDismissListener(object : BounceScrollView.OnDismissListener {
             override fun onDismiss(dimissable: Boolean) {
-                if(dimissable)
+                if (dimissable)
                     this@CommentDialogFragment.dismiss()
             }
         })
@@ -57,7 +65,8 @@ class CommentDialogFragment : DialogFragment() {
                 super.onScrolled(recyclerView, dx, dy)
                 val lastItem = linearLayoutManager.findLastVisibleItemPosition()
                 val firstItem: Int = linearLayoutManager.findFirstCompletelyVisibleItemPosition()
-                if (lastItem == dataset.size-1 || firstItem == 0 || isScrolling) {
+
+                if (lastItem == dataset.size - 1 || firstItem == 0 || isScrolling) {
                     mBounceScrollView.setScrollable(true)
                     Log.i("ScrollView can scroll", "" + true)
                 } else {

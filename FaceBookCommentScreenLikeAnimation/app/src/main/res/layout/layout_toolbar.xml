@@ -9,6 +9,6 @@
     app:logo="@mipmap/ic_launcher"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    app:title=" ">
+    app:title="Comment Screen">
 
 </androidx.appcompat.widget.Toolbar>

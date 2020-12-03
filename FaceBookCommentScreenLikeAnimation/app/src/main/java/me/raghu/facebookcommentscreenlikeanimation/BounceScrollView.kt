@@ -11,7 +11,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.Interpolator
-
+import androidx.recyclerview.widget.RecyclerView
 
 
 class BounceScrollView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : NestedScrollView(context, attrs, defStyleAttr) {
@@ -101,6 +101,8 @@ class BounceScrollView(context: Context, attrs: AttributeSet?, defStyleAttr: Int
                 val scrolledDistance = Math.abs(mOverScrolledDistance)
                 percentVertical = (ev.rawY + dY) / deviceHeight.toFloat()
                 Log.i("Scrolled Distance", "$scrolledDistance"+"half"+half)
+
+
                 when (getDirection(startX = startX, startY = startY, endX = ev.rawX, endY = ev.rawY)) {
                     is Direction.UP -> {
 
