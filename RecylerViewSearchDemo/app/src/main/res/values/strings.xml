@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="checkbox_title">Select All</string>
+    <string name="search">Search</string>
 </resources>

@@ -4,18 +4,21 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.CheckBox
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
+import kotlin.collections.ArrayList
+
 
 class MainActivity : AppCompatActivity(){
     private var mRecyclerView: RecyclerView? = null
     private lateinit var mArrayList: ArrayList<DataModel>
+    private var checkedItems: ArrayList<DataModel> = ArrayList()
     private lateinit var mAdapter: DataAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,11 +34,17 @@ class MainActivity : AppCompatActivity(){
         mRecyclerView!!.setHasFixedSize(true)
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
         mRecyclerView!!.layoutManager = layoutManager
-        mAdapter = DataAdapter() {
-            Toast.makeText(this@MainActivity.applicationContext,"Clicked $it",Toast.LENGTH_LONG).show()
-        }
+        mAdapter = DataAdapter( checkListener =  { checkedItem ->
+            checkedItems.add(checkedItem)
+
+        },unCheckListener = { unCheckedItem ->
+            checkedItems.add(unCheckedItem)
+        },listener = {
+            Toast.makeText(this@MainActivity.applicationContext, "Clicked $it", Toast.LENGTH_LONG).show()
+        })
         mRecyclerView!!.adapter = mAdapter
     }
+
 
     private fun loadList() {
         mArrayList = ArrayList()
@@ -61,7 +70,7 @@ class MainActivity : AppCompatActivity(){
         mArrayList.add(data10)
         val data11 = DataModel("MarshMallow")
         mArrayList.add(data11)
-        val data12 = DataModel( "Nougat")
+        val data12 = DataModel("Nougat")
         mArrayList.add(data12)
         val data13 = DataModel("Oreo")
         mArrayList.add(data13)
@@ -78,8 +87,21 @@ class MainActivity : AppCompatActivity(){
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         val search = menu.findItem(R.id.search)
-        val searchView = MenuItemCompat.getActionView(search) as SearchView
+        val searchView = search.actionView as SearchView
         search(searchView)
+
+        val checkBox = menu.findItem(R.id.menuShow).actionView as CheckBox
+        //checkBox.setButtonDrawable(R.drawable.star) //set the icon to star.xml
+
+
+        checkBox.setOnCheckedChangeListener { _, isChecked ->
+            //set the action of the checkbox
+            if(isChecked){
+                mAdapter.selectAllItems()
+            } else {
+                mAdapter.unSelectAllItems()
+            }
+        }
         return true
     }
 
@@ -94,7 +116,7 @@ class MainActivity : AppCompatActivity(){
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                    mAdapter.filter.filter(newText)
+                mAdapter.filter.filter(newText)
                 return true
             }
         })

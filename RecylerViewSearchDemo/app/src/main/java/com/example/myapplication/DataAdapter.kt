@@ -1,25 +1,29 @@
 package com.example.myapplication
 
 import android.text.TextUtils
+import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
-import java.util.*
-import kotlin.collections.ArrayList
 
-class DataAdapter( private val listener: (DataModel) -> Unit) :
+
+class DataAdapter(
+    private val listener: (DataModel) -> Unit,
+    private val checkListener: (DataModel) -> Unit,
+    private val unCheckListener: (DataModel) -> Unit
+) :
     RecyclerView.Adapter<DataAdapter.ViewHolder>(), Filterable {
 
     private var mArrayList: ArrayList<DataModel>
     private val mFilteredList: ArrayList<DataModel>
+    private var temp: ArrayList<DataModel> = ArrayList()
     private var mSearchFilter: SearchFilter? = null
     private var mSearchTerm: String? = null
+    private var onBind = false
+    var itemStateArray = SparseBooleanArray()
 
     init {
         mArrayList = ArrayList()
@@ -28,6 +32,20 @@ class DataAdapter( private val listener: (DataModel) -> Unit) :
 
     fun add(mArrayList: ArrayList<DataModel>) {
         this.mArrayList.addAll(mArrayList)
+        notifyDataSetChanged()
+    }
+
+    fun selectAllItems() {
+        for (i in 0 until mArrayList.size) {
+            mArrayList[i].isChecked = true
+        }
+        notifyDataSetChanged()
+    }
+
+    fun unSelectAllItems() {
+        for (i in 0 until mArrayList.size) {
+            mArrayList[i].isChecked = false
+        }
         notifyDataSetChanged()
     }
 
@@ -40,7 +58,7 @@ class DataAdapter( private val listener: (DataModel) -> Unit) :
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         val androidVersion = mArrayList[i]
-        viewHolder.bind(androidVersion, listener)
+        viewHolder.bind(androidVersion, listener, checkListener, unCheckListener)
     }
 
     override fun getItemCount(): Int {
@@ -52,6 +70,7 @@ class DataAdapter( private val listener: (DataModel) -> Unit) :
         if (mSearchFilter == null) {
             mFilteredList.clear()
             mFilteredList.addAll(mArrayList)
+            temp = mArrayList
             mSearchFilter = SearchFilter(mFilteredList)
         }
         return mSearchFilter!!
@@ -64,7 +83,14 @@ class DataAdapter( private val listener: (DataModel) -> Unit) :
 
         private val delete: ImageView = view.findViewById<View>(R.id.imageView) as ImageView
 
-        fun bind(androidVersion: DataModel, listener: (DataModel) -> Unit) {
+        private val checkBox: CheckBox = view.findViewById<View>(R.id.checkBox) as CheckBox
+
+        fun bind(
+            androidVersion: DataModel,
+            listener: (DataModel) -> Unit,
+            checkListener: (DataModel) -> Unit,
+            unCheckListener: (DataModel) -> Unit
+        ) {
             tvName.text = androidVersion.name
             delete.setOnClickListener {
                 val pos = adapterPosition
@@ -84,11 +110,36 @@ class DataAdapter( private val listener: (DataModel) -> Unit) :
                 listener(androidVersion)
             }
 
+            checkBox.isChecked = itemStateArray.get(adapterPosition, false)
+
+            checkBox.setOnClickListener {
+                if (mSearchFilter != null) {
+                   var pos = temp.indexOf(androidVersion)
+                    if (!itemStateArray[pos, false]) {
+                        checkBox.isChecked = true
+                        itemStateArray.put(pos, true)
+                    } else {
+                        checkBox.isChecked = false
+                        itemStateArray.put(pos, false)
+                    }
+
+                }else {
+                    val adapterPosition = adapterPosition
+                    if (!itemStateArray[adapterPosition, false]) {
+                        checkBox.isChecked = true
+                        itemStateArray.put(adapterPosition, true)
+                    } else {
+                        checkBox.isChecked = false
+                        itemStateArray.put(adapterPosition, false)
+                    }
+                }
+            }
+
         }
 
     }
 
-    internal inner class SearchFilter(private val listToFilter: MutableList<DataModel>) : Filter() {
+    inner class SearchFilter(private val listToFilter: MutableList<DataModel>) : Filter() {
         // Update Base Search List on Item Removed while searching
         fun updateList(dataModel: DataModel) {
             listToFilter.remove(dataModel)

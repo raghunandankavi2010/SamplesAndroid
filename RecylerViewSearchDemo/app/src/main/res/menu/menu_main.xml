@@ -5,7 +5,15 @@
     <item
         android:id="@+id/search"
         android:icon="@drawable/ic_search"
-        android:title="Search"
+        android:title="@string/search"
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+
+
+    <item
+        android:id="@+id/menuShow"
+        android:checkable="true"
+        android:title="@string/checkbox_title"
+        app:actionViewClass="android.widget.CheckBox"
+        app:showAsAction="ifRoom|withText" />
 </menu>
