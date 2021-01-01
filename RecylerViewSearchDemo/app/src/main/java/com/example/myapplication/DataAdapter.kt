@@ -23,7 +23,7 @@ class DataAdapter(
     private var mSearchFilter: SearchFilter? = null
     private var mSearchTerm: String? = null
     private var selected: ArrayList<DataModel> = ArrayList()
-    var itemStateArray = SparseBooleanArray()
+    //var itemStateArray = SparseBooleanArray()
 
     init {
         mArrayList = ArrayList()
@@ -37,7 +37,7 @@ class DataAdapter(
 
     fun selectAllItems() {
         for (i in 0 until mArrayList.size) {
-            mArrayList[i].isChecked = true
+           // mArrayList[i].isChecked = true
             selected.add(mArrayList[i])
         }
         notifyDataSetChanged()
@@ -45,7 +45,7 @@ class DataAdapter(
 
     fun unSelectAllItems() {
         for (i in 0 until mArrayList.size) {
-            mArrayList[i].isChecked = false
+            //mArrayList[i].isChecked = false
             selected.remove(mArrayList[i])
         }
         notifyDataSetChanged()
@@ -112,36 +112,47 @@ class DataAdapter(
                 listener(androidVersion)
             }
 
+            checkBox.setOnCheckedChangeListener(null)
             checkBox.isChecked = selected.contains(androidVersion)
 
-            checkBox.setOnClickListener {
-             if (mSearchFilter != null) {
-                   val pos = temp.indexOf(androidVersion)
-                    if (!itemStateArray[pos, false]) {
-                        checkBox.isChecked = true
-                        selected.add(androidVersion)
-                        itemStateArray.put(pos, true)
-                    } else {
-                        selected.remove(androidVersion)
-                        checkBox.isChecked = false
-                        itemStateArray.put(pos, false)
-                    }
-
-                }else {
-                    val pos = adapterPosition
-                    if (!itemStateArray[pos, false]) {
-                        checkBox.isChecked = true
-                        selected.add(androidVersion)
-                        itemStateArray.put(pos, true)
-                    } else {
-                        selected.remove(androidVersion)
-                        checkBox.isChecked = false
-                        itemStateArray.put(pos, false)
-                    }
-               }
+            checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
+                //set your object's last status
+                if (isChecked) {
+                    selected.add(androidVersion)
+                } else {
+                    selected.remove(androidVersion)
+                }
+                // selected.add(androidVersion)
+                // itemStateArray.put(pos, true)
             }
-        }
 
+            /*checkBox.setOnClickListener {
+                /* if (mSearchFilter != null) {
+                 val pos = temp.indexOf(androidVersion)
+                     if (!itemStateArray[pos, false]) {
+                         checkBox.isChecked = true
+                         selected.add(androidVersion)
+                         itemStateArray.put(pos, true)
+                     } else {
+                         selected.remove(androidVersion)
+                         checkBox.isChecked = false
+                         itemStateArray.put(pos, false)
+                     }
+
+                 }else {*/
+                   /8 val pos = adapterPosition
+                    if (!itemStateArray[pos, false]) {
+                        checkBox.isChecked = true
+                        selected.add(androidVersion)
+                        itemStateArray.put(pos, true)
+                    } else {
+                        checkBox.isChecked = false
+                        selected.remove(androidVersion)
+                        itemStateArray.put(pos, false)
+                    }
+              }
+            }*/
+        }
     }
 
     inner class SearchFilter(private val listToFilter: MutableList<DataModel>) : Filter() {
