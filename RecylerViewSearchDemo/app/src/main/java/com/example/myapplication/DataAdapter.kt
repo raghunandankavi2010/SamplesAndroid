@@ -23,7 +23,6 @@ class DataAdapter(
     private var mSearchFilter: SearchFilter? = null
     private var mSearchTerm: String? = null
     private var selected: ArrayList<DataModel> = ArrayList()
-    //var itemStateArray = SparseBooleanArray()
 
     init {
         mArrayList = ArrayList()
@@ -122,36 +121,10 @@ class DataAdapter(
                 } else {
                     selected.remove(androidVersion)
                 }
-                // selected.add(androidVersion)
-                // itemStateArray.put(pos, true)
+
             }
 
-            /*checkBox.setOnClickListener {
-                /* if (mSearchFilter != null) {
-                 val pos = temp.indexOf(androidVersion)
-                     if (!itemStateArray[pos, false]) {
-                         checkBox.isChecked = true
-                         selected.add(androidVersion)
-                         itemStateArray.put(pos, true)
-                     } else {
-                         selected.remove(androidVersion)
-                         checkBox.isChecked = false
-                         itemStateArray.put(pos, false)
-                     }
 
-                 }else {*/
-                   /8 val pos = adapterPosition
-                    if (!itemStateArray[pos, false]) {
-                        checkBox.isChecked = true
-                        selected.add(androidVersion)
-                        itemStateArray.put(pos, true)
-                    } else {
-                        checkBox.isChecked = false
-                        selected.remove(androidVersion)
-                        itemStateArray.put(pos, false)
-                    }
-              }
-            }*/
         }
     }
 
