@@ -11,9 +11,9 @@ import com.google.android.material.card.MaterialCardView
 
 
 class DataAdapter(
-    private val listener: (DataModel) -> Unit,
-    private val checkListener: (DataModel) -> Unit,
-    private val unCheckListener: (DataModel) -> Unit
+        private val listener: (DataModel) -> Unit,
+        private val checkListener: (DataModel) -> Unit,
+        private val unCheckListener: (DataModel) -> Unit
 ) :
     RecyclerView.Adapter<DataAdapter.ViewHolder>(), Filterable {
 
@@ -22,7 +22,7 @@ class DataAdapter(
     private var temp: ArrayList<DataModel> = ArrayList()
     private var mSearchFilter: SearchFilter? = null
     private var mSearchTerm: String? = null
-    private var onBind = false
+    private var selected: ArrayList<DataModel> = ArrayList()
     var itemStateArray = SparseBooleanArray()
 
     init {
@@ -38,6 +38,7 @@ class DataAdapter(
     fun selectAllItems() {
         for (i in 0 until mArrayList.size) {
             mArrayList[i].isChecked = true
+            selected.add(mArrayList[i])
         }
         notifyDataSetChanged()
     }
@@ -45,6 +46,7 @@ class DataAdapter(
     fun unSelectAllItems() {
         for (i in 0 until mArrayList.size) {
             mArrayList[i].isChecked = false
+            selected.remove(mArrayList[i])
         }
         notifyDataSetChanged()
     }
@@ -86,10 +88,10 @@ class DataAdapter(
         private val checkBox: CheckBox = view.findViewById<View>(R.id.checkBox) as CheckBox
 
         fun bind(
-            androidVersion: DataModel,
-            listener: (DataModel) -> Unit,
-            checkListener: (DataModel) -> Unit,
-            unCheckListener: (DataModel) -> Unit
+                androidVersion: DataModel,
+                listener: (DataModel) -> Unit,
+                checkListener: (DataModel) -> Unit,
+                unCheckListener: (DataModel) -> Unit
         ) {
             tvName.text = androidVersion.name
             delete.setOnClickListener {
@@ -110,31 +112,34 @@ class DataAdapter(
                 listener(androidVersion)
             }
 
-            checkBox.isChecked = itemStateArray.get(adapterPosition, false)
+            checkBox.isChecked = selected.contains(androidVersion)
 
             checkBox.setOnClickListener {
-                if (mSearchFilter != null) {
-                   var pos = temp.indexOf(androidVersion)
+             if (mSearchFilter != null) {
+                   val pos = temp.indexOf(androidVersion)
                     if (!itemStateArray[pos, false]) {
                         checkBox.isChecked = true
+                        selected.add(androidVersion)
                         itemStateArray.put(pos, true)
                     } else {
+                        selected.remove(androidVersion)
                         checkBox.isChecked = false
                         itemStateArray.put(pos, false)
                     }
 
                 }else {
-                    val adapterPosition = adapterPosition
-                    if (!itemStateArray[adapterPosition, false]) {
+                    val pos = adapterPosition
+                    if (!itemStateArray[pos, false]) {
                         checkBox.isChecked = true
-                        itemStateArray.put(adapterPosition, true)
+                        selected.add(androidVersion)
+                        itemStateArray.put(pos, true)
                     } else {
+                        selected.remove(androidVersion)
                         checkBox.isChecked = false
-                        itemStateArray.put(adapterPosition, false)
+                        itemStateArray.put(pos, false)
                     }
-                }
+               }
             }
-
         }
 
     }
