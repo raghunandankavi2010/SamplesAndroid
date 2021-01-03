@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    motion:layoutDescription="@xml/motionscene"
+    tools:showPaths="false">
+
+
+    <ImageView
+        android:background="@color/black"
+        android:id="@+id/customHeader"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        motion:layout_constraintEnd_toEndOf="parent"
+        motion:layout_constraintStart_toStartOf="parent"
+        motion:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="TODO">
+
+    </ImageView>
+
+
+    <TextView
+        android:text="Pinned Text"
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        motion:layout_constraintEnd_toEndOf="parent"
+        motion:layout_constraintStart_toStartOf="parent"
+        motion:layout_constraintTop_toBottomOf="@id/customHeader">
+
+    </TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        motion:layout_constraintBottom_toTopOf="@id/button"
+        motion:layout_constraintEnd_toEndOf="parent"
+        motion:layout_constraintStart_toStartOf="parent"
+        motion:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <Button
+        motion:layout_constraintBottom_toBottomOf="parent"
+        motion:layout_constraintEnd_toEndOf="parent"
+        motion:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/button"
+        android:text="My Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
