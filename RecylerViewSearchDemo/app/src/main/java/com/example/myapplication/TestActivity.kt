@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.SmoothScroller
 
 
-class TestActivity: AppCompatActivity() {
+class TestActivity : AppCompatActivity() {
 
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mArrayList: ArrayList<DataModel>
@@ -31,16 +31,9 @@ class TestActivity: AppCompatActivity() {
 
         val button = findViewById<View>(R.id.button) as com.google.android.material.button.MaterialButton
 
-        val nestedScrollView = findViewById<View>(R.id.nestedScrollView) as NestedScrollView
-        val smoothScroller: SmoothScroller = object : LinearSmoothScroller(this) {
-            override fun getVerticalSnapPreference(): Int {
-                return SNAP_TO_START
-            }
-        }
-
-
         mRecyclerView = findViewById<View>(R.id.recyclerView) as RecyclerView
         mRecyclerView.setHasFixedSize(true)
+
 
         mRecyclerView.layoutManager = LinearLayoutManagerWithSmoothScroller(this)
 
@@ -55,16 +48,17 @@ class TestActivity: AppCompatActivity() {
         mRecyclerView.adapter = mAdapter
 
         button.setOnClickListener {
-            mRecyclerView.smoothScrollToPosition(15)
 
+            mRecyclerView.smoothScrollToPosition(15)
         }
     }
+
 
 
     private fun loadList() {
         mArrayList = ArrayList()
 
-        for(i in 0..20){
+        for (i in 0..20) {
             val data = DataModel("Data Model $i")
             mArrayList.add(data)
         }
