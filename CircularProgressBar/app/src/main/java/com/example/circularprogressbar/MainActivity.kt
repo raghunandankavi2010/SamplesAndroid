@@ -16,15 +16,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val root = binding.root
         setContentView(root)
+        binding.circularProgressView.setProgressValue(100)
 
-        ValueAnimator.ofInt(0, 100).apply {
-            addUpdateListener { updatedAnimation ->
-                val progress = updatedAnimation.animatedValue as Int
-                binding.circularProgressView.setPercentage(progress)
-            }
-            interpolator = LinearInterpolator()
-            duration = 10000
-            start()
-        }
     }
 }

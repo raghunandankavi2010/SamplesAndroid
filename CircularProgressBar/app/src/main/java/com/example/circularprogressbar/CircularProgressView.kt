@@ -1,11 +1,13 @@
 package com.example.circularprogressbar
 
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
+import android.view.animation.LinearInterpolator
 import androidx.core.content.ContextCompat
 import com.example.circularprogressbar.utils.px
 import kotlin.math.max
@@ -54,6 +56,18 @@ class CircularProgressView @JvmOverloads constructor(
     init {
         setupAttributes(attrs)
 
+    }
+
+    fun setProgressValue(progressValue: Int) {
+        ValueAnimator.ofInt(0, progressValue).apply {
+            addUpdateListener { updatedAnimation ->
+                val progress = updatedAnimation.animatedValue as Int
+                setPercentage(progress)
+            }
+            interpolator = LinearInterpolator()
+            duration = 10000
+            start()
+        }
     }
 
 
@@ -145,7 +159,7 @@ class CircularProgressView @JvmOverloads constructor(
         canvas.drawText(text, x, y, paint)
     }
 
-    fun setPercentage(percentage: Int) {
+    private fun setPercentage(percentage: Int) {
         this.percentage = percentage
         invalidate()
     }
