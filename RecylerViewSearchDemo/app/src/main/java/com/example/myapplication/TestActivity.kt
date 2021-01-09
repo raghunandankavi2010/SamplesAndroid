@@ -1,22 +1,25 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.databinding.ActivityTestBinding
 
 
 class TestActivity : AppCompatActivity() {
 
-    private lateinit var mRecyclerView: RecyclerView
+
     private lateinit var mArrayList: ArrayList<DataModel>
     private var checkedItems: ArrayList<DataModel> = ArrayList()
     private lateinit var mAdapter: DataAdapter
+    private lateinit var binding: ActivityTestBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_test)
+
+        binding = ActivityTestBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         initViews()
         loadList()
@@ -25,13 +28,7 @@ class TestActivity : AppCompatActivity() {
 
     private fun initViews() {
 
-        val button = findViewById<View>(R.id.button) as com.google.android.material.button.MaterialButton
-
-        mRecyclerView = findViewById<View>(R.id.recyclerView) as RecyclerView
-        mRecyclerView.setHasFixedSize(true)
-
-
-        mRecyclerView.layoutManager = LinearLayoutManagerWithSmoothScroller(this)
+        binding.recyclerView.setHasFixedSize(true)
 
         mAdapter = DataAdapter(checkListener = { checkedItem ->
             checkedItems.add(checkedItem)
@@ -41,15 +38,17 @@ class TestActivity : AppCompatActivity() {
         }, listener = {
             Toast.makeText(this@TestActivity.applicationContext, "Clicked $it", Toast.LENGTH_LONG).show()
         })
-        mRecyclerView.adapter = mAdapter
 
-        button.setOnClickListener {
+        binding.recyclerView.apply{
+            layoutManager = LinearLayoutManagerWithSmoothScroller(this@TestActivity)
+            adapter = mAdapter
+            setHasFixedSize(true)
+        }
 
-            mRecyclerView.smoothScrollToPosition(15)
+        binding.button.setOnClickListener {
+            binding.recyclerView.smoothScrollToPosition(15)
         }
     }
-
-
 
     private fun loadList() {
         mArrayList = ArrayList()

@@ -3,37 +3,36 @@ package com.example.myapplication
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.databinding.ActivityMainBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity(){
-    private var mRecyclerView: RecyclerView? = null
+
     private lateinit var mArrayList: ArrayList<DataModel>
     private var checkedItems: ArrayList<DataModel> = ArrayList()
     private lateinit var mAdapter: DataAdapter
+    private lateinit var binding: ActivityMainBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
-        setSupportActionBar(toolbar)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
+        setSupportActionBar(binding.toolbar)
         initViews()
         loadList()
     }
 
     private fun initViews() {
-        mRecyclerView = findViewById<View>(R.id.card_recycler_view) as RecyclerView
-        mRecyclerView!!.setHasFixedSize(true)
-        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
-        mRecyclerView!!.layoutManager = layoutManager
         mAdapter = DataAdapter( checkListener =  { checkedItem ->
             checkedItems.add(checkedItem)
 
@@ -42,9 +41,13 @@ class MainActivity : AppCompatActivity(){
         },listener = {
             Toast.makeText(this@MainActivity.applicationContext, "Clicked $it", Toast.LENGTH_LONG).show()
         })
-        mRecyclerView!!.adapter = mAdapter
-    }
 
+        binding.cardRecyclerView.apply{
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = mAdapter
+            setHasFixedSize(true)
+        }
+    }
 
     private fun loadList() {
         mArrayList = ArrayList()

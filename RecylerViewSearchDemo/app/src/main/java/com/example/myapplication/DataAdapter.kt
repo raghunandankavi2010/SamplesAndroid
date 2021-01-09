@@ -1,19 +1,20 @@
 package com.example.myapplication
 
 import android.text.TextUtils
-import android.util.SparseBooleanArray
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.card.MaterialCardView
+import com.example.myapplication.databinding.CardRowBinding
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class DataAdapter(
-        private val listener: (DataModel) -> Unit,
-        private val checkListener: (DataModel) -> Unit,
-        private val unCheckListener: (DataModel) -> Unit
+    private val listener: (DataModel) -> Unit,
+    private val checkListener: (DataModel) -> Unit,
+    private val unCheckListener: (DataModel) -> Unit
 ) :
     RecyclerView.Adapter<DataAdapter.ViewHolder>(), Filterable {
 
@@ -36,7 +37,7 @@ class DataAdapter(
 
     fun selectAllItems() {
         for (i in 0 until mArrayList.size) {
-           // mArrayList[i].isChecked = true
+            // mArrayList[i].isChecked = true
             selected.add(mArrayList[i])
         }
         notifyDataSetChanged()
@@ -52,9 +53,10 @@ class DataAdapter(
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
-        val view =
-            LayoutInflater.from(viewGroup.context).inflate(R.layout.card_row, viewGroup, false)
-        return ViewHolder(view)
+
+        val binding = CardRowBinding
+            .inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
@@ -77,23 +79,17 @@ class DataAdapter(
         return mSearchFilter!!
     }
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val tvName: TextView = view.findViewById<View>(R.id.tv_name) as TextView
-
-        private val root: MaterialCardView = view.findViewById<View>(R.id.root) as MaterialCardView
-
-        private val delete: ImageView = view.findViewById<View>(R.id.imageView) as ImageView
-
-        private val checkBox: CheckBox = view.findViewById<View>(R.id.checkBox) as CheckBox
+    inner class ViewHolder(private val cardRowBinding: CardRowBinding) :
+        RecyclerView.ViewHolder(cardRowBinding.root) {
 
         fun bind(
-                androidVersion: DataModel,
-                listener: (DataModel) -> Unit,
-                checkListener: (DataModel) -> Unit,
-                unCheckListener: (DataModel) -> Unit
+            androidVersion: DataModel,
+            listener: (DataModel) -> Unit,
+            checkListener: (DataModel) -> Unit,
+            unCheckListener: (DataModel) -> Unit
         ) {
-            tvName.text = androidVersion.name
-            delete.setOnClickListener {
+            cardRowBinding.tvName.text = androidVersion.name
+            cardRowBinding.imageView.setOnClickListener {
                 val pos = adapterPosition
 
                 // Remove item from Adapter List and notify
@@ -106,25 +102,24 @@ class DataAdapter(
                 }
             }
 
-            root.setOnClickListener {
+            cardRowBinding.root.setOnClickListener {
 
                 listener(androidVersion)
             }
 
-            checkBox.setOnCheckedChangeListener(null)
-            checkBox.isChecked = selected.contains(androidVersion)
+            cardRowBinding.checkBox.setOnCheckedChangeListener(null)
+            cardRowBinding.checkBox.isChecked = selected.contains(androidVersion)
 
-            checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
+            cardRowBinding.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
                 //set your object's last status
                 if (isChecked) {
+                    checkListener(androidVersion)
                     selected.add(androidVersion)
                 } else {
+                    unCheckListener(androidVersion)
                     selected.remove(androidVersion)
                 }
-
             }
-
-
         }
     }
 
@@ -135,7 +130,7 @@ class DataAdapter(
         }
 
         override fun performFiltering(constraint: CharSequence): FilterResults {
-            val searchString = constraint.toString().toLowerCase().trim { it <= ' ' }
+            val searchString = constraint.toString().toLowerCase(Locale.ROOT).trim { it <= ' ' }
             mSearchTerm = searchString
             val results = FilterResults()
             if (TextUtils.isEmpty(searchString)) {
@@ -143,7 +138,7 @@ class DataAdapter(
             } else {
                 val filteredList: MutableList<DataModel> = ArrayList()
                 for (dm in listToFilter) {
-                    if (dm.name.toLowerCase().contains(searchString)) {
+                    if (dm.name.toLowerCase(Locale.ROOT).contains(searchString)) {
                         filteredList.add(dm)
                     }
                 }
@@ -152,6 +147,7 @@ class DataAdapter(
             return results
         }
 
+        @Suppress("UNCHECKED_CAST")
         override fun publishResults(constraint: CharSequence, results: FilterResults) {
             mArrayList = results.values as ArrayList<DataModel>
             notifyDataSetChanged()
