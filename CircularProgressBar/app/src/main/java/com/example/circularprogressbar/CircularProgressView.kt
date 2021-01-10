@@ -1,23 +1,22 @@
 package com.example.circularprogressbar
 
-import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
-import android.view.animation.LinearInterpolator
 import androidx.core.content.ContextCompat
 import com.example.circularprogressbar.utils.px
 import kotlin.math.max
 import kotlin.math.min
 
 class CircularProgressView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
     companion object {
+        private const val DEFAULT_MAX_PROGRESS = 100
         private const val DEFAULT_STROKE_WIDTH = 20f
         private const val DEFAULT_TEXT_COLOR = Color.BLACK
     }
@@ -53,30 +52,25 @@ class CircularProgressView @JvmOverloads constructor(
             invalidate()
         }
 
+    private var _maxProgress = DEFAULT_MAX_PROGRESS
+    var maxProgress
+        get() = _maxProgress
+        set(value) {
+            _maxProgress = value
+        }
+
+
     init {
         setupAttributes(attrs)
 
     }
 
-    fun setProgressValue(progressValue: Int) {
-        ValueAnimator.ofInt(0, progressValue).apply {
-            addUpdateListener { updatedAnimation ->
-                val progress = updatedAnimation.animatedValue as Int
-                setPercentage(progress)
-            }
-            interpolator = LinearInterpolator()
-            duration = 10000
-            start()
-        }
-    }
-
-
     private fun setupAttributes(attrs: AttributeSet?) {
         attrs?.let {
             val a = context.obtainStyledAttributes(attrs, R.styleable.CircularProgressView)
             textColor = a.getColor(
-                R.styleable.CircularProgressView_percentage_color,
-                DEFAULT_TEXT_COLOR
+                    R.styleable.CircularProgressView_percentage_color,
+                    DEFAULT_TEXT_COLOR
             )
             a.recycle()
         }
@@ -134,7 +128,7 @@ class CircularProgressView @JvmOverloads constructor(
             })
 
             // get the actual percentage as a float
-            val fillPercentage = (360 * (percentage / 100.0)).toFloat()
+            val fillPercentage = (360 * (percentage / _maxProgress.toFloat()))
 
             // draw the arc that will represent the percentage filled up
             it.drawArc(rectF, 270f, fillPercentage, false, paint.apply {
@@ -159,7 +153,7 @@ class CircularProgressView @JvmOverloads constructor(
         canvas.drawText(text, x, y, paint)
     }
 
-    private fun setPercentage(percentage: Int) {
+    fun setPercentage(percentage: Int) {
         this.percentage = percentage
         invalidate()
     }
