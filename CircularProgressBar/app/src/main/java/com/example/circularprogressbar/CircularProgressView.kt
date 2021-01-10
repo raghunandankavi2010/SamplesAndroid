@@ -41,7 +41,13 @@ class CircularProgressView @JvmOverloads constructor(
     }
 
     // default percentage set to 0
-    private var percentage = 0
+    private var _percentage = 0
+    var percentage
+        get() = _percentage
+        set(value) {
+        _percentage = value
+         invalidate()
+    }
 
     private var _textColor = DEFAULT_TEXT_COLOR
     var textColor
@@ -135,7 +141,7 @@ class CircularProgressView @JvmOverloads constructor(
                 color = ContextCompat.getColor(context, R.color.green) // filled percentage color
 
             })
-            drawPercentage(it, textPaint, percentage.toString().plus("%"))
+            drawPercentage(it, textPaint, _percentage.toString().plus("%"))
 
         }
     }
@@ -153,8 +159,8 @@ class CircularProgressView @JvmOverloads constructor(
         canvas.drawText(text, x, y, paint)
     }
 
-    fun setPercentage(percentage: Int) {
+  /*  fun setPercentage(percentage: Int) {
         this.percentage = percentage
         invalidate()
-    }
+    }*/
 }
