@@ -159,8 +159,4 @@ class CircularProgressView @JvmOverloads constructor(
         canvas.drawText(text, x, y, paint)
     }
 
-  /*  fun setPercentage(percentage: Int) {
-        this.percentage = percentage
-        invalidate()
-    }*/
 }
