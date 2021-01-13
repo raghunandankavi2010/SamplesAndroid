@@ -1,6 +1,5 @@
 package com.example.chat.domain
 
-import androidx.lifecycle.LiveData
 import com.example.chat.db.ChatList
 import com.example.chat.repository.ChatListRepository
 import kotlinx.coroutines.flow.Flow

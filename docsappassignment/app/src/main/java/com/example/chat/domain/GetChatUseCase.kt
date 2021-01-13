@@ -1,11 +1,10 @@
 package com.example.chat.domain
 
 
-import androidx.lifecycle.LiveData
 import com.example.chat.db.NotSent
 import com.example.chat.model.ChatResponse
-import com.example.chat.util.Result
 import com.example.chat.repository.ChatRepository
+import com.example.chat.util.Result
 import kotlinx.coroutines.flow.Flow
 
 class GetChatUseCase(private val chatRepository: ChatRepository) {
