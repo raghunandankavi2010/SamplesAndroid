@@ -11,6 +11,7 @@ import com.example.chat.model.ChatResponse
 import com.example.chat.network.RetrofitClient
 import com.example.chat.util.Result
 import com.example.chat.util.safeApiCall
+import kotlinx.coroutines.flow.Flow
 import java.io.IOException
 
 class ChatRepository(val db: RoomSingleton) {
@@ -35,7 +36,7 @@ class ChatRepository(val db: RoomSingleton) {
         db.chatDao().insertAll(message)
     }
 
-    fun getAllChats(id: Int): LiveData<List<ChatMessage>> = db.chatDao().getAll(id)
+    fun getAllChats(id: Int): Flow<List<ChatMessage>> = db.chatDao().getAll(id)
 
     suspend fun insertNotSent(notSent: NotSent) = db.chatDao().insertNotSent(notSent)
 
@@ -44,7 +45,7 @@ class ChatRepository(val db: RoomSingleton) {
         db.chatDao().deleteNotSent(id)
 
 
-    suspend fun getAllNotSent(id: Int): List<NotSent> =
+     fun getAllNotSent(id: Int): Flow<List<NotSent>> =
             db.chatDao().getAllNotSent(id)
 
     suspend fun sent(notSent: NotSent) = safeApiCall(

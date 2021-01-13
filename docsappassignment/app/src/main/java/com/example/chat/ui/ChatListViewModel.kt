@@ -15,7 +15,7 @@ class ChatListViewModel(val db: RoomSingleton): ViewModel() {
     private val getChatListUsecase =  GetChatLists(chatlistRespository)
 
 
-    fun getAllChats(): LiveData<List<ChatList>> = getChatListUsecase.getData()
+    fun getAllChats(): LiveData<List<ChatList>> = getChatListUsecase.getData().asLiveData()
 
 
 }

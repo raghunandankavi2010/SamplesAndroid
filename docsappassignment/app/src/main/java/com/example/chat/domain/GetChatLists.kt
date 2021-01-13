@@ -3,9 +3,10 @@ package com.example.chat.domain
 import androidx.lifecycle.LiveData
 import com.example.chat.db.ChatList
 import com.example.chat.repository.ChatListRepository
+import kotlinx.coroutines.flow.Flow
 
 class GetChatLists(private val chatListRepository: ChatListRepository) {
 
 
-     fun getData(): LiveData<List<ChatList>> = chatListRepository.getAllChatList()
+     fun getData(): Flow<List<ChatList>> = chatListRepository.getAllChatList()
 }

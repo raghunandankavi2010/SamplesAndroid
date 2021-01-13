@@ -5,12 +5,16 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 
 @Dao
 interface ChatDao {
 
     @Query("SELECT * FROM chatmessage WHERE chatListId LIKE :id")
-    fun getAll(id: Int): LiveData<List<ChatMessage>>
+    fun getAllChatMessages(id: Int): Flow<List<ChatMessage>>
+
+    fun getAll(id: Int) = getAllChatMessages(id).distinctUntilChanged()
 
     @Insert
     suspend fun insertAll(chatMessage: ChatMessage)
@@ -22,7 +26,10 @@ interface ChatDao {
     fun insertChatList(chatList: List<ChatList>)
 
     @Query("SELECT * FROM chatlist")
-    fun getAllChats(): LiveData<List<ChatList>>
+    fun getChats(): Flow<List<ChatList>>
+
+
+    fun getAllChats() = getChats().distinctUntilChanged()
 
     @Insert
     suspend fun insertNotSent(notSent: NotSent): Long
@@ -31,6 +38,10 @@ interface ChatDao {
     suspend fun deleteNotSent(id: Int): Int
 
     @Query("SELECT * FROM notsent WHERE chatListId LIKE :id ")
-    suspend  fun getAllNotSent(id: Int): List<NotSent>
+    fun getNotSent(id: Int): Flow<List<NotSent>>
+
+    fun getAllNotSent(id: Int) = getNotSent(id).distinctUntilChanged()
+
+
 
 }

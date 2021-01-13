@@ -54,7 +54,7 @@ class ChatViewModel(val db: RoomSingleton) : ViewModel() {
         }
     }
 
-    fun getAllChats(id: Int): LiveData<List<ChatMessage>> = getChatListFromDB.getAllChats(id)
+    fun getAllChats(id: Int): LiveData<List<ChatMessage>> = getChatListFromDB.getAllChats(id).asLiveData()
 
     fun store(chatMessage: ChatMessage) {
 
@@ -91,9 +91,7 @@ class ChatViewModel(val db: RoomSingleton) : ViewModel() {
     }
 
     fun getAllNotSent(id: Int) {
-        viewModelScope.launch {
-         _chatNotSent.value = getChatUseCase.getAll(id)
-        }
+         _chatNotSent.value = getChatUseCase.getAll(id).asLiveData().value
 
     }
 
