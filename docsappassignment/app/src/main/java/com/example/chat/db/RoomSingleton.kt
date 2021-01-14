@@ -7,10 +7,9 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import java.util.concurrent.Executors
 
 
-@Database(entities = arrayOf(ChatMessage::class, ChatList::class, NotSent::class), version = 1, exportSchema = false)
+@Database(entities = [ChatMessage::class, ChatList::class, NotSent::class], version = 1, exportSchema = false)
 abstract class RoomSingleton : RoomDatabase() {
     abstract fun chatDao(): ChatDao
 
