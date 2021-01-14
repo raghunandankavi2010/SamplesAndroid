@@ -1,6 +1,5 @@
 package com.example.chat.repository
 
-import androidx.lifecycle.LiveData
 import com.example.chat.API_KEY
 import com.example.chat.CHAT_BOT_ID
 import com.example.chat.EXTERNAL_ID
