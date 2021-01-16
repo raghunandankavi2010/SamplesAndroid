@@ -7,19 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.chat.databinding.ActivityChatListBinding
-import com.example.chat.db.RoomSingleton
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ChatListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityChatListBinding
-    private val chatListViewModel: ChatListViewModel by viewModels {
-        MyViewModelFactory(
-            RoomSingleton.getInstance(
-                applicationContext
-            )
-        )
-    }
+    private val chatListViewModel: ChatListViewModel by viewModels ()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +31,7 @@ class ChatListActivity : AppCompatActivity() {
         binding.chatListRv.addItemDecoration(dividerItemDecoration)
         binding.chatListRv.setHasFixedSize(true)
         val adapter = ChatListAdapter(this) {
-          val intent = Intent(this@ChatListActivity, MainActivity::class.java)
+          val intent = Intent(this@ChatListActivity, ChatActivity::class.java)
             intent.putExtra("id", it.chatListId)
             startActivity(intent)
         }

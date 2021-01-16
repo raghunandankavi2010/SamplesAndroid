@@ -15,22 +15,18 @@ import com.example.chat.util.isNetworkAvailable
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.absoluteValue
 import com.example.chat.util.Result
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class ChatActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var chatAdapter: ChatAdapter
     private var verticalScrollOffset = AtomicInteger(0)
     private var id by Delegates.notNull<Int>()
-    private val chatViewModel: ChatViewModel by viewModels {
-        MyViewModelFactory(
-                RoomSingleton.getInstance(
-                        applicationContext
-                )
-        )
-    }
+    private val chatViewModel: ChatViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

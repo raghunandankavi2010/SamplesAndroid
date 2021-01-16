@@ -1,6 +1,7 @@
 package com.example.chat.ui
 
 import android.util.Log
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.example.chat.db.ChatMessage
 import com.example.chat.db.NotSent
@@ -8,7 +9,6 @@ import com.example.chat.db.RoomSingleton
 import com.example.chat.domain.GetChatListFromDB
 import com.example.chat.domain.GetChatUseCase
 import com.example.chat.domain.StoreMessageToDb
-import com.example.chat.mappers.ChatDataMapper
 import com.example.chat.model.ChatResponse
 import com.example.chat.repository.ChatRepository
 import com.example.chat.util.AbsentLiveData
@@ -17,17 +17,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class ChatViewModel(val db: RoomSingleton) : ViewModel() {
+class ChatViewModel @ViewModelInject constructor(val db: RoomSingleton,val chat: ChatRepository, val getChatUseCase: GetChatUseCase, val storeMessageToDb: StoreMessageToDb, val getChatListFromDB: GetChatListFromDB,) : ViewModel() {
 
-    private val chatDataMapper = ChatDataMapper()
-
-    private val chatRepository = ChatRepository(db,chatDataMapper)
-
-    private val getChatUseCase = GetChatUseCase(chatRepository)
-
-    private val storeMessageToDb = StoreMessageToDb(chatRepository)
-
-    private val getChatListFromDB = GetChatListFromDB(chatRepository)
 
     private val _chatMessage = MutableLiveData<String?>()
     val chatMessage: LiveData<String?>

@@ -3,8 +3,9 @@ package com.example.chat.domain
 import com.example.chat.db.ChatList
 import com.example.chat.repository.ChatListRepository
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class GetChatLists(private val chatListRepository: ChatListRepository) {
+class GetChatLists @Inject constructor(private val chatListRepository: ChatListRepository) {
 
 
      fun getData(): Flow<List<ChatList>> = chatListRepository.getAllChatList()

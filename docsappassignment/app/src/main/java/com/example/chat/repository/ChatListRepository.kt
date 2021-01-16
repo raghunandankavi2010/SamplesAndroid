@@ -1,11 +1,13 @@
 package com.example.chat.repository
 
+import com.example.chat.db.ChatDao
 import com.example.chat.db.ChatList
 import com.example.chat.db.RoomSingleton
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class ChatListRepository(val db: RoomSingleton) {
+class ChatListRepository @Inject constructor(val chatDao: ChatDao) {
 
-     fun getAllChatList(): Flow<List<ChatList>> =  db.chatDao().getAllChats()
+     fun getAllChatList(): Flow<List<ChatList>> =  chatDao.getAllChats()
 
 }

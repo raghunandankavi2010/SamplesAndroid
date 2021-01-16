@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.ChatActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,19 +19,22 @@
         app:layout_constraintVertical_bias="1.0">
 
         <EditText
+            android:autofillHints="@string/type_a_message"
             android:id="@+id/messageInput"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="8dp"
             android:layout_weight="2.5"
             android:background="@android:color/transparent"
-            android:hint="Type a message"
+            android:inputType="text"
+            android:hint="@string/type_a_message"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/send"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:contentDescription="@string/send_typed_message"
             android:enabled="false"
             android:id="@+id/send"
             android:layout_width="48dp"

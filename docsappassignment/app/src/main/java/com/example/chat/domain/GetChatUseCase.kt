@@ -7,8 +7,9 @@ import com.example.chat.model.ChatResponse
 import com.example.chat.repository.ChatRepository
 import com.example.chat.util.Result
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class GetChatUseCase(private val chatRepository: ChatRepository) {
+class GetChatUseCase @Inject constructor (private val chatRepository: ChatRepository) {
 
     suspend fun getMessage(message: String): Result<ChatData> = chatRepository.getChatMessage(message)
 

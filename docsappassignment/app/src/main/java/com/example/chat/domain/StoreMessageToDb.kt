@@ -3,9 +3,10 @@ package com.example.chat.domain
 import com.example.chat.db.ChatMessage
 import com.example.chat.db.NotSent
 import com.example.chat.repository.ChatRepository
+import javax.inject.Inject
 
 
-class StoreMessageToDb(private val chatRepository: ChatRepository) {
+class StoreMessageToDb @Inject constructor(private val chatRepository: ChatRepository) {
 
 
     suspend fun storeMessage(message: ChatMessage){

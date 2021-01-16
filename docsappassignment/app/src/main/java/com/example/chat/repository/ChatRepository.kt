@@ -3,6 +3,7 @@ package com.example.chat.repository
 import com.example.chat.API_KEY
 import com.example.chat.CHAT_BOT_ID
 import com.example.chat.EXTERNAL_ID
+import com.example.chat.db.ChatDao
 import com.example.chat.db.ChatMessage
 import com.example.chat.db.NotSent
 import com.example.chat.db.RoomSingleton
@@ -15,8 +16,9 @@ import com.example.chat.util.safeApiCall
 import kotlinx.coroutines.flow.Flow
 import java.io.IOException
 import java.lang.Exception
+import javax.inject.Inject
 
-class ChatRepository(private val db: RoomSingleton, private val chatDataMapper: ChatDataMapper) {
+class ChatRepository @Inject constructor(private val chatDao: ChatDao, private val chatDataMapper: ChatDataMapper) {
 
     suspend fun getChatMessage(message: String) = safeApiCall(
             call = { getChat(message) },
@@ -38,20 +40,20 @@ class ChatRepository(private val db: RoomSingleton, private val chatDataMapper: 
     }
 
     suspend fun insertDb(message: ChatMessage) {
-        db.chatDao().insertAll(message)
+       chatDao.insertAll(message)
     }
 
-    fun getAllChats(id: Int): Flow<List<ChatMessage>> = db.chatDao().getAll(id)
+    fun getAllChats(id: Int): Flow<List<ChatMessage>> = chatDao.getAll(id)
 
-    suspend fun insertNotSent(notSent: NotSent) = db.chatDao().insertNotSent(notSent)
+    suspend fun insertNotSent(notSent: NotSent) = chatDao.insertNotSent(notSent)
 
 
      suspend fun delete(id: Int) =
-        db.chatDao().deleteNotSent(id)
+       chatDao.deleteNotSent(id)
 
 
      fun getAllNotSent(id: Int): Flow<List<NotSent>> =
-            db.chatDao().getAllNotSent(id)
+           chatDao.getAllNotSent(id)
 
     suspend fun sent(notSent: NotSent) = safeApiCall(
             call = { send(notSent.chatMessage) },

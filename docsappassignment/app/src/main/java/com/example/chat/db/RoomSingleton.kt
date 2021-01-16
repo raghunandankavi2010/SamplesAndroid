@@ -14,7 +14,7 @@ abstract class RoomSingleton : RoomDatabase() {
     abstract fun chatDao(): ChatDao
 
 
-    companion object {
+/*    companion object {
 
         // For Singleton instantiation
         @Volatile
@@ -45,6 +45,6 @@ abstract class RoomSingleton : RoomDatabase() {
                     .build()
         }
     }
-    
+    */
 
 }
