@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.Flow
 import java.io.IOException
 import java.lang.Exception
 
-class ChatRepository(val db: RoomSingleton, val chatDataMapper: ChatDataMapper) {
+class ChatRepository(private val db: RoomSingleton, private val chatDataMapper: ChatDataMapper) {
 
     suspend fun getChatMessage(message: String) = safeApiCall(
             call = { getChat(message) },
