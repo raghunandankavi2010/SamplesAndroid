@@ -6,6 +6,8 @@ import com.example.chat.EXTERNAL_ID
 import com.example.chat.db.ChatMessage
 import com.example.chat.db.NotSent
 import com.example.chat.db.RoomSingleton
+import com.example.chat.mappers.ChatDataMapper
+import com.example.chat.model.ChatData
 import com.example.chat.model.ChatResponse
 import com.example.chat.network.RetrofitClient
 import com.example.chat.util.Result
@@ -14,19 +16,20 @@ import kotlinx.coroutines.flow.Flow
 import java.io.IOException
 import java.lang.Exception
 
-class ChatRepository(val db: RoomSingleton) {
+class ChatRepository(val db: RoomSingleton, val chatDataMapper: ChatDataMapper) {
 
     suspend fun getChatMessage(message: String) = safeApiCall(
             call = { getChat(message) },
             errorMessage = "Error loading Chat data"
     )
 
-    private suspend fun getChat(message: String): Result<ChatResponse> {
+    private suspend fun getChat(message: String): Result<ChatData> {
         val response = RetrofitClient.apiService.getChatResponse(API_KEY, message, CHAT_BOT_ID, EXTERNAL_ID)
         if (response.isSuccessful) {
             val chatResponse = response.body()
             if (chatResponse != null) {
-                return Result.Success(data = chatResponse)
+                val chatData = chatDataMapper.map(chatResponse)
+                return Result.Success(data = chatData)
             }else if(response.code()==401){
                 return Result.Error(Exception("Authorization error"))
             }
@@ -65,7 +68,6 @@ class ChatRepository(val db: RoomSingleton) {
         }
         return Result.Error(IOException("Error loading Chat Response ${response.code()} ${response.message()}"))
     }
-
 
 }
 

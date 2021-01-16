@@ -146,9 +146,9 @@ class MainActivity : AppCompatActivity() {
             it?.let { result ->
                 when (result) {
                     is Result.Success -> {
-                        val chatRespone = result.data
-                        chatRespone.message.chatSendOrReceive = 2
-                        chatViewModel.storeReceivedMessage(chatRespone.message.message, id)
+                        val chatData = result.data
+                        chatData.message.chatSendOrReceive = 2
+                        chatViewModel.storeReceivedMessage(chatData.message.message, id)
                     }
                     is Result.Error -> {
                         Toast.makeText(this, "${result.exception}", Toast.LENGTH_LONG).show()

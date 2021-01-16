@@ -8,6 +8,7 @@ import com.example.chat.db.RoomSingleton
 import com.example.chat.domain.GetChatListFromDB
 import com.example.chat.domain.GetChatUseCase
 import com.example.chat.domain.StoreMessageToDb
+import com.example.chat.mappers.ChatDataMapper
 import com.example.chat.model.ChatResponse
 import com.example.chat.repository.ChatRepository
 import com.example.chat.util.AbsentLiveData
@@ -18,7 +19,9 @@ import kotlinx.coroutines.launch
 
 class ChatViewModel(val db: RoomSingleton) : ViewModel() {
 
-    private val chatRepository = ChatRepository(db)
+    private val chatDataMapper = ChatDataMapper()
+
+    private val chatRepository = ChatRepository(db,chatDataMapper)
 
     private val getChatUseCase = GetChatUseCase(chatRepository)
 
