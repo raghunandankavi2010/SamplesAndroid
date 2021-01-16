@@ -14,7 +14,7 @@ class ChatListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityChatListBinding
     private val chatListViewModel: ChatListViewModel by viewModels {
-        ChatListViewModelFactory(
+        MyViewModelFactory(
             RoomSingleton.getInstance(
                 applicationContext
             )
