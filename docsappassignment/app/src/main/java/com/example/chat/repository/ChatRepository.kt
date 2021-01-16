@@ -12,6 +12,7 @@ import com.example.chat.util.Result
 import com.example.chat.util.safeApiCall
 import kotlinx.coroutines.flow.Flow
 import java.io.IOException
+import java.lang.Exception
 
 class ChatRepository(val db: RoomSingleton) {
 
@@ -26,6 +27,8 @@ class ChatRepository(val db: RoomSingleton) {
             val chatResponse = response.body()
             if (chatResponse != null) {
                 return Result.Success(data = chatResponse)
+            }else if(response.code()==401){
+                return Result.Error(Exception("Authorization error"))
             }
         }
         return Result.Error(IOException("Error loading Chat Response ${response.code()} ${response.message()}"))
