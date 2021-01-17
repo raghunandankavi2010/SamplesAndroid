@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.chat.R
-import com.example.chat.db.ChatList
+import com.example.chat.data.db.ChatList
 
 
  class ChatListAdapter(private val context: Context, private val listener: (ChatList) -> Unit) : ListAdapter<ChatList?,ChatListViewHolder?>(DIFF_CALLBACK) {

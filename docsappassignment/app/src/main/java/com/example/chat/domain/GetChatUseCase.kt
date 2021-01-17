@@ -1,9 +1,9 @@
 package com.example.chat.domain
 
 
-import com.example.chat.db.NotSent
-import com.example.chat.model.ChatData
-import com.example.chat.model.ChatResponse
+import com.example.chat.data.db.NotSent
+import com.example.chat.data.model.ChatData
+import com.example.chat.data.remote.ChatResponse
 import com.example.chat.repository.ChatRepository
 import com.example.chat.util.Result
 import kotlinx.coroutines.flow.Flow

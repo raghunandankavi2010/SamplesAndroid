@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chat.R
-import com.example.chat.db.ChatMessage
+import com.example.chat.data.db.ChatMessage
 
 class ChatAdapter(private val context: Context) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {

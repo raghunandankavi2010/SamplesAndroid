@@ -1,7 +1,7 @@
 package com.example.chat.mappers
 
-import com.example.chat.model.ChatMessage
-import com.example.chat.model.Message
+import com.example.chat.data.model.ChatMessage
+import com.example.chat.data.remote.Message
 import javax.inject.Inject
 
 class ChatMessageMapper @Inject constructor(): Mapper<Message, ChatMessage> {

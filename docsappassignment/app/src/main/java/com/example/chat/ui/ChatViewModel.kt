@@ -3,21 +3,19 @@ package com.example.chat.ui
 import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import com.example.chat.db.ChatMessage
-import com.example.chat.db.NotSent
-import com.example.chat.db.RoomSingleton
+import com.example.chat.data.db.ChatMessage
+import com.example.chat.data.db.NotSent
 import com.example.chat.domain.GetChatListFromDB
 import com.example.chat.domain.GetChatUseCase
 import com.example.chat.domain.StoreMessageToDb
-import com.example.chat.model.ChatResponse
-import com.example.chat.repository.ChatRepository
+import com.example.chat.data.remote.ChatResponse
 import com.example.chat.util.AbsentLiveData
 import com.example.chat.util.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class ChatViewModel @ViewModelInject constructor(val db: RoomSingleton,val chat: ChatRepository, val getChatUseCase: GetChatUseCase, val storeMessageToDb: StoreMessageToDb, val getChatListFromDB: GetChatListFromDB,) : ViewModel() {
+class ChatViewModel @ViewModelInject constructor(private val getChatUseCase: GetChatUseCase, private val storeMessageToDb: StoreMessageToDb, private val getChatListFromDB: GetChatListFromDB,) : ViewModel() {
 
 
     private val _chatMessage = MutableLiveData<String?>()

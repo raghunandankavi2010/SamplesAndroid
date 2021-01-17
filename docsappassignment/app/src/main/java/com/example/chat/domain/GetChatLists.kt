@@ -1,6 +1,6 @@
 package com.example.chat.domain
 
-import com.example.chat.db.ChatList
+import com.example.chat.data.db.ChatList
 import com.example.chat.repository.ChatListRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

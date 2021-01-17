@@ -6,9 +6,9 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import com.example.chat.db.ChatDao
-import com.example.chat.db.RoomSingleton
-import com.example.chat.db.SeedDatabaseWorker
+import com.example.chat.data.db.ChatDao
+import com.example.chat.data.db.RoomSingleton
+import com.example.chat.data.db.SeedDatabaseWorker
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

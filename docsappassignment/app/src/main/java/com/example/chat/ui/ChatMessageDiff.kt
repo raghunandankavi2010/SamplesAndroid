@@ -1,7 +1,7 @@
 package com.example.chat.ui
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.chat.db.ChatMessage
+import com.example.chat.data.db.ChatMessage
 
 class ChatMessageDiff(
     private val moldChatMessageList: List<ChatMessage>,

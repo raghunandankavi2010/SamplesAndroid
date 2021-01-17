@@ -1,4 +1,4 @@
-package com.example.chat.model
+package com.example.chat.data.remote
 
 import com.google.gson.annotations.SerializedName
 

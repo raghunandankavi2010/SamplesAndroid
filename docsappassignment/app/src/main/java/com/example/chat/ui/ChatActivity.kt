@@ -6,10 +6,8 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chat.databinding.ActivityMainBinding
-import com.example.chat.db.RoomSingleton
 import com.example.chat.util.ConnectionLiveData
 import com.example.chat.util.isNetworkAvailable
 import java.util.concurrent.atomic.AtomicInteger

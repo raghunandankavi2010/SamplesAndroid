@@ -1,4 +1,4 @@
-package com.example.chat.db
+package com.example.chat.data.db
 
 import androidx.room.Dao
 import androidx.room.Delete

@@ -1,6 +1,6 @@
 package com.example.chat.network
 
-import com.example.chat.model.ChatResponse
+import com.example.chat.data.remote.ChatResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

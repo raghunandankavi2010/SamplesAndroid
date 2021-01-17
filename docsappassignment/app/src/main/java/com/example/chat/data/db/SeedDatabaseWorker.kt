@@ -1,4 +1,4 @@
-package com.example.chat.db
+package com.example.chat.data.db
 
 import android.content.Context
 import android.util.Log

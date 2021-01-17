@@ -1,4 +1,4 @@
-package com.example.chat.db
+package com.example.chat.data.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,6 +9,6 @@ data class ChatList(
         var chatListTitle: String
 ){
         @PrimaryKey(autoGenerate = true)
-        var Id: Int = 0
+        var id: Int = 0
 
 }
