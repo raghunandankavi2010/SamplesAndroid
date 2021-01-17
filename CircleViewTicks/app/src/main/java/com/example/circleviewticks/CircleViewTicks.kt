@@ -1,9 +1,10 @@
 package com.example.circleviewticks
 
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 import com.example.circularprogressbar.utils.px
@@ -14,17 +15,14 @@ import kotlin.math.sin
 
 
 class CircleViewTicks @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
     companion object {
-        private const val DEFAULT_RADIUS= 100
+        private const val DEFAULT_RADIUS = 100
         private const val DEFAULT_STROKE_WIDTH = 20f
-        private const val  TICK_COUNT = 10
+        private const val TICK_COUNT = 10
     }
-
-
-
 
     // Used to draw pretty much anything on a canvas, which is what we will be drawing on
     private val paint = Paint().apply {
@@ -42,14 +40,24 @@ class CircleViewTicks @JvmOverloads constructor(
         strokeWidth = 10f
         style = Paint.Style.STROKE
         strokeCap = Paint.Cap.ROUND
+        color = Color.GREEN
+    }
+
+    private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        // how we want the arcs to be draw, we want to make sure the arc centers are not colored
+        // so we use a STROKE instead.
+        strokeWidth = 2f
+        textSize = 25f
+        textAlign = Paint.Align.CENTER
+        style = Paint.Style.STROKE
         color = Color.RED
+
     }
 
     private val radius = DEFAULT_RADIUS
 
 
     init {
-
 
     }
 
@@ -81,33 +89,42 @@ class CircleViewTicks @JvmOverloads constructor(
     }
 
 
-    @SuppressLint("CanvasSize")
-    override fun onDraw(canvas: Canvas?) {
+
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-
-        canvas?.drawCircle(width / 2.toFloat(), height / 2.toFloat(), radius.toFloat(), paint)
-
-        for (i in 0 until TICK_COUNT) {
-            val startAngle =
-                Math.toRadians(0.0).toFloat()
-            val angle =
-                ((startAngle + i) * (Math.toRadians(360.0) / TICK_COUNT)).toFloat()// * (Math.PI / TICK_COUNT));
-            val x = ((radius + DEFAULT_STROKE_WIDTH) * cos(angle.toDouble()) + width / 2.toFloat()).toInt()
-            val y = ((radius + DEFAULT_STROKE_WIDTH) * sin(angle.toDouble()) + height / 2.toFloat()).toInt()
-            val x1 = ((radius + 20 +  DEFAULT_STROKE_WIDTH) * cos(angle.toDouble()) + width / 2.toFloat().toInt())
-            val y1 = ((radius + 20 + DEFAULT_STROKE_WIDTH) * sin(angle.toDouble()) + height / 2.toFloat().toInt())
-
-            canvas?.drawLine(
-                x.toFloat(),
-                y.toFloat(),
-                x1.toFloat(),
-                y1.toFloat(),
-                tPaint
-            )
+        canvas.apply {
+            drawCircle(width / 2.toFloat(), height / 2.toFloat(), radius.toFloat(), paint)
+            drawCircle(width / 2.toFloat(), height / 2.toFloat(), radius + 20 + DEFAULT_STROKE_WIDTH, tPaint)
 
         }
 
-    }
+        for (i in 0 until TICK_COUNT) {
+            val startAngle =
+                    Math.toRadians(0.0).toFloat()
+            val angle =
+                    ((startAngle + i) * (Math.toRadians(360.0) / TICK_COUNT)).toFloat()// * (Math.PI / TICK_COUNT));
+            val x = ((radius + DEFAULT_STROKE_WIDTH) * cos(angle.toDouble()) + width / 2.toFloat()).toInt()
+            val y = ((radius + DEFAULT_STROKE_WIDTH) * sin(angle.toDouble()) + height / 2.toFloat()).toInt()
+            val x1 = ((radius + 20 + DEFAULT_STROKE_WIDTH) * cos(angle.toDouble()) + width / 2.toFloat().toInt())
+            val y1 = ((radius + 20 + DEFAULT_STROKE_WIDTH) * sin(angle.toDouble()) + height / 2.toFloat().toInt())
 
+            val x2 = ((radius + 40 + DEFAULT_STROKE_WIDTH) * cos(angle.toDouble()) + width / 2.toFloat().toInt())
+            val y2 = ((radius + 40 + DEFAULT_STROKE_WIDTH) * sin(angle.toDouble()) + height / 2.toFloat().toInt())
+
+            val yPos = (y2 - (textPaint.descent() + textPaint.ascent()) / 2).toInt()
+
+            canvas.apply {
+                drawText(i.toString(), x2.toFloat(), yPos.toFloat(), textPaint)
+
+                drawLine(
+                        x.toFloat(),
+                        y.toFloat(),
+                        x1.toFloat(),
+                        y1.toFloat(),
+                        tPaint
+                )
+            }
+        }
+    }
 }
