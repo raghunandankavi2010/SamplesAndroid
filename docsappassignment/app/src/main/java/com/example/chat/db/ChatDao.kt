@@ -26,10 +26,8 @@ interface ChatDao {
     fun insertChatList(chatList: List<ChatList>)
 
     @Query("SELECT * FROM chatlist")
-    fun getChats(): Flow<List<ChatList>>
+    fun getAllChats(): Flow<List<ChatList>>
 
-
-    fun getAllChats() = getChats().distinctUntilChanged()
 
     @Insert
     suspend fun insertNotSent(notSent: NotSent): Long
