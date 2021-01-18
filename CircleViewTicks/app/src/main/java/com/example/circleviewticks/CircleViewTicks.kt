@@ -95,7 +95,7 @@ class CircleViewTicks @JvmOverloads constructor(
 
         canvas.apply {
             drawCircle(width / 2.toFloat(), height / 2.toFloat(), radius.toFloat(), paint)
-            drawCircle(width / 2.toFloat(), height / 2.toFloat(), radius + 20 + DEFAULT_STROKE_WIDTH, tPaint)
+            drawCircle(width / 2.toFloat(), height / 2.toFloat(), radius + 40 + DEFAULT_STROKE_WIDTH, tPaint)
 
         }
 
@@ -127,4 +127,5 @@ class CircleViewTicks @JvmOverloads constructor(
             }
         }
     }
+
 }
