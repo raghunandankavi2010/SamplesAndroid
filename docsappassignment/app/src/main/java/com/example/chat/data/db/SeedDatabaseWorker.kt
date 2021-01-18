@@ -12,7 +12,7 @@ import kotlinx.coroutines.coroutineScope
 class SeedDatabaseWorker @WorkerInject constructor (
     @Assisted appContext: Context,
     @Assisted workerParams: WorkerParameters,
-    val chatDao: ChatDao
+    private val chatDao: ChatDao
 ) : CoroutineWorker(appContext, workerParams) {
     override suspend fun doWork(): Result = coroutineScope {
         try {
