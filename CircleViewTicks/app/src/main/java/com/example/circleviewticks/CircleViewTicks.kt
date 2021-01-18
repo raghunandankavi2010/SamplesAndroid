@@ -103,16 +103,16 @@ class CircleViewTicks @JvmOverloads constructor(
             val startAngle =
                     Math.toRadians(0.0).toFloat()
             val angle =
-                    ((startAngle + i) * (Math.toRadians(360.0) / TICK_COUNT)).toFloat()// * (Math.PI / TICK_COUNT));
-            val x = ((radius + DEFAULT_STROKE_WIDTH) * cos(angle.toDouble()) + width / 2.toFloat()).toInt()
-            val y = ((radius + DEFAULT_STROKE_WIDTH) * sin(angle.toDouble()) + height / 2.toFloat()).toInt()
-            val x1 = ((radius + 20 + DEFAULT_STROKE_WIDTH) * cos(angle.toDouble()) + width / 2.toFloat().toInt())
-            val y1 = ((radius + 20 + DEFAULT_STROKE_WIDTH) * sin(angle.toDouble()) + height / 2.toFloat().toInt())
+                    ((startAngle + i) * (Math.toRadians(360.0) / TICK_COUNT)).toFloat()
+            val x = ((radius + DEFAULT_STROKE_WIDTH) * cos(angle.toDouble()) + width / 2)
+            val y = ((radius + DEFAULT_STROKE_WIDTH) * sin(angle.toDouble()) + height / 2)
+            val x1 = ((radius + 20 + DEFAULT_STROKE_WIDTH) * cos(angle.toDouble()) + width / 2)
+            val y1 = ((radius + 20 + DEFAULT_STROKE_WIDTH) * sin(angle.toDouble()) + height / 2)
 
-            val x2 = ((radius + 40 + DEFAULT_STROKE_WIDTH) * cos(angle.toDouble()) + width / 2.toFloat().toInt())
-            val y2 = ((radius + 40 + DEFAULT_STROKE_WIDTH) * sin(angle.toDouble()) + height / 2.toFloat().toInt())
+            val x2 = ((radius + 40 + DEFAULT_STROKE_WIDTH) * cos(angle.toDouble()) + width / 2)
+            val y2 = ((radius + 40 + DEFAULT_STROKE_WIDTH) * sin(angle.toDouble()) + height / 2)
 
-            val yPos = (y2 - (textPaint.descent() + textPaint.ascent()) / 2).toInt()
+            val yPos = (y2 - (textPaint.descent() + textPaint.ascent()) / 2)
 
             canvas.apply {
                 drawText(i.toString(), x2.toFloat(), yPos.toFloat(), textPaint)
