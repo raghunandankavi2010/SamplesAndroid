@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">NestedRecyclerView</string>
+    <string name="image">Image</string>
+</resources>
