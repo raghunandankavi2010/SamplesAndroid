@@ -1,21 +1,25 @@
 package com.example.raghu.camerademon;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+import androidx.exifinterface.media.ExifInterface;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -25,8 +29,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;
@@ -39,19 +41,19 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_TAKE_PHOTO = 504;
     private ImageView imageView;
-    private String  mCurrentPhotoPath;
+    private String mCurrentPhotoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imageView = (ImageView)findViewById(R.id.captured_image);
+        imageView =  findViewById(R.id.captured_image);
 
         MainActivityPermissionsDispatcher.captureImageViaCameraWithCheck(this);
 
     }
 
-    @NeedsPermission({Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE})
+    @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     public void captureImageViaCamera() {
 
 
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
-            File photoFile = null;
+            File photoFile;
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
@@ -107,12 +109,12 @@ public class MainActivity extends AppCompatActivity {
 
     @OnPermissionDenied(Manifest.permission.CAMERA)
     void showDeniedForCamera() {
-        Toast.makeText(this, "Permision Denied",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.getApplicationContext(), "Permision Denied", Toast.LENGTH_SHORT).show();
     }
 
     @OnNeverAskAgain(Manifest.permission.CAMERA)
     void showNeverAskForCamera() {
-        Toast.makeText(this, "Never ask again", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.getApplicationContext(), "Never ask again", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -137,12 +139,12 @@ public class MainActivity extends AppCompatActivity {
 
     @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void showDeniedForWrite() {
-        Toast.makeText(this, "Permision Denied",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.getApplicationContext(), "Permision Denied", Toast.LENGTH_SHORT).show();
     }
 
     @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void showNeverAskForWrite() {
-        Toast.makeText(this, "Never ask again", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.getApplicationContext(), "Never ask again", Toast.LENGTH_SHORT).show();
     }
 
     @OnShowRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -166,14 +168,13 @@ public class MainActivity extends AppCompatActivity {
 
     @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showDeniedForRead() {
-        Toast.makeText(this, "Permision Denied",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.getApplicationContext(), "Permision Denied", Toast.LENGTH_SHORT).show();
     }
 
     @OnNeverAskAgain(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showNeverAskForRead() {
-        Toast.makeText(this, "Never ask again", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.getApplicationContext(), "Never ask again", Toast.LENGTH_SHORT).show();
     }
-
 
 
     @Override
@@ -189,17 +190,19 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
             // Show the thumbnail on ImageView
             Uri imageUri = Uri.parse(mCurrentPhotoPath);
-            InputStreamRequestBody inputStreamRequestBody = new InputStreamRequestBody( MediaType.parse("image/*"),getContentResolver(),imageUri)
-            MultipartBody.Part.createFormData(
-                    "pic", "myPic", inputStreamRequestBody
-            )
-
+            Log.i("...........", "" + imageUri);
             File file = new File(imageUri.getPath());
             try {
                 InputStream ims = new FileInputStream(file);
-                imageView.setImageBitmap(BitmapFactory.decodeStream(ims));
+                Bitmap img = BitmapFactory.decodeStream(ims);
+
+                img = rotateImageIfRequired(MainActivity.this, img, imageUri);
+
+                imageView.setImageBitmap(img);
             } catch (FileNotFoundException e) {
                 return;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
             // ScanFile so it will be appeared on Gallery
@@ -216,8 +219,8 @@ public class MainActivity extends AppCompatActivity {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ENGLISH).format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DCIM), "Camera");
+        File storageDir = new File(String.valueOf(getExternalFilesDir(Environment.DIRECTORY_DCIM)));
+
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
@@ -227,5 +230,33 @@ public class MainActivity extends AppCompatActivity {
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = "file:" + image.getAbsolutePath();
         return image;
+    }
+
+    private static Bitmap rotateImageIfRequired(Context context, Bitmap img, Uri selectedImage) throws IOException {
+
+        InputStream input = context.getContentResolver().openInputStream(selectedImage);
+        ExifInterface ei;
+        ei = new ExifInterface(input);
+
+        int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+
+        switch (orientation) {
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                return rotateImage(img, 90);
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                return rotateImage(img, 180);
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                return rotateImage(img, 270);
+            default:
+                return img;
+        }
+    }
+
+    private static Bitmap rotateImage(Bitmap img, int degree) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(degree);
+        Bitmap rotatedImg = Bitmap.createBitmap(img, 0, 0, img.getWidth(), img.getHeight(), matrix, true);
+        img.recycle();
+        return rotatedImg;
     }
 }

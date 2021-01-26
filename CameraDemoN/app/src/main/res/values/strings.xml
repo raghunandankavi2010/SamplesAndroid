@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CameraDemoN</string>
+    <string name="captured_image">Captured Image</string>
 </resources>
