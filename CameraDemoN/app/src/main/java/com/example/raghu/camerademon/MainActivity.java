@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
+    @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE})
     public void captureImageViaCamera() {
 
 
@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
     private void dispatchTakePictureIntent() throws IOException {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
             File photoFile;
             try {
@@ -85,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
-        }
     }
 
     @OnShowRationale(Manifest.permission.CAMERA)
@@ -114,36 +112,6 @@ public class MainActivity extends AppCompatActivity {
 
     @OnNeverAskAgain(Manifest.permission.CAMERA)
     void showNeverAskForCamera() {
-        Toast.makeText(this.getApplicationContext(), "Never ask again", Toast.LENGTH_SHORT).show();
-    }
-
-
-    @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-    void showRationaleForWrite(final PermissionRequest request) {
-        new AlertDialog.Builder(this)
-                .setMessage("Permission required for Write")
-                .setPositiveButton("Allow", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int button) {
-                        request.proceed();
-                    }
-                })
-                .setNegativeButton("Deny", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int button) {
-                        request.cancel();
-                    }
-                })
-                .show();
-    }
-
-    @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-    void showDeniedForWrite() {
-        Toast.makeText(this.getApplicationContext(), "Permision Denied", Toast.LENGTH_SHORT).show();
-    }
-
-    @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-    void showNeverAskForWrite() {
         Toast.makeText(this.getApplicationContext(), "Never ask again", Toast.LENGTH_SHORT).show();
     }
 
@@ -187,16 +155,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+
+      if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+
+          File file = new File(mCurrentPhotoPath);
+          Uri contentUri = FileProvider.getUriForFile(MainActivity.this, "com.example.raghu.camerademon.fileProvider", file);
+          Log.i("...........", "" + contentUri);
             // Show the thumbnail on ImageView
-            Uri imageUri = Uri.parse(mCurrentPhotoPath);
+          /*  Uri imageUri = Uri.parse(mCurrentPhotoPath);
             Log.i("...........", "" + imageUri);
-            File file = new File(imageUri.getPath());
+            File file = new File(imageUri.getPath());*/
             try {
                 InputStream ims = new FileInputStream(file);
                 Bitmap img = BitmapFactory.decodeStream(ims);
 
-                img = rotateImageIfRequired(MainActivity.this, img, imageUri);
+                img = rotateImageIfRequired(MainActivity.this, img, contentUri);
 
                 imageView.setImageBitmap(img);
             } catch (FileNotFoundException e) {
@@ -207,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
             // ScanFile so it will be appeared on Gallery
             MediaScannerConnection.scanFile(MainActivity.this,
-                    new String[]{imageUri.getPath()}, null,
+                    new String[]{contentUri.getPath()}, null,
                     new MediaScannerConnection.OnScanCompletedListener() {
                         public void onScanCompleted(String path, Uri uri) {
                         }
@@ -228,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
         );
 
         // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+        mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
 
