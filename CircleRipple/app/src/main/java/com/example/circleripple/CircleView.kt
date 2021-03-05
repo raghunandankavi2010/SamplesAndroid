@@ -9,6 +9,10 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import kotlin.math.min
 
+/**
+ *  Two circle with different radius
+ *  These two circle are animated using object animator to give ripple effect.
+ */
 class CircleView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     private val paint = Paint()
