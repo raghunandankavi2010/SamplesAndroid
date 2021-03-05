@@ -22,6 +22,8 @@ public class ApiClient
 {
     public static final String URL="http://api.themoviedb.org/3/";
 
+    public static final String URL2 = "https://us.openfoodfacts.org/";
+
     public static Retrofit getClient()
     {
 
@@ -60,7 +62,7 @@ public class ApiClient
 
         Retrofit retrofit = new Retrofit.Builder()
                 .client(client)
-                .baseUrl(URL)
+                .baseUrl(URL2)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

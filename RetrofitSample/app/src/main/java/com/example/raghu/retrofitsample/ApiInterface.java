@@ -4,28 +4,12 @@ package com.example.raghu.retrofitsample;
  * Created by raghu on 23/4/17.
  */
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
-import retrofit2.http.Url;
+import retrofit2.http.Headers;
 
-
-// to define endpoints of a URL we will use special retrofit annotations. we have used Get annotation in
-// to get information from the API and the parameters os this method are @Query,@Path,
 public interface ApiInterface {
-    @GET("movie/now_playing")
-    Call<MovieResponse> getNowPlayingMovies(@Query("api_key") String apikey);
-
-    //return value is alwayays a parameterized call<T> oject whose paremeter is generic so we can have
-    @GET("movie/{id}")
-    Call<MovieResponse> getMovieDetails(@Path("id") int id, @Query("api_key") String apiKey);
-
-    //@GET("statdirectory/exchange&json")
-    //Call<List<MyModel>>  getСurrency(@Query(value="date",encoded = true) String inputDate);
-
-    @GET
-    Call<List<MyModel>>  getСurrency(@Url String ur);
+    @Headers("User-Agent: Fooducate - Android - Version 1.0")
+    @GET("/api/v0/product/01223004")
+    Call<ResponseObject> getProducts();
 }

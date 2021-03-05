@@ -6,10 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_DRAGGING
 import kotlinx.android.synthetic.main.facebook_comment.*
 
 
@@ -59,22 +61,75 @@ class CommentDialogFragment : DialogFragment() {
         })
 
 
+        var isSrollingUp = false
+        var isSrollingDown = false
+        var canSwipe = false
+        var y = 0
 
-        rv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+     rv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                val lastItem = linearLayoutManager.findLastVisibleItemPosition()
+                 y = dy
+               isSrollingUp = dy > 0
+                    val lastItem = linearLayoutManager.findLastVisibleItemPosition()
                 val firstItem: Int = linearLayoutManager.findFirstCompletelyVisibleItemPosition()
 
-                if (lastItem == dataset.size - 1 || firstItem == 0 || isScrolling) {
+                // first item and scrolling up
+                if( firstItem == 0 && dy > 0) {
+                    mBounceScrollView.requestDisallowInterceptTouchEvent(false)
+                    Log.i("ScrollView can scroll", "" + false)
+                    mBounceScrollView.setScrollable(false)
+                } else if( firstItem == 0 && dy < 0) {
+                    mBounceScrollView.requestDisallowInterceptTouchEvent(true)
+                    Log.i("ScrollView can scroll", "" + true)
                     mBounceScrollView.setScrollable(true)
+                }
+
+                // last item and scrolling down
+             /*   if( lastItem == dataset.size - 1 && dy < 0) {
+                    mBounceScrollView.setScrollable(false)
+                } else if( lastItem == dataset.size - 1 && dy > 0) {
+                    mBounceScrollView.setScrollable(true)
+                }*/
+
+            /*  if (lastItem == dataset.size - 1 || firstItem == 0) {
+                   mBounceScrollView.setScrollable(true)
+                    canSwipe = true
                     Log.i("ScrollView can scroll", "" + true)
                 } else {
                     mBounceScrollView.setScrollable(false)
+                     canSwipe = false
                     Log.i("ScrollView can scroll", "" + false)
-                }
+                }*/
             }
+
+         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+             super.onScrollStateChanged(recyclerView, newState)
+
+             if (newState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+
+             } else if (newState == SCROLL_STATE_DRAGGING) {
+
+             } else {
+
+             }
+         }
         })
+
+
+
+
+          /*  override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == AbsListView.OnScrollListener.SCROLL_STATE_FLING) {
+                    // Do something
+                } else if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                    // Do something
+                } else {
+                    // Do something
+                }
+            }*/
+
     }
 
     private fun initDataset() {

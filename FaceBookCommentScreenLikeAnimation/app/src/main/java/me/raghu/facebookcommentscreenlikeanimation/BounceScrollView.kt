@@ -53,14 +53,24 @@ class BounceScrollView(context: Context, attrs: AttributeSet?, defStyleAttr: Int
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
         if (mChildView == null && childCount > 0 || mChildView !== getChildAt(0)) {
             mChildView = getChildAt(0)
+
         }
-        return super.onInterceptTouchEvent(ev)
+
+   return if(scrollable){
+            Log.i("Parent","Touch Intercepted")
+            true
+        }else {
+            Log.i("Parent","Touch Intercepted false")
+            super.onInterceptTouchEvent(ev)
+        }
+       // return super.onInterceptTouchEvent(ev)
     }
 
     override fun onTouchEvent(ev: MotionEvent): Boolean {
         if (mChildView == null || isDisableBounce || !scrollable) return super.onTouchEvent(ev)
         when (ev.actionMasked) {
             MotionEvent.ACTION_DOWN -> {
+               // Log.i("Parent","Touch Intercepted")
                 mStart = if (isScrollHorizontally) ev.x else ev.y
                 startX = ev.rawX
                 startY = ev.rawY
@@ -107,7 +117,7 @@ class BounceScrollView(context: Context, attrs: AttributeSet?, defStyleAttr: Int
                     is Direction.UP -> {
 
                         mAnimator = if (scrolledDistance > half) {
-                            Log.i("Scrolled Distance up", "$mOverScrolledDistance nd half of device height $half")
+                            //Log.i("Scrolled Distance up", "$mOverScrolledDistance nd half of device height $half")
                             ObjectAnimator.ofFloat(mChildView, View.TRANSLATION_Y, - Resources.getSystem().displayMetrics.heightPixels.toFloat())
                         } else {
                             ObjectAnimator.ofFloat(mChildView, View.TRANSLATION_Y, 0f)
@@ -115,7 +125,7 @@ class BounceScrollView(context: Context, attrs: AttributeSet?, defStyleAttr: Int
                     }
                     is Direction.DOWN ->{
                         mAnimator = if (Math.abs(scrolledDistance) > half) {
-                            Log.i("Scrolled Distance down", "$mOverScrolledDistance and half of device height $half")
+                           // Log.i("Scrolled Distance down", "$mOverScrolledDistance and half of device height $half")
                             ObjectAnimator.ofFloat(mChildView, View.TRANSLATION_Y, Resources.getSystem().displayMetrics.heightPixels.toFloat())
                         } else {
                             ObjectAnimator.ofFloat(mChildView, View.TRANSLATION_Y, 0f)
@@ -147,7 +157,7 @@ class BounceScrollView(context: Context, attrs: AttributeSet?, defStyleAttr: Int
 
                         val translationY = mChildView!!.translationY
 
-                        Log.i("ScrollView height",""+mChildView!!.translationY )
+                      //  Log.i("ScrollView height",""+mChildView!!.translationY )
                             if(translationY==Resources.getSystem().displayMetrics.heightPixels.toFloat() || translationY == -Resources.getSystem().displayMetrics.heightPixels.toFloat()){
                             mDismissListener?.onDismiss(true)
                         }
