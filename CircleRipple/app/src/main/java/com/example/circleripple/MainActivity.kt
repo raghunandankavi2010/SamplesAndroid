@@ -18,7 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val circleView = findViewById<CircleView>(R.id.circleView)
-        generateRipple(circleView).start()
+        val animatorSet = generateRipple(circleView)
+        animatorSet.start()
     }
 
     // play scale x animation alon with scale y animation plus alpha
