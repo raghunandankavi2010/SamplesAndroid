@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     // play scale x animation alon with scale y animation plus alpha
     // this gives the effect of ripple animation.
+    // when playing alpha don't scale
     private fun generateRipple(target: View): AnimatorSet {
         val animatorList = ArrayList<Animator>()
         val rippleScale: Float = defaultRippleScale
