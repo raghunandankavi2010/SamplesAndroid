@@ -102,8 +102,14 @@ class CircleViewTicks @JvmOverloads constructor(
         for (i in 0 until TICK_COUNT) {
             val startAngle =
                     Math.toRadians(0.0).toFloat()
-            val angle =
-                    ((startAngle + i) * (Math.toRadians(360.0) / TICK_COUNT)).toFloat()
+            val angle = ((startAngle + i) * (Math.toRadians(360.0) / TICK_COUNT)).toFloat()
+            // above can also be
+            // val divisionAngle = Math.toRadians(360.0) / TICK_COUNT ie 360/10 = 36
+            // val angle = divisionAngle * i 36 *i ie 36 * 0 and 36 *1 and 36 *2 and so on..
+
+            // get points on circumference of circle
+            // center + r cos angle
+            // center + r sin angle
             val x = ((radius + DEFAULT_STROKE_WIDTH) * cos(angle.toDouble()) + width / 2)
             val y = ((radius + DEFAULT_STROKE_WIDTH) * sin(angle.toDouble()) + height / 2)
             val x1 = ((radius + 20 + DEFAULT_STROKE_WIDTH) * cos(angle.toDouble()) + width / 2)
