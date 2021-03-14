@@ -56,11 +56,9 @@ class CircleViewTicks @JvmOverloads constructor(
 
     private val radius = DEFAULT_RADIUS
 
-
     init {
 
     }
-
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val widthMode = MeasureSpec.getMode(widthMeasureSpec)
@@ -88,8 +86,6 @@ class CircleViewTicks @JvmOverloads constructor(
         setMeasuredDimension(width, height)
     }
 
-
-
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
@@ -100,10 +96,13 @@ class CircleViewTicks @JvmOverloads constructor(
         }
 
         for (i in 0 until TICK_COUNT) {
-            val startAngle =
-                    Math.toRadians(0.0).toFloat()
+
+            val startAngle = Math.toRadians(0.0).toFloat() // start angle is  0
+
+            // angle is  0 * 360/10 initially
+            // 1 * 36 and so on..
             val angle = ((startAngle + i) * (Math.toRadians(360.0) / TICK_COUNT)).toFloat()
-            // above can also be
+
             // val divisionAngle = Math.toRadians(360.0) / TICK_COUNT ie 360/10 = 36
             // val angle = divisionAngle * i 36 *i ie 36 * 0 and 36 *1 and 36 *2 and so on..
 
