@@ -82,6 +82,10 @@ class Circle @JvmOverloads constructor(
                     R.styleable.CircleView_text_color,
                     DEFAULT_TEXT_COLOR
             )
+            circleColor = a.getColor(
+                    R.styleable.CircleView_circle_color,
+                    DEFAULT_CIRCLE_COLOR
+            )
             a.recycle()
         }
     }

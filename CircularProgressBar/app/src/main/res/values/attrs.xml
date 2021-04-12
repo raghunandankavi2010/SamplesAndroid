@@ -6,5 +6,6 @@
 
     <declare-styleable name="CircleView">
         <attr name="text_color" format="color" />
+        <attr name="circle_color" format="color" />
     </declare-styleable>
 </resources>

@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
         binding.circularProgressView.maxProgress = 200
 
         binding.circle.text = "8"
-        binding.circle.circleColor = Color.BLUE
-        binding.circle.textColor = Color.GREEN
+        //binding.circle.circleColor = Color.BLUE
+        //binding.circle.textColor = Color.GREEN
 
         // Using ObjectAnimator
         val anim = ObjectAnimator.ofInt(binding.circularProgressView, "percentage", 0, 100)
