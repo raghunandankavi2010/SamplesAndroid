@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun initViews() {
-        mAdapter = DataAdapter( checkListener =  { checkedItem ->
+        mAdapter = DataAdapter( this@MainActivity,checkListener =  { checkedItem ->
             checkedItems.add(checkedItem)
 
         },unCheckListener = { unCheckedItem ->
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(){
 
     private fun loadList() {
         mArrayList = ArrayList()
-        val data1 = DataModel("Cupcake")
+        val data1 = DataModel("@Cupcake Android Version")
         mArrayList.add(data1)
         val data2 = DataModel("Donut")
         mArrayList.add(data2)
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity(){
         mArrayList.add(data4)
         val data5 = DataModel("Gingerbread")
         mArrayList.add(data5)
-        val data6 = DataModel("Honeycomb")
+        val data6 = DataModel("@Honeycomb")
         mArrayList.add(data6)
         val data7 = DataModel("Ice Cream Sandwich")
         mArrayList.add(data7)
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity(){
         mArrayList.add(data8)
         val data9 = DataModel("Kitkat")
         mArrayList.add(data9)
-        val data10 = DataModel("Lollipop")
+        val data10 = DataModel("@Lollipop Android Version")
         mArrayList.add(data10)
         val data11 = DataModel("MarshMallow")
         mArrayList.add(data11)
@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity(){
         mArrayList.add(data14)
         val data15 = DataModel("Android 10")
         mArrayList.add(data15)
-        val data16 = DataModel("Android 11")
+        val data16 = DataModel("@Android 11 Android Version")
         mArrayList.add(data16)
 
         mAdapter.add(mArrayList)

@@ -30,7 +30,7 @@ class TestActivity : AppCompatActivity() {
 
         binding.recyclerView.setHasFixedSize(true)
 
-        mAdapter = DataAdapter(checkListener = { checkedItem ->
+        mAdapter = DataAdapter(this@TestActivity,checkListener = { checkedItem ->
             checkedItems.add(checkedItem)
 
         }, unCheckListener = { unCheckedItem ->

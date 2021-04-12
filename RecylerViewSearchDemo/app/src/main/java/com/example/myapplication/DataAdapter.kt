@@ -1,20 +1,25 @@
 package com.example.myapplication
 
+import android.content.Context
+import android.graphics.Color
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.CardRowBinding
 import java.util.*
+import java.util.regex.Pattern
 import kotlin.collections.ArrayList
 
 
 class DataAdapter(
-    private val listener: (DataModel) -> Unit,
-    private val checkListener: (DataModel) -> Unit,
-    private val unCheckListener: (DataModel) -> Unit
+        val context: Context,
+        private val listener: (DataModel) -> Unit,
+        private val checkListener: (DataModel) -> Unit,
+        private val unCheckListener: (DataModel) -> Unit
 ) :
     RecyclerView.Adapter<DataAdapter.ViewHolder>(), Filterable {
 
@@ -89,6 +94,17 @@ class DataAdapter(
             unCheckListener: (DataModel) -> Unit
         ) {
             cardRowBinding.tvName.text = androidVersion.name
+            PatternEditableBuilder().addPattern(Pattern.compile("\\@(\\w+)"), Color.BLUE,
+                    PatternEditableBuilder.SpannableClickedListener { text ->
+                        Toast.makeText(context.applicationContext, "Clicked username: $text",
+                                Toast.LENGTH_SHORT).show()
+                    }).addPattern(Pattern.compile("\\#(\\w+)"), Color.CYAN,
+                    PatternEditableBuilder.SpannableClickedListener { text ->
+                        Toast.makeText(context.applicationContext,"Clicked hashtag: $text",
+                                Toast.LENGTH_SHORT).show()
+                    }).into(cardRowBinding.tvName)
+
+
             cardRowBinding.imageView.setOnClickListener {
                 val pos = adapterPosition
 
