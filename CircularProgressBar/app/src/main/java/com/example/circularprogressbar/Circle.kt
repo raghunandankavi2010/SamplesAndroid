@@ -6,7 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
-import android.graphics.RectF
+
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
@@ -23,9 +23,6 @@ class Circle @JvmOverloads constructor(
         private const val DEFAULT_CIRCLE_COLOR = Color.GREEN
         private const val DEFAULT_TEXT = "0"
     }
-
-    // required to draw the arcs
-    private val rectF = RectF()
 
     private val r: Rect = Rect()
 
@@ -131,8 +128,8 @@ class Circle @JvmOverloads constructor(
     }
 
 
+    // Draw text at the center of circle
     private fun drawText(canvas: Canvas, paint: Paint, text: String) {
-
         canvas.getClipBounds(r)
         val cHeight: Int = r.height()
         val cWidth: Int = r.width()
