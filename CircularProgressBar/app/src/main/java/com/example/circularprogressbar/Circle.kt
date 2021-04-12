@@ -74,11 +74,12 @@ class Circle @JvmOverloads constructor(
 
     }
 
+    //@SuppressLint("CustomViewStyleable")
     private fun setupAttributes(attrs: AttributeSet?) {
         attrs?.let {
-            val a = context.obtainStyledAttributes(attrs, R.styleable.CircularProgressView)
+            val a = context.obtainStyledAttributes(attrs, R.styleable.CircleView)
             textColor = a.getColor(
-                    R.styleable.CircularProgressView_percentage_color,
+                    R.styleable.CircleView_text_color,
                     DEFAULT_TEXT_COLOR
             )
             a.recycle()

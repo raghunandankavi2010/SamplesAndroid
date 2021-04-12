@@ -3,4 +3,8 @@
     <declare-styleable name="CircularProgressView">
         <attr name="percentage_color" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="CircleView">
+        <attr name="text_color" format="color" />
+    </declare-styleable>
 </resources>
