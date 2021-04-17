@@ -1,18 +1,33 @@
 package com.example.progressbarwithpercentage
 
 import android.content.Context
-import android.graphics.*
+import android.content.res.Resources
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Path
+import android.graphics.Rect
+import android.graphics.RectF
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.View
 
+/**
+ *  Modified from https://github.com/daimajia/NumberProgressBar
+ */
 class NumberProgressBar @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0
 ) :
     View(context, attrs, defStyleAttr) {
+
+    private var measuredWidth = 0f
+    private  var measuredHeight = 0f
+    private val rect = RectF(0f, 0f, 0f, 0f)
+    private val rectPath: Path = Path()
+    private val cornerRadius = 25f
     private var mMaxProgress = 100
 
     /**
@@ -146,14 +161,15 @@ class NumberProgressBar @JvmOverloads constructor(
 
     override fun getSuggestedMinimumHeight(): Int {
         return Math.max(
-            mTextSize.toInt(), Math.max(
+                mTextSize.toInt(), Math.max(
                 reachedBarHeight.toInt(),
                 unreachedBarHeight.toInt()
-            )
+        )
         )
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+
         setMeasuredDimension(measure(widthMeasureSpec, true), measure(heightMeasureSpec, false))
     }
 
@@ -178,21 +194,36 @@ class NumberProgressBar @JvmOverloads constructor(
         return result
     }
 
+    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+        super.onLayout(changed, left, top, right, bottom)
+        measuredWidth = (right - left).toFloat()
+        measuredHeight = (bottom - top).toFloat()
+        rect.set(0f, 0f, measuredWidth, measuredHeight);
+        rectPath.reset();
+        rectPath.addRoundRect(rect, cornerRadius, cornerRadius, Path.Direction.CW);
+    }
+
+
     override fun onDraw(canvas: Canvas) {
+
+        //canvas.drawRoundRect(0f,0f,width.toFloat(),height.toFloat(),15f,15f,mReachedBarPaint!!)
         if (progressTextVisibility) {
             calculateDrawRectF()
         } else {
             calculateDrawRectFWithoutProgressText()
         }
-        if (mDrawReachedBar) {
-            canvas.drawRect(mReachedRectF, mReachedBarPaint!!)
+
+        if (mDrawUnreachedBar) {
+            canvas.drawRoundRect(mUnreachedRectF,unreachedBarHeight,unreachedBarHeight, mUnreachedBarPaint!!)
         }
 
-        /*if (mDrawUnreachedBar) {
-            canvas.drawRect(mUnreachedRectF, mUnreachedBarPaint);
-        }*/if (progressTextVisibility) canvas.drawText(
-            mCurrentDrawText!!, mDrawTextStart, mDrawTextEnd,
-            mTextPaint!!
+        if (mDrawReachedBar) {
+            canvas.drawRoundRect(mReachedRectF,reachedBarHeight,reachedBarHeight, mReachedBarPaint!!)
+        }
+
+        if (progressTextVisibility) canvas.drawText(
+                mCurrentDrawText!!, mDrawTextStart, mDrawTextEnd,
+                mTextPaint!!
         )
     }
 
@@ -250,7 +281,7 @@ class NumberProgressBar @JvmOverloads constructor(
             mDrawUnreachedBar = false
         } else {
             mDrawUnreachedBar = true
-            mUnreachedRectF.left = unreachedBarStart
+            mUnreachedRectF.left = paddingLeft.toFloat()
             mUnreachedRectF.right = (width - paddingRight).toFloat()
             mUnreachedRectF.top = height / 2.0f + -unreachedBarHeight / 2.0f
             mUnreachedRectF.bottom = height / 2.0f + unreachedBarHeight / 2.0f
@@ -331,8 +362,8 @@ class NumberProgressBar @JvmOverloads constructor(
         bundle.putFloat(INSTANCE_TEXT_SIZE, progressTextSize)
         bundle.putFloat(INSTANCE_REACHED_BAR_HEIGHT, reachedBarHeight)
         bundle.putFloat(
-            INSTANCE_UNREACHED_BAR_HEIGHT,
-            unreachedBarHeight
+                INSTANCE_UNREACHED_BAR_HEIGHT,
+                unreachedBarHeight
         )
         bundle.putInt(INSTANCE_REACHED_BAR_COLOR, reachedBarColor)
         bundle.putInt(INSTANCE_UNREACHED_BAR_COLOR, unreachedBarColor)
@@ -341,8 +372,8 @@ class NumberProgressBar @JvmOverloads constructor(
         bundle.putString(INSTANCE_SUFFIX, suffix)
         bundle.putString(INSTANCE_PREFIX, prefix)
         bundle.putBoolean(
-            INSTANCE_TEXT_VISIBILITY,
-            progressTextVisibility
+                INSTANCE_TEXT_VISIBILITY,
+                progressTextVisibility
         )
         return bundle
     }
@@ -416,40 +447,40 @@ class NumberProgressBar @JvmOverloads constructor(
 
         //load styled attributes.
         val attributes = context.theme.obtainStyledAttributes(
-            attrs, R.styleable.NumberProgressBar,
-            defStyleAttr, 0
+                attrs, R.styleable.NumberProgressBar,
+                defStyleAttr, 0
         )
         mReachedBarColor = attributes.getColor(
-            R.styleable.NumberProgressBar_progress_reached_color,
-            default_reached_color
+                R.styleable.NumberProgressBar_progress_reached_color,
+                default_reached_color
         )
         mUnreachedBarColor = attributes.getColor(
-            R.styleable.NumberProgressBar_progress_unreached_color,
-            default_unreached_color
+                R.styleable.NumberProgressBar_progress_unreached_color,
+                default_unreached_color
         )
         textColor = attributes.getColor(
-            R.styleable.NumberProgressBar_progress_text_color,
-            default_text_color
+                R.styleable.NumberProgressBar_progress_text_color,
+                default_text_color
         )
         mTextSize = attributes.getDimension(
-            R.styleable.NumberProgressBar_progress_text_size,
-            default_text_size
+                R.styleable.NumberProgressBar_progress_text_size,
+                default_text_size
         )
         reachedBarHeight = attributes.getDimension(
-            R.styleable.NumberProgressBar_progress_reached_bar_height,
-            default_reached_bar_height
+                R.styleable.NumberProgressBar_progress_reached_bar_height,
+                default_reached_bar_height
         )
         unreachedBarHeight = attributes.getDimension(
-            R.styleable.NumberProgressBar_progress_unreached_bar_height,
-            default_unreached_bar_height
+                R.styleable.NumberProgressBar_progress_unreached_bar_height,
+                default_unreached_bar_height
         )
         mOffset = attributes.getDimension(
-            R.styleable.NumberProgressBar_progress_text_offset,
-            default_progress_text_offset
+                R.styleable.NumberProgressBar_progress_text_offset,
+                default_progress_text_offset
         )
         val textVisible = attributes.getInt(
-            R.styleable.NumberProgressBar_progress_text_visibility,
-            PROGRESS_TEXT_VISIBLE
+                R.styleable.NumberProgressBar_progress_text_visibility,
+                PROGRESS_TEXT_VISIBLE
         )
         if (textVisible != PROGRESS_TEXT_VISIBLE) {
             progressTextVisibility = false
@@ -460,3 +491,8 @@ class NumberProgressBar @JvmOverloads constructor(
         initializePainters()
     }
 }
+val Int.dp: Int
+    get() = (this * Resources.getSystem().displayMetrics.density + 0.5f).toInt()
+
+val Float.dp: Int
+    get() = (this * Resources.getSystem().displayMetrics.density + 0.5f).toInt()

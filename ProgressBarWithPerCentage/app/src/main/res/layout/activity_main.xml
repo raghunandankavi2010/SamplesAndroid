@@ -23,8 +23,25 @@
         custom:progress_current="0"
         custom:progress_text_color="@android:color/white"
         custom:progress_reached_color="@color/teal_700"
-        custom:progress_reached_bar_height="80dp"
+        custom:progress_reached_bar_height="40dp"
+        custom:progress_unreached_bar_height="40dp"
         custom:progress_text_offset="8dp"
-        custom:progress_text_size="35sp" />
+        custom:progress_text_size="12sp" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:indicatorColor="@color/teal_700"
+        app:trackColor="@color/black"
+        android:progress="50"
+        app:trackThickness="50dp"
+        app:indicatorSize="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/numberbar1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:trackCornerRadius="25dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity(), OnProgressBarListener {
 
         val bnp =  findViewById<NumberProgressBar> (R.id.numberbar1);
         bnp.setOnProgressBarListener(this)
-        bnp.progress= 80
+        bnp.progress= 50
     }
 
     override fun onProgressChange(current: Int, max: Int) {
