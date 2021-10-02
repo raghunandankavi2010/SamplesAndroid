@@ -65,11 +65,12 @@ class CircleImageView : AppCompatImageView {
     private val circlePaint = Paint().apply {
         style = Paint.Style.FILL
         isAntiAlias = true
-        color = Color.RED
+        color = Color.parseColor("#8BC34A")//Color.GREEN
     }
 
 
     private val textPaint = TextPaint().apply {
+        strokeWidth = 1f
         isAntiAlias = true
         style = Paint.Style.FILL_AND_STROKE
         color = Color.WHITE
@@ -83,25 +84,25 @@ class CircleImageView : AppCompatImageView {
 
     @JvmOverloads
     constructor(context: Context, attrs: AttributeSet, defStyle: Int = 0) : super(
-        context,
-        attrs,
-        defStyle
+            context,
+            attrs,
+            defStyle
     ) {
         manager = DrawerManager(this@CircleImageView, attrs)
         val a = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView, defStyle, 0)
         mBorderWidth =
             a.getDimensionPixelSize(
-                R.styleable.CircleImageView_border_width,
-                DEFAULT_BORDER_WIDTH
+                    R.styleable.CircleImageView_border_width,
+                    DEFAULT_BORDER_WIDTH
             )
         mBorderColor = a.getColor(
-            R.styleable.CircleImageView_border_color,
-            DEFAULT_BORDER_COLOR
+                R.styleable.CircleImageView_border_color,
+                DEFAULT_BORDER_COLOR
         )
         mBorderOverlay =
             a.getBoolean(
-                R.styleable.CircleImageView_border_overlay,
-                DEFAULT_BORDER_OVERLAY
+                    R.styleable.CircleImageView_border_overlay,
+                    DEFAULT_BORDER_OVERLAY
             )
         mShowShadow = a.getBoolean(R.styleable.CircleImageView_show_shadow, false)
         a.recycle()
@@ -138,33 +139,32 @@ class CircleImageView : AppCompatImageView {
         }
 
         canvas.drawCircle(
-            (width / 2).toFloat(),
-            (height / 2).toFloat(),
-            mDrawableRadius,
-            mBitmapPaint
+                (width / 2).toFloat(),
+                (height / 2).toFloat(),
+                mDrawableRadius,
+                mBitmapPaint
         )
 
         if (mBorderWidth != 0) {
             canvas.drawCircle(
-                (width / 2).toFloat(),
-                (height / 2).toFloat(),
-                mBorderRadius,
-                mBorderPaint
+                    (width / 2).toFloat(),
+                    (height / 2).toFloat(),
+                    mBorderRadius,
+                    mBorderPaint
             )
         }
         manager!!.drawBadge(canvas)
 
-      /*  val angle = Math.toRadians(315.0)
+        val angle = Math.toRadians(315.0)
         val x = width / 2 + cos(angle) * mDrawableRadius
         val y = height / 2 + sin(angle) * mDrawableRadius
 
         canvas.drawCircle(x.toFloat(), y.toFloat(), 30f, circlePaint)
 
+        //ContextCompat.getDrawable(context, R.drawable.bkg)
+        // ?.let { drawBackgroundForBadge(it, canvas, x.toFloat(), y.toFloat(), "1", textPaint) }
 
-        ContextCompat.getDrawable(context, R.drawable.bkg)
-           ?.let { drawBackgroundForBadge(it, canvas, x.toFloat(), y.toFloat()) }
-
-        drawText(canvas, x.toFloat(), y.toFloat(), textPaint, "100")*/
+        drawText(canvas, x.toFloat(), y.toFloat(), textPaint, "15")
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -255,8 +255,8 @@ class CircleImageView : AppCompatImageView {
 
         mBorderRect.set(0f, 0f, width.toFloat(), height.toFloat())
         mBorderRadius = min(
-            (mBorderRect.height() - mBorderWidth) / 2,
-            (mBorderRect.width() - mBorderWidth) / 2
+                (mBorderRect.height() - mBorderWidth) / 2,
+                (mBorderRect.width() - mBorderWidth) / 2
         )
 
         mDrawableRect.set(mBorderRect)
@@ -270,8 +270,8 @@ class CircleImageView : AppCompatImageView {
             mDrawableRadius -= shadowRadius
             (parent as ViewGroup).setLayerType(View.LAYER_TYPE_SOFTWARE, mBitmapPaint)
             mBitmapPaint.setShadowLayer(
-                shadowRadius, 0f, 0f,
-                ContextCompat.getColor(context, R.color.black)
+                    shadowRadius, 0f, 0f,
+                    ContextCompat.getColor(context, R.color.black)
             )
         }
         updateShaderMatrix()
@@ -295,8 +295,8 @@ class CircleImageView : AppCompatImageView {
 
         mShaderMatrix.setScale(scale, scale)
         mShaderMatrix.postTranslate(
-            (dx + SCALE_FACTOR).toInt() + mDrawableRect.left,
-            (dy + SCALE_FACTOR).toInt() + mDrawableRect.top
+                (dx + SCALE_FACTOR).toInt() + mDrawableRect.left,
+                (dy + SCALE_FACTOR).toInt() + mDrawableRect.top
         )
 
         mBitmapShader!!.setLocalMatrix(mShaderMatrix)
@@ -321,17 +321,21 @@ class CircleImageView : AppCompatImageView {
         canvas.drawText(text, x1, y1, paint)
     }
 
-    fun drawBackgroundForBadge(drawable: Drawable, canvas: Canvas, x: Float, y: Float) {
+    private fun drawBackgroundForBadge(drawable: Drawable, canvas: Canvas, x: Float, y: Float, text: String, paint: Paint) {
+        paint.textAlign = Paint.Align.LEFT
+        paint.getTextBounds(text, 0, text.length, r)
+        val x1: Float = x - r.width() / 2f - r.left
+        val y1: Float = y + r.height() / 2f - r.bottom
+        val textWidth = paint.measureText(text)
         drawable.setBounds(
-            0,
-            0,
-            70,
-            70
+                0,
+                0,
+                (textWidth*2f).toInt(), r.height()*2f.toInt()
         )
         canvas.save()
         canvas.translate(
-            x - drawable.bounds.width()/2,
-            y - drawable.bounds.height()/2
+                x - drawable.bounds.width() / 2,
+                y - drawable.bounds.height() / 2
         )
         drawable.draw(canvas)
         canvas.restore()

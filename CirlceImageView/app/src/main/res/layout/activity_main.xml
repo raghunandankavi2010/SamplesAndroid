@@ -7,29 +7,56 @@
     tools:context=".MainActivity">
 
     <com.example.cirlceimageview.CircleImageView
+        android:id="@+id/iv"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
         app:border_color="@android:color/black"
         app:border_width="2dp"
-        android:padding="0dp"
-        android:id="@+id/iv"
-        android:scaleType="fitXY"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
-        android:padding="5dp"
         android:id="@+id/textView"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:gravity="center"
-        android:text="1"
         android:background="@drawable/bkg"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv" />
+
+
+    <com.example.cirlceimageview.CircleImageView
+        android:id="@+id/iv2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:border_color="@android:color/black"
+        app:border_width="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/iv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.22000003" />
+
+    <com.example.cirlceimageview.CircleImageView
+        android:id="@+id/imageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/iv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv2"
+        tools:srcCompat="@tools:sample/avatars" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
